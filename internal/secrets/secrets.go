@@ -19,6 +19,15 @@ import (
 
 const componentSecrets = "secrets"
 
+// SecretSource describes where a secret was resolved from.
+type SecretSource string
+
+const (
+	SecretSourceNone      SecretSource = "none"
+	SecretSourceFile      SecretSource = "file"
+	SecretSourceEnvOrText SecretSource = "value"
+)
+
 const (
 	// maxSecretFileSize limits secret file reads to prevent memory issues
 	// Secrets should be small (tokens, passwords), not large files
@@ -176,6 +185,26 @@ func Resolve(filePath, value string) (string, error) {
 
 	// No secret source provided
 	return "", nil
+}
+
+// ResolveWithSource resolves a secret and returns its source class.
+func ResolveWithSource(filePath, value string) (secret string, source SecretSource, err error) {
+	secret, err = Resolve(filePath, value)
+	if err != nil {
+		return "", SecretSourceNone, err
+	}
+	if strings.TrimSpace(filePath) != "" {
+		return secret, SecretSourceFile, nil
+	}
+	if strings.TrimSpace(value) != "" {
+		return secret, SecretSourceEnvOrText, nil
+	}
+	return "", SecretSourceNone, nil
+}
+
+// IsEnvReference reports whether the value appears to contain env-var interpolation.
+func IsEnvReference(value string) bool {
+	return strings.Contains(value, "${")
 }
 
 // MustResolve is like Resolve but returns an error if no secret is provided.

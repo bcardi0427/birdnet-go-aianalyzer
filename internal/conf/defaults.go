@@ -222,6 +222,7 @@ func setDefaultConfig() {
 	// eBird configuration
 	viper.SetDefault("realtime.ebird.enabled", false)
 	viper.SetDefault("realtime.ebird.apikey", "")
+	viper.SetDefault("realtime.ebird.apikeyfile", "")
 	viper.SetDefault("realtime.ebird.cachettl", 24) // 24 hours default
 	viper.SetDefault("realtime.ebird.locale", "en")
 
@@ -243,12 +244,14 @@ func setDefaultConfig() {
 
 	// OpenWeather specific configuration
 	viper.SetDefault("realtime.weather.openweather.apikey", "")
+	viper.SetDefault("realtime.weather.openweather.apikeyfile", "")
 	viper.SetDefault("realtime.weather.openweather.endpoint", "https://api.openweathermap.org/data/2.5/weather")
 	viper.SetDefault("realtime.weather.openweather.units", "metric")
 	viper.SetDefault("realtime.weather.openweather.language", "en")
 
 	// Weather Underground specific configuration
 	viper.SetDefault("realtime.weather.wunderground.apikey", "")
+	viper.SetDefault("realtime.weather.wunderground.apikeyfile", "")
 	viper.SetDefault("realtime.weather.wunderground.stationid", "")
 	viper.SetDefault("realtime.weather.wunderground.endpoint", "https://api.weather.com/v2/pws/observations/current")
 	viper.SetDefault("realtime.weather.wunderground.units", "m") // m=metric, e=imperial, h=UK hybrid

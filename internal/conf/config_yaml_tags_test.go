@@ -109,6 +109,10 @@ func TestSettingsYAMLRoundTrip(t *testing.T) {
 	original.Realtime.EBird.Locale = "en-uk"
 	original.Realtime.EBird.CacheTTL = 48
 	original.Realtime.EBird.APIKey = "test-key"
+	original.Realtime.EBird.APIKeyFile = "/run/secrets/ebird_api_key"
+	original.Realtime.Weather.OpenWeather.APIKeyFile = "/run/secrets/openweather_api_key"
+	original.Realtime.Weather.Wunderground.APIKeyFile = "/run/secrets/wunderground_api_key"
+	original.AI.APIKeyFile = "/run/secrets/gemini_api_key"
 	// Retention (5 previously-mismatched fields)
 	original.Realtime.Audio.Export.Retention.MaxAge = "30d"
 	original.Realtime.Audio.Export.Retention.MaxUsage = "80%"
@@ -142,6 +146,10 @@ func TestSettingsYAMLRoundTrip(t *testing.T) {
 	assert.Equal(t, "en-uk", restored.Realtime.EBird.Locale)
 	assert.Equal(t, 48, restored.Realtime.EBird.CacheTTL)
 	assert.Equal(t, "test-key", restored.Realtime.EBird.APIKey)
+	assert.Equal(t, "/run/secrets/ebird_api_key", restored.Realtime.EBird.APIKeyFile)
+	assert.Equal(t, "/run/secrets/openweather_api_key", restored.Realtime.Weather.OpenWeather.APIKeyFile)
+	assert.Equal(t, "/run/secrets/wunderground_api_key", restored.Realtime.Weather.Wunderground.APIKeyFile)
+	assert.Equal(t, "/run/secrets/gemini_api_key", restored.AI.APIKeyFile)
 	assert.Equal(t, "30d", restored.Realtime.Audio.Export.Retention.MaxAge)
 	assert.Equal(t, "80%", restored.Realtime.Audio.Export.Retention.MaxUsage)
 	assert.Equal(t, 10, restored.Realtime.Audio.Export.Retention.MinClips)

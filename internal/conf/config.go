@@ -330,10 +330,11 @@ type BirdweatherSettings struct {
 
 // EBirdSettings contains settings for eBird API integration.
 type EBirdSettings struct {
-	Enabled  bool   `yaml:"enabled" json:"enabled"`   // true to enable eBird integration
-	APIKey   string `yaml:"apikey" json:"apiKey"`     // eBird API key
-	CacheTTL int    `yaml:"cachettl" json:"cacheTTL"` // cache time-to-live in hours (default: 24)
-	Locale   string `yaml:"locale" json:"locale"`     // locale for eBird data (e.g., "en", "es")
+	Enabled    bool   `yaml:"enabled" json:"enabled"`       // true to enable eBird integration
+	APIKey     string `yaml:"apikey" json:"apiKey"`         // eBird API key
+	APIKeyFile string `yaml:"apikeyfile" json:"apiKeyFile"` // file path to eBird API key
+	CacheTTL   int    `yaml:"cachettl" json:"cacheTTL"`     // cache time-to-live in hours (default: 24)
+	Locale     string `yaml:"locale" json:"locale"`         // locale for eBird data (e.g., "en", "es")
 }
 
 // WeatherSettings contains all weather-related settings
@@ -465,19 +466,21 @@ type PushFilterConfig struct {
 
 // WundergroundSettings contains settings for WeatherUnderground integration.
 type WundergroundSettings struct {
-	APIKey    string `yaml:"apikey" json:"apiKey"`       // WeatherUnderground API key
-	StationID string `yaml:"stationid" json:"stationId"` // WeatherUnderground station ID
-	Endpoint  string `yaml:"endpoint" json:"endpoint"`   // WeatherUnderground API endpoint
-	Units     string `yaml:"units" json:"units"`         // units of measurement: "e" (imperial), "m" (metric), "h" (UK hybrid)
+	APIKey     string `yaml:"apikey" json:"apiKey"`         // WeatherUnderground API key
+	APIKeyFile string `yaml:"apikeyfile" json:"apiKeyFile"` // file path to WeatherUnderground API key
+	StationID  string `yaml:"stationid" json:"stationId"`   // WeatherUnderground station ID
+	Endpoint   string `yaml:"endpoint" json:"endpoint"`     // WeatherUnderground API endpoint
+	Units      string `yaml:"units" json:"units"`           // units of measurement: "e" (imperial), "m" (metric), "h" (UK hybrid)
 }
 
 // OpenWeatherSettings contains settings for OpenWeather integration.
 type OpenWeatherSettings struct {
-	Enabled  bool   `yaml:"enabled" json:"enabled"`   // true to enable OpenWeather integration, for legacy support
-	APIKey   string `yaml:"apikey" json:"apiKey"`     // OpenWeather API key
-	Endpoint string `yaml:"endpoint" json:"endpoint"` // OpenWeather API endpoint
-	Units    string `yaml:"units" json:"units"`       // units of measurement: standard, metric, or imperial
-	Language string `yaml:"language" json:"language"` // language code for the response
+	Enabled    bool   `yaml:"enabled" json:"enabled"`       // true to enable OpenWeather integration, for legacy support
+	APIKey     string `yaml:"apikey" json:"apiKey"`         // OpenWeather API key
+	APIKeyFile string `yaml:"apikeyfile" json:"apiKeyFile"` // file path to OpenWeather API key
+	Endpoint   string `yaml:"endpoint" json:"endpoint"`     // OpenWeather API endpoint
+	Units      string `yaml:"units" json:"units"`           // units of measurement: standard, metric, or imperial
+	Language   string `yaml:"language" json:"language"`     // language code for the response
 }
 
 // PrivacyFilterSettings contains settings for the privacy filter.
@@ -765,6 +768,16 @@ func (e *ExtendedCaptureSettings) Validate(preCapture int) error {
 	return nil
 }
 
+// AISettings contains settings for AI integration features (like daily reports).
+type AISettings struct {
+	Enabled      bool   `yaml:"enabled" json:"enabled"`           // true to enable AI features
+	APIKey       string `yaml:"apikey" json:"apiKey"`             // Gemini API Key
+	APIKeyFile   string `yaml:"apikeyfile" json:"apiKeyFile"`     // file path to Gemini API key
+	Model        string `yaml:"model" json:"model"`               // Gemini model to use, e.g., "gemini-2.5-flash"
+	CacheHours   int    `yaml:"cachehours" json:"cacheHours"`     // Hours to cache the report (default 4)
+	SystemPrompt string `yaml:"systemprompt" json:"systemPrompt"` // Custom instruction prompt
+}
+
 // RealtimeSettings contains all settings related to realtime processing.
 type RealtimeSettings struct {
 	Interval            int                         `yaml:"interval" json:"interval"`                       // minimum interval between log messages in seconds
@@ -792,6 +805,7 @@ type RealtimeSettings struct {
 	Weather          WeatherSettings          `yaml:"weather" json:"weather"`                   // Weather provider related settings
 	SpeciesTracking  SpeciesTrackingSettings  `yaml:"speciestracking" json:"speciesTracking"`   // New species tracking settings
 	ExtendedCapture  ExtendedCaptureSettings  `yaml:"extendedcapture" json:"extendedCapture"`   // Extended capture for long calling species
+	AI               AISettings               `yaml:"ai" json:"ai"`                             // AI features settings
 }
 
 // SpeciesAction represents a single action configuration
@@ -1577,6 +1591,7 @@ type Settings struct {
 	Notification NotificationConfig `yaml:"notification" json:"notification"` // Configuration for push notifications
 
 	Alerting AlertSettings `yaml:"alerting" json:"alerting"` // Alerting rules engine settings
+	AI       AISettings    `yaml:"ai" json:"ai"`             // AI integration settings
 }
 
 // ResolveEQOverride returns the per-source or per-stream EQ override for the
@@ -1674,8 +1689,8 @@ func (s *Settings) GetWeatherProvider() (provider WeatherProvider, settings any)
 // ValidateWunderground validates Wunderground settings when the provider is "wunderground"
 func (w *WundergroundSettings) ValidateWunderground() error {
 	// Validate required fields when provider is "wunderground"
-	if w.APIKey == "" {
-		return fmt.Errorf("wunderground.apiKey is required when provider is wunderground")
+	if w.APIKey == "" && w.APIKeyFile == "" {
+		return fmt.Errorf("wunderground.apiKey or wunderground.apiKeyFile is required when provider is wunderground")
 	}
 	if w.StationID == "" {
 		return fmt.Errorf("wunderground.stationId is required when provider is wunderground")

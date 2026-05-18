@@ -11,6 +11,7 @@ import (
 	"github.com/tphakala/birdnet-go/internal/conf"
 	"github.com/tphakala/birdnet-go/internal/errors"
 	"github.com/tphakala/birdnet-go/internal/logger"
+	"github.com/tphakala/birdnet-go/internal/secrets"
 )
 
 const (
@@ -58,13 +59,26 @@ type OpenWeatherResponse struct {
 
 // FetchWeather implements the Provider interface for OpenWeatherProvider
 func (p *OpenWeatherProvider) FetchWeather(settings *conf.Settings) (*WeatherData, error) {
-	apiKey := settings.Realtime.Weather.OpenWeather.APIKey
+	apiKey, source, err := secrets.ResolveWithSource(
+		settings.Realtime.Weather.OpenWeather.APIKeyFile,
+		settings.Realtime.Weather.OpenWeather.APIKey,
+	)
+	if err != nil {
+		return nil, newWeatherError(err, errors.CategoryConfiguration, "resolve_api_key", openWeatherProviderName)
+	}
 	if apiKey == "" {
 		return nil, newWeatherError(
 			fmt.Errorf("OpenWeather API key not configured"),
 			errors.CategoryConfiguration,
 			"validate_config",
 			openWeatherProviderName,
+		)
+	}
+	if source == secrets.SecretSourceEnvOrText && !secrets.IsEnvReference(settings.Realtime.Weather.OpenWeather.APIKey) &&
+		settings.Realtime.Weather.OpenWeather.APIKey != "" {
+		getLogger().Warn("plaintext secret in use; migrate to env var or secret file",
+			logger.String("field", "realtime.weather.openWeather.apiKey"),
+			logger.String("source", "plaintext"),
 		)
 	}
 

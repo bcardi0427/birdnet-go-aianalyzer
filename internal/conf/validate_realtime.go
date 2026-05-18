@@ -77,6 +77,16 @@ func validateRealtimeSettings(settings *RealtimeSettings) error {
 		return err
 	}
 
+	// Validate eBird API key source when integration is enabled.
+	if settings.EBird.Enabled &&
+		strings.TrimSpace(settings.EBird.APIKey) == "" &&
+		strings.TrimSpace(settings.EBird.APIKeyFile) == "" {
+		return errors.Newf("eBird API key is required when eBird is enabled (set realtime.ebird.apiKey or realtime.ebird.apiKeyFile)").
+			Category(errors.CategoryValidation).
+			Context("validation_type", "ebird-api-key-source").
+			Build()
+	}
+
 	// Validate dynamic threshold settings
 	if err := validateDynamicThresholdSettings(&settings.DynamicThreshold); err != nil {
 		return err
@@ -324,6 +334,16 @@ func validateWeatherSettings(settings *WeatherSettings) error {
 				Context("validation_type", "wunderground-settings").
 				Build()
 		}
+	}
+
+	// Validate OpenWeather key source if it's the selected provider.
+	if settings.Provider == "openweather" &&
+		strings.TrimSpace(settings.OpenWeather.APIKey) == "" &&
+		strings.TrimSpace(settings.OpenWeather.APIKeyFile) == "" {
+		return errors.Newf("openweather API key is required when provider is openweather (set realtime.weather.openWeather.apiKey or realtime.weather.openWeather.apiKeyFile)").
+			Category(errors.CategoryValidation).
+			Context("validation_type", "openweather-api-key-source").
+			Build()
 	}
 
 	return nil

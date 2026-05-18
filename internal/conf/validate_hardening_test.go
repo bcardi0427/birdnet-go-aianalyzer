@@ -426,6 +426,9 @@ func TestValidateWeatherSettings_InvalidProvider(t *testing.T) {
 			settings := &WeatherSettings{
 				Provider:     tt.provider,
 				PollInterval: 30,
+				OpenWeather: OpenWeatherSettings{
+					APIKey: "testkey",
+				},
 				Wunderground: WundergroundSettings{
 					APIKey:    "testkey",
 					StationID: "KTEST1",

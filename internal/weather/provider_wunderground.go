@@ -16,6 +16,7 @@ import (
 	"github.com/tphakala/birdnet-go/internal/conf"
 	"github.com/tphakala/birdnet-go/internal/errors"
 	"github.com/tphakala/birdnet-go/internal/logger"
+	"github.com/tphakala/birdnet-go/internal/secrets"
 )
 
 const (
@@ -237,8 +238,23 @@ type wundergroundConfig struct {
 
 // validateWundergroundConfig validates and normalizes Wunderground configuration
 func validateWundergroundConfig(settings *conf.Settings) (*wundergroundConfig, error) {
+	apiKey, source, err := secrets.ResolveWithSource(
+		settings.Realtime.Weather.Wunderground.APIKeyFile,
+		settings.Realtime.Weather.Wunderground.APIKey,
+	)
+	if err != nil {
+		return nil, newWeatherError(err, errors.CategoryConfiguration, "resolve_api_key", wundergroundProviderName)
+	}
+	if source == secrets.SecretSourceEnvOrText && !secrets.IsEnvReference(settings.Realtime.Weather.Wunderground.APIKey) &&
+		settings.Realtime.Weather.Wunderground.APIKey != "" {
+		getLogger().Warn("plaintext secret in use; migrate to env var or secret file",
+			logger.String("field", "realtime.weather.wunderground.apiKey"),
+			logger.String("source", "plaintext"),
+		)
+	}
+
 	cfg := &wundergroundConfig{
-		apiKey:    settings.Realtime.Weather.Wunderground.APIKey,
+		apiKey:    apiKey,
 		stationID: settings.Realtime.Weather.Wunderground.StationID,
 		endpoint:  settings.Realtime.Weather.Wunderground.Endpoint,
 	}

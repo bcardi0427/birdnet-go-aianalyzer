@@ -18,6 +18,7 @@ import (
 	"github.com/tphakala/birdnet-go/internal/logger"
 	"github.com/tphakala/birdnet-go/internal/mqtt"
 	"github.com/tphakala/birdnet-go/internal/notification"
+	"github.com/tphakala/birdnet-go/internal/secrets"
 	"github.com/tphakala/birdnet-go/internal/weather"
 )
 
@@ -524,7 +525,9 @@ func (c *Controller) TestWeatherConnection(ctx echo.Context) error {
 	}
 
 	// Validate OpenWeather specific requirements
-	if request.Provider == WeatherProviderOpenWeather && request.OpenWeather.APIKey == "" {
+	if request.Provider == WeatherProviderOpenWeather &&
+		strings.TrimSpace(request.OpenWeather.APIKey) == "" &&
+		strings.TrimSpace(request.OpenWeather.APIKeyFile) == "" {
 		return c.HandleErrorWithKey(ctx, nil, "OpenWeather API key is required", http.StatusBadRequest, notification.MsgErrIntegOWKeyRequired, nil)
 	}
 
@@ -666,7 +669,10 @@ func (c *Controller) testWeatherAuthentication(ctx context.Context, settings *co
 
 	switch provider {
 	case WeatherProviderOpenWeather:
-		apiKey := settings.Realtime.Weather.OpenWeather.APIKey
+		apiKey, _, err := secrets.ResolveWithSource(settings.Realtime.Weather.OpenWeather.APIKeyFile, settings.Realtime.Weather.OpenWeather.APIKey)
+		if err != nil {
+			return "", fmt.Errorf("failed to resolve OpenWeather API key: %w", err)
+		}
 		endpoint := settings.Realtime.Weather.OpenWeather.Endpoint
 		if endpoint == "" {
 			endpoint = "https://api.openweathermap.org/data/2.5/weather"
@@ -818,7 +824,7 @@ func (c *Controller) TestEBirdConnection(ctx echo.Context) error {
 		})
 	}
 
-	if request.APIKey == "" {
+	if strings.TrimSpace(request.APIKey) == "" {
 		return ctx.JSON(http.StatusBadRequest, map[string]any{
 			"success": false,
 			"message": "eBird API key is required",

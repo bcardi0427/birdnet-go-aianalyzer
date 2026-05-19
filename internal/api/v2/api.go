@@ -19,6 +19,7 @@ import (
 	"github.com/patrickmn/go-cache"
 	"github.com/shirou/gopsutil/v3/disk"
 	"github.com/shirou/gopsutil/v3/mem"
+	"github.com/tphakala/birdnet-go/internal/ai"
 	"github.com/tphakala/birdnet-go/internal/alerting"
 	"github.com/tphakala/birdnet-go/internal/analysis/processor"
 	"github.com/tphakala/birdnet-go/internal/api/auth"
@@ -35,6 +36,7 @@ import (
 	"github.com/tphakala/birdnet-go/internal/imageprovider"
 	"github.com/tphakala/birdnet-go/internal/logger"
 	"github.com/tphakala/birdnet-go/internal/observability"
+	"github.com/tphakala/birdnet-go/internal/secrets"
 	"github.com/tphakala/birdnet-go/internal/securefs"
 	"github.com/tphakala/birdnet-go/internal/spectrogram"
 	"github.com/tphakala/birdnet-go/internal/suncalc"
@@ -112,6 +114,7 @@ type Controller struct {
 
 	// Insights fields (initialized lazily in initInsightsRoutes)
 	insightsRepo repository.InsightsRepository
+	aiService    *ai.ReportService
 	nameMaps     atomic.Value // stores *nameMaps; see internal/api/v2/insights.go
 
 	// Model gallery fields
@@ -483,7 +486,17 @@ func NewWithOptions(e *echo.Echo, ds datastore.Interface, settings *conf.Setting
 
 	// Initialize eBird client if enabled
 	if settings.Realtime.EBird.Enabled {
-		if settings.Realtime.EBird.APIKey == "" {
+		ebirdAPIKey, source, resolveErr := secrets.ResolveWithSource(settings.Realtime.EBird.APIKeyFile, settings.Realtime.EBird.APIKey)
+		if resolveErr != nil {
+			log.Warn("Failed to resolve eBird API key", logger.Error(resolveErr))
+		}
+		if source == secrets.SecretSourceEnvOrText && !secrets.IsEnvReference(settings.Realtime.EBird.APIKey) &&
+			settings.Realtime.EBird.APIKey != "" {
+			log.Warn("plaintext secret in use; migrate to env var or secret file",
+				logger.String("field", "realtime.ebird.apiKey"),
+				logger.String("source", "plaintext"))
+		}
+		if ebirdAPIKey == "" {
 			// Create notification for missing API key
 			// The Build() method automatically publishes to the event bus for notifications
 			_ = errors.Newf("eBird integration enabled but API key not configured").
@@ -494,7 +507,7 @@ func NewWithOptions(e *echo.Echo, ds datastore.Interface, settings *conf.Setting
 			log.Warn("eBird integration enabled but API key not configured")
 		} else {
 			ebirdConfig := ebird.Config{
-				APIKey:   settings.Realtime.EBird.APIKey,
+				APIKey:   ebirdAPIKey,
 				CacheTTL: time.Duration(settings.Realtime.EBird.CacheTTL) * time.Hour,
 			}
 			ebirdClient, err := ebird.NewClient(ebirdConfig)
@@ -628,6 +641,7 @@ func (c *Controller) initRoutes() {
 		{"model routes", c.initModelRoutes},
 		{"insights routes", c.initInsightsRoutes},
 		{"tls routes", c.initTLSRoutes},
+		{"ai routes", c.initAIRoutes},
 	}
 
 	for _, initializer := range routeInitializers {

@@ -1,0 +1,93 @@
+name: AI Analyzer LXC Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - aianalyzer/main
+    paths:
+      - ".github/workflows/aianalyzer-lxc-release.yml"
+      - "frontend/**"
+      - "internal/**"
+      - "cmd/**"
+      - "Taskfile.yml"
+      - "go.mod"
+      - "go.sum"
+
+permissions:
+  contents: write
+
+jobs:
+  build-linux-amd64:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          check-latest: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Linux system dependencies
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: build-essential pkg-config
+          version: 1.0
+
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          target-platform: linux-amd64
+
+      - name: Build Linux AMD64 binary
+        run: task linux_amd64
+        env:
+          GOOS: linux
+          GOARCH: amd64
+          CGO_ENABLED: 1
+          BUILD_VERSION: aianalyzer-${{ github.run_number }}
+          PUPPETEER_SKIP_DOWNLOAD: true
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+
+      - name: Prepare LXC release asset
+        run: |
+          cp bin/birdnet-go birdnet-go-linux-amd64
+          chmod 755 birdnet-go-linux-amd64
+
+      - name: Publish LXC release asset
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: aianalyzer-lxc-latest
+          name: AI Analyzer LXC Latest
+          body: |
+            Latest Linux AMD64 binary for Proxmox helper-script LXC upgrades.
+
+            Install inside the LXC with:
+
+            ```bash
+            curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/scripts/install-aianalyzer-lxc.sh -o install-aianalyzer-lxc.sh
+            bash ./install-aianalyzer-lxc.sh
+            ```
+          files: birdnet-go-linux-amd64
+          make_latest: true
+          overwrite_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

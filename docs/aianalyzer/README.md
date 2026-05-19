@@ -39,6 +39,8 @@ This script preserves `/opt/birdnet/data`, backs up `/usr/local/bin/birdnet-go`,
 
 Current requirement: this needs a GitHub release asset named `birdnet-go-linux-amd64`. Until that release binary exists, the script will stop with a clear message instead of changing the running service.
 
+The release binary is produced by the `AI Analyzer LXC Release` GitHub Actions workflow. Run that workflow on the `aianalyzer/main` branch to publish or refresh the release asset used by the LXC upgrade script.
+
 ## Update Strategy
 
 This fork tracks upstream using:

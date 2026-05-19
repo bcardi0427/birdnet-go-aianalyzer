@@ -46,6 +46,7 @@ export interface AISettings {
   enabled: boolean;
   apiKey: string;
   model: string;
+  reportDays: number;
   cacheHours: number;
   systemPrompt: string;
 }

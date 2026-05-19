@@ -16,7 +16,6 @@
   let refreshedAt = $state<Date | null>(null);
   let reportIsCached = $state(false);
   let reportDays = $state(1);
-  let authChecked = $state(false);
 
   const sanitizeConfig: DOMPurifyConfig = {
     ALLOWED_TAGS: [
@@ -131,14 +130,8 @@
       : ''
   );
 
-  onMount(async () => {
-    await loadReportDays();
-    authChecked = true;
-    if ($isAuthenticated) {
-      await loadReport(false);
-    } else {
-      loading = false;
-    }
+  onMount(() => {
+    loadReport(false);
   });
 
   async function loadReportDays() {
@@ -172,8 +165,6 @@
         error = 'Gemini API key is missing. Configure it in Settings → AI.';
       else if (message.includes('timeout'))
         error = 'AI report generation timed out. Please try again.';
-      else if (message.includes('authentication') || message.includes('login required'))
-        error = null;
       else
         error = err instanceof Error ? err.message : t('aiAnalysis.errors.loadFailed');
     } finally {
@@ -242,8 +233,7 @@
           type="button"
           class="btn btn-sm btn-primary"
           onclick={() => loadReport(false)}
-          disabled={!$isAuthenticated || loading || loadingFresh}
-          title={$isAuthenticated ? undefined : 'Login required to refresh AI reports'}
+          disabled={loading || loadingFresh}
         >
           {#if loading}
             <LoadingSpinner size="sm" />
@@ -269,17 +259,11 @@
       </div>
     </div>
 
-    {#if loading || !authChecked}
+    {#if loading}
       <div class="flex min-h-96 items-center justify-center">
         <div class="flex flex-col items-center gap-3">
           <LoadingSpinner size="lg" />
           <p class="text-sm text-[var(--color-base-content)]/60">{t('aiAnalysis.loading')}</p>
-        </div>
-      </div>
-    {:else if !$isAuthenticated}
-      <div class="p-5">
-        <div class="alert text-sm" role="status">
-          Log in to refresh or regenerate the AI report.
         </div>
       </div>
     {:else if error}

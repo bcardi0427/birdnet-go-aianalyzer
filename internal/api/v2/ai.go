@@ -212,12 +212,6 @@ func (c *Controller) GetAIReport(ctx echo.Context) error {
 		logger.String("ip", ctx.RealIP()),
 	)
 
-	if !c.isExplicitlyAuthenticated(ctx) {
-		return ctx.JSON(http.StatusUnauthorized, map[string]string{
-			"error": "Login required to generate AI reports",
-		})
-	}
-
 	if c.aiService == nil {
 		return c.HandleError(ctx, nil, "AI service not initialized", http.StatusInternalServerError)
 	}
@@ -227,6 +221,12 @@ func (c *Controller) GetAIReport(ctx echo.Context) error {
 		if parsed, parseErr := strconv.ParseBool(raw); parseErr == nil {
 			bypassCache = parsed
 		}
+	}
+
+	if bypassCache && !c.isExplicitlyAuthenticated(ctx) {
+		return ctx.JSON(http.StatusUnauthorized, map[string]string{
+			"error": "Login required to bypass the AI report cache",
+		})
 	}
 
 	report, err := c.aiService.GetDailyReport(ctx.Request().Context(), bypassCache)

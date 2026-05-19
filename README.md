@@ -1,5 +1,23 @@
 # BirdNET-Go
 
+## AI Analyzer Fork (bcardi0427)
+
+This repository is the AI Analyzer fork of BirdNET-Go, based on `tphakala/birdnet-go`.
+
+Quick install for this fork:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/install-aianalyzer.sh -o install-aianalyzer.sh
+bash ./install-aianalyzer.sh
+```
+
+Fork-specific documentation:
+
+- [AI Analyzer docs](docs/aianalyzer/README.md)
+- [Wrapper installer script](install-aianalyzer.sh)
+
+This fork remains under the upstream BirdNET-Go license and privacy expectations. Review scripts before running them, especially when installing directly from GitHub.
+
 <p align="center">
   <img src="doc/BirdNET-Go-logo.webp" />
 </p>

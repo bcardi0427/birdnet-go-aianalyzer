@@ -1,11 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-import DOMPurify, { type Config as DOMPurifyConfig } from 'dompurify';
+  import DOMPurify, { type Config as DOMPurifyConfig } from 'dompurify';
   import { marked } from 'marked';
   import { BrainCircuit, RefreshCw, Settings, Sparkles } from '@lucide/svelte';
   import LoadingSpinner from '$lib/desktop/components/ui/LoadingSpinner.svelte';
   import { t } from '$lib/i18n';
   import { navigation } from '$lib/stores/navigation.svelte';
+  import { isAuthenticated } from '$lib/utils/auth';
   import { settingsAPI } from '$lib/utils/settingsApi';
 
   let report = $state('');
@@ -232,7 +233,8 @@ import DOMPurify, { type Config as DOMPurifyConfig } from 'dompurify';
           type="button"
           class="btn btn-sm btn-primary"
           onclick={() => loadReport(false)}
-          disabled={loading || loadingFresh}
+          disabled={!$isAuthenticated || loading || loadingFresh}
+          title={$isAuthenticated ? undefined : 'Login required to refresh AI reports'}
         >
           {#if loading}
             <LoadingSpinner size="sm" />
@@ -245,7 +247,8 @@ import DOMPurify, { type Config as DOMPurifyConfig } from 'dompurify';
           type="button"
           class="btn btn-sm btn-outline"
           onclick={() => loadReport(true)}
-          disabled={loading || loadingFresh}
+          disabled={!$isAuthenticated || loading || loadingFresh}
+          title={$isAuthenticated ? undefined : 'Login required to bypass the AI report cache'}
         >
           {#if loadingFresh}
             <LoadingSpinner size="sm" />

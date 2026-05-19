@@ -12,6 +12,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/tphakala/birdnet-go/internal/ai"
+	"github.com/tphakala/birdnet-go/internal/api/auth"
 	"github.com/tphakala/birdnet-go/internal/conf"
 	"github.com/tphakala/birdnet-go/internal/datastore/v2/repository"
 	"github.com/tphakala/birdnet-go/internal/logger"
@@ -129,6 +130,7 @@ func (c *Controller) UpdateAISettings(ctx echo.Context) error {
 		logger.Bool("api_key_configured", update.APIKey != ""),
 		logger.Bool("enabled", update.Enabled),
 		logger.String("model", update.Model),
+		logger.Int("report_days", update.ReportDays),
 		logger.Int("cache_hours", update.CacheHours),
 		logger.Bool("api_key_file_configured", strings.TrimSpace(update.APIKeyFile) != ""),
 	)
@@ -210,6 +212,12 @@ func (c *Controller) GetAIReport(ctx echo.Context) error {
 		logger.String("ip", ctx.RealIP()),
 	)
 
+	if !c.isExplicitlyAuthenticated(ctx) {
+		return ctx.JSON(http.StatusUnauthorized, map[string]string{
+			"error": "Login required to generate AI reports",
+		})
+	}
+
 	if c.aiService == nil {
 		return c.HandleError(ctx, nil, "AI service not initialized", http.StatusInternalServerError)
 	}
@@ -237,4 +245,18 @@ func (c *Controller) GetAIReport(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(http.StatusOK, report)
+}
+
+func (c *Controller) isExplicitlyAuthenticated(ctx echo.Context) bool {
+	method, ok := ctx.Get(auth.CtxKeyAuthMethod).(auth.AuthMethod)
+	if !ok {
+		return false
+	}
+
+	switch method {
+	case auth.AuthMethodBasicAuth, auth.AuthMethodToken, auth.AuthMethodOAuth2, auth.AuthMethodBrowserSession, auth.AuthMethodAPIKey:
+		return true
+	default:
+		return false
+	}
 }

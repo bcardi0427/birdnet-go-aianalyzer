@@ -42,6 +42,26 @@ export interface MQTTTLSCertificateUpload {
   clientKey?: string;
 }
 
+export interface AISettings {
+  enabled: boolean;
+  apiKey: string;
+  model: string;
+  cacheHours: number;
+  systemPrompt: string;
+}
+
+export interface AIModel {
+  id: string;
+  displayName: string;
+  description: string;
+}
+
+export interface AIReportResponse {
+  report: string;
+  generatedAt?: string;
+  cached?: boolean;
+}
+
 /**
  * Settings API client extending the base API client
  */
@@ -197,6 +217,24 @@ export const settingsAPI = {
 
     deleteCertificates: (): Promise<unknown> =>
       api.delete('/api/v2/integrations/mqtt/tls/certificate'),
+  },
+
+  /**
+   * AI report and Gemini configuration endpoints
+   */
+  ai: {
+    getSettings: (): Promise<AISettings> => api.get<AISettings>('/api/v2/ai/settings'),
+
+    updateSettings: (data: AISettings): Promise<AISettings> =>
+      api.patch<AISettings>('/api/v2/ai/settings', data),
+
+    getModels: (): Promise<AIModel[]> => api.get<AIModel[]>('/api/v2/ai/models'),
+
+    getReport: (): Promise<AIReportResponse> =>
+      api.get<AIReportResponse>('/api/v2/ai/report', { timeout: 120000 }),
+
+    getReportFresh: (): Promise<AIReportResponse> =>
+      api.get<AIReportResponse>('/api/v2/ai/report?bypass_cache=true', { timeout: 120000 }),
   },
 
   /**

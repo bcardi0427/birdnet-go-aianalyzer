@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -213,7 +214,14 @@ func (c *Controller) GetAIReport(ctx echo.Context) error {
 		return c.HandleError(ctx, nil, "AI service not initialized", http.StatusInternalServerError)
 	}
 
-	report, err := c.aiService.GetDailyReport(ctx.Request().Context())
+	bypassCache := false
+	if raw := strings.TrimSpace(ctx.QueryParam("bypass_cache")); raw != "" {
+		if parsed, parseErr := strconv.ParseBool(raw); parseErr == nil {
+			bypassCache = parsed
+		}
+	}
+
+	report, err := c.aiService.GetDailyReport(ctx.Request().Context(), bypassCache)
 	if err != nil {
 		errMsg := strings.ToLower(err.Error())
 		switch {

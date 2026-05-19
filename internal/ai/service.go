@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"html"
+	stdhtml "html"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -19,6 +19,7 @@ import (
 	"github.com/tphakala/birdnet-go/internal/ebird"
 	"github.com/tphakala/birdnet-go/internal/logger"
 	"github.com/tphakala/birdnet-go/internal/secrets"
+	xhtml "golang.org/x/net/html"
 	"google.golang.org/genai"
 )
 
@@ -38,6 +39,22 @@ var (
 	imageURLPattern = regexp.MustCompile(`https?://[^\s)\]>"]+\.(?:png|jpg|jpeg|gif|webp|svg)`) //nolint:gochecknoglobals
 	anyURLPattern   = regexp.MustCompile(`https?://[^\s)\]>"]+`)                                //nolint:gochecknoglobals
 	imgTagPattern   = regexp.MustCompile(`(?is)<img\b[^>]*>`)                                   //nolint:gochecknoglobals
+	allowedHTMLTags = map[string]struct{}{                                                      //nolint:gochecknoglobals
+		"h3":     {},
+		"p":      {},
+		"ul":     {},
+		"ol":     {},
+		"li":     {},
+		"table":  {},
+		"thead":  {},
+		"tbody":  {},
+		"tr":     {},
+		"th":     {},
+		"td":     {},
+		"strong": {},
+		"em":     {},
+		"br":     {},
+	}
 )
 
 type ReportService struct {
@@ -138,7 +155,7 @@ func NewReportService(
 	}
 }
 
-func (s *ReportService) GetDailyReport(ctx context.Context) (*ReportPayload, error) {
+func (s *ReportService) GetDailyReport(ctx context.Context, bypassCache bool) (*ReportPayload, error) {
 	settings := s.settingsSnapshot()
 	if !settings.AI.Enabled {
 		return nil, fmt.Errorf("AI analysis is disabled in settings")
@@ -151,12 +168,14 @@ func (s *ReportService) GetDailyReport(ctx context.Context) (*ReportPayload, err
 		return nil, fmt.Errorf("Gemini API key is not configured")
 	}
 
-	if cached, ok := s.loadValidCache(); ok {
-		return &ReportPayload{
-			Report:      cached.Report,
-			GeneratedAt: time.Unix(cached.GeneratedAt, 0).Format(time.RFC3339),
-			Cached:      true,
-		}, nil
+	if !bypassCache {
+		if cached, ok := s.loadValidCache(); ok {
+			return &ReportPayload{
+				Report:      cached.Report,
+				GeneratedAt: time.Unix(cached.GeneratedAt, 0).Format(time.RFC3339),
+				Cached:      true,
+			}, nil
+		}
 	}
 
 	report, generatedAt, shouldCache, err := s.generateReport(ctx, apiKey)
@@ -164,7 +183,7 @@ func (s *ReportService) GetDailyReport(ctx context.Context) (*ReportPayload, err
 		return nil, err
 	}
 
-	if shouldCache {
+	if !bypassCache && shouldCache {
 		s.saveCache(report, generatedAt)
 	}
 
@@ -479,7 +498,6 @@ func (s *ReportService) resolveGeminiAPIKey() (string, error) {
 func sanitizeNarrative(input string) string {
 	out := imgTagPattern.ReplaceAllString(input, "")
 	out = imageURLPattern.ReplaceAllString(out, "[image-url-removed]")
-	out = regexp.MustCompile(`(?is)<[^>]+>`).ReplaceAllString(out, "")
 	out = anyURLPattern.ReplaceAllStringFunc(out, func(v string) string {
 		lower := strings.ToLower(v)
 		if strings.Contains(lower, "/api/v2/media/") {
@@ -487,7 +505,46 @@ func sanitizeNarrative(input string) string {
 		}
 		return "[url-removed]"
 	})
+	out = sanitizeNarrativeHTML(out)
 	return strings.TrimSpace(out)
+}
+
+// sanitizeNarrativeHTML keeps only a small allowlist of safe structural tags
+// and strips all attributes from allowed tags.
+func sanitizeNarrativeHTML(input string) string {
+	nodes, err := xhtml.ParseFragment(strings.NewReader(input), &xhtml.Node{Type: xhtml.ElementNode, Data: "div"})
+	if err != nil {
+		return regexp.MustCompile(`(?is)<[^>]+>`).ReplaceAllString(input, "")
+	}
+
+	var b strings.Builder
+	for _, n := range nodes {
+		renderSanitizedNode(&b, n)
+	}
+	return b.String()
+}
+
+func renderSanitizedNode(b *strings.Builder, n *xhtml.Node) {
+	switch n.Type {
+	case xhtml.TextNode:
+		b.WriteString(n.Data)
+	case xhtml.ElementNode:
+		tag := strings.ToLower(n.Data)
+		_, allowed := allowedHTMLTags[tag]
+		if allowed {
+			b.WriteString("<")
+			b.WriteString(tag)
+			b.WriteString(">")
+		}
+		for child := n.FirstChild; child != nil; child = child.NextSibling {
+			renderSanitizedNode(b, child)
+		}
+		if allowed && tag != "br" {
+			b.WriteString("</")
+			b.WriteString(tag)
+			b.WriteString(">")
+		}
+	}
 }
 
 func (s *ReportService) renderDailyTotals(stats *reportStats) string {
@@ -649,7 +706,7 @@ func buildNotableSpeciesRows(grouped map[string][]*entities.Detection, limit int
 }
 
 func esc(v string) string {
-	return html.EscapeString(v)
+	return stdhtml.EscapeString(v)
 }
 
 func effectiveModel(model string) string {

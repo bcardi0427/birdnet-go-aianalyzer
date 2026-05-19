@@ -72,6 +72,7 @@ Performance Optimizations:
     LifeBuoy,
     Paintbrush,
     Brain,
+    BrainCircuit,
   } from '@lucide/svelte';
   import { flyout } from '$lib/utils/transitions';
   import { t } from '$lib/i18n';
@@ -210,6 +211,7 @@ Performance Optimizations:
     dashboard: actualRoute === '/ui/dashboard' || actualRoute === '/ui/',
     liveStream: actualRoute.startsWith('/ui/live-stream'),
     analytics: actualRoute.startsWith('/ui/analytics'),
+    aiAnalysis: actualRoute.startsWith('/ui/ai-analysis'),
     analyticsExact: actualRoute === '/ui/analytics',
     analyticsAdvanced: actualRoute === '/ui/analytics/advanced',
     analyticsSpecies: actualRoute === '/ui/analytics/species',
@@ -221,6 +223,7 @@ Performance Optimizations:
     systemTerminal: actualRoute === '/ui/system/terminal',
     settings: actualRoute.startsWith('/ui/settings'),
     settingsAnalysis: actualRoute === '/ui/settings/analysis',
+    settingsAI: actualRoute === '/ui/settings/ai',
     settingsMain: actualRoute === '/ui/settings/main',
     settingsAudio: actualRoute === '/ui/settings/audio',
     settingsSpecies: actualRoute === '/ui/settings/species',
@@ -258,12 +261,14 @@ Performance Optimizations:
     analytics: onNavigate ? '/analytics' : '/ui/analytics',
     analyticsAdvanced: '/ui/analytics/advanced',
     analyticsSpecies: onNavigate ? '/analytics/species' : '/ui/analytics/species',
+    aiAnalysis: onNavigate ? '/ai-analysis' : '/ui/ai-analysis',
     search: onNavigate ? '/search' : '/ui/search',
     about: onNavigate ? '/about' : '/ui/about',
     systemOverview: onNavigate ? '/system' : '/ui/system',
     systemDatabase: onNavigate ? '/system/database' : '/ui/system/database',
     systemTerminal: onNavigate ? '/system/terminal' : '/ui/system/terminal',
     settingsAnalysis: onNavigate ? '/settings/analysis' : '/ui/settings/analysis',
+    settingsAI: onNavigate ? '/settings/ai' : '/ui/settings/ai',
     settingsMain: onNavigate ? '/settings/main' : '/ui/settings/main',
     settingsAudio: onNavigate ? '/settings/audio' : '/ui/settings/audio',
     settingsSpecies: onNavigate ? '/settings/species' : '/ui/settings/species',
@@ -588,6 +593,26 @@ Performance Optimizations:
           {/if}
         </div>
 
+        <!-- AI Analysis -->
+        <div class="relative">
+          <button
+            onclick={() => navigate(navigationUrls.aiAnalysis)}
+            onmouseenter={e => isCollapsed && showTooltip(e, t('navigation.aiAnalysis'))}
+            onmouseleave={hideTooltip}
+            class={cn(
+              menuItemBase,
+              menuItemCollapsed,
+              routeCache.aiAnalysis ? menuItemActive : menuItemDefault
+            )}
+            role="menuitem"
+          >
+            <BrainCircuit class="size-5 shrink-0" />
+            {#if !isCollapsed}
+              <span>{t('navigation.aiAnalysis')}</span>
+            {/if}
+          </button>
+        </div>
+
         <!-- Search -->
         <div class="relative">
           <button
@@ -857,6 +882,17 @@ Performance Optimizations:
                       <Brain class="size-4 shrink-0" />{t('settings.sections.analysis')}
                     </button>
                     <button
+                      onclick={() => navigate(navigationUrls.settingsAI)}
+                      class={cn(
+                        'flex items-center gap-2 w-full px-3 py-2 rounded-md text-sm transition-colors duration-150',
+                        routeCache.settingsAI
+                          ? 'menu-subitem-active'
+                          : 'text-[var(--color-base-content)]/80 hover:text-[var(--color-base-content)] hover:menu-hover'
+                      )}
+                    >
+                      <BrainCircuit class="size-4 shrink-0" />{t('settings.sections.ai')}
+                    </button>
+                    <button
                       onclick={() => navigate(navigationUrls.settingsSpecies)}
                       class={cn(
                         'flex items-center gap-2 w-full px-3 py-2 rounded-md text-sm transition-colors duration-150',
@@ -995,6 +1031,17 @@ Performance Optimizations:
                     )}
                   >
                     <Brain class="size-4 shrink-0" />{t('settings.sections.analysis')}
+                  </button>
+                  <button
+                    onclick={() => navigate(navigationUrls.settingsAI)}
+                    class={cn(
+                      'flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors duration-150',
+                      routeCache.settingsAI
+                        ? 'menu-subitem-active'
+                        : 'text-[var(--color-base-content)]/80 hover:text-[var(--color-base-content)] hover:menu-hover'
+                    )}
+                  >
+                    <BrainCircuit class="size-4 shrink-0" />{t('settings.sections.ai')}
                   </button>
                   <button
                     onclick={() => navigate(navigationUrls.settingsSpecies)}

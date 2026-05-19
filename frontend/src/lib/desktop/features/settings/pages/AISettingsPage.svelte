@@ -17,6 +17,7 @@
     enabled: false,
     apiKey: '',
     model: 'gemini-2.5-flash',
+    reportDays: 1,
     cacheHours: 4,
     systemPrompt: '',
   };
@@ -288,6 +289,16 @@
             <span class="help-text text-[var(--color-warning)]">{modelError}</span>
           {/if}
         </div>
+
+        <NumberField
+          label="Report days"
+          value={settings.reportDays}
+          min={1}
+          max={31}
+          step={1}
+          helpText="How many days of detections to include in the AI report window (1-31)."
+          onUpdate={value => (settings.reportDays = value)}
+        />
 
         <NumberField
           label={t('settings.ai.fields.cacheHours')}

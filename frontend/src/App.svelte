@@ -39,6 +39,7 @@
   let Notifications = $state<Component | null>(null);
   let Detections = $state<Component | null>(null);
   let DetectionDetail = $state<Component | null>(null);
+  let AIAnalysis = $state<Component | null>(null);
   let ErrorPage = $state<Component | null>(null);
   let ServerErrorPage = $state<Component | null>(null);
   let LiveStream = $state<Component | null>(null);
@@ -108,6 +109,12 @@
       titleKey: 'pageTitle.advancedAnalytics',
       component: 'advanced-analytics',
     },
+    {
+      route: 'ai-analysis',
+      page: 'ai-analysis',
+      titleKey: 'aiAnalysis.title',
+      component: 'ai-analysis',
+    },
     { route: 'search', page: 'search', titleKey: 'navigation.search', component: 'search' },
     {
       route: 'detections',
@@ -128,6 +135,8 @@
 
   // Settings subpage title keys
   const settingsSubpages: Record<string, string> = {
+    '/analysis': 'settings.sections.analysis',
+    '/ai': 'settings.sections.ai',
     '/main': 'settings.sections.node',
     '/userinterface': 'settings.sections.userinterface',
     '/audio': 'settings.sections.audio',
@@ -170,6 +179,12 @@
             const module =
               await import('./lib/desktop/features/analytics/pages/AdvancedAnalytics.svelte');
             AdvancedAnalytics = module.default;
+          }
+          break;
+        case 'ai-analysis':
+          if (!AIAnalysis) {
+            const module = await import('./lib/desktop/features/ai/AIAnalysisPage.svelte');
+            AIAnalysis = module.default;
           }
           break;
         case 'species':
@@ -295,6 +310,7 @@
     [uiPath('analytics', 'species')]: findRouteConfig('species'),
     [uiPath('analytics', 'advanced')]: findRouteConfig('advanced-analytics'),
     [uiPath('analytics')]: findRouteConfig('analytics'),
+    [uiPath('ai-analysis')]: findRouteConfig('ai-analysis'),
     [uiPath('search')]: findRouteConfig('search'),
     [uiPath('detections')]: findRouteConfig('detections'),
     [uiPath('about')]: findRouteConfig('about'),
@@ -568,6 +584,8 @@
       {@render renderRoute(Analytics)}
     {:else if currentRoute === 'advanced-analytics'}
       {@render renderRoute(AdvancedAnalytics)}
+    {:else if currentRoute === 'ai-analysis'}
+      {@render renderRoute(AIAnalysis)}
     {:else if currentRoute === 'species'}
       {@render renderRoute(Species)}
     {:else if currentRoute === 'search'}

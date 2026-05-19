@@ -15,6 +15,7 @@ Fork-specific documentation:
 
 - [AI Analyzer docs](docs/aianalyzer/README.md)
 - [Wrapper installer script](install-aianalyzer.sh)
+- [Proxmox helper LXC upgrade script](scripts/install-aianalyzer-lxc.sh)
 
 This fork remains under the upstream BirdNET-Go license and privacy expectations. Review scripts before running them, especially when installing directly from GitHub.
 

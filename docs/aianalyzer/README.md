@@ -19,6 +19,26 @@ bash ./install-aianalyzer.sh
 
 Review the downloaded script before running it if you want to inspect exactly what will execute.
 
+## Proxmox Helper LXC Upgrade
+
+If BirdNET-Go was installed with the Proxmox VE helper script, it usually runs as a native systemd service named `birdnet` with:
+
+```text
+WorkingDirectory=/opt/birdnet/data
+ExecStart=/usr/local/bin/birdnet-go realtime
+```
+
+For that layout, use the LXC upgrade script from inside the LXC shell:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/scripts/install-aianalyzer-lxc.sh -o install-aianalyzer-lxc.sh
+bash ./install-aianalyzer-lxc.sh
+```
+
+This script preserves `/opt/birdnet/data`, backs up `/usr/local/bin/birdnet-go`, and replaces only the binary used by `birdnet.service`.
+
+Current requirement: this needs a GitHub release asset named `birdnet-go-linux-amd64`. Until that release binary exists, the script will stop with a clear message instead of changing the running service.
+
 ## Update Strategy
 
 This fork tracks upstream using:

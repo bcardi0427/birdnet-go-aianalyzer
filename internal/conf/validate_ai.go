@@ -18,6 +18,15 @@ func ValidateAISettings(settings *AISettings) ValidationResult {
 	result := ValidationResult{Valid: true, Warnings: []string{}}
 	normalized := *settings
 
+	// ReportDays range: 1..31 (daily to monthly-ish window).
+	if settings.ReportDays < 1 {
+		result.Warnings = append(result.Warnings, "AI report days must be at least 1, defaulting to 1")
+		normalized.ReportDays = 1
+	} else if settings.ReportDays > 31 {
+		result.Warnings = append(result.Warnings, "AI report days must be at most 31, capping to 31")
+		normalized.ReportDays = 31
+	}
+
 	if settings.Enabled {
 		// API key source is required when enabled.
 		if strings.TrimSpace(settings.APIKey) == "" && strings.TrimSpace(settings.APIKeyFile) == "" {

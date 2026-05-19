@@ -774,6 +774,7 @@ type AISettings struct {
 	APIKey       string `yaml:"apikey" json:"apiKey"`             // Gemini API Key
 	APIKeyFile   string `yaml:"apikeyfile" json:"apiKeyFile"`     // file path to Gemini API key
 	Model        string `yaml:"model" json:"model"`               // Gemini model to use, e.g., "gemini-2.5-flash"
+	ReportDays   int    `yaml:"reportdays" json:"reportDays"`     // Number of days included in AI report window
 	CacheHours   int    `yaml:"cachehours" json:"cacheHours"`     // Hours to cache the report (default 4)
 	SystemPrompt string `yaml:"systemprompt" json:"systemPrompt"` // Custom instruction prompt
 }

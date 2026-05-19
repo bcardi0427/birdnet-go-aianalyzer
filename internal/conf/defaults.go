@@ -436,6 +436,9 @@ func setDefaultConfig() {
 
 	// Alerting rules engine
 	viper.SetDefault("alerting.history_retention_days", 30)
+
+	// AI report defaults
+	viper.SetDefault("ai.reportdays", 1)
 }
 
 // setModuleLogDefaults sets default values for a module log configuration

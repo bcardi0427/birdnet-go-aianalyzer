@@ -37,18 +37,20 @@ func (c *Controller) initAIRoutes() {
 		c.aiService = ai.NewReportService(c.Settings, detRepo, weatherRepo, labelRepo, c.EBirdClient)
 	}
 
-	// Create auth-protected AI API group
-	aiGroup := c.Group.Group("/ai", c.authMiddleware)
+	// Report reads are public so visitors can view the cached AI summary.
+	// Cache bypass remains protected inside GetAIReport because it can spend AI tokens.
+	aiGroup := c.Group.Group("/ai")
 
-	// Routes for AI
-	// GET /api/v2/ai/settings - Retrieves AI integration settings
-	aiGroup.GET("/settings", c.GetAISettings)
-	// PATCH /api/v2/ai/settings - Updates AI integration settings
-	aiGroup.PATCH("/settings", c.UpdateAISettings)
-	// GET /api/v2/ai/models - Retrieves available Gemini models
-	aiGroup.GET("/models", c.GetAIModels)
 	// GET /api/v2/ai/report - Generates or retrieves the daily AI report
 	aiGroup.GET("/report", c.GetAIReport)
+
+	protectedAIGroup := c.Group.Group("/ai", c.authMiddleware)
+	// GET /api/v2/ai/settings - Retrieves AI integration settings
+	protectedAIGroup.GET("/settings", c.GetAISettings)
+	// PATCH /api/v2/ai/settings - Updates AI integration settings
+	protectedAIGroup.PATCH("/settings", c.UpdateAISettings)
+	// GET /api/v2/ai/models - Retrieves available Gemini models
+	protectedAIGroup.GET("/models", c.GetAIModels)
 
 	c.logInfoIfEnabled("AI routes initialized successfully")
 }

@@ -4,7 +4,7 @@
 
 This repository is the AI Analyzer fork of BirdNET-Go, based on `tphakala/birdnet-go`.
 
-Our README File: https://github.com/bcardi0427/birdnet-go-aianalyzer/tree/aianalyzer/main/docs/aianalyzer
+Fork README: [AI Analyzer documentation](docs/aianalyzer/README.md)
 
 Quick install for this fork:
 

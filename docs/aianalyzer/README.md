@@ -12,6 +12,10 @@ This repository is a fork of `tphakala/birdnet-go` with additional AI Analyzer f
 
 See [AI Analyzer Changelog](CHANGELOG.md) for fork-specific changes.
 
+## AI Assistant Handoff
+
+See [AI Assistant Handoff Guide](AI_ASSISTANT_HANDOFF.md) before asking another AI assistant or developer to work on this fork.
+
 ## Install This Fork
 
 Run:

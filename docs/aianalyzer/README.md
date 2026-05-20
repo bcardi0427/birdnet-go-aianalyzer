@@ -8,6 +8,10 @@ This repository is a fork of `tphakala/birdnet-go` with additional AI Analyzer f
 - Add AI analysis features without breaking base installation flow.
 - Provide a simple custom installer entry point for this fork.
 
+## Changelog
+
+See [AI Analyzer Changelog](CHANGELOG.md) for fork-specific changes.
+
 ## Install This Fork
 
 Run:

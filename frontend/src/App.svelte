@@ -19,6 +19,7 @@
   } from './lib/desktop/features/wizard/wizardState.svelte';
 
   const logger = getLogger('app');
+  const ENTRY_REFERRER_KEY = 'birdnet_entry_referrer';
 
   /**
    * Client-side navigation function.
@@ -426,10 +427,43 @@
     }
   }
 
+  function sameSiteUrl(value: string): boolean {
+    try {
+      return new URL(value).host === window.location.host;
+    } catch {
+      return false;
+    }
+  }
+
+  function getEntryReferrer(): string {
+    try {
+      return sessionStorage.getItem(ENTRY_REFERRER_KEY) ?? '';
+    } catch {
+      return '';
+    }
+  }
+
+  function captureEntryReferrer(): void {
+    if (!document.referrer || sameSiteUrl(document.referrer)) return;
+    try {
+      if (!sessionStorage.getItem(ENTRY_REFERRER_KEY)) {
+        sessionStorage.setItem(ENTRY_REFERRER_KEY, document.referrer);
+      }
+    } catch {
+      // sessionStorage may be unavailable in private browsing or hardened modes.
+    }
+  }
+
   function recordClientPageView(path: string): void {
     if (!path.startsWith('/ui/') && path !== '/' && path !== '/login') return;
 
-    const url = buildAppUrl(`/api/v2/visitors/page-view?path=${encodeURIComponent(path)}`);
+    const params = new URLSearchParams({ path });
+    const entryReferrer = getEntryReferrer();
+    if (entryReferrer) {
+      params.set('entry_referrer', entryReferrer);
+    }
+
+    const url = buildAppUrl(`/api/v2/visitors/page-view?${params.toString()}`);
     fetch(url, {
       method: 'GET',
       credentials: 'same-origin',
@@ -440,6 +474,8 @@
   }
 
   onMount(async () => {
+    captureEntryReferrer();
+
     // Initialize application configuration from API with retry logic
     const success = await initApp();
 

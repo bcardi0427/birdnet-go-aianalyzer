@@ -30,6 +30,7 @@
     ip: string;
     host: string;
     referer: string;
+    entry_referrer?: string;
     user_agent: string;
     cf_country: string;
     cf_ray: string;
@@ -49,6 +50,7 @@
     topIps: VisitorCount[];
     topCountries: VisitorCount[];
     topReferers: VisitorCount[];
+    topInternalReferers?: VisitorCount[];
     topPaths: VisitorCount[];
     logPath: string;
   }
@@ -65,6 +67,7 @@
     topIps: [],
     topCountries: [],
     topReferers: [],
+    topInternalReferers: [],
     topPaths: [],
     logPath: 'logs/visitor.log',
   });
@@ -205,7 +208,8 @@
           {@render SummaryList('Top pages', Route, visitors.topPaths)}
           {@render SummaryList('Top countries', MapPin, visitors.topCountries)}
           {@render SummaryList('Top IPs', Globe2, visitors.topIps)}
-          {@render SummaryList('Top referrers', ExternalLink, visitors.topReferers)}
+          {@render SummaryList('Top external referrers', ExternalLink, visitors.topReferers)}
+          {@render SummaryList('Internal navigation', Route, visitors.topInternalReferers ?? [])}
         </div>
 
         <div class="rounded-xl border border-[var(--color-base-200)] overflow-hidden">
@@ -251,7 +255,14 @@
                           <div class="text-xs text-[var(--color-base-content)]/55">?{entry.query}</div>
                         {/if}
                       </td>
-                      <td class="table-cell max-w-xs break-words">{displayReferer(entry.referer)}</td>
+                      <td class="table-cell max-w-xs break-words">
+                        <div>{displayReferer(entry.referer)}</div>
+                        {#if entry.entry_referrer}
+                          <div class="mt-1 text-xs text-[var(--color-base-content)]/50">
+                            Entry: {displayReferer(entry.entry_referrer)}
+                          </div>
+                        {/if}
+                      </td>
                       <td class="table-cell max-w-md text-[var(--color-base-content)]/65">
                         {shortUserAgent(entry.user_agent)}
                       </td>

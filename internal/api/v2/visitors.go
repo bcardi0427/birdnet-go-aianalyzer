@@ -48,6 +48,7 @@ type visitorLogEntry struct {
 	Authenticated   bool   `json:"authenticated"`
 	LatencyMS       int64  `json:"latency_ms"`
 	Source          string `json:"source,omitempty"`
+	EntryReferer    string `json:"entry_referrer,omitempty"`
 }
 
 type visitorCount struct {
@@ -56,17 +57,18 @@ type visitorCount struct {
 }
 
 type visitorLogResponse struct {
-	Entries           []visitorLogEntry `json:"entries"`
-	TotalReturned     int               `json:"totalReturned"`
-	UniqueIPs         int               `json:"uniqueIps"`
-	UniqueCountries   int               `json:"uniqueCountries"`
-	AIReportViews     int               `json:"aiReportViews"`
-	AIReportUniqueIPs int               `json:"aiReportUniqueIps"`
-	TopIPs            []visitorCount    `json:"topIps"`
-	TopCountries      []visitorCount    `json:"topCountries"`
-	TopReferers       []visitorCount    `json:"topReferers"`
-	TopPaths          []visitorCount    `json:"topPaths"`
-	LogPath           string            `json:"logPath"`
+	Entries             []visitorLogEntry `json:"entries"`
+	TotalReturned       int               `json:"totalReturned"`
+	UniqueIPs           int               `json:"uniqueIps"`
+	UniqueCountries     int               `json:"uniqueCountries"`
+	AIReportViews       int               `json:"aiReportViews"`
+	AIReportUniqueIPs   int               `json:"aiReportUniqueIps"`
+	TopIPs              []visitorCount    `json:"topIps"`
+	TopCountries        []visitorCount    `json:"topCountries"`
+	TopReferers         []visitorCount    `json:"topReferers"`
+	TopInternalReferers []visitorCount    `json:"topInternalReferers"`
+	TopPaths            []visitorCount    `json:"topPaths"`
+	LogPath             string            `json:"logPath"`
 }
 
 func (c *Controller) GetVisitorLog(ctx echo.Context) error {
@@ -95,6 +97,7 @@ func (c *Controller) RecordVisitorPageView(ctx echo.Context) error {
 	}
 
 	req := ctx.Request()
+	entryReferer := sanitizeVisitorReferer(ctx.QueryParam("entry_referrer"))
 	logger.Global().Module("visitor").Info("page visit",
 		logger.String("method", http.MethodGet),
 		logger.String("path", path),
@@ -114,10 +117,22 @@ func (c *Controller) RecordVisitorPageView(ctx echo.Context) error {
 		logger.Bool("authenticated", c.authService != nil && c.authService.IsAuthenticated(ctx)),
 		logger.Int64("latency_ms", 0),
 		logger.String("source", "spa"),
+		logger.String("entry_referrer", entryReferer),
 		logger.String("recorded_at", time.Now().Format(time.RFC3339)),
 	)
 
 	return ctx.NoContent(http.StatusNoContent)
+}
+
+func sanitizeVisitorReferer(value string) string {
+	value = strings.TrimSpace(value)
+	if len(value) > 2048 {
+		return ""
+	}
+	if strings.HasPrefix(value, "https://") || strings.HasPrefix(value, "http://") {
+		return value
+	}
+	return ""
 }
 
 func isAllowedVisitorPagePath(path string) bool {
@@ -212,6 +227,7 @@ func buildVisitorLogResponse(entries []visitorLogEntry, logPath string) visitorL
 	ipCounts := make(map[string]int)
 	countryCounts := make(map[string]int)
 	refererCounts := make(map[string]int)
+	internalRefererCounts := make(map[string]int)
 	pathCounts := make(map[string]int)
 	aiReportIPCounts := make(map[string]int)
 	aiReportViews := 0
@@ -223,8 +239,11 @@ func buildVisitorLogResponse(entries []visitorLogEntry, logPath string) visitorL
 		if entry.CFCountry != "" {
 			countryCounts[entry.CFCountry]++
 		}
-		if entry.Referer != "" {
-			refererCounts[entry.Referer]++
+		referer := attributionReferer(entry)
+		if referer != "" && isInternalReferer(referer, entry.Host) {
+			internalRefererCounts[referer]++
+		} else if referer != "" {
+			refererCounts[referer]++
 		}
 		if entry.Path != "" {
 			pathCounts[entry.Path]++
@@ -238,18 +257,35 @@ func buildVisitorLogResponse(entries []visitorLogEntry, logPath string) visitorL
 	}
 
 	return visitorLogResponse{
-		Entries:           entries,
-		TotalReturned:     len(entries),
-		UniqueIPs:         len(ipCounts),
-		UniqueCountries:   len(countryCounts),
-		AIReportViews:     aiReportViews,
-		AIReportUniqueIPs: len(aiReportIPCounts),
-		TopIPs:            topVisitorCounts(ipCounts, 10),
-		TopCountries:      topVisitorCounts(countryCounts, 10),
-		TopReferers:       topVisitorCounts(refererCounts, 10),
-		TopPaths:          topVisitorCounts(pathCounts, 10),
-		LogPath:           logPath,
+		Entries:             entries,
+		TotalReturned:       len(entries),
+		UniqueIPs:           len(ipCounts),
+		UniqueCountries:     len(countryCounts),
+		AIReportViews:       aiReportViews,
+		AIReportUniqueIPs:   len(aiReportIPCounts),
+		TopIPs:              topVisitorCounts(ipCounts, 10),
+		TopCountries:        topVisitorCounts(countryCounts, 10),
+		TopReferers:         topVisitorCounts(refererCounts, 10),
+		TopInternalReferers: topVisitorCounts(internalRefererCounts, 10),
+		TopPaths:            topVisitorCounts(pathCounts, 10),
+		LogPath:             logPath,
 	}
+}
+
+func attributionReferer(entry visitorLogEntry) string {
+	if entry.EntryReferer != "" {
+		return entry.EntryReferer
+	}
+	return entry.Referer
+}
+
+func isInternalReferer(referer, host string) bool {
+	if referer == "" || host == "" {
+		return false
+	}
+	trimmed := strings.TrimPrefix(strings.TrimPrefix(referer, "https://"), "http://")
+	refererHost, _, _ := strings.Cut(trimmed, "/")
+	return strings.EqualFold(refererHost, host)
 }
 
 func topVisitorCounts(counts map[string]int, limit int) []visitorCount {

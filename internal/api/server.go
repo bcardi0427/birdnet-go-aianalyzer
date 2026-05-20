@@ -174,6 +174,93 @@ func isSafePathPrefix(p string) bool {
 	return true
 }
 
+// visitorPageLoggingMiddleware records low-noise page-view traffic with the
+// proxy headers needed to understand where public visitors came from.
+func visitorPageLoggingMiddleware() echo.MiddlewareFunc {
+	accessLog := logger.Global().Module("access")
+
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			req := c.Request()
+			if !isVisitorPageRequest(req.Method, req.URL.Path) {
+				return next(c)
+			}
+
+			start := time.Now()
+			err := next(c)
+
+			status := c.Response().Status
+			if status == 0 {
+				status = http.StatusOK
+			}
+
+			accessLog.Info("page visit",
+				logger.String("method", req.Method),
+				logger.String("path", req.URL.Path),
+				logger.String("query", req.URL.RawQuery),
+				logger.Int("status", status),
+				logger.String("ip", visitorClientIP(c)),
+				logger.String("real_ip", c.RealIP()),
+				logger.String("host", req.Host),
+				logger.String("referer", req.Referer()),
+				logger.String("user_agent", req.UserAgent()),
+				logger.String("cf_connecting_ip", req.Header.Get("CF-Connecting-IP")),
+				logger.String("cf_country", req.Header.Get("CF-IPCountry")),
+				logger.String("cf_ray", req.Header.Get("CF-Ray")),
+				logger.String("x_forwarded_for", req.Header.Get("X-Forwarded-For")),
+				logger.String("x_forwarded_proto", req.Header.Get("X-Forwarded-Proto")),
+				logger.Bool("tunneled", req.Header.Get("CF-Connecting-IP") != "" || req.Header.Get("X-Forwarded-For") != ""),
+				logger.Bool("authenticated", c.Get(auth.CtxKeyAuthMethod) != nil),
+				logger.Int64("latency_ms", time.Since(start).Milliseconds()),
+			)
+
+			return err
+		}
+	}
+}
+
+func isVisitorPageRequest(method, path string) bool {
+	if method != http.MethodGet && method != http.MethodHead {
+		return false
+	}
+	if path == "/" || path == "/login" || path == "/ui" || path == "/ui/" {
+		return true
+	}
+	if !strings.HasPrefix(path, "/ui/") {
+		return false
+	}
+
+	for _, assetPrefix := range []string{
+		"/ui/assets/",
+		"/ui/messages/",
+		"/ui/audio/",
+		"/ui/images/",
+	} {
+		if strings.HasPrefix(path, assetPrefix) {
+			return false
+		}
+	}
+
+	return true
+}
+
+func visitorClientIP(c echo.Context) string {
+	req := c.Request()
+	if ip := req.Header.Get("CF-Connecting-IP"); ip != "" {
+		return ip
+	}
+	if xff := req.Header.Get("X-Forwarded-For"); xff != "" {
+		if first, _, ok := strings.Cut(xff, ","); ok {
+			return strings.TrimSpace(first)
+		}
+		return strings.TrimSpace(xff)
+	}
+	if ip := req.Header.Get("X-Real-IP"); ip != "" {
+		return ip
+	}
+	return c.RealIP()
+}
+
 // ServerOption is a functional option for configuring the Server.
 type ServerOption func(*Server)
 
@@ -422,6 +509,10 @@ func (s *Server) setupMiddleware() {
 			return next(c)
 		}
 	})
+
+	// Visitor page logging captures referers and Cloudflare proxy metadata for
+	// public website visits without logging every static asset request.
+	s.echo.Use(visitorPageLoggingMiddleware())
 
 	// Request logging using custom middleware package (uses centralized logger)
 	s.echo.Use(mw.NewRequestLogger())

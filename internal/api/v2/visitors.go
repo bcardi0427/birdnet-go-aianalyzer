@@ -14,6 +14,7 @@ import (
 const (
 	defaultVisitorLimit = 100
 	maxVisitorLimit     = 500
+	aiReportPath        = "/ui/ai-analysis"
 	visitorLogPath      = "logs/visitor.log"
 )
 
@@ -47,15 +48,17 @@ type visitorCount struct {
 }
 
 type visitorLogResponse struct {
-	Entries         []visitorLogEntry `json:"entries"`
-	TotalReturned   int               `json:"totalReturned"`
-	UniqueIPs       int               `json:"uniqueIps"`
-	UniqueCountries int               `json:"uniqueCountries"`
-	TopIPs          []visitorCount    `json:"topIps"`
-	TopCountries    []visitorCount    `json:"topCountries"`
-	TopReferers     []visitorCount    `json:"topReferers"`
-	TopPaths        []visitorCount    `json:"topPaths"`
-	LogPath         string            `json:"logPath"`
+	Entries           []visitorLogEntry `json:"entries"`
+	TotalReturned     int               `json:"totalReturned"`
+	UniqueIPs         int               `json:"uniqueIps"`
+	UniqueCountries   int               `json:"uniqueCountries"`
+	AIReportViews     int               `json:"aiReportViews"`
+	AIReportUniqueIPs int               `json:"aiReportUniqueIps"`
+	TopIPs            []visitorCount    `json:"topIps"`
+	TopCountries      []visitorCount    `json:"topCountries"`
+	TopReferers       []visitorCount    `json:"topReferers"`
+	TopPaths          []visitorCount    `json:"topPaths"`
+	LogPath           string            `json:"logPath"`
 }
 
 func (c *Controller) GetVisitorLog(ctx echo.Context) error {
@@ -133,6 +136,8 @@ func buildVisitorLogResponse(entries []visitorLogEntry, logPath string) visitorL
 	countryCounts := make(map[string]int)
 	refererCounts := make(map[string]int)
 	pathCounts := make(map[string]int)
+	aiReportIPCounts := make(map[string]int)
+	aiReportViews := 0
 
 	for _, entry := range entries {
 		if entry.IP != "" {
@@ -147,18 +152,26 @@ func buildVisitorLogResponse(entries []visitorLogEntry, logPath string) visitorL
 		if entry.Path != "" {
 			pathCounts[entry.Path]++
 		}
+		if entry.Path == aiReportPath {
+			aiReportViews++
+			if entry.IP != "" {
+				aiReportIPCounts[entry.IP]++
+			}
+		}
 	}
 
 	return visitorLogResponse{
-		Entries:         entries,
-		TotalReturned:   len(entries),
-		UniqueIPs:       len(ipCounts),
-		UniqueCountries: len(countryCounts),
-		TopIPs:          topVisitorCounts(ipCounts, 10),
-		TopCountries:    topVisitorCounts(countryCounts, 10),
-		TopReferers:     topVisitorCounts(refererCounts, 10),
-		TopPaths:        topVisitorCounts(pathCounts, 10),
-		LogPath:         logPath,
+		Entries:           entries,
+		TotalReturned:     len(entries),
+		UniqueIPs:         len(ipCounts),
+		UniqueCountries:   len(countryCounts),
+		AIReportViews:     aiReportViews,
+		AIReportUniqueIPs: len(aiReportIPCounts),
+		TopIPs:            topVisitorCounts(ipCounts, 10),
+		TopCountries:      topVisitorCounts(countryCounts, 10),
+		TopReferers:       topVisitorCounts(refererCounts, 10),
+		TopPaths:          topVisitorCounts(pathCounts, 10),
+		LogPath:           logPath,
 	}
 }
 

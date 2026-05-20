@@ -44,6 +44,8 @@
     totalReturned: number;
     uniqueIps: number;
     uniqueCountries: number;
+    aiReportViews: number;
+    aiReportUniqueIps: number;
     topIps: VisitorCount[];
     topCountries: VisitorCount[];
     topReferers: VisitorCount[];
@@ -58,6 +60,8 @@
     totalReturned: 0,
     uniqueIps: 0,
     uniqueCountries: 0,
+    aiReportViews: 0,
+    aiReportUniqueIps: 0,
     topIps: [],
     topCountries: [],
     topReferers: [],
@@ -156,7 +160,7 @@
       </div>
     {:else}
       <div class="p-6 space-y-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
           <div class="stat-card">
             <Users class="size-5 text-[var(--color-primary)]" />
             <div>
@@ -183,6 +187,16 @@
             <div>
               <p class="stat-label">Guest / logged-in</p>
               <p class="stat-value">{guestVisits} / {loggedInVisits}</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <Route class="size-5 text-[var(--color-secondary)]" />
+            <div>
+              <p class="stat-label">AI report views</p>
+              <p class="stat-value">{visitors.aiReportViews}</p>
+              <p class="text-xs text-[var(--color-base-content)]/50">
+                {visitors.aiReportUniqueIps} unique IPs
+              </p>
             </div>
           </div>
         </div>

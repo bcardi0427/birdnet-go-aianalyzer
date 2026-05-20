@@ -53,6 +53,7 @@ const (
 	DefaultLogLevel             = "info"
 	DefaultLogPath              = "logs/application.log"
 	DefaultAccessLogPath        = "logs/access.log"
+	DefaultVisitorLogPath       = "logs/visitor.log"
 	DefaultAuthLogPath          = "logs/auth.log"
 	DefaultAudioLogPath         = "logs/audio.log"
 	DefaultBirdweatherLogPath   = "logs/birdweather.log"
@@ -133,6 +134,7 @@ func applyConfigDefaults(cfg *LoggingConfig) {
 	// HTTP request logs (access and API)
 	ensureModuleOutput(cfg, "access", DefaultAccessLogPath)
 	ensureModuleOutput(cfg, "api", DefaultAccessLogPath) // Same file as access logs
+	ensureModuleOutput(cfg, "visitor", DefaultVisitorLogPath)
 
 	// Security/authentication logs
 	ensureModuleOutput(cfg, "security", DefaultAuthLogPath)

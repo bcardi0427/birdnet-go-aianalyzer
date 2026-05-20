@@ -177,7 +177,7 @@ func isSafePathPrefix(p string) bool {
 // visitorPageLoggingMiddleware records low-noise page-view traffic with the
 // proxy headers needed to understand where public visitors came from.
 func visitorPageLoggingMiddleware() echo.MiddlewareFunc {
-	accessLog := logger.Global().Module("access")
+	visitorLog := logger.Global().Module("visitor")
 
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
@@ -194,7 +194,7 @@ func visitorPageLoggingMiddleware() echo.MiddlewareFunc {
 				status = http.StatusOK
 			}
 
-			accessLog.Info("page visit",
+			visitorLog.Info("page visit",
 				logger.String("method", req.Method),
 				logger.String("path", req.URL.Path),
 				logger.String("query", req.URL.RawQuery),

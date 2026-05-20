@@ -35,6 +35,7 @@ func setDefaultConfig() {
 	// API and web modules
 	setModuleLogDefaults("api", true)      // HTTP server and API (internal/api/)
 	setModuleLogDefaults("access", true)   // HTTP access logs (request/response)
+	setModuleLogDefaults("visitor", true)  // Public page visits and referring sites
 	setModuleLogDefaults("auth", true)     // Authentication
 	setModuleLogDefaults("security", true) // Security operations
 

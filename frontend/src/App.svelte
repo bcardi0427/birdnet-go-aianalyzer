@@ -146,6 +146,7 @@
     '/species': 'settings.sections.species',
     '/notifications': 'settings.sections.notifications',
     '/support': 'settings.sections.support',
+    '/visitors': 'Visitor Log',
   };
 
   // System subpage title keys

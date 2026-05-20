@@ -898,6 +898,7 @@ func (s *Server) registerSPARoutes() {
 		"/ui/settings/species",
 		"/ui/settings/support",
 		"/ui/settings/userinterface",
+		"/ui/settings/visitors",
 	}
 
 	// Get the auth middleware from API controller if available

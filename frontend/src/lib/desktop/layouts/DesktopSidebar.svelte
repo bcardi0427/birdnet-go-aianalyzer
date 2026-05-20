@@ -73,6 +73,7 @@ Performance Optimizations:
     Paintbrush,
     Brain,
     BrainCircuit,
+    Users,
   } from '@lucide/svelte';
   import { flyout } from '$lib/utils/transitions';
   import { t } from '$lib/i18n';
@@ -232,6 +233,7 @@ Performance Optimizations:
     settingsIntegrations: actualRoute === '/ui/settings/integrations',
     settingsSecurity: actualRoute === '/ui/settings/security',
     settingsSupport: actualRoute === '/ui/settings/support',
+    settingsVisitors: actualRoute === '/ui/settings/visitors',
     settingsUserInterface: actualRoute === '/ui/settings/userinterface',
   }));
 
@@ -277,6 +279,7 @@ Performance Optimizations:
     settingsIntegrations: onNavigate ? '/settings/integrations' : '/ui/settings/integrations',
     settingsSecurity: onNavigate ? '/settings/security' : '/ui/settings/security',
     settingsSupport: onNavigate ? '/settings/support' : '/ui/settings/support',
+    settingsVisitors: onNavigate ? '/settings/visitors' : '/ui/settings/visitors',
     settingsUserInterface: onNavigate ? '/settings/userinterface' : '/ui/settings/userinterface',
   });
 
@@ -948,6 +951,17 @@ Performance Optimizations:
                       <Shield class="size-4 shrink-0" />{t('settings.sections.security')}
                     </button>
                     <button
+                      onclick={() => navigate(navigationUrls.settingsVisitors)}
+                      class={cn(
+                        'flex items-center gap-2 w-full px-3 py-2 rounded-md text-sm transition-colors duration-150',
+                        routeCache.settingsVisitors
+                          ? 'menu-subitem-active'
+                          : 'text-[var(--color-base-content)]/80 hover:text-[var(--color-base-content)] hover:menu-hover'
+                      )}
+                    >
+                      <Users class="size-4 shrink-0" />Visitors
+                    </button>
+                    <button
                       onclick={() => navigate(navigationUrls.settingsSupport)}
                       class={cn(
                         'flex items-center gap-2 w-full px-3 py-2 rounded-md text-sm transition-colors duration-150',
@@ -1097,6 +1111,17 @@ Performance Optimizations:
                     )}
                   >
                     <Shield class="size-4 shrink-0" />{t('settings.sections.security')}
+                  </button>
+                  <button
+                    onclick={() => navigate(navigationUrls.settingsVisitors)}
+                    class={cn(
+                      'flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors duration-150',
+                      routeCache.settingsVisitors
+                        ? 'menu-subitem-active'
+                        : 'text-[var(--color-base-content)]/80 hover:text-[var(--color-base-content)] hover:menu-hover'
+                    )}
+                  >
+                    <Users class="size-4 shrink-0" />Visitors
                   </button>
                   <button
                     onclick={() => navigate(navigationUrls.settingsSupport)}

@@ -15,6 +15,7 @@
   import IntegrationSettingsSection from '$lib/desktop/features/settings/pages/IntegrationSettingsPage.svelte';
   import SecuritySettingsSection from '$lib/desktop/features/settings/pages/SecuritySettingsPage.svelte';
   import SupportSettingsSection from '$lib/desktop/features/settings/pages/SupportSettingsPage.svelte';
+  import VisitorLogSettingsSection from '$lib/desktop/features/settings/pages/VisitorLogSettingsPage.svelte';
   import SpeciesSettingsSection from '$lib/desktop/features/settings/pages/SpeciesSettingsPage.svelte';
   import NotificationsSettingsSection from '$lib/desktop/features/settings/pages/NotificationsSettingsPage.svelte';
   import UserInterfaceSettingsSection from '$lib/desktop/features/settings/pages/UserInterfaceSettingsPage.svelte';
@@ -36,6 +37,7 @@
     species: 'species',
     notifications: 'notifications',
     support: 'support',
+    visitors: 'visitors',
   };
 
   // Get current section from a path
@@ -114,6 +116,8 @@
         <NotificationsSettingsSection />
       {:else if currentSection === 'support'}
         <SupportSettingsSection />
+      {:else if currentSection === 'visitors'}
+        <VisitorLogSettingsSection />
       {:else}
         <div class="rounded-lg bg-[var(--color-base-100)] shadow-sm p-6">
           <div class="text-center py-12 text-[var(--color-base-content)] opacity-70">

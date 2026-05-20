@@ -7,8 +7,11 @@ import (
 	"os"
 	"sort"
 	"strconv"
+	"strings"
+	"time"
 
 	"github.com/labstack/echo/v4"
+	"github.com/tphakala/birdnet-go/internal/logger"
 )
 
 const (
@@ -17,6 +20,10 @@ const (
 	aiReportPath        = "/ui/ai-analysis"
 	visitorLogPath      = "logs/visitor.log"
 )
+
+func (c *Controller) initVisitorRoutes() {
+	c.Group.GET("/visitors/page-view", c.RecordVisitorPageView)
+}
 
 type visitorLogEntry struct {
 	Time            string `json:"time"`
@@ -40,6 +47,7 @@ type visitorLogEntry struct {
 	Tunneled        bool   `json:"tunneled"`
 	Authenticated   bool   `json:"authenticated"`
 	LatencyMS       int64  `json:"latency_ms"`
+	Source          string `json:"source,omitempty"`
 }
 
 type visitorCount struct {
@@ -78,6 +86,75 @@ func (c *Controller) GetVisitorLog(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(http.StatusOK, buildVisitorLogResponse(entries, visitorLogPath))
+}
+
+func (c *Controller) RecordVisitorPageView(ctx echo.Context) error {
+	path := strings.TrimSpace(ctx.QueryParam("path"))
+	if !isAllowedVisitorPagePath(path) {
+		return ctx.NoContent(http.StatusNoContent)
+	}
+
+	req := ctx.Request()
+	logger.Global().Module("visitor").Info("page visit",
+		logger.String("method", http.MethodGet),
+		logger.String("path", path),
+		logger.String("query", ""),
+		logger.Int("status", http.StatusOK),
+		logger.String("ip", visitorRequestIP(ctx)),
+		logger.String("real_ip", ctx.RealIP()),
+		logger.String("host", req.Host),
+		logger.String("referer", req.Referer()),
+		logger.String("user_agent", req.UserAgent()),
+		logger.String("cf_connecting_ip", req.Header.Get("CF-Connecting-IP")),
+		logger.String("cf_country", req.Header.Get("CF-IPCountry")),
+		logger.String("cf_ray", req.Header.Get("CF-Ray")),
+		logger.String("x_forwarded_for", req.Header.Get("X-Forwarded-For")),
+		logger.String("x_forwarded_proto", req.Header.Get("X-Forwarded-Proto")),
+		logger.Bool("tunneled", req.Header.Get("CF-Connecting-IP") != "" || req.Header.Get("X-Forwarded-For") != ""),
+		logger.Bool("authenticated", c.authService != nil && c.authService.IsAuthenticated(ctx)),
+		logger.Int64("latency_ms", 0),
+		logger.String("source", "spa"),
+		logger.String("recorded_at", time.Now().Format(time.RFC3339)),
+	)
+
+	return ctx.NoContent(http.StatusNoContent)
+}
+
+func isAllowedVisitorPagePath(path string) bool {
+	if path == "/" || path == "/login" || path == "/ui" || path == "/ui/" {
+		return true
+	}
+	if !strings.HasPrefix(path, "/ui/") {
+		return false
+	}
+	for _, assetPrefix := range []string{
+		"/ui/assets/",
+		"/ui/messages/",
+		"/ui/audio/",
+		"/ui/images/",
+	} {
+		if strings.HasPrefix(path, assetPrefix) {
+			return false
+		}
+	}
+	return len(path) <= 256
+}
+
+func visitorRequestIP(ctx echo.Context) string {
+	req := ctx.Request()
+	if ip := req.Header.Get("CF-Connecting-IP"); ip != "" {
+		return ip
+	}
+	if xff := req.Header.Get("X-Forwarded-For"); xff != "" {
+		if first, _, ok := strings.Cut(xff, ","); ok {
+			return strings.TrimSpace(first)
+		}
+		return strings.TrimSpace(xff)
+	}
+	if ip := req.Header.Get("X-Real-IP"); ip != "" {
+		return ip
+	}
+	return ctx.RealIP()
 }
 
 func parseVisitorLimit(raw string) int {

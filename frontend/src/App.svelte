@@ -11,6 +11,7 @@
   import { navigation } from './lib/stores/navigation.svelte';
   import { settingsActions } from './lib/stores/settings.js';
   import { activateWatchdog } from './lib/stores/connectionState.svelte';
+  import { buildAppUrl } from './lib/utils/urlHelpers';
   import WizardDialog from './lib/desktop/features/wizard/WizardDialog.svelte';
   import {
     wizardState,
@@ -52,6 +53,7 @@
 
   // Track the last path we routed to, to avoid duplicate routing
   let lastRoutedPath = $state<string | null>(null);
+  let pageViewTrackingReady = $state(false);
 
   // Derived translated title - automatically updates when language changes
   let pageTitle = $derived(t(pageTitleKey));
@@ -424,6 +426,19 @@
     }
   }
 
+  function recordClientPageView(path: string): void {
+    if (!path.startsWith('/ui/') && path !== '/' && path !== '/login') return;
+
+    const url = buildAppUrl(`/api/v2/visitors/page-view?path=${encodeURIComponent(path)}`);
+    fetch(url, {
+      method: 'GET',
+      credentials: 'same-origin',
+      keepalive: true,
+    }).catch(err => {
+      logger.debug('Failed to record client-side page view', err);
+    });
+  }
+
   onMount(async () => {
     // Initialize application configuration from API with retry logic
     const success = await initApp();
@@ -472,6 +487,11 @@
 
     lastRoutedPath = currentPath;
     handleRouting(currentPath);
+    if (pageViewTrackingReady) {
+      recordClientPageView(currentPath);
+    } else {
+      pageViewTrackingReady = true;
+    }
   });
 
   // Wizard trigger: launch after first route loads

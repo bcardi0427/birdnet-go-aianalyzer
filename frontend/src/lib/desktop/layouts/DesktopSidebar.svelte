@@ -27,6 +27,7 @@ Special Behaviors:
 Props:
 - securityEnabled?: boolean - Whether security/auth is enabled
 - accessAllowed?: boolean - Whether user has access to protected routes
+- aiAnalysisEnabled?: boolean - Whether AI Analysis should appear in public navigation
 - version?: string - Version string to display
 - currentRoute?: string - Current active route for highlighting
 - onNavigate?: (url: string) => void - Custom navigation handler
@@ -88,6 +89,7 @@ Performance Optimizations:
   interface Props {
     securityEnabled?: boolean;
     accessAllowed?: boolean;
+    aiAnalysisEnabled?: boolean;
     version?: string;
     currentRoute?: string;
     onNavigate?: (_url: string) => void;
@@ -98,6 +100,7 @@ Performance Optimizations:
   let {
     securityEnabled = false,
     accessAllowed = true,
+    aiAnalysisEnabled = false,
     version = 'Development Build',
     currentRoute = '/ui/dashboard',
     onNavigate,
@@ -596,25 +599,27 @@ Performance Optimizations:
           {/if}
         </div>
 
-        <!-- AI Analysis -->
-        <div class="relative">
-          <button
-            onclick={() => navigate(navigationUrls.aiAnalysis)}
-            onmouseenter={e => isCollapsed && showTooltip(e, t('navigation.aiAnalysis'))}
-            onmouseleave={hideTooltip}
-            class={cn(
-              menuItemBase,
-              menuItemCollapsed,
-              routeCache.aiAnalysis ? menuItemActive : menuItemDefault
-            )}
-            role="menuitem"
-          >
-            <BrainCircuit class="size-5 shrink-0" />
-            {#if !isCollapsed}
-              <span>{t('navigation.aiAnalysis')}</span>
-            {/if}
-          </button>
-        </div>
+        {#if aiAnalysisEnabled}
+          <!-- AI Analysis -->
+          <div class="relative">
+            <button
+              onclick={() => navigate(navigationUrls.aiAnalysis)}
+              onmouseenter={e => isCollapsed && showTooltip(e, t('navigation.aiAnalysis'))}
+              onmouseleave={hideTooltip}
+              class={cn(
+                menuItemBase,
+                menuItemCollapsed,
+                routeCache.aiAnalysis ? menuItemActive : menuItemDefault
+              )}
+              role="menuitem"
+            >
+              <BrainCircuit class="size-5 shrink-0" />
+              {#if !isCollapsed}
+                <span>{t('navigation.aiAnalysis')}</span>
+              {/if}
+            </button>
+          </div>
+        {/if}
 
         <!-- Search -->
         <div class="relative">

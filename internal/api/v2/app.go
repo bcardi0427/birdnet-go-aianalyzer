@@ -31,6 +31,7 @@ const appMetadataKeyLastSeenVersion = "last_seen_version"
 type AppConfigResponse struct {
 	CSRFToken       string                `json:"csrfToken"`
 	Security        SecurityConfigDTO     `json:"security"`
+	Features        FeatureConfigDTO      `json:"features"`
 	Version         string                `json:"version"`
 	BasePath        string                `json:"basePath"`                  // reverse proxy prefix for frontend URL construction
 	ColorScheme     string                `json:"colorScheme,omitempty"`     // admin-configured color scheme for all visitors
@@ -42,6 +43,11 @@ type AppConfigResponse struct {
 	NewVersion      bool                  `json:"newVersion"`                // true when the app was upgraded since last dismiss
 	PreviousVersion string                `json:"previousVersion,omitempty"` // last version the user acknowledged
 	Sentry          *SentryFrontendConfig `json:"sentry,omitempty"`          // frontend telemetry config (only when enabled)
+}
+
+// FeatureConfigDTO exposes non-sensitive feature visibility flags to the frontend.
+type FeatureConfigDTO struct {
+	AIAnalysisEnabled bool `json:"aiAnalysisEnabled"`
 }
 
 // SentryFrontendConfig exposes telemetry configuration to the frontend.
@@ -154,6 +160,9 @@ func (c *Controller) GetAppConfig(ctx echo.Context) error {
 			PublicAccess: PublicAccessDTO{
 				LiveAudio: c.Settings.Security.PublicAccess.LiveAudio,
 			},
+		},
+		Features: FeatureConfigDTO{
+			AIAnalysisEnabled: c.Settings.AI.Enabled,
 		},
 		Version:         c.Settings.Version,
 		BasePath:        basePath,

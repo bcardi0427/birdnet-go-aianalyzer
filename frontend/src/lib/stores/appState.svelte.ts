@@ -58,6 +58,9 @@ interface AppConfigResponse {
       liveAudio: boolean;
     };
   };
+  features?: {
+    aiAnalysisEnabled: boolean;
+  };
   version: string;
   freshInstall?: boolean;
   newVersion?: boolean;
@@ -121,6 +124,10 @@ interface AppState {
       liveAudio: boolean;
     };
   };
+  /** Public feature visibility flags */
+  features: {
+    aiAnalysisEnabled: boolean;
+  };
 }
 
 /**
@@ -149,6 +156,9 @@ const DEFAULT_STATE: AppState = {
       liveAudio: false,
     },
   },
+  features: {
+    aiAnalysisEnabled: false,
+  },
 };
 
 /**
@@ -176,6 +186,14 @@ export function hasLiveAudioAccess(): boolean {
     appState.security.accessAllowed ||
     appState.security.publicAccess.liveAudio
   );
+}
+
+/**
+ * Whether the public AI Analysis page should be shown in navigation.
+ * Admins can still access Settings > AI while this is false.
+ */
+export function isAIAnalysisEnabled(): boolean {
+  return appState.features.aiAnalysisEnabled;
 }
 
 /**
@@ -257,6 +275,9 @@ export async function initApp(): Promise<boolean> {
         publicAccess: {
           liveAudio: config.security.publicAccess?.liveAudio ?? false,
         },
+      };
+      appState.features = {
+        aiAnalysisEnabled: config.features?.aiAnalysisEnabled ?? false,
       };
 
       appState.freshInstall = config.freshInstall ?? false;

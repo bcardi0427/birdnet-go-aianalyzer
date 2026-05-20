@@ -63,6 +63,7 @@
   let accessAllowed = $derived(appState.security.accessAllowed);
   let version = $derived(appState.version);
   let authConfig = $derived(appState.security.authConfig);
+  let aiAnalysisEnabled = $derived(appState.features.aiAnalysisEnabled);
 
   // App initialization state
   let appInitialized = $derived(appState.initialized);
@@ -572,6 +573,7 @@
     {securityEnabled}
     {accessAllowed}
     {version}
+    {aiAnalysisEnabled}
     {authConfig}
     onNavigate={navigate}
   >

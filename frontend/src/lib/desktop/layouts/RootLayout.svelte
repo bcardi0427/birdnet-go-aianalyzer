@@ -18,6 +18,7 @@
     currentPath?: string;
     securityEnabled?: boolean;
     accessAllowed?: boolean;
+    aiAnalysisEnabled?: boolean;
     version?: string;
     children?: Snippet;
     className?: string;
@@ -31,6 +32,7 @@
     currentPath,
     securityEnabled = false,
     accessAllowed = true,
+    aiAnalysisEnabled = false,
     version = 'Development Build',
     children,
     className = '',
@@ -164,6 +166,7 @@
   <Sidebar
     {securityEnabled}
     {accessAllowed}
+    {aiAnalysisEnabled}
     {version}
     currentRoute={currentPath ?? `/ui/${currentPage}`}
     onNavigate={handleNavigate}

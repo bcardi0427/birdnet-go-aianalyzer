@@ -12,7 +12,7 @@
   import { t } from '$lib/i18n';
   import { toastActions } from '$lib/stores/toast';
   import { appState } from '$lib/stores/appState.svelte';
-  import { settingsAPI, type AIModel, type AISettings } from '$lib/utils/settingsApi';
+  import { settingsAPI, type AIModel, type AISettings, type AIProviderSettings } from '$lib/utils/settingsApi';
 
   const defaultProviderSettings = {
     apiKey: '',
@@ -100,12 +100,12 @@
       settings = {
         ...defaultSettings,
         ...data,
-        gemini: { ...defaultSettings.gemini, ...data.gemini },
-        openai: { ...defaultSettings.openai, ...data.openai },
-        openrouter: { ...defaultSettings.openrouter, ...data.openrouter },
-        openaiCompatible: { ...defaultSettings.openaiCompatible, ...data.openaiCompatible },
-        ollama: { ...defaultSettings.ollama, ...data.ollama },
-        anthropic: { ...defaultSettings.anthropic, ...data.anthropic },
+        gemini: { ...defaultSettings.gemini, ...data.gemini } as AIProviderSettings,
+        openai: { ...defaultSettings.openai, ...data.openai } as AIProviderSettings,
+        openrouter: { ...defaultSettings.openrouter, ...data.openrouter } as AIProviderSettings,
+        openaiCompatible: { ...defaultSettings.openaiCompatible, ...data.openaiCompatible } as AIProviderSettings,
+        ollama: { ...defaultSettings.ollama, ...data.ollama } as AIProviderSettings,
+        anthropic: { ...defaultSettings.anthropic, ...data.anthropic } as AIProviderSettings,
       };
 
       // Ensure defaults are populated for all providers if they are empty
@@ -200,12 +200,12 @@
       settings = {
         ...defaultSettings,
         ...updated,
-        gemini: { ...defaultSettings.gemini, ...updated.gemini },
-        openai: { ...defaultSettings.openai, ...updated.openai },
-        openrouter: { ...defaultSettings.openrouter, ...updated.openrouter },
-        openaiCompatible: { ...defaultSettings.openaiCompatible, ...updated.openaiCompatible },
-        ollama: { ...defaultSettings.ollama, ...updated.ollama },
-        anthropic: { ...defaultSettings.anthropic, ...updated.anthropic },
+        gemini: { ...defaultSettings.gemini, ...updated.gemini } as AIProviderSettings,
+        openai: { ...defaultSettings.openai, ...updated.openai } as AIProviderSettings,
+        openrouter: { ...defaultSettings.openrouter, ...updated.openrouter } as AIProviderSettings,
+        openaiCompatible: { ...defaultSettings.openaiCompatible, ...updated.openaiCompatible } as AIProviderSettings,
+        ollama: { ...defaultSettings.ollama, ...updated.ollama } as AIProviderSettings,
+        anthropic: { ...defaultSettings.anthropic, ...updated.anthropic } as AIProviderSettings,
       };
       originalSettings = JSON.parse(JSON.stringify(settings));
       toastActions.success(t('settings.ai.saved'));

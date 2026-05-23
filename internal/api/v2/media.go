@@ -2830,6 +2830,46 @@ func (c *Controller) GetSpeciesImageInfo(ctx echo.Context) error {
 	})
 }
 
+// generateSpeciesBadgeSVG generates an SVG badge with initials and a consistent color
+func generateSpeciesBadgeSVG(scientificName, commonName string) []byte {
+	nameForBadge := commonName
+	if nameForBadge == "" {
+		nameForBadge = scientificName
+	}
+	
+	words := strings.Fields(strings.TrimSpace(nameForBadge))
+	initials := "??"
+	if len(words) > 0 {
+		if len(words) == 1 {
+			if len(words[0]) >= 2 {
+				initials = strings.ToUpper(words[0][:2])
+			} else {
+				initials = strings.ToUpper(words[0][:1])
+			}
+		} else {
+			initials = strings.ToUpper(words[0][:1] + words[1][:1])
+		}
+	}
+
+	colors := []string{
+		"#10b981", "#f59e0b", "#ef4444", "#8b5cf6",
+		"#06b6d4", "#ec4899", "#84cc16", "#f97316",
+		"#6366f1", "#14b8a6", "#a855f7", "#eab308",
+	}
+	
+	hash := 0
+	for i := 0; i < len(nameForBadge); i++ {
+		hash = int(nameForBadge[i]) + ((hash << 5) - hash)
+	}
+	if hash < 0 {
+		hash = -hash
+	}
+	color := colors[hash%len(colors)]
+
+	svg := fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><rect width="64" height="64" rx="16" fill="%s" /><text x="32" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="600" fill="#ffffff" text-anchor="middle" dominant-baseline="central">%s</text></svg>`, color, initials)
+	return []byte(svg)
+}
+
 // ServeSpeciesImageProxy serves a cached bird image by scientific name.
 // If the image is cached locally, it serves the file with browser cache headers.
 // If not cached, it fetches from the provider, caches, and serves.
@@ -2837,6 +2877,7 @@ func (c *Controller) GetSpeciesImageInfo(ctx echo.Context) error {
 // Route: GET /media/image/:scientific_name
 // Route: GET /media/bird-image/:scientific_name (alias)
 func (c *Controller) ServeSpeciesImageProxy(ctx echo.Context) error {
+	commonName := ctx.QueryParam("common")
 	scientificName, err := url.PathUnescape(ctx.Param("scientific_name"))
 	if err != nil {
 		return c.HandleError(ctx, fmt.Errorf("invalid scientific name encoding"), "Invalid species name", http.StatusBadRequest)
@@ -2861,7 +2902,7 @@ func (c *Controller) ServeSpeciesImageProxy(ctx echo.Context) error {
 	if err != nil {
 		if errors.Is(err, imageprovider.ErrImageNotFound) {
 			ctx.Response().Header().Set("Cache-Control", fmt.Sprintf("public, max-age=%d", NotFoundCacheSeconds))
-			return c.HandleError(ctx, err, "Image not found for species", http.StatusNotFound)
+			return ctx.Blob(http.StatusOK, "image/svg+xml", generateSpeciesBadgeSVG(scientificName, commonName))
 		}
 		return c.HandleError(ctx, err, "Failed to fetch species image", http.StatusInternalServerError)
 	}
@@ -2869,7 +2910,7 @@ func (c *Controller) ServeSpeciesImageProxy(ctx echo.Context) error {
 	// Negative cache entries have no real image URL
 	if birdImage.IsNegativeEntry() || birdImage.URL == "" {
 		ctx.Response().Header().Set("Cache-Control", fmt.Sprintf("public, max-age=%d", NotFoundCacheSeconds))
-		return c.HandleError(ctx, imageprovider.ErrImageNotFound, "Image not found for species", http.StatusNotFound)
+		return ctx.Blob(http.StatusOK, "image/svg+xml", generateSpeciesBadgeSVG(scientificName, commonName))
 	}
 
 	// Get the file cache from the BirdImageCache

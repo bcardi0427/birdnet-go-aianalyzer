@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/tphakala/birdnet-go/internal/ai/llm"
 	"github.com/tphakala/birdnet-go/internal/conf"
 	"github.com/tphakala/birdnet-go/internal/datastore/v2/entities"
 	"github.com/tphakala/birdnet-go/internal/datastore/v2/repository"
@@ -20,14 +21,13 @@ import (
 	"github.com/tphakala/birdnet-go/internal/logger"
 	"github.com/tphakala/birdnet-go/internal/secrets"
 	xhtml "golang.org/x/net/html"
-	"google.golang.org/genai"
+	"golang.org/x/net/html/atom"
 )
 
 const (
 	defaultCacheHours       = 4
-	defaultGeminiModel      = "gemini-2.5-flash"
-	reportLookbackWindow    = 24 * time.Hour
-	geminiRequestTimeout    = 30 * time.Second
+	defaultReportDays       = 1
+	llmRequestTimeout       = 30 * time.Second
 	maxTopSpeciesRows       = 12
 	maxNotableSpeciesRows   = 8
 	highConfidenceThreshold = 0.9
@@ -80,8 +80,11 @@ type ReportPayload struct {
 type reportCacheFile struct {
 	Report            string `json:"report"`
 	GeneratedAt       int64  `json:"generatedAt"`
+	Provider          string `json:"provider"`
 	Model             string `json:"model"`
+	BaseURL           string `json:"baseUrl"`
 	SystemPrompt      string `json:"systemPrompt"`
+	ReportDays        int    `json:"reportDays"`
 	CacheHours        int    `json:"cacheHours"`
 	AIEnabled         bool   `json:"aiEnabled"`
 	WeatherEnabled    bool   `json:"weatherEnabled"`
@@ -125,6 +128,7 @@ type weatherSummary struct {
 	TempMin   float64
 	TempMax   float64
 	TempAvg   float64
+	Pressure  float64
 	WindAvg   float64
 	WindMax   float64
 	Humidity  float64
@@ -160,12 +164,12 @@ func (s *ReportService) GetDailyReport(ctx context.Context, bypassCache bool) (*
 	if !settings.AI.Enabled {
 		return nil, fmt.Errorf("AI analysis is disabled in settings")
 	}
-	apiKey, err := s.resolveGeminiAPIKey()
+	apiKey, err := s.resolveProviderAPIKey()
 	if err != nil {
-		return nil, fmt.Errorf("failed to resolve Gemini API key: %w", err)
+		return nil, fmt.Errorf("failed to resolve AI provider API key: %w", err)
 	}
 	if strings.TrimSpace(apiKey) == "" {
-		return nil, fmt.Errorf("Gemini API key is not configured")
+		return nil, fmt.Errorf("AI provider API key is not configured")
 	}
 
 	if !bypassCache {
@@ -212,8 +216,11 @@ func (s *ReportService) loadValidCache() (*reportCacheFile, bool) {
 		cacheHours = defaultCacheHours
 	}
 
-	if c.Model != effectiveModel(settings.AI.Model) ||
+	if c.Provider != effectiveProvider(settings.AI.Provider) ||
+		c.Model != effectiveModel(settings.AI) ||
+		c.BaseURL != effectiveBaseURL(settings.AI) ||
 		c.SystemPrompt != settings.AI.SystemPrompt ||
+		c.ReportDays != effectiveReportDays(settings.AI.ReportDays) ||
 		c.CacheHours != cacheHours ||
 		c.AIEnabled != settings.AI.Enabled ||
 		c.WeatherEnabled != (settings.Realtime.Weather.Provider != "none") ||
@@ -238,8 +245,11 @@ func (s *ReportService) saveCache(report string, generatedAt time.Time) {
 	payload := reportCacheFile{
 		Report:            report,
 		GeneratedAt:       generatedAt.Unix(),
-		Model:             effectiveModel(settings.AI.Model),
+		Provider:          effectiveProvider(settings.AI.Provider),
+		Model:             effectiveModel(settings.AI),
+		BaseURL:           effectiveBaseURL(settings.AI),
 		SystemPrompt:      settings.AI.SystemPrompt,
+		ReportDays:        effectiveReportDays(settings.AI.ReportDays),
 		CacheHours:        cacheHours,
 		AIEnabled:         settings.AI.Enabled,
 		WeatherEnabled:    settings.Realtime.Weather.Provider != "none",
@@ -260,8 +270,10 @@ func (s *ReportService) saveCache(report string, generatedAt time.Time) {
 }
 
 func (s *ReportService) generateReport(ctx context.Context, apiKey string) (string, time.Time, bool, error) {
+	settings := s.settingsSnapshot()
 	now := time.Now()
-	start := now.Add(-reportLookbackWindow).Unix()
+	lookback := time.Duration(effectiveReportDays(settings.AI.ReportDays)) * 24 * time.Hour
+	start := now.Add(-lookback).Unix()
 	end := now.Unix()
 
 	dets, _, err := s.detection.GetByDateRange(ctx, start, end, 10000, 0)
@@ -270,7 +282,7 @@ func (s *ReportService) generateReport(ctx context.Context, apiKey string) (stri
 	}
 
 	if len(dets) == 0 {
-		return "# AI Analysis\n\nNo detections were found in the last 24 hours.", now, true, nil
+		return fmt.Sprintf("<h1>AI Analysis</h1>\n\n<p>No detections were found in the last %d day(s).</p>", effectiveReportDays(settings.AI.ReportDays)), now, true, nil
 	}
 
 	stats, err := s.computeStats(ctx, dets)
@@ -278,17 +290,17 @@ func (s *ReportService) generateReport(ctx context.Context, apiKey string) (stri
 		return "", time.Time{}, false, err
 	}
 
-	narrative, narrativeErr := s.generateNarrative(ctx, stats, apiKey)
+	narrative, providerID, model, narrativeErr := s.generateNarrative(ctx, stats, apiKey)
 	shouldCache := true
 	if narrativeErr != nil {
-		s.log.Warn("Gemini narrative generation failed, using fallback", logger.Error(narrativeErr))
+		s.log.Warn("AI narrative generation failed, using fallback", logger.String("provider", providerID), logger.String("model", model), logger.Error(narrativeErr))
 		narrative = "## Narrative unavailable\n\nAI narrative generation is currently unavailable. Backend-generated report tables are still shown below."
 		shouldCache = false
 	}
 	narrative = sanitizeNarrative(narrative)
 
 	sections := []string{
-		"# AI Analysis",
+		"<h1>AI Analysis</h1>",
 		narrative,
 		s.renderDailyTotals(stats),
 		s.renderTopSpecies(stats),
@@ -346,10 +358,10 @@ func (s *ReportService) computeStats(ctx context.Context, dets []*entities.Detec
 	stats.PeakHour, stats.PeakHourCount = peakHour(hourly)
 	stats.QuietHour, stats.QuietHourCount = quietHour(hourly)
 
-	stats.TopSpecies = buildSpeciesRows(byScientific, maxTopSpeciesRows)
-	stats.NotableSpecies = buildNotableSpeciesRows(byScientific, maxNotableSpeciesRows)
-	stats.Weather = s.fetchWeatherSummary(ctx)
 	settings := s.settingsSnapshot()
+	stats.TopSpecies = buildSpeciesRows(byScientific, settings.BirdNET.Labels, maxTopSpeciesRows)
+	stats.NotableSpecies = buildNotableSpeciesRows(byScientific, settings.BirdNET.Labels, maxNotableSpeciesRows)
+	stats.Weather = s.fetchWeatherSummary(ctx)
 	stats.EBirdContextIncluded = settings.Realtime.EBird.Enabled && s.ebirdClient != nil
 
 	if stats.EBirdContextIncluded {
@@ -417,11 +429,12 @@ func (s *ReportService) fetchWeatherSummary(ctx context.Context) weatherSummary 
 	}
 
 	ws := weatherSummary{Available: true, TempMin: items[0].TempMin, TempMax: items[0].TempMax}
-	var tempSum, windSum, humiditySum float64
+	var tempSum, windSum, humiditySum, pressureSum float64
 	for i, w := range items {
 		tempSum += w.Temperature
 		windSum += w.WindSpeed
 		humiditySum += float64(w.Humidity)
+		pressureSum += float64(w.Pressure)
 		if i == 0 || w.TempMin < ws.TempMin {
 			ws.TempMin = w.TempMin
 		}
@@ -436,26 +449,29 @@ func (s *ReportService) fetchWeatherSummary(ctx context.Context) weatherSummary 
 		}
 	}
 	ws.TempAvg = tempSum / float64(len(items))
+	ws.Pressure = pressureSum / float64(len(items))
 	ws.WindAvg = windSum / float64(len(items))
 	ws.Humidity = humiditySum / float64(len(items))
 
 	return ws
 }
 
-func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStats, apiKey string) (string, error) {
+func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStats, apiKey string) (string, string, string, error) {
 	settings := s.settingsSnapshot()
-	requestCtx, cancel := context.WithTimeout(ctx, geminiRequestTimeout)
+	requestCtx, cancel := context.WithTimeout(ctx, llmRequestTimeout)
 	defer cancel()
-
-	client, err := genai.NewClient(requestCtx, &genai.ClientConfig{APIKey: apiKey})
+	providerID := effectiveProvider(settings.AI.Provider)
+	model := effectiveModel(settings.AI)
+	provider, err := llm.NewProvider(settings.AI, apiKey, s.log)
 	if err != nil {
-		return "", fmt.Errorf("failed to create Gemini client: %w", err)
+		return "", providerID, model, fmt.Errorf("failed to create AI provider %q: %w", providerID, err)
 	}
 
 	facts := map[string]any{
 		"totalDetections":      stats.TotalDetections,
 		"uniqueSpecies":        stats.UniqueSpecies,
 		"highConfidencePct":    fmt.Sprintf("%.1f", stats.HighConfidencePct),
+		"reportWindowDays":     effectiveReportDays(settings.AI.ReportDays),
 		"peakHour":             stats.PeakHour,
 		"peakHourCount":        stats.PeakHourCount,
 		"quietHour":            stats.QuietHour,
@@ -463,24 +479,52 @@ func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStat
 		"weatherAvailable":     stats.Weather.Available,
 		"ebirdContextIncluded": stats.EBirdContextIncluded,
 	}
+	if stats.Weather.Available {
+		facts["weather"] = map[string]any{
+			"tempMinC":      fmt.Sprintf("%.1f", stats.Weather.TempMin),
+			"tempMaxC":      fmt.Sprintf("%.1f", stats.Weather.TempMax),
+			"tempAvgC":      fmt.Sprintf("%.1f", stats.Weather.TempAvg),
+			"pressureHpa":   fmt.Sprintf("%.1f", stats.Weather.Pressure),
+			"humidityPct":   fmt.Sprintf("%.1f", stats.Weather.Humidity),
+			"windAvgMS":     fmt.Sprintf("%.1f", stats.Weather.WindAvg),
+			"windGustMaxMS": fmt.Sprintf("%.1f", stats.Weather.WindMax),
+			"condition":     orUnknown(stats.Weather.Condition),
+		}
+	}
 
 	factsJSON, _ := json.MarshalIndent(facts, "", "  ")
-	basePrompt := "You are generating narrative commentary for a BirdNET-Go daily report. Return markdown narrative only. Do not output HTML, <img> tags, image URLs, or arbitrary links. Do not invent metrics; only use provided facts and say unavailable when data is missing."
+
+	// Safety note appended after facts — does not override output format instructions.
+	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links."
+
+	var prompt string
 	if strings.TrimSpace(settings.AI.SystemPrompt) != "" {
-		basePrompt = settings.AI.SystemPrompt + "\n\n" + basePrompt
+		// User has a custom system prompt — honour it exactly. Only append the
+		// facts safety note so we never contradict the user's own formatting rules.
+		prompt = settings.AI.SystemPrompt + "\n\n" + factsSafetyNote + "\n\nFacts:\n" + string(factsJSON)
+	} else {
+		// No custom prompt configured — use a safe neutral default.
+		prompt = "You are generating narrative commentary for a BirdNET-Go daily report. " +
+			"Write a clear, detailed summary in well-structured HTML using <h3>, <p>, <ul>, <li>, and <table> tags. " +
+			"Do not include <html> or <body> tags. " +
+			factsSafetyNote + "\n\nFacts:\n" + string(factsJSON)
 	}
-	prompt := basePrompt + "\n\nFacts:\n" + string(factsJSON)
 
-	model := effectiveModel(settings.AI.Model)
-	result, err := client.Models.GenerateContent(requestCtx, model, genai.Text(prompt), nil)
+	s.log.Info("AI prompt payload",
+		logger.String("provider", providerID),
+		logger.String("model", model),
+		logger.Int("prompt_length", len(prompt)),
+		logger.String("prompt", prompt),
+	)
+	result, err := provider.Generate(requestCtx, llm.GenerateRequest{SystemPrompt: "", Prompt: prompt, Model: model})
 	if err != nil {
-		return "", err
+		return "", providerID, model, err
 	}
 
-	return strings.TrimSpace(result.Text()), nil
+	return strings.TrimSpace(result.Text), providerID, model, nil
 }
 
-func (s *ReportService) resolveGeminiAPIKey() (string, error) {
+func (s *ReportService) resolveProviderAPIKey() (string, error) {
 	settings := s.settingsSnapshot()
 	apiKey, source, err := secrets.ResolveWithSource(settings.AI.APIKeyFile, settings.AI.APIKey)
 	if err != nil {
@@ -496,7 +540,11 @@ func (s *ReportService) resolveGeminiAPIKey() (string, error) {
 }
 
 func sanitizeNarrative(input string) string {
-	out := imgTagPattern.ReplaceAllString(input, "")
+	// Remove any markdown code block wrappers the LLM might have added
+	out := strings.ReplaceAll(input, "```html", "")
+	out = strings.ReplaceAll(out, "```", "")
+
+	out = imgTagPattern.ReplaceAllString(out, "")
 	out = imageURLPattern.ReplaceAllString(out, "[image-url-removed]")
 	out = anyURLPattern.ReplaceAllStringFunc(out, func(v string) string {
 		lower := strings.ToLower(v)
@@ -512,7 +560,7 @@ func sanitizeNarrative(input string) string {
 // sanitizeNarrativeHTML keeps only a small allowlist of safe structural tags
 // and strips all attributes from allowed tags.
 func sanitizeNarrativeHTML(input string) string {
-	nodes, err := xhtml.ParseFragment(strings.NewReader(input), &xhtml.Node{Type: xhtml.ElementNode, Data: "div"})
+	nodes, err := xhtml.ParseFragment(strings.NewReader(input), &xhtml.Node{Type: xhtml.ElementNode, Data: "div", DataAtom: atom.Div})
 	if err != nil {
 		return regexp.MustCompile(`(?is)<[^>]+>`).ReplaceAllString(input, "")
 	}
@@ -549,7 +597,7 @@ func renderSanitizedNode(b *strings.Builder, n *xhtml.Node) {
 
 func (s *ReportService) renderDailyTotals(stats *reportStats) string {
 	return strings.Join([]string{
-		"## Daily Totals",
+		"<h2>Daily Totals</h2>",
 		`<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>`,
 		fmt.Sprintf("<tr><td>Total detections</td><td>%d</td></tr>", stats.TotalDetections),
 		fmt.Sprintf("<tr><td>Unique species</td><td>%d</td></tr>", stats.UniqueSpecies),
@@ -561,7 +609,7 @@ func (s *ReportService) renderDailyTotals(stats *reportStats) string {
 }
 
 func (s *ReportService) renderTopSpecies(stats *reportStats) string {
-	rows := []string{"## Top Detections", `<table><thead><tr><th>Thumbnail</th><th>Common</th><th>Scientific</th><th>Detections</th><th>Avg confidence</th><th>Peak</th><th>Links</th></tr></thead><tbody>`}
+	rows := []string{"<h2>Top Detections</h2>", `<table><thead><tr><th>Thumbnail</th><th>Common</th><th>Scientific</th><th>Detections</th><th>Avg confidence</th><th>Peak</th><th>Links</th></tr></thead><tbody>`}
 	for _, row := range stats.TopSpecies {
 		thumb := imageHTML(row.ScientificName, row.CommonName)
 		link := ebirdLinkHTML(row.EBirdURL)
@@ -572,9 +620,9 @@ func (s *ReportService) renderTopSpecies(stats *reportStats) string {
 }
 
 func (s *ReportService) renderNotableSpecies(stats *reportStats) string {
-	rows := []string{"## Rare / Notable Detections", `<table><thead><tr><th>Thumbnail</th><th>Species</th><th>Detections</th><th>Avg confidence</th><th>First seen</th><th>Last seen</th></tr></thead><tbody>`}
+	rows := []string{"<h2>Rare / Notable Detections</h2>", `<table><thead><tr><th>Thumbnail</th><th>Species</th><th>Detections</th><th>Avg confidence</th><th>First seen</th><th>Last seen</th></tr></thead><tbody>`}
 	for _, row := range stats.NotableSpecies {
-		rows = append(rows, fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%d</td><td>%.1f%%</td><td>%s</td><td>%s</td></tr>", imageHTML(row.ScientificName, row.CommonName), esc(row.ScientificName), row.Detections, row.AvgConfidencePct, time.Unix(row.FirstSeenUnix, 0).Format(time.RFC3339), time.Unix(row.LastSeenUnix, 0).Format(time.RFC3339)))
+		rows = append(rows, fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%d</td><td>%.1f%%</td><td>%s</td><td>%s</td></tr>", imageHTML(row.ScientificName, row.CommonName), esc(row.CommonName), row.Detections, row.AvgConfidencePct, time.Unix(row.FirstSeenUnix, 0).Format("01-02-2006 15:04:05"), time.Unix(row.LastSeenUnix, 0).Format("01-02-2006 15:04:05")))
 	}
 	rows = append(rows, "</tbody></table>")
 	return strings.Join(rows, "\n")
@@ -582,10 +630,10 @@ func (s *ReportService) renderNotableSpecies(stats *reportStats) string {
 
 func (s *ReportService) renderWeatherSummary(stats *reportStats) string {
 	if !stats.Weather.Available {
-		return "## Weather Summary\n\nWeather data unavailable for this report window."
+		return "<h2>Weather Summary</h2>\n\n<p>Weather data unavailable for this report window.</p>"
 	}
 	return strings.Join([]string{
-		"## Weather Summary",
+		"<h2>Weather Summary</h2>",
 		`<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>`,
 		fmt.Sprintf("<tr><td>Temperature</td><td>min %.1f°C / max %.1f°C / avg %.1f°C</td></tr>", stats.Weather.TempMin, stats.Weather.TempMax, stats.Weather.TempAvg),
 		fmt.Sprintf("<tr><td>Wind</td><td>avg %.1f m/s / max %.1f m/s</td></tr>", stats.Weather.WindAvg, stats.Weather.WindMax),
@@ -597,7 +645,7 @@ func (s *ReportService) renderWeatherSummary(stats *reportStats) string {
 
 func (s *ReportService) renderConfidenceBreakdown(stats *reportStats) string {
 	return strings.Join([]string{
-		"## Confidence Breakdown",
+		"<h2>Confidence Breakdown</h2>",
 		`<table><thead><tr><th>Bucket</th><th>Count</th></tr></thead><tbody>`,
 		fmt.Sprintf("<tr><td>95–100%%</td><td>%d</td></tr>", stats.Confidence95To100),
 		fmt.Sprintf("<tr><td>90–94%%</td><td>%d</td></tr>", stats.Confidence90To94),
@@ -607,7 +655,20 @@ func (s *ReportService) renderConfidenceBreakdown(stats *reportStats) string {
 	}, "\n")
 }
 
-func buildSpeciesRows(grouped map[string][]*entities.Detection, limit int) []speciesRow {
+func getCommonName(labels []string, scientificName string) string {
+	for _, l := range labels {
+		sci, common, found := strings.Cut(l, "_")
+		if found && sci == scientificName {
+			if idx := strings.Index(common, "_"); idx > 0 {
+				return common[:idx]
+			}
+			return common
+		}
+	}
+	return scientificName
+}
+
+func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string, limit int) []speciesRow {
 	rows := make([]speciesRow, 0, len(grouped))
 	for sci, items := range grouped {
 		if len(items) == 0 {
@@ -629,7 +690,7 @@ func buildSpeciesRows(grouped map[string][]*entities.Detection, limit int) []spe
 		}
 		pHour, _ := peakHour(hourCounts)
 		rows = append(rows, speciesRow{
-			CommonName:       sci,
+			CommonName:       getCommonName(labels, sci),
 			ScientificName:   sci,
 			Detections:       len(items),
 			AvgConfidencePct: confSum / float64(len(items)) * 100,
@@ -680,8 +741,9 @@ func hourWindow(hour int) string {
 
 func imageHTML(scientificName, commonName string) string {
 	escSci := url.QueryEscape(scientificName)
+	escCom := url.QueryEscape(commonName)
 	alt := esc(orUnknown(commonName))
-	return fmt.Sprintf(`<img src="/api/v2/media/species-image?name=%s" alt="%s" loading="lazy" width="64" height="64">`, escSci, alt)
+	return fmt.Sprintf(`<img src="/api/v2/media/species-image?name=%s&common=%s" alt="%s" loading="lazy" width="64" height="64" style="border-radius:4px;">`, escSci, escCom, alt)
 }
 
 func ebirdLinkHTML(link string) string {
@@ -691,8 +753,8 @@ func ebirdLinkHTML(link string) string {
 	return fmt.Sprintf(`<a href="%s" target="_blank" rel="noopener noreferrer" title="Open eBird species page">eBird</a>`, esc(link))
 }
 
-func buildNotableSpeciesRows(grouped map[string][]*entities.Detection, limit int) []speciesRow {
-	rows := buildSpeciesRows(grouped, 1000)
+func buildNotableSpeciesRows(grouped map[string][]*entities.Detection, labels []string, limit int) []speciesRow {
+	rows := buildSpeciesRows(grouped, labels, 1000)
 	sort.Slice(rows, func(i, j int) bool {
 		if rows[i].Detections == rows[j].Detections {
 			return rows[i].AvgConfidencePct > rows[j].AvgConfidencePct
@@ -709,11 +771,58 @@ func esc(v string) string {
 	return stdhtml.EscapeString(v)
 }
 
-func effectiveModel(model string) string {
-	if strings.TrimSpace(model) == "" {
-		return defaultGeminiModel
+func effectiveProvider(provider string) string {
+	provider = strings.TrimSpace(strings.ToLower(provider))
+	if provider == "" {
+		return llm.ProviderGemini
 	}
-	return model
+	return provider
+}
+
+func effectiveModel(settings conf.AISettings) string {
+	model := strings.TrimSpace(settings.Model)
+	if model != "" {
+		return model
+	}
+	switch effectiveProvider(settings.Provider) {
+	case llm.ProviderOpenAI:
+		return llm.DefaultOpenAIModel
+	case llm.ProviderOpenRouter:
+		return llm.DefaultOpenRouterModel
+	case llm.ProviderOllama:
+		return llm.DefaultOllamaModel
+	case llm.ProviderAnthropic:
+		return llm.DefaultAnthropicModel
+	default:
+		return llm.DefaultGeminiModel
+	}
+}
+
+func effectiveBaseURL(settings conf.AISettings) string {
+	baseURL := strings.TrimSpace(settings.BaseURL)
+	if baseURL != "" {
+		return strings.TrimRight(baseURL, "/")
+	}
+	switch effectiveProvider(settings.Provider) {
+	case llm.ProviderOpenAI:
+		return llm.DefaultOpenAIBaseURL
+	case llm.ProviderOpenRouter:
+		return llm.DefaultOpenRouterBaseURL
+	case llm.ProviderOllama:
+		return llm.DefaultOllamaBaseURL
+	default:
+		return ""
+	}
+}
+
+func effectiveReportDays(days int) int {
+	if days < 1 {
+		return defaultReportDays
+	}
+	if days > 31 {
+		return 31
+	}
+	return days
 }
 
 func orUnknown(v string) string {

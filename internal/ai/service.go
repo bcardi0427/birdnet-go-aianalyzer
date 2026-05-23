@@ -655,17 +655,17 @@ func (s *ReportService) renderConfidenceBreakdown(stats *reportStats) string {
 	}, "\n")
 }
 
-func getCommonName(labels []string, scientificName string) string {
+func getSpeciesInfo(labels []string, scientificName string) (commonName, ebirdCode string) {
 	for _, l := range labels {
-		sci, common, found := strings.Cut(l, "_")
+		sci, rest, found := strings.Cut(l, "_")
 		if found && sci == scientificName {
-			if idx := strings.Index(common, "_"); idx > 0 {
-				return common[:idx]
+			if idx := strings.LastIndex(rest, "_"); idx > 0 {
+				return rest[:idx], rest[idx+1:]
 			}
-			return common
+			return rest, ""
 		}
 	}
-	return scientificName
+	return scientificName, ""
 }
 
 func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string, limit int) []speciesRow {
@@ -689,15 +689,20 @@ func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string,
 			hourCounts[time.Unix(d.DetectedAt, 0).Hour()]++
 		}
 		pHour, _ := peakHour(hourCounts)
+		commonName, ebirdCode := getSpeciesInfo(labels, sci)
+		ebirdURL := ""
+		if ebirdCode != "" {
+			ebirdURL = fmt.Sprintf("https://ebird.org/species/%s", url.QueryEscape(ebirdCode))
+		}
 		rows = append(rows, speciesRow{
-			CommonName:       getCommonName(labels, sci),
+			CommonName:       commonName,
 			ScientificName:   sci,
 			Detections:       len(items),
 			AvgConfidencePct: confSum / float64(len(items)) * 100,
 			PeakHour:         pHour,
 			FirstSeenUnix:    first,
 			LastSeenUnix:     last,
-			EBirdURL:         fmt.Sprintf("https://ebird.org/species/%s", url.QueryEscape(strings.ToLower(strings.ReplaceAll(sci, " ", "-")))),
+			EBirdURL:         ebirdURL,
 		})
 	}
 

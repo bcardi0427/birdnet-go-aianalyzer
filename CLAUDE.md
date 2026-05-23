@@ -4,6 +4,18 @@
 
 BirdNET-Go: Go implementation of BirdNET for real-time bird sound identification aimed for non serious birders and home users. Open source project for fun.
 
+## Windows Dev Environment (CGO Compiler & DLLs)
+
+To build or run tests on Windows, CGO is required. The compiler and library paths are:
+- **MSYS2 UCRT64 GCC compiler**: `C:\msys64\ucrt64\bin` (must be added to `PATH`)
+- **TensorFlow Lite C Headers**: `C:\Users\Bcardi\src\tensorflow` (passed via `CGO_CFLAGS="-IC:\Users\Bcardi\src\tensorflow"`)
+- **TensorFlow Lite C DLL**: `F:\AntiGravity Sources\birdnet-go` (where `tensorflowlite_c.dll` is located; must be added to `PATH` to run the binary/tests)
+- **CGO Enabled**: `CGO_ENABLED="1"`
+
+To apply these settings in your shell:
+- **PowerShell**: Run `. .\setup_env.ps1`
+- **CMD**: Run `setup_env.bat`
+
 ## Quick Navigation
 
 - **Frontend**: See `frontend/CLAUDE.md` for Svelte 5, TypeScript, UI

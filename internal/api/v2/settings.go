@@ -970,6 +970,8 @@ func getSettingsSectionValue(settings *conf.Settings, section string) (any, erro
 		return &settings.Bat, nil
 	case "models":
 		return &settings.Models, nil
+	case "ai":
+		return &settings.AI, nil
 	case "taxonomysynonyms":
 		return &settings.TaxonomySynonyms, nil
 	default:
@@ -1037,6 +1039,7 @@ func getSectionValidators() map[string]sectionValidator {
 		SettingsSectionRealtime:  validateRealtimeSection,
 		"notification":           validateNotificationSection,
 		"alerting":               validateAlertingSection,
+		"ai":                     validateAISection,
 	}
 }
 
@@ -1542,6 +1545,21 @@ func validateAlertingSection(data json.RawMessage) error {
 	return nil
 }
 
+// validateAISection validates AI integration settings.
+func validateAISection(data json.RawMessage) error {
+	var aiSettings conf.AISettings
+	if err := json.Unmarshal(data, &aiSettings); err != nil {
+		return err
+	}
+
+	result := conf.ValidateAISettings(&aiSettings)
+	if !result.Valid {
+		return fmt.Errorf("ai settings errors: %s", strings.Join(result.Errors, "; "))
+	}
+
+	return nil
+}
+
 // getSettingsSection returns the requested section of settings
 func getSettingsSection(settings *conf.Settings, section string) (any, error) {
 	section = strings.ToLower(section)
@@ -1712,6 +1730,15 @@ func sanitizeSettingsForAPI(s *conf.Settings) *conf.Settings {
 	// --- eBird API key ---
 	sanitized.Realtime.EBird.APIKey = redact(s.Realtime.EBird.APIKey)
 
+	// --- AI API key ---
+	sanitized.AI.APIKey = redact(s.AI.APIKey)
+	sanitized.AI.Gemini.APIKey = redact(s.AI.Gemini.APIKey)
+	sanitized.AI.OpenAI.APIKey = redact(s.AI.OpenAI.APIKey)
+	sanitized.AI.OpenRouter.APIKey = redact(s.AI.OpenRouter.APIKey)
+	sanitized.AI.OpenAICompatible.APIKey = redact(s.AI.OpenAICompatible.APIKey)
+	sanitized.AI.Ollama.APIKey = redact(s.AI.Ollama.APIKey)
+	sanitized.AI.Anthropic.APIKey = redact(s.AI.Anthropic.APIKey)
+
 	// --- Backup secrets ---
 	sanitized.Backup.EncryptionKey = redact(s.Backup.EncryptionKey)
 
@@ -1825,6 +1852,15 @@ func restoreRedactedSecrets(current, incoming *conf.Settings) error {
 	// eBird
 	restore(&current.Realtime.EBird.APIKey, &incoming.Realtime.EBird.APIKey)
 
+	// AI
+	restore(&current.AI.APIKey, &incoming.AI.APIKey)
+	restore(&current.AI.Gemini.APIKey, &incoming.AI.Gemini.APIKey)
+	restore(&current.AI.OpenAI.APIKey, &incoming.AI.OpenAI.APIKey)
+	restore(&current.AI.OpenRouter.APIKey, &incoming.AI.OpenRouter.APIKey)
+	restore(&current.AI.OpenAICompatible.APIKey, &incoming.AI.OpenAICompatible.APIKey)
+	restore(&current.AI.Ollama.APIKey, &incoming.AI.Ollama.APIKey)
+	restore(&current.AI.Anthropic.APIKey, &incoming.AI.Anthropic.APIKey)
+
 	// Backup
 	restore(&current.Backup.EncryptionKey, &incoming.Backup.EncryptionKey)
 
@@ -1915,6 +1951,13 @@ func validateNoRedactedSentinels(s *conf.Settings) error {
 	check(s.Realtime.Weather.OpenWeather.APIKey, "realtime.weather.openWeather.apiKey")
 	check(s.Realtime.Weather.Wunderground.APIKey, "realtime.weather.wunderground.apiKey")
 	check(s.Realtime.EBird.APIKey, "realtime.ebird.apiKey")
+	check(s.AI.APIKey, "ai.apiKey")
+	check(s.AI.Gemini.APIKey, "ai.gemini.apiKey")
+	check(s.AI.OpenAI.APIKey, "ai.openai.apiKey")
+	check(s.AI.OpenRouter.APIKey, "ai.openrouter.apiKey")
+	check(s.AI.OpenAICompatible.APIKey, "ai.openaiCompatible.apiKey")
+	check(s.AI.Ollama.APIKey, "ai.ollama.apiKey")
+	check(s.AI.Anthropic.APIKey, "ai.anthropic.apiKey")
 	check(s.Backup.EncryptionKey, "backup.encryptionKey")
 
 	// Array-based OAuth providers
@@ -1982,6 +2025,13 @@ func clearRedactedSentinels(s *conf.Settings) {
 	clearField(&s.Realtime.Weather.OpenWeather.APIKey)
 	clearField(&s.Realtime.Weather.Wunderground.APIKey)
 	clearField(&s.Realtime.EBird.APIKey)
+	clearField(&s.AI.APIKey)
+	clearField(&s.AI.Gemini.APIKey)
+	clearField(&s.AI.OpenAI.APIKey)
+	clearField(&s.AI.OpenRouter.APIKey)
+	clearField(&s.AI.OpenAICompatible.APIKey)
+	clearField(&s.AI.Ollama.APIKey)
+	clearField(&s.AI.Anthropic.APIKey)
 	clearField(&s.Backup.EncryptionKey)
 
 	for i := range s.Security.OAuthProviders {

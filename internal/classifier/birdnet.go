@@ -163,7 +163,10 @@ func NewBirdNET(settings *conf.Settings, modelInfo *ModelInfo) (*BirdNET, error)
 	inputLocale := strings.ToLower(settings.BirdNET.Locale)
 	normalizedLocale, err := conf.NormalizeLocale(inputLocale)
 	if err != nil {
-		return nil, err
+		GetLogger().Warn("BirdNET locale not supported, using fallback",
+			logger.String("requested_locale", inputLocale),
+			logger.String("fallback_locale", normalizedLocale),
+			logger.Error(err))
 	}
 	settings.BirdNET.Locale = normalizedLocale
 

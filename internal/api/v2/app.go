@@ -162,7 +162,10 @@ func (c *Controller) GetAppConfig(ctx echo.Context) error {
 			},
 		},
 		Features: FeatureConfigDTO{
-			AIAnalysisEnabled: c.Settings.AI.Enabled,
+			// Keep AI Analysis navigation visible regardless of current enable-state.
+			// The AI page itself handles disabled/unconfigured states with guidance,
+			// while hiding the entry makes discovery and setup harder.
+			AIAnalysisEnabled: true,
 		},
 		Version:         c.Settings.Version,
 		BasePath:        basePath,

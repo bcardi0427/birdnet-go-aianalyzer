@@ -6,7 +6,6 @@ import (
 
 	"github.com/tphakala/birdnet-go/internal/inference"
 	tflitelib "github.com/tphakala/go-tflite"
-	"github.com/tphakala/go-tflite/delegates/xnnpack"
 )
 
 // LogFunc is a callback for logging messages from the inference backend.
@@ -44,7 +43,7 @@ func NewTFLiteClassifier(modelData []byte, opts TFLiteClassifierOptions) (infere
 	options := tflitelib.NewInterpreterOptions()
 
 	if opts.UseXNNPACK {
-		delegate := xnnpack.New(xnnpack.DelegateOptions{NumThreads: int32(max(1, threads-1))}) //nolint:gosec // G115: thread count bounded by CPU count, safe conversion
+		delegate := newXNNPACKDelegate(threads)
 		if delegate == nil {
 			if opts.WarnFunc != nil {
 				opts.WarnFunc("Failed to create XNNPACK delegate, falling back to default CPU")

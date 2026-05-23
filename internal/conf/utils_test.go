@@ -277,6 +277,19 @@ func TestFindConfigFile_EmptyConfigPathFallsThrough(t *testing.T) {
 	}
 }
 
+func TestIsGoRunTempExecutableDir(t *testing.T) {
+	goBuildDir := filepath.Join(os.TempDir(), "go-build123456789", "b001", "exe")
+	assert.True(t, isGoRunTempExecutableDir(goBuildDir))
+
+	userCacheDir, err := os.UserCacheDir()
+	require.NoError(t, err)
+	goCacheBuildDir := filepath.Join(userCacheDir, "go-build", "a5", "a57e60c4103ced62-d")
+	assert.True(t, isGoRunTempExecutableDir(goCacheBuildDir))
+
+	normalDir := filepath.Join(t.TempDir(), "birdnet-go")
+	assert.False(t, isGoRunTempExecutableDir(normalDir))
+}
+
 func TestGetSoxFormats_WithExplicitPath(t *testing.T) {
 	soxPath, err := exec.LookPath(GetSoxBinaryName())
 	if err != nil {

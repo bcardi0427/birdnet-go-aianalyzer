@@ -11,16 +11,36 @@
   import type { SelectOption } from '$lib/desktop/components/forms/SelectDropdown.types';
   import { t } from '$lib/i18n';
   import { toastActions } from '$lib/stores/toast';
+  import { appState } from '$lib/stores/appState.svelte';
   import { settingsAPI, type AIModel, type AISettings } from '$lib/utils/settingsApi';
+
+  const defaultProviderSettings = {
+    apiKey: '',
+    baseUrl: '',
+    model: '',
+  };
 
   const defaultSettings: AISettings = {
     enabled: false,
+    provider: 'gemini',
     apiKey: '',
+    baseUrl: '',
     model: 'gemini-2.5-flash',
     reportDays: 1,
     cacheHours: 4,
     systemPrompt: '',
+    gemini: { ...defaultProviderSettings, model: 'gemini-2.5-flash' },
+    openai: { ...defaultProviderSettings, model: 'gpt-4o-mini', baseUrl: 'https://api.openai.com/v1' },
+    openrouter: { ...defaultProviderSettings, model: 'openai/gpt-4o-mini', baseUrl: 'https://openrouter.ai/api/v1' },
+    openaiCompatible: { ...defaultProviderSettings },
+    ollama: { ...defaultProviderSettings, model: 'llama3.2', baseUrl: 'http://localhost:11434/v1' },
+    anthropic: { ...defaultProviderSettings, model: 'claude-3-5-haiku-latest' },
   };
+
+  function getProviderKey(provider: string): 'gemini' | 'openai' | 'openrouter' | 'openaiCompatible' | 'ollama' | 'anthropic' {
+    if (provider === 'openai-compatible') return 'openaiCompatible';
+    return provider as any;
+  }
 
   let settings = $state<AISettings>({ ...defaultSettings });
   let originalSettings = $state<AISettings>({ ...defaultSettings });
@@ -35,9 +55,30 @@
   let connectionStatus = $state<{ ok: boolean; message: string } | null>(null);
 
   let hasChanges = $derived(JSON.stringify(settings) !== JSON.stringify(originalSettings));
+  const providerOptions: SelectOption[] = [
+    { value: 'gemini', label: 'Google Gemini' },
+    { value: 'openai', label: 'OpenAI' },
+    { value: 'openrouter', label: 'OpenRouter' },
+    { value: 'openai-compatible', label: 'OpenAI-compatible' },
+    { value: 'ollama', label: 'Ollama' },
+    { value: 'anthropic', label: 'Anthropic' },
+  ];
+
+  const providerDefaults: Record<string, { model: string; baseUrl: string }> = {
+    gemini: { model: 'gemini-2.5-flash', baseUrl: '' },
+    openai: { model: 'gpt-4o-mini', baseUrl: 'https://api.openai.com/v1' },
+    openrouter: { model: 'openai/gpt-4o-mini', baseUrl: 'https://openrouter.ai/api/v1' },
+    'openai-compatible': { model: '', baseUrl: '' },
+    ollama: { model: 'llama3.2', baseUrl: 'http://localhost:11434/v1' },
+    anthropic: { model: 'claude-3-5-haiku-latest', baseUrl: '' },
+  };
+
+  let showBaseUrl = $derived(settings.provider === 'openai-compatible' || settings.provider === 'ollama');
+  let requiresApiKey = $derived(settings.provider !== 'ollama');
+  let activeModel = $derived(settings[getProviderKey(settings.provider)]?.model || '');
   let modelOptions = $derived<SelectOption[]>([
-    ...(settings.model && !models.some(model => model.id === settings.model)
-      ? [{ value: settings.model, label: settings.model }]
+    ...(activeModel && !models.some(model => model.id === activeModel)
+      ? [{ value: activeModel, label: activeModel }]
       : []),
     ...models.map(model => ({
       value: model.id,
@@ -56,10 +97,36 @@
 
     try {
       const data = await settingsAPI.ai.getSettings();
-      settings = { ...defaultSettings, ...data };
+      settings = {
+        ...defaultSettings,
+        ...data,
+        gemini: { ...defaultSettings.gemini, ...data.gemini },
+        openai: { ...defaultSettings.openai, ...data.openai },
+        openrouter: { ...defaultSettings.openrouter, ...data.openrouter },
+        openaiCompatible: { ...defaultSettings.openaiCompatible, ...data.openaiCompatible },
+        ollama: { ...defaultSettings.ollama, ...data.ollama },
+        anthropic: { ...defaultSettings.anthropic, ...data.anthropic },
+      };
+
+      // Ensure defaults are populated for all providers if they are empty
+      for (const provider of ['gemini', 'openai', 'openrouter', 'openai-compatible', 'ollama', 'anthropic']) {
+        const key = getProviderKey(provider);
+        const pSettings = settings[key];
+        if (pSettings) {
+          const defaults = providerDefaults[provider] ?? { model: '', baseUrl: '' };
+          if (!pSettings.model) {
+            pSettings.model = defaults.model;
+          }
+          if (!pSettings.baseUrl) {
+            pSettings.baseUrl = defaults.baseUrl;
+          }
+        }
+      }
+
       originalSettings = JSON.parse(JSON.stringify(settings));
 
-      if (settings.apiKey && settings.apiKey !== '**********') {
+      const activeKey = settings[getProviderKey(settings.provider)]?.apiKey;
+      if (!requiresApiKey || activeKey) {
         await loadModels();
       }
     } catch (err) {
@@ -70,7 +137,13 @@
   }
 
   async function loadModels() {
-    if (!settings.apiKey) {
+    if (hasChanges) {
+      modelError = 'Save AI settings first to load models for the selected provider.';
+      return;
+    }
+
+    const activeKey = settings[getProviderKey(settings.provider)]?.apiKey;
+    if (requiresApiKey && !activeKey) {
       modelError = t('settings.ai.errors.apiKeyRequiredForModels');
       return;
     }
@@ -94,8 +167,46 @@
     error = null;
 
     try {
-      const updated = await settingsAPI.ai.updateSettings(settings);
-      settings = { ...defaultSettings, ...updated };
+      const activeKey = getProviderKey(settings.provider);
+      const active = settings[activeKey];
+      if (active) {
+        if (!active.baseUrl?.trim()) {
+          if (settings.provider === 'openai') active.baseUrl = providerDefaults.openai.baseUrl;
+          if (settings.provider === 'openrouter') active.baseUrl = providerDefaults.openrouter.baseUrl;
+          if (settings.provider === 'ollama') active.baseUrl = providerDefaults.ollama.baseUrl;
+        }
+
+        const normalizedModel = String(active.model || '').trim().toLowerCase();
+        const modelLooksGemini =
+          normalizedModel.startsWith('gemini') || normalizedModel.startsWith('models/gemini');
+        if (!active.model || (settings.provider !== 'gemini' && modelLooksGemini)) {
+          active.model = providerDefaults[settings.provider]?.model || active.model;
+        }
+
+        settings.apiKey = active.apiKey;
+        settings.baseUrl = active.baseUrl;
+        settings.model = active.model;
+      }
+
+      // Send a plain JSON object (not a reactive proxy) to ensure all fields,
+      // especially provider/baseUrl, are persisted correctly.
+      const payload: AISettings = JSON.parse(JSON.stringify(settings));
+
+      // Guard against dropdown binding edge-cases: always persist a normalized provider.
+      payload.provider = String(payload.provider || settings.provider || 'gemini').trim().toLowerCase();
+      if (!payload.provider) payload.provider = 'gemini';
+
+      const updated = await settingsAPI.ai.updateSettings(payload);
+      settings = {
+        ...defaultSettings,
+        ...updated,
+        gemini: { ...defaultSettings.gemini, ...updated.gemini },
+        openai: { ...defaultSettings.openai, ...updated.openai },
+        openrouter: { ...defaultSettings.openrouter, ...updated.openrouter },
+        openaiCompatible: { ...defaultSettings.openaiCompatible, ...updated.openaiCompatible },
+        ollama: { ...defaultSettings.ollama, ...updated.ollama },
+        anthropic: { ...defaultSettings.anthropic, ...updated.anthropic },
+      };
       originalSettings = JSON.parse(JSON.stringify(settings));
       toastActions.success(t('settings.ai.saved'));
     } catch (err) {
@@ -106,7 +217,16 @@
   }
 
   async function testConnection() {
-    if (!settings.apiKey) {
+    if (hasChanges) {
+      connectionStatus = {
+        ok: false,
+        message: 'Save AI settings first to test the selected provider configuration.',
+      };
+      return;
+    }
+
+    const activeKey = settings[getProviderKey(settings.provider)]?.apiKey;
+    if (requiresApiKey && !activeKey) {
       connectionStatus = { ok: false, message: t('settings.ai.errors.apiKeyRequiredForModels') };
       return;
     }
@@ -117,11 +237,12 @@
 
     try {
       const availableModels = await settingsAPI.ai.getModels();
-      const hasSelectedModel = availableModels.some(model => model.id === settings.model);
+      const activeModel = settings[getProviderKey(settings.provider)]?.model;
+      const hasSelectedModel = availableModels.some(model => model.id === activeModel);
       connectionStatus = {
         ok: true,
         message: hasSelectedModel
-          ? `Connection successful. Model "${settings.model}" is available.`
+          ? `Connection successful. Model "${activeModel}" is available.`
           : `Connection successful. Retrieved ${availableModels.length} model(s).`,
       };
       models = availableModels;
@@ -159,6 +280,32 @@
   function resetChanges() {
     settings = JSON.parse(JSON.stringify(originalSettings));
   }
+
+  function onProviderChange(next: string) {
+    settings.provider = next;
+    // Clear connection status and models
+    connectionStatus = null;
+    modelError = null;
+    models = [];
+
+    const nextKey = getProviderKey(next);
+    const nextSettings = settings[nextKey];
+    if (nextSettings) {
+      const nextDefaults = providerDefaults[next] ?? { model: '', baseUrl: '' };
+      if (!nextSettings.model) {
+        nextSettings.model = nextDefaults.model;
+      }
+      if (!nextSettings.baseUrl) {
+        nextSettings.baseUrl = nextDefaults.baseUrl;
+      }
+    }
+  }
+
+  function handleProviderSelect(value: string | string[]) {
+    if (typeof value !== 'string') return;
+    if (value === settings.provider) return;
+    onProviderChange(value);
+  }
 </script>
 
 <main class="settings-page-content space-y-6" aria-label={t('settings.ai.title')}>
@@ -190,6 +337,10 @@
       description={t('settings.ai.configuration.description')}
       {hasChanges}
     >
+      <div class="mb-3 rounded border border-[var(--color-base-300)] bg-[var(--color-base-200)]/40 px-3 py-2 text-xs text-[var(--color-base-content)]/80">
+        Runtime build: <span class="font-mono">{appState.version}</span>
+      </div>
+
       <div class="settings-form-grid">
         <Checkbox
           checked={settings.enabled}
@@ -198,97 +349,126 @@
           onchange={value => (settings.enabled = value)}
         />
 
-        <PasswordField
-          label={t('settings.ai.fields.apiKey')}
-          value={settings.apiKey}
-          autocomplete="off"
-          allowReveal={false}
-          helpText={t('settings.ai.fields.apiKeyHelp')}
-          onUpdate={value => (settings.apiKey = value)}
+        <SelectDropdown
+          label="Provider"
+          options={providerOptions}
+          bind:value={settings.provider}
+          placeholder="Select provider"
+          onChange={handleProviderSelect}
         />
 
-        <div class="form-control">
-          <label class="label" for="ai-test-connection">
-            <span class="label-text">Test Gemini Connection</span>
-          </label>
-          <div class="flex items-center gap-2">
-            <button
-              id="ai-test-connection"
-              type="button"
-              class="btn btn-sm btn-outline gap-2"
-              onclick={testConnection}
-              disabled={testingConnection || !settings.apiKey}
-            >
-              {#if testingConnection}
-                <LoadingSpinner size="xs" />
-              {:else}
-                <PlugZap class="size-4" />
-              {/if}
-              {testingConnection ? 'Testing…' : 'Test Connection'}
-            </button>
-            {#if connectionStatus}
-              <span
-                class={`text-sm ${connectionStatus.ok ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}
-                role="status"
+        {#key settings.provider}
+          <PasswordField
+            label={t('settings.ai.fields.apiKey')}
+            bind:value={settings[getProviderKey(settings.provider)]!.apiKey}
+            autocomplete="off"
+            allowReveal={false}
+            helpText={
+              settings.provider === 'openrouter'
+                ? 'OpenRouter API key. Required unless using a keyless local gateway.'
+                : settings.provider === 'openai'
+                  ? 'OpenAI API key.'
+                  : settings.provider === 'anthropic'
+                    ? 'Anthropic API key.'
+                    : settings.provider === 'ollama'
+                      ? 'Optional for local Ollama unless your gateway requires it.'
+                      : settings.provider === 'openai-compatible'
+                        ? 'API key for your compatible gateway, if required.'
+                        : 'Google AI Studio API key.'
+            }
+          />
+
+          <div class="form-control">
+            <label class="label" for="ai-test-connection">
+                <span class="label-text">Test AI Provider Connection</span>
+            </label>
+            <div class="flex items-center gap-2">
+              <button
+                id="ai-test-connection"
+                type="button"
+                class="btn btn-sm btn-outline gap-2"
+                onclick={testConnection}
+                disabled={testingConnection || (requiresApiKey && !settings[getProviderKey(settings.provider)]?.apiKey)}
               >
-                {connectionStatus.message}
-              </span>
+                {#if testingConnection}
+                  <LoadingSpinner size="xs" />
+                {:else}
+                  <PlugZap class="size-4" />
+                {/if}
+                {testingConnection ? 'Testing…' : 'Test Connection'}
+              </button>
+              {#if connectionStatus}
+                <span
+                  class={`text-sm ${connectionStatus.ok ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}
+                  role="status"
+                >
+                  {connectionStatus.message}
+                </span>
+              {/if}
+            </div>
+            <span class="help-text">Checks provider access and verifies the configured endpoint is reachable.</span>
+            <div class="mt-2">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline gap-2"
+                onclick={generateFreshReport}
+                disabled={generatingFreshReport || saving || hasChanges}
+              >
+                {#if generatingFreshReport}
+                  <LoadingSpinner size="xs" />
+                {:else}
+                  <RefreshCw class="size-4" />
+                {/if}
+                {generatingFreshReport ? 'Generating…' : 'Generate Fresh Report (Bypass Cache)'}
+              </button>
+            </div>
+            <span class="help-text">
+              Generates a one-time report without reading or writing cache. Regular report views still use cache.
+            </span>
+          </div>
+
+          <div class="form-control">
+            <div class="flex items-end gap-2">
+              <div class="min-w-0 flex-1">
+                <SelectDropdown
+                  label={t('settings.ai.fields.model')}
+                  options={modelOptions}
+                  bind:value={settings[getProviderKey(settings.provider)]!.model}
+                  searchable={true}
+                  placeholder={t('settings.ai.fields.modelPlaceholder')}
+                  disabled={loadingModels}
+                />
+              </div>
+              <button
+                type="button"
+                class="btn btn-sm btn-outline mb-0.5"
+                onclick={loadModels}
+                 disabled={loadingModels || hasChanges || (requiresApiKey && !settings[getProviderKey(settings.provider)]?.apiKey)}
+              >
+                {#if loadingModels}
+                  <LoadingSpinner size="sm" />
+                {:else}
+                  <RefreshCw class="size-4" />
+                {/if}
+                {t('settings.ai.actions.refreshModels')}
+              </button>
+            </div>
+            {#if modelError}
+              <span class="help-text text-[var(--color-warning)]">{modelError}</span>
             {/if}
           </div>
-          <span class="help-text">Checks your API key and verifies Gemini is reachable.</span>
-          <div class="mt-2">
-            <button
-              type="button"
-              class="btn btn-sm btn-outline gap-2"
-              onclick={generateFreshReport}
-              disabled={generatingFreshReport || saving || hasChanges}
-            >
-              {#if generatingFreshReport}
-                <LoadingSpinner size="xs" />
-              {:else}
-                <RefreshCw class="size-4" />
-              {/if}
-              {generatingFreshReport ? 'Generating…' : 'Generate Fresh Report (Bypass Cache)'}
-            </button>
-          </div>
-          <span class="help-text">
-            Generates a one-time report without reading or writing cache. Regular report views still use cache.
-          </span>
-        </div>
 
-        <div class="form-control">
-          <div class="flex items-end gap-2">
-            <div class="min-w-0 flex-1">
-              <SelectDropdown
-                label={t('settings.ai.fields.model')}
-                options={modelOptions}
-                value={settings.model}
-                searchable={true}
-                placeholder={t('settings.ai.fields.modelPlaceholder')}
-                disabled={loadingModels}
-                onChange={value => {
-                  if (typeof value === 'string') settings.model = value;
-                }}
-              />
-            </div>
-            <button
-              type="button"
-              class="btn btn-sm btn-outline mb-0.5"
-              onclick={loadModels}
-              disabled={loadingModels || !settings.apiKey}
-            >
-              {#if loadingModels}
-                <LoadingSpinner size="sm" />
-              {:else}
-                <RefreshCw class="size-4" />
-              {/if}
-              {t('settings.ai.actions.refreshModels')}
-            </button>
-          </div>
-          {#if modelError}
-            <span class="help-text text-[var(--color-warning)]">{modelError}</span>
+          {#if showBaseUrl}
+            <TextInput
+              label="Base URL"
+              bind:value={settings[getProviderKey(settings.provider)]!.baseUrl}
+              placeholder={settings.provider === 'ollama' ? 'http://localhost:11434/v1' : 'https://your-provider/v1'}
+              helpText={settings.provider === 'openai-compatible'
+                ? 'Required for OpenAI-compatible providers.'
+                : 'Optional override for Ollama endpoint.'}
+            />
           {/if}
-        </div>
+        {/key}
 
         <NumberField
           label="Report days"
@@ -310,13 +490,14 @@
           onUpdate={value => (settings.cacheHours = value)}
         />
 
-        <TextInput
-          label={t('settings.ai.fields.fallbackModel')}
-          value={settings.model}
-          placeholder="gemini-2.5-flash"
-          helpText={t('settings.ai.fields.fallbackModelHelp')}
-          oninput={value => (settings.model = value)}
-        />
+        {#key settings.provider}
+          <TextInput
+            label={t('settings.ai.fields.fallbackModel')}
+            bind:value={settings[getProviderKey(settings.provider)]!.model}
+            placeholder={providerDefaults[settings.provider]?.model || 'Enter model ID'}
+            helpText={t('settings.ai.fields.fallbackModelHelp')}
+          />
+        {/key}
       </div>
 
       <div class="mt-6">

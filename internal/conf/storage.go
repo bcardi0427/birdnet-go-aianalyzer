@@ -60,6 +60,16 @@ func Load() (*Settings, error) {
 			Build()
 	}
 
+	if err := decryptConfigSecrets(settings); err != nil {
+		return nil, errors.New(err).
+			Category(errors.CategoryConfiguration).
+			Context("operation", "decrypt-config-secrets").
+			Build()
+	}
+
+	// Migrate and synchronize AI provider settings
+	settings.AI.MigrateAndSync(true)
+
 	// Normalize species config keys to lowercase for case-insensitive matching
 	// This ensures that config keys like "American Robin" are converted to "american robin"
 	// to match the lowercase species names used in detection lookup (fixes #1701)
@@ -451,6 +461,16 @@ func SaveSettings() error {
 
 	// Apply data transformations (seasonal tracking, etc.) on the clone.
 	settingsCopy = prepareSettingsForSave(&settingsCopy, current.BirdNET.Latitude)
+
+	// Ensure AI settings are migrated and synchronized before encryption/saving
+	settingsCopy.AI.MigrateAndSync(false)
+
+	if err := encryptConfigSecrets(&settingsCopy); err != nil {
+		return errors.New(err).
+			Category(errors.CategoryConfiguration).
+			Context("operation", "encrypt-config-secrets").
+			Build()
+	}
 
 	// Find the path of the current config file
 	configPath, err := FindConfigFile()

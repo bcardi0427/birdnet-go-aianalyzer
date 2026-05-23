@@ -10,6 +10,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/tphakala/birdnet-go/internal/ai"
+	"github.com/tphakala/birdnet-go/internal/api/auth"
 	"github.com/tphakala/birdnet-go/internal/conf"
 )
 
@@ -237,7 +239,7 @@ func TestUpdateAISettings_FailsValidation_EnabledWithoutKey(t *testing.T) {
 	errors, ok := errorResponse["errors"].([]any)
 	assert.True(t, ok, "errors should be a list")
 	assert.Greater(t, len(errors), 0, "Should have at least one error")
-	assert.True(t, contains(errors, "Gemini API key is required when AI is enabled (set ai.apiKey or ai.apiKeyFile)"),
+	assert.True(t, contains(errors, "AI provider API key is required for gemini when AI is enabled (set ai.apiKey or ai.apiKeyFile)"),
 		"Error list should mention missing API key")
 }
 
@@ -279,8 +281,40 @@ func TestUpdateAISettings_FailsValidation_EnabledWithoutModel(t *testing.T) {
 	errors, ok := errorResponse["errors"].([]any)
 	assert.True(t, ok)
 	assert.Greater(t, len(errors), 0)
-	assert.True(t, contains(errors, "Gemini model is required when AI is enabled"),
+	assert.True(t, contains(errors, "AI model is required when AI is enabled"),
 		"Error list should mention missing model")
+}
+
+func TestUpdateAISettings_RedactedKeyClearedWhenProviderChanges(t *testing.T) {
+	controller := newMinimalController()
+	controller.Settings.AI.Provider = "gemini"
+	controller.Settings.AI.APIKey = "gemini-secret-key"
+	controller.Settings.AI.Model = "gemini-2.5-flash"
+	controller.Settings.AI.Enabled = false
+
+	update := conf.AISettings{
+		Provider:   "openai",
+		APIKey:     redactedValue,
+		Model:      "gpt-4o-mini",
+		Enabled:    false,
+		CacheHours: 4,
+	}
+
+	body, err := json.Marshal(update)
+	require.NoError(t, err)
+
+	e := echo.New()
+	req := httptest.NewRequest(http.MethodPatch, "/api/v2/ai/settings", bytes.NewReader(body))
+	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	rec := httptest.NewRecorder()
+	ctx := e.NewContext(req, rec)
+
+	err = controller.UpdateAISettings(ctx)
+	require.NoError(t, err)
+	assert.Equal(t, http.StatusOK, rec.Code)
+
+	assert.Equal(t, "openai", controller.Settings.AI.Provider)
+	assert.Empty(t, controller.Settings.AI.APIKey, "Key should be cleared when switching provider with redacted placeholder")
 }
 
 // TestUpdateAISettings_DisabledAllowsMissingKey verifies that PATCH /api/v2/ai/settings
@@ -386,4 +420,109 @@ func contains(errors []any, msg string) bool {
 		}
 	}
 	return false
+}
+
+func TestGetAIModels_RequiresAPIKeyForNonOllama(t *testing.T) {
+	controller := newMinimalController()
+	controller.Settings.AI.Provider = "openai"
+	controller.Settings.AI.APIKey = ""
+	controller.Settings.AI.APIKeyFile = ""
+
+	e := echo.New()
+	req := httptest.NewRequest(http.MethodGet, "/api/v2/ai/models", nil)
+	rec := httptest.NewRecorder()
+	ctx := e.NewContext(req, rec)
+
+	err := controller.GetAIModels(ctx)
+	require.NoError(t, err)
+	assert.Equal(t, http.StatusBadRequest, rec.Code)
+}
+
+func TestGetAIModels_OllamaReturnsFallbackModelWithoutKey(t *testing.T) {
+	controller := newMinimalController()
+	controller.Settings.AI.Provider = "ollama"
+	controller.Settings.AI.APIKey = ""
+	controller.Settings.AI.APIKeyFile = ""
+	controller.Settings.AI.Model = ""
+
+	e := echo.New()
+	req := httptest.NewRequest(http.MethodGet, "/api/v2/ai/models", nil)
+	rec := httptest.NewRecorder()
+	ctx := e.NewContext(req, rec)
+
+	err := controller.GetAIModels(ctx)
+	require.NoError(t, err)
+	assert.Equal(t, http.StatusOK, rec.Code)
+
+	var models []map[string]any
+	err = json.Unmarshal(rec.Body.Bytes(), &models)
+	require.NoError(t, err)
+	require.NotEmpty(t, models)
+	assert.Equal(t, "llama3.2", models[0]["id"])
+}
+
+type mockAuthServiceForReport struct {
+	auth.Service
+	authRequired bool
+}
+
+func (m *mockAuthServiceForReport) IsAuthRequired(c echo.Context) bool {
+	return m.authRequired
+}
+
+// TestGetAIReport_BypassCacheAuth verifies that bypassing the AI report cache
+// requires authentication when authentication is enabled/required.
+func TestGetAIReport_BypassCacheAuth(t *testing.T) {
+	// Case 1: Bypass cache with auth required but no credentials -> 401 Unauthorized
+	t.Run("AuthRequired_NoCredentials_401", func(t *testing.T) {
+		controller := newMinimalController()
+		controller.authService = &mockAuthServiceForReport{authRequired: true}
+		controller.aiService = ai.NewReportService(controller.Settings, nil, nil, nil, nil)
+
+		e := echo.New()
+		req := httptest.NewRequest(http.MethodGet, "/api/v2/ai/report?bypass_cache=true", nil)
+		rec := httptest.NewRecorder()
+		ctx := e.NewContext(req, rec)
+
+		err := controller.GetAIReport(ctx)
+		require.NoError(t, err)
+		assert.Equal(t, http.StatusUnauthorized, rec.Code)
+	})
+
+	// Case 2: Bypass cache with auth not required (disabled) -> Should pass auth check
+	// and fail with 500 Internal Server Error because AI service is nil/uninitialized.
+	t.Run("AuthNotRequired_Bypasses_500", func(t *testing.T) {
+		controller := newMinimalController()
+		controller.authService = &mockAuthServiceForReport{authRequired: false}
+		controller.aiService = nil
+
+		e := echo.New()
+		req := httptest.NewRequest(http.MethodGet, "/api/v2/ai/report?bypass_cache=true", nil)
+		rec := httptest.NewRecorder()
+		ctx := e.NewContext(req, rec)
+
+		err := controller.GetAIReport(ctx)
+		require.NoError(t, err)
+		assert.Equal(t, http.StatusInternalServerError, rec.Code)
+		assert.Contains(t, rec.Body.String(), "AI service not initialized")
+	})
+
+	// Case 3: Bypass cache with auth required but valid session in context -> Should pass auth check
+	// and fail with 500 Internal Server Error because AI service is nil/uninitialized.
+	t.Run("AuthRequired_WithSession_500", func(t *testing.T) {
+		controller := newMinimalController()
+		controller.authService = &mockAuthServiceForReport{authRequired: true}
+		controller.aiService = nil
+
+		e := echo.New()
+		req := httptest.NewRequest(http.MethodGet, "/api/v2/ai/report?bypass_cache=true", nil)
+		rec := httptest.NewRecorder()
+		ctx := e.NewContext(req, rec)
+		ctx.Set(auth.CtxKeyAuthMethod, auth.AuthMethodBrowserSession)
+
+		err := controller.GetAIReport(ctx)
+		require.NoError(t, err)
+		assert.Equal(t, http.StatusInternalServerError, rec.Code)
+		assert.Contains(t, rec.Body.String(), "AI service not initialized")
+	})
 }

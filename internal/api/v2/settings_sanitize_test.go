@@ -1,9 +1,13 @@
 package api
 
 import (
+	"bytes"
 	"encoding/json"
+	"net/http"
+	"net/http/httptest"
 	"testing"
 
+	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/tphakala/birdnet-go/internal/conf"
@@ -14,7 +18,7 @@ import (
 func settingsWithSecrets(t *testing.T) *conf.Settings {
 	t.Helper()
 
-	s := &conf.Settings{}
+	s := newValidTestSettings()
 
 	// Security
 	s.Security.SessionSecret = "hmac-session-key-abc123"
@@ -39,6 +43,7 @@ func settingsWithSecrets(t *testing.T) *conf.Settings {
 	s.Realtime.MQTT.Broker = "mqtt.local"
 	s.Realtime.MQTT.Username = "mqtt-user"
 	s.Realtime.MQTT.Password = "mqtt-password"
+	s.Realtime.MQTT.Topic = "birdnet"
 
 	// MySQL
 	s.Output.MySQL.Enabled = true
@@ -52,6 +57,9 @@ func settingsWithSecrets(t *testing.T) *conf.Settings {
 
 	// eBird
 	s.Realtime.EBird.APIKey = "ebird-api-key-789"
+
+	// AI
+	s.AI.APIKey = "gemini-api-key-abc"
 
 	// Backup encryption
 	s.Backup.EncryptionKey = "base64-encryption-key"
@@ -104,6 +112,26 @@ func settingsWithSecrets(t *testing.T) *conf.Settings {
 	return s
 }
 
+func executeSettingsUpdate(t *testing.T, controller *Controller, method, path string, body any, handler echo.HandlerFunc) *httptest.ResponseRecorder {
+	t.Helper()
+
+	jsonData, err := json.Marshal(body)
+	require.NoError(t, err)
+
+	e := echo.New()
+	req := httptest.NewRequest(method, path, bytes.NewReader(jsonData))
+	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	rec := httptest.NewRecorder()
+	ctx := e.NewContext(req, rec)
+	if method == http.MethodPatch {
+		ctx.SetParamNames("section")
+		ctx.SetParamValues("realtime")
+	}
+
+	require.NoError(t, handler(ctx))
+	return rec
+}
+
 // TestSanitizeSettingsForAPI_RedactsAllSecrets verifies that every sensitive
 // field is replaced with a redacted placeholder or empty string.
 func TestSanitizeSettingsForAPI_RedactsAllSecrets(t *testing.T) {
@@ -144,6 +172,9 @@ func TestSanitizeSettingsForAPI_RedactsAllSecrets(t *testing.T) {
 
 	// --- eBird ---
 	assert.Equal(t, redactedValue, sanitized.Realtime.EBird.APIKey, "ebird.apiKey must be redacted")
+
+	// --- AI ---
+	assert.Equal(t, redactedValue, sanitized.AI.APIKey, "ai.apiKey must be redacted")
 
 	// --- Backup ---
 	assert.Equal(t, redactedValue, sanitized.Backup.EncryptionKey, "backup.encryptionKey must be redacted")
@@ -206,6 +237,7 @@ func TestSanitizeSettingsForAPI_EmptySecretsStayEmpty(t *testing.T) {
 	assert.Empty(t, sanitized.Output.MySQL.Password, "empty mysql password should stay empty")
 	assert.Empty(t, sanitized.Realtime.Weather.OpenWeather.APIKey, "empty openweather key should stay empty")
 	assert.Empty(t, sanitized.Realtime.EBird.APIKey, "empty ebird key should stay empty")
+	assert.Empty(t, sanitized.AI.APIKey, "empty ai key should stay empty")
 	assert.Empty(t, sanitized.Backup.EncryptionKey, "empty encryption key should stay empty")
 }
 
@@ -274,6 +306,7 @@ func TestRestoreRedactedSecrets_PreservesRealValues(t *testing.T) {
 	incoming.Output.MySQL.Password = redactedValue
 	incoming.Realtime.Weather.OpenWeather.APIKey = redactedValue
 	incoming.Realtime.EBird.APIKey = redactedValue
+	incoming.AI.APIKey = redactedValue
 	incoming.Backup.EncryptionKey = redactedValue
 	incoming.Security.OAuthProviders[0].ClientSecret = redactedValue
 	incoming.Notification.Push.Providers[0].Endpoints[0].Auth.Token = redactedValue
@@ -289,6 +322,7 @@ func TestRestoreRedactedSecrets_PreservesRealValues(t *testing.T) {
 	assert.Equal(t, "db-password", incoming.Output.MySQL.Password)
 	assert.Equal(t, "ow-api-key-123", incoming.Realtime.Weather.OpenWeather.APIKey)
 	assert.Equal(t, "ebird-api-key-789", incoming.Realtime.EBird.APIKey)
+	assert.Equal(t, "gemini-api-key-abc", incoming.AI.APIKey)
 	assert.Equal(t, "base64-encryption-key", incoming.Backup.EncryptionKey)
 	assert.Equal(t, "goog-secret", incoming.Security.OAuthProviders[0].ClientSecret)
 	assert.Equal(t, "bearer-token-secret", incoming.Notification.Push.Providers[0].Endpoints[0].Auth.Token)
@@ -526,9 +560,50 @@ func TestRoundTrip_SanitizeThenRestore(t *testing.T) {
 	assert.Equal(t, "mqtt-password", incoming.Realtime.MQTT.Password)
 	assert.Equal(t, "db-password", incoming.Output.MySQL.Password)
 	assert.Equal(t, "ow-api-key-123", incoming.Realtime.Weather.OpenWeather.APIKey)
+	assert.Equal(t, "gemini-api-key-abc", incoming.AI.APIKey)
 
 	// Original must not have been mutated
 	assert.Equal(t, "admin-password", original.Security.BasicAuth.Password)
+}
+
+func TestUpdateSettings_PreservesRedactedAPIKeys(t *testing.T) {
+	original := settingsWithSecrets(t)
+	require.NoError(t, conf.ValidateSettings(conf.CloneSettings(original)))
+	controller := &Controller{
+		Settings:            original,
+		DisableSaveSettings: true,
+	}
+
+	incoming := sanitizeSettingsForAPI(original)
+	incoming.Main.Name = "updated node name"
+
+	rec := executeSettingsUpdate(t, controller, http.MethodPut, "/api/v2/settings", incoming, controller.UpdateSettings)
+	require.Equalf(t, http.StatusOK, rec.Code, "response body: %s", rec.Body.String())
+
+	assert.Equal(t, "ow-api-key-123", controller.Settings.Realtime.Weather.OpenWeather.APIKey)
+	assert.Equal(t, "wu-api-key-456", controller.Settings.Realtime.Weather.Wunderground.APIKey)
+	assert.Equal(t, "ebird-api-key-789", controller.Settings.Realtime.EBird.APIKey)
+	assert.Equal(t, "gemini-api-key-abc", controller.Settings.AI.APIKey)
+}
+
+func TestUpdateSectionSettings_PreservesRedactedRealtimeAPIKeys(t *testing.T) {
+	original := settingsWithSecrets(t)
+	require.NoError(t, conf.ValidateSettings(conf.CloneSettings(original)))
+	controller := &Controller{
+		Settings:            original,
+		DisableSaveSettings: true,
+	}
+
+	incoming := sanitizeSettingsForAPI(original)
+	realtime := incoming.Realtime
+	realtime.Interval = original.Realtime.Interval + 1
+
+	rec := executeSettingsUpdate(t, controller, http.MethodPatch, "/api/v2/settings/realtime", realtime, controller.UpdateSectionSettings)
+	require.Equalf(t, http.StatusOK, rec.Code, "response body: %s", rec.Body.String())
+
+	assert.Equal(t, "ow-api-key-123", controller.Settings.Realtime.Weather.OpenWeather.APIKey)
+	assert.Equal(t, "wu-api-key-456", controller.Settings.Realtime.Weather.Wunderground.APIKey)
+	assert.Equal(t, "ebird-api-key-789", controller.Settings.Realtime.EBird.APIKey)
 }
 
 // TestRoundTrip_UserChangesPassword verifies that when a user enters a

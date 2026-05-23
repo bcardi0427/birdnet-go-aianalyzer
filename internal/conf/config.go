@@ -768,16 +768,150 @@ func (e *ExtendedCaptureSettings) Validate(preCapture int) error {
 	return nil
 }
 
+// AIProviderSettings contains settings for a specific AI provider.
+type AIProviderSettings struct {
+	APIKey     string `yaml:"apikey" json:"apiKey"`         // API key for the provider
+	APIKeyFile string `yaml:"apikeyfile" json:"apiKeyFile"` // file path to provider API key
+	BaseURL    string `yaml:"baseurl" json:"baseUrl"`       // Optional provider base URL override
+	Model      string `yaml:"model" json:"model"`           // Model to use
+}
+
 // AISettings contains settings for AI integration features (like daily reports).
 type AISettings struct {
 	Enabled      bool   `yaml:"enabled" json:"enabled"`           // true to enable AI features
-	APIKey       string `yaml:"apikey" json:"apiKey"`             // Gemini API Key
-	APIKeyFile   string `yaml:"apikeyfile" json:"apiKeyFile"`     // file path to Gemini API key
-	Model        string `yaml:"model" json:"model"`               // Gemini model to use, e.g., "gemini-2.5-flash"
+	Encrypted    bool   `yaml:"encrypted" json:"encrypted"`       // true when secret values are encrypted at rest
+	Provider     string `yaml:"provider" json:"provider"`         // Active AI provider, defaults to "gemini"
+	APIKey       string `yaml:"apikey" json:"apiKey"`             // API key for the active provider
+	APIKeyFile   string `yaml:"apikeyfile" json:"apiKeyFile"`     // file path to provider API key
+	BaseURL      string `yaml:"baseurl" json:"baseUrl"`           // Optional provider base URL override
+	Model        string `yaml:"model" json:"model"`               // Model to use, provider-specific
 	ReportDays   int    `yaml:"reportdays" json:"reportDays"`     // Number of days included in AI report window
 	CacheHours   int    `yaml:"cachehours" json:"cacheHours"`     // Hours to cache the report (default 4)
 	SystemPrompt string `yaml:"systemprompt" json:"systemPrompt"` // Custom instruction prompt
+
+	// Provider-specific configurations
+	Gemini           AIProviderSettings `yaml:"gemini" json:"gemini"`
+	OpenAI           AIProviderSettings `yaml:"openai" json:"openai"`
+	OpenRouter       AIProviderSettings `yaml:"openrouter" json:"openrouter"`
+	OpenAICompatible AIProviderSettings `yaml:"openai_compatible" json:"openaiCompatible"`
+	Ollama           AIProviderSettings `yaml:"ollama" json:"ollama"`
+	Anthropic        AIProviderSettings `yaml:"anthropic" json:"anthropic"`
 }
+
+// MigrateAndSync performs backward compatibility migration for legacy configurations
+// and synchronizes the active provider settings to the root fields of AISettings.
+func (a *AISettings) MigrateAndSync(populateDefaults bool) {
+	provider := normalizeAIProvider(a.Provider)
+
+	// 1. Migrate legacy single provider configuration to provider-specific structure
+	switch provider {
+	case aiProviderGemini:
+		if a.Gemini.APIKey == "" && a.Gemini.APIKeyFile == "" && a.Gemini.BaseURL == "" && a.Gemini.Model == "" {
+			a.Gemini.APIKey = a.APIKey
+			a.Gemini.APIKeyFile = a.APIKeyFile
+			a.Gemini.BaseURL = a.BaseURL
+			a.Gemini.Model = a.Model
+		}
+	case aiProviderOpenAI:
+		if a.OpenAI.APIKey == "" && a.OpenAI.APIKeyFile == "" && a.OpenAI.BaseURL == "" && a.OpenAI.Model == "" {
+			a.OpenAI.APIKey = a.APIKey
+			a.OpenAI.APIKeyFile = a.APIKeyFile
+			a.OpenAI.BaseURL = a.BaseURL
+			a.OpenAI.Model = a.Model
+		}
+	case aiProviderOpenRouter:
+		if a.OpenRouter.APIKey == "" && a.OpenRouter.APIKeyFile == "" && a.OpenRouter.BaseURL == "" && a.OpenRouter.Model == "" {
+			a.OpenRouter.APIKey = a.APIKey
+			a.OpenRouter.APIKeyFile = a.APIKeyFile
+			a.OpenRouter.BaseURL = a.BaseURL
+			a.OpenRouter.Model = a.Model
+		}
+	case aiProviderOpenAICompatible:
+		if a.OpenAICompatible.APIKey == "" && a.OpenAICompatible.APIKeyFile == "" && a.OpenAICompatible.BaseURL == "" && a.OpenAICompatible.Model == "" {
+			a.OpenAICompatible.APIKey = a.APIKey
+			a.OpenAICompatible.APIKeyFile = a.APIKeyFile
+			a.OpenAICompatible.BaseURL = a.BaseURL
+			a.OpenAICompatible.Model = a.Model
+		}
+	case aiProviderOllama:
+		if a.Ollama.APIKey == "" && a.Ollama.APIKeyFile == "" && a.Ollama.BaseURL == "" && a.Ollama.Model == "" {
+			a.Ollama.APIKey = a.APIKey
+			a.Ollama.APIKeyFile = a.APIKeyFile
+			a.Ollama.BaseURL = a.BaseURL
+			a.Ollama.Model = a.Model
+		}
+	case aiProviderAnthropic:
+		if a.Anthropic.APIKey == "" && a.Anthropic.APIKeyFile == "" && a.Anthropic.BaseURL == "" && a.Anthropic.Model == "" {
+			a.Anthropic.APIKey = a.APIKey
+			a.Anthropic.APIKeyFile = a.APIKeyFile
+			a.Anthropic.BaseURL = a.BaseURL
+			a.Anthropic.Model = a.Model
+		}
+	}
+
+	// 2. Pre-populate defaults if fields are empty and requested
+	if populateDefaults {
+		if a.Gemini.Model == "" {
+			a.Gemini.Model = "gemini-2.5-flash"
+		}
+		if a.OpenAI.Model == "" {
+			a.OpenAI.Model = "gpt-4o-mini"
+		}
+		if a.OpenAI.BaseURL == "" {
+			a.OpenAI.BaseURL = "https://api.openai.com/v1"
+		}
+		if a.OpenRouter.Model == "" {
+			a.OpenRouter.Model = "openai/gpt-4o-mini"
+		}
+		if a.OpenRouter.BaseURL == "" {
+			a.OpenRouter.BaseURL = "https://openrouter.ai/api/v1"
+		}
+		if a.Ollama.Model == "" {
+			a.Ollama.Model = "llama3.2"
+		}
+		if a.Ollama.BaseURL == "" {
+			a.Ollama.BaseURL = "http://localhost:11434/v1"
+		}
+		if a.Anthropic.Model == "" {
+			a.Anthropic.Model = "claude-3-5-haiku-latest"
+		}
+	}
+
+	// 3. Synchronize active provider settings to root fields
+	switch provider {
+	case aiProviderGemini:
+		a.APIKey = a.Gemini.APIKey
+		a.APIKeyFile = a.Gemini.APIKeyFile
+		a.BaseURL = a.Gemini.BaseURL
+		a.Model = a.Gemini.Model
+	case aiProviderOpenAI:
+		a.APIKey = a.OpenAI.APIKey
+		a.APIKeyFile = a.OpenAI.APIKeyFile
+		a.BaseURL = a.OpenAI.BaseURL
+		a.Model = a.OpenAI.Model
+	case aiProviderOpenRouter:
+		a.APIKey = a.OpenRouter.APIKey
+		a.APIKeyFile = a.OpenRouter.APIKeyFile
+		a.BaseURL = a.OpenRouter.BaseURL
+		a.Model = a.OpenRouter.Model
+	case aiProviderOpenAICompatible:
+		a.APIKey = a.OpenAICompatible.APIKey
+		a.APIKeyFile = a.OpenAICompatible.APIKeyFile
+		a.BaseURL = a.OpenAICompatible.BaseURL
+		a.Model = a.OpenAICompatible.Model
+	case aiProviderOllama:
+		a.APIKey = a.Ollama.APIKey
+		a.APIKeyFile = a.Ollama.APIKeyFile
+		a.BaseURL = a.Ollama.BaseURL
+		a.Model = a.Ollama.Model
+	case aiProviderAnthropic:
+		a.APIKey = a.Anthropic.APIKey
+		a.APIKeyFile = a.Anthropic.APIKeyFile
+		a.BaseURL = a.Anthropic.BaseURL
+		a.Model = a.Anthropic.Model
+	}
+}
+
 
 // RealtimeSettings contains all settings related to realtime processing.
 type RealtimeSettings struct {
@@ -806,7 +940,6 @@ type RealtimeSettings struct {
 	Weather          WeatherSettings          `yaml:"weather" json:"weather"`                   // Weather provider related settings
 	SpeciesTracking  SpeciesTrackingSettings  `yaml:"speciestracking" json:"speciesTracking"`   // New species tracking settings
 	ExtendedCapture  ExtendedCaptureSettings  `yaml:"extendedcapture" json:"extendedCapture"`   // Extended capture for long calling species
-	AI               AISettings               `yaml:"ai" json:"ai"`                             // AI features settings
 }
 
 // SpeciesAction represents a single action configuration

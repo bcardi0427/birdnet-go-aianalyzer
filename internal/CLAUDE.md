@@ -5,6 +5,18 @@
 - **Go Version**: 1.26
 - **Release Notes**: [https://go.dev/doc/go1.26](https://go.dev/doc/go1.26)
 
+## Windows Dev Environment (CGO Compiler & DLLs)
+
+To build or run tests on Windows, CGO is required. The compiler and library paths are:
+- **MSYS2 UCRT64 GCC compiler**: `C:\msys64\ucrt64\bin` (must be added to `PATH`)
+- **TensorFlow Lite C Headers**: `C:\Users\Bcardi\src\tensorflow` (passed via `CGO_CFLAGS="-IC:\Users\Bcardi\src\tensorflow"`)
+- **TensorFlow Lite C DLL**: `F:\AntiGravity Sources\birdnet-go` (where `tensorflowlite_c.dll` is located; must be added to `PATH` to run the binary/tests)
+- **CGO Enabled**: `CGO_ENABLED="1"`
+
+To apply these settings in your shell:
+- **PowerShell**: Run `. .\setup_env.ps1` (from the repository root)
+- **CMD**: Run `setup_env.bat` (from the repository root)
+
 ## Quick Reference
 
 - Use `internal/errors` package (never standard `errors`)

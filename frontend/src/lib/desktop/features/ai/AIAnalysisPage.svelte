@@ -49,84 +49,31 @@
   };
 
   function sanitizeReportHtml(input: string): string {
-    const sanitized = DOMPurify.sanitize(input, sanitizeConfig);
+    // Parse Markdown to HTML. Since marked naturally allows and preserves
+    // embedded HTML tags (like tables, <h3>, etc.), this works perfectly
+    // for mixed or pure markdown/HTML outputs, preserving formatting
+    // and preventing newline collapse.
+    const html = marked.parse(input, { async: false }) as string;
+
+    // Sanitize: allow standard formatting tags, strip unsafe attributes.
+    const sanitized = DOMPurify.sanitize(html, sanitizeConfig);
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(sanitized, 'text/html');
+
+    // Strip any images that don't come from our own media API.
     const images = Array.from(doc.querySelectorAll('img'));
     images.forEach(img => {
       const src = img.getAttribute('src') ?? '';
       if (!src.startsWith('/api/v2/media/')) img.remove();
     });
 
-    promoteInlineNarrativeHeadings(doc);
-
     return doc.body.innerHTML;
-  }
-
-  function normalizeNarrativeHeadings(input: string): string {
-    // Preferred generic marker for prompt-defined sections:
-    // [[H3]] Your Section Title
-    // This enables user-defined headings without code changes.
-    let out = input.replace(
-      /(^|\n)\s*\[\[H3\]\]\s*(.+?)\s*$/gim,
-      (_m, sep, title) => `${sep}### ${String(title).trim()}`
-    );
-
-    // Backward-compatible fallback for legacy reports that still emit
-    // known plain heading labels without markdown markers.
-    const fallbackHeadings = [
-      'Weekly Acoustic Overview',
-      'Hour-by-Hour Activity Pattern',
-      'Species-by-Habitat Grouping',
-      'Closing Note',
-    ];
-
-    for (const heading of fallbackHeadings) {
-      const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const atParagraphStart = new RegExp(`(^|\\n\\s*\\n)(?:#{1,6}\\s*)?(${escaped})(?=\\s+)`, 'gmi');
-      out = out.replace(atParagraphStart, (_m, sep, label) => `${sep}### ${label}`);
-
-      const splitInline = new RegExp(`(^|\\n\\s*\\n)(###\\s+${escaped})\\s+`, 'gmi');
-      out = out.replace(splitInline, (_m, sep, label) => `${sep}${label}\n\n`);
-    }
-    return out;
-  }
-
-  function promoteInlineNarrativeHeadings(doc: Document) {
-    const headingPrefixes = [
-      'Weekly Acoustic Overview',
-      'Hour-by-Hour Activity Pattern',
-      'Species-by-Habitat Grouping',
-      'Closing Note',
-    ];
-
-    const paragraphs = Array.from(doc.querySelectorAll('p'));
-    for (const p of paragraphs) {
-      const text = (p.textContent ?? '').trim();
-      if (!text) continue;
-
-      const matched = headingPrefixes.find(
-        prefix => text === prefix || text.startsWith(prefix + ' ')
-      );
-      if (!matched) continue;
-
-      const remainder = text.slice(matched.length).trim();
-      const heading = doc.createElement('h3');
-      heading.textContent = matched;
-      p.before(heading);
-
-      if (remainder.length > 0) {
-        p.textContent = remainder;
-      } else {
-        p.remove();
-      }
-    }
   }
 
   let renderedReport = $derived(
     report
-      ? sanitizeReportHtml(marked.parse(normalizeNarrativeHeadings(report), { async: false }) as string)
+      ? sanitizeReportHtml(report)
       : ''
   );
 
@@ -159,10 +106,12 @@
       reportIsCached = response.cached === true;
     } catch (err) {
       const message = err instanceof Error ? err.message.toLowerCase() : '';
-      if (message.includes('disabled'))
+      if (message.includes('login required') || message.includes('unauthorized') || message.includes('401'))
+        error = 'Login required to bypass the cache. Please log in and try again.';
+      else if (message.includes('disabled'))
         error = 'AI analysis is disabled. Enable it in Settings → AI.';
       else if (message.includes('api key'))
-        error = 'Gemini API key is missing. Configure it in Settings → AI.';
+        error = 'AI API key is missing. Configure it in Settings → AI.';
       else if (message.includes('timeout'))
         error = 'AI report generation timed out. Please try again.';
       else
@@ -246,8 +195,7 @@
           type="button"
           class="btn btn-sm btn-outline"
           onclick={() => loadReport(true)}
-          disabled={!$isAuthenticated || loading || loadingFresh}
-          title={$isAuthenticated ? undefined : 'Login required to bypass the AI report cache'}
+          disabled={loading || loadingFresh}
         >
           {#if loadingFresh}
             <LoadingSpinner size="sm" />

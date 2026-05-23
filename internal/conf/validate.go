@@ -234,6 +234,11 @@ func ValidateSettings(settings *Settings) error {
 	if err := validateNotificationSettings(&settings.Notification); err != nil {
 		ve.Errors = append(ve.Errors, err.Error())
 	}
+	
+	// Validate AI settings
+	if err := validateAISettings(&settings.AI); err != nil {
+		ve.Errors = append(ve.Errors, err.Error())
+	}
 
 	// If there are any errors, return the ValidationError
 	if len(ve.Errors) > 0 {

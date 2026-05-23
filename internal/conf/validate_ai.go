@@ -3,11 +3,53 @@
 package conf
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/tphakala/birdnet-go/internal/errors"
 	"github.com/tphakala/birdnet-go/internal/logger"
 )
+
+const (
+	aiProviderGemini           = "gemini"
+	aiProviderOpenAI           = "openai"
+	aiProviderOpenRouter       = "openrouter"
+	aiProviderOpenAICompatible = "openai-compatible"
+	aiProviderOllama           = "ollama"
+	aiProviderAnthropic        = "anthropic"
+
+	ollamaDefaultBaseURL = "http://localhost:11434/v1"
+)
+
+var validAIProviders = map[string]struct{}{
+	aiProviderGemini:           {},
+	aiProviderOpenAI:           {},
+	aiProviderOpenRouter:       {},
+	aiProviderOpenAICompatible: {},
+	aiProviderOllama:           {},
+	aiProviderAnthropic:        {},
+}
+
+var aiProviderList = []string{
+	aiProviderGemini,
+	aiProviderOpenAI,
+	aiProviderOpenRouter,
+	aiProviderOpenAICompatible,
+	aiProviderOllama,
+	aiProviderAnthropic,
+}
+
+func normalizeAIProvider(provider string) string {
+	normalized := strings.ToLower(strings.TrimSpace(provider))
+	if normalized == "" {
+		return aiProviderGemini
+	}
+	return normalized
+}
+
+func providerRequiresAPIKey(provider string) bool {
+	return provider != aiProviderOllama
+}
 
 // ValidateAISettings performs AI settings validation without side effects.
 // Returns validation result with normalized settings.
@@ -17,6 +59,14 @@ func ValidateAISettings(settings *AISettings) ValidationResult {
 	}
 	result := ValidationResult{Valid: true, Warnings: []string{}}
 	normalized := *settings
+	normalized.Provider = normalizeAIProvider(settings.Provider)
+	normalized.BaseURL = strings.TrimSpace(settings.BaseURL)
+
+	if _, ok := validAIProviders[normalized.Provider]; !ok {
+		result.Valid = false
+		result.Errors = append(result.Errors,
+			fmt.Sprintf("AI provider must be one of: %s", strings.Join(aiProviderList, ", ")))
+	}
 
 	// ReportDays range: 1..31 (daily to monthly-ish window).
 	if settings.ReportDays < 1 {
@@ -28,16 +78,28 @@ func ValidateAISettings(settings *AISettings) ValidationResult {
 	}
 
 	if settings.Enabled {
-		// API key source is required when enabled.
-		if strings.TrimSpace(settings.APIKey) == "" && strings.TrimSpace(settings.APIKeyFile) == "" {
+		// API key source is required by most providers when enabled.
+		if providerRequiresAPIKey(normalized.Provider) &&
+			strings.TrimSpace(settings.APIKey) == "" && strings.TrimSpace(settings.APIKeyFile) == "" {
 			result.Valid = false
-			result.Errors = append(result.Errors, "Gemini API key is required when AI is enabled (set ai.apiKey or ai.apiKeyFile)")
+			result.Errors = append(result.Errors,
+				fmt.Sprintf("AI provider API key is required for %s when AI is enabled (set ai.apiKey or ai.apiKeyFile)", normalized.Provider))
 		}
 
 		// Model is required when enabled
 		if strings.TrimSpace(settings.Model) == "" {
 			result.Valid = false
-			result.Errors = append(result.Errors, "Gemini model is required when AI is enabled")
+			result.Errors = append(result.Errors, "AI model is required when AI is enabled")
+		}
+
+		if normalized.Provider == aiProviderOpenAICompatible && normalized.BaseURL == "" {
+			result.Valid = false
+			result.Errors = append(result.Errors,
+				"AI base URL is required for openai-compatible when AI is enabled")
+		}
+
+		if normalized.Provider == aiProviderOllama && normalized.BaseURL == "" {
+			normalized.BaseURL = ollamaDefaultBaseURL
 		}
 
 		// CacheHours should be at least 1, default to 4 if invalid

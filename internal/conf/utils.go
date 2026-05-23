@@ -91,6 +91,13 @@ func GetDefaultConfigPaths() ([]string, error) {
 			Build()
 	}
 	exeDir := filepath.Dir(exePath)
+	exeDirIsGoRunTemp := isGoRunTempExecutableDir(exeDir)
+	workDir := ""
+	if exeDirIsGoRunTemp {
+		if wd, err := os.Getwd(); err == nil {
+			workDir = wd
+		}
+	}
 
 	// Fetch the user's home directory.
 	homeDir, err := GetUserHomeDir()
@@ -105,9 +112,17 @@ func GetDefaultConfigPaths() ([]string, error) {
 	switch runtime.GOOS {
 	case osWindows:
 		// For Windows, use the executable directory and the AppData Roaming directory.
-		configPaths = []string{
-			exeDir,
-			filepath.Join(homeDir, "AppData", "Roaming", "birdnet-go"),
+		appDataConfigDir := filepath.Join(homeDir, "AppData", "Roaming", "birdnet-go")
+		if exeDirIsGoRunTemp {
+			configPaths = []string{appDataConfigDir}
+			if workDir != "" {
+				configPaths = append(configPaths, workDir)
+			}
+		} else {
+			configPaths = []string{
+				exeDir,
+				appDataConfigDir,
+			}
 		}
 	default:
 		// For Linux and macOS, use a hidden directory in the home directory and a system-wide configuration directory.
@@ -128,6 +143,33 @@ func GetDefaultConfigPaths() ([]string, error) {
 
 	// If no config.yaml is found, return all paths
 	return configPaths, nil
+}
+
+func isGoRunTempExecutableDir(dir string) bool {
+	cleanDir := filepath.Clean(dir)
+	tempDirs := []string{filepath.Clean(os.TempDir())}
+	if userCacheDir, err := os.UserCacheDir(); err == nil && userCacheDir != "" {
+		tempDirs = append(tempDirs, filepath.Clean(userCacheDir))
+	}
+
+	for _, tempDir := range tempDirs {
+		if isGoBuildChild(tempDir, cleanDir) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func isGoBuildChild(parentDir, dir string) bool {
+	if rel, err := filepath.Rel(parentDir, dir); err == nil && rel != "." && !strings.HasPrefix(rel, "..") {
+		parts := strings.Split(rel, string(os.PathSeparator))
+		if len(parts) > 0 && strings.HasPrefix(parts[0], "go-build") {
+			return true
+		}
+	}
+
+	return false
 }
 
 // FindConfigFile locates the configuration file.

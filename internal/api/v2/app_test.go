@@ -880,6 +880,7 @@ func TestGetAppConfig_NoExtraFields(t *testing.T) {
 		"liveSpectrogram": true,
 		"freshInstall":    true,
 		"newVersion":      true,
+		"features":        true,
 	}
 
 	for key := range rawResponse {

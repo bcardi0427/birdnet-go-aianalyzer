@@ -599,8 +599,8 @@ Performance Optimizations:
           {/if}
         </div>
 
+        <!-- AI Analysis -->
         {#if aiAnalysisEnabled}
-          <!-- AI Analysis -->
           <div class="relative">
             <button
               onclick={() => navigate(navigationUrls.aiAnalysis)}

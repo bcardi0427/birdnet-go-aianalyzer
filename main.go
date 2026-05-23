@@ -29,6 +29,14 @@ var buildDate string
 // version holds the Git version tag
 var version string
 
+// frontendVersion is the frontend build/version stamp set at build time via ldflags.
+// Example: -X main.frontendVersion=ui-2026-05-21.1
+var frontendVersion string
+
+// runtimePatchVersion is a human-readable marker for local runtime verification.
+// Update when applying critical hotfixes that need startup confirmation.
+const runtimePatchVersion = "ai-provider-fix-2026-05-21-v2"
+
 //go:embed internal/imageprovider/data/latest.json
 var imageDataFs embed.FS // Embed image provider data
 
@@ -119,6 +127,9 @@ func mainWithExitCode() int {
 	// Set runtime values
 	settings.Version = version
 	settings.BuildDate = buildDate
+	if strings.TrimSpace(frontendVersion) == "" {
+		frontendVersion = "unknown"
+	}
 
 	// Initialize the centralized logger
 	centralLogger, err := logger.NewCentralLogger(&settings.Logging)
@@ -157,6 +168,8 @@ func mainWithExitCode() int {
 	mainLog.Info("BirdNET-Go starting",
 		logger.String("version", settings.Version),
 		logger.String("build_date", settings.BuildDate),
+		logger.String("runtime_patch", runtimePatchVersion),
+		logger.String("frontend_version", frontendVersion),
 		logger.String("config_file", viper.ConfigFileUsed()))
 
 	// Initialize core systems (telemetry and notification)

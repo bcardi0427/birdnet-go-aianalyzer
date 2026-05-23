@@ -11,11 +11,14 @@ All UI routes are served from the `/ui/` prefix:
 - `/ui/` or `/ui/dashboard` - Dashboard
 - `/ui/analytics` - Analytics overview
 - `/ui/analytics/species` - Species analytics
+- `/ui/ai-analysis` - AI-generated daily activity report (auth required)
 - `/ui/search` - Search page
 - `/ui/about` - About page
 - `/ui/notifications` - Notifications page
 - `/ui/system` - System dashboard (auth required)
 - `/ui/settings` - Settings overview (auth required)
+- `/ui/settings/analysis` - Analysis settings (auth required)
+- `/ui/settings/ai` - AI report settings (auth required)
 - `/ui/settings/main` - Main settings (auth required)
 - `/ui/settings/audio` - Audio settings (auth required)
 - `/ui/settings/detectionfilters` - Detection filters (auth required)

@@ -519,6 +519,43 @@ func (c *Controller) TestWeatherConnection(ctx echo.Context) error {
 		return c.HandleError(ctx, err, "Invalid weather test request", http.StatusBadRequest)
 	}
 
+	// Resolve redacted placeholders from persisted settings so "Test Weather"
+	// works correctly after a settings page reload.
+	current := c.currentSettings()
+	if current != nil {
+		if strings.TrimSpace(request.OpenWeather.APIKey) == redactedValue {
+			request.OpenWeather.APIKey = current.Realtime.Weather.OpenWeather.APIKey
+		}
+		if strings.TrimSpace(request.OpenWeather.APIKeyFile) == redactedValue {
+			request.OpenWeather.APIKeyFile = current.Realtime.Weather.OpenWeather.APIKeyFile
+		}
+		if strings.TrimSpace(request.OpenWeather.Endpoint) == "" {
+			request.OpenWeather.Endpoint = current.Realtime.Weather.OpenWeather.Endpoint
+		}
+		if strings.TrimSpace(request.OpenWeather.Units) == "" {
+			request.OpenWeather.Units = current.Realtime.Weather.OpenWeather.Units
+		}
+		if strings.TrimSpace(request.OpenWeather.Language) == "" {
+			request.OpenWeather.Language = current.Realtime.Weather.OpenWeather.Language
+		}
+
+		if strings.TrimSpace(request.Wunderground.APIKey) == redactedValue {
+			request.Wunderground.APIKey = current.Realtime.Weather.Wunderground.APIKey
+		}
+		if strings.TrimSpace(request.Wunderground.APIKeyFile) == redactedValue {
+			request.Wunderground.APIKeyFile = current.Realtime.Weather.Wunderground.APIKeyFile
+		}
+		if strings.TrimSpace(request.Wunderground.Endpoint) == "" {
+			request.Wunderground.Endpoint = current.Realtime.Weather.Wunderground.Endpoint
+		}
+		if strings.TrimSpace(request.Wunderground.StationID) == "" {
+			request.Wunderground.StationID = current.Realtime.Weather.Wunderground.StationID
+		}
+		if strings.TrimSpace(request.Wunderground.Units) == "" {
+			request.Wunderground.Units = current.Realtime.Weather.Wunderground.Units
+		}
+	}
+
 	// Validate provider
 	if request.Provider == "" || request.Provider == "none" {
 		return c.HandleErrorWithKey(ctx, nil, "No weather provider selected", http.StatusBadRequest, notification.MsgErrIntegNoWeatherProvider, nil)

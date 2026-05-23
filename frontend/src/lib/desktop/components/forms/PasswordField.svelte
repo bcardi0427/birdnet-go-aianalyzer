@@ -19,7 +19,7 @@
     label: string;
     name?: string;
     value: string;
-    onUpdate: (_value: string) => void;
+    onUpdate?: (_value: string) => void;
     placeholder?: string;
     helpText?: string;
     required?: boolean;
@@ -80,7 +80,7 @@
     // Revert any typed input that was propagated via oninput.
     // This is safe: the original value was REDACTED_VALUE, so setting it
     // back won't mark the form as dirty (original === current).
-    onUpdate(REDACTED_VALUE);
+    onUpdate?.(REDACTED_VALUE);
   }
 
   // Password strength calculation
@@ -140,7 +140,7 @@
   function handleChange(newValue: string | number | boolean | string[]) {
     const stringValue = String(newValue);
     value = stringValue;
-    onUpdate(stringValue);
+    onUpdate?.(stringValue);
   }
 
   function togglePasswordVisibility() {

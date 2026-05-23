@@ -439,7 +439,10 @@ func setDefaultConfig() {
 	viper.SetDefault("alerting.history_retention_days", 30)
 
 	// AI report defaults
+	viper.SetDefault("ai.provider", "gemini")
+	viper.SetDefault("ai.baseurl", "")
 	viper.SetDefault("ai.reportdays", 1)
+	viper.SetDefault("ai.cachehours", 4)
 }
 
 // setModuleLogDefaults sets default values for a module log configuration

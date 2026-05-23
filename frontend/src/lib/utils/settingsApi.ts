@@ -42,13 +42,29 @@ export interface MQTTTLSCertificateUpload {
   clientKey?: string;
 }
 
+export interface AIProviderSettings {
+  apiKey: string;
+  apiKeyFile?: string;
+  baseUrl: string;
+  model: string;
+}
+
 export interface AISettings {
   enabled: boolean;
+  provider: string;
   apiKey: string;
+  apiKeyFile?: string;
+  baseUrl: string;
   model: string;
   reportDays: number;
   cacheHours: number;
   systemPrompt: string;
+  gemini?: AIProviderSettings;
+  openai?: AIProviderSettings;
+  openrouter?: AIProviderSettings;
+  openaiCompatible?: AIProviderSettings;
+  ollama?: AIProviderSettings;
+  anthropic?: AIProviderSettings;
 }
 
 export interface AIModel {

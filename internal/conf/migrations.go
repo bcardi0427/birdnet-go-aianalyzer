@@ -16,7 +16,12 @@ func persistMigration(settings *Settings, label string) {
 	if configFile == "" {
 		return
 	}
-	if err := SaveYAMLConfig(configFile, settings); err != nil {
+	settingsCopy := CloneSettings(settings)
+	if err := encryptConfigSecrets(settingsCopy); err != nil {
+		GetLogger().Warn("Failed to encrypt configuration secrets for "+label, logger.Error(err))
+		return
+	}
+	if err := SaveYAMLConfig(configFile, settingsCopy); err != nil {
 		GetLogger().Warn("Failed to save migrated "+label+" config", logger.Error(err))
 	} else {
 		GetLogger().Info("Saved migrated "+label+" configuration", logger.String("path", configFile))
@@ -62,14 +67,18 @@ func ensureSessionSecret(settings *Settings) error {
 	// Log that we generated a new session secret
 	GetLogger().Info("Generated new SessionSecret for existing configuration")
 
-	// Save the updated config back to file to persist the generated secret
-	// This ensures the secret remains the same across restarts
 	configFile := viper.ConfigFileUsed()
 	if configFile == "" {
 		return nil
 	}
 
-	if err := SaveYAMLConfig(configFile, settings); err != nil {
+	settingsCopy := CloneSettings(settings)
+	if err := encryptConfigSecrets(settingsCopy); err != nil {
+		GetLogger().Warn("Failed to encrypt configuration secrets for SessionSecret save", logger.Error(err))
+		return nil
+	}
+
+	if err := SaveYAMLConfig(configFile, settingsCopy); err != nil {
 		// Log the error but don't fail - the generated secret will work for this session
 		GetLogger().Warn("Failed to save generated SessionSecret to config file", logger.Error(err))
 		return nil

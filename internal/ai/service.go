@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/tphakala/birdnet-go/internal/ai/llm"
+	"github.com/tphakala/birdnet-go/internal/classifier"
 	"github.com/tphakala/birdnet-go/internal/conf"
 	"github.com/tphakala/birdnet-go/internal/datastore/v2/entities"
 	"github.com/tphakala/birdnet-go/internal/datastore/v2/repository"
@@ -358,9 +359,28 @@ func (s *ReportService) computeStats(ctx context.Context, dets []*entities.Detec
 	stats.PeakHour, stats.PeakHourCount = peakHour(hourly)
 	stats.QuietHour, stats.QuietHourCount = quietHour(hourly)
 
+	var taxonomyCodeMap map[string]string
+
+	if _, scientificIndex, err := classifier.LoadTaxonomyData(""); err == nil {
+		taxonomyCodeMap = make(map[string]string, len(scientificIndex))
+		for sciName, code := range scientificIndex {
+			taxonomyCodeMap[strings.ToLower(sciName)] = code
+		}
+	} else {
+		taxonomyCodeMap = make(map[string]string)
+	}
+
+	if s.ebirdClient != nil {
+		if taxonomy, err := s.ebirdClient.GetTaxonomy(ctx, ""); err == nil {
+			for _, entry := range taxonomy {
+				taxonomyCodeMap[strings.ToLower(entry.ScientificName)] = entry.SpeciesCode
+			}
+		}
+	}
+
 	settings := s.settingsSnapshot()
-	stats.TopSpecies = buildSpeciesRows(byScientific, settings.BirdNET.Labels, maxTopSpeciesRows)
-	stats.NotableSpecies = buildNotableSpeciesRows(byScientific, settings.BirdNET.Labels, maxNotableSpeciesRows)
+	stats.TopSpecies = buildSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, maxTopSpeciesRows)
+	stats.NotableSpecies = buildNotableSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, maxNotableSpeciesRows)
 	stats.Weather = s.fetchWeatherSummary(ctx)
 	stats.EBirdContextIncluded = settings.Realtime.EBird.Enabled && s.ebirdClient != nil
 
@@ -668,7 +688,7 @@ func getSpeciesInfo(labels []string, scientificName string) (commonName, ebirdCo
 	return scientificName, ""
 }
 
-func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string, limit int) []speciesRow {
+func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string, taxonomyCodeMap map[string]string, limit int) []speciesRow {
 	rows := make([]speciesRow, 0, len(grouped))
 	for sci, items := range grouped {
 		if len(items) == 0 {
@@ -690,6 +710,9 @@ func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string,
 		}
 		pHour, _ := peakHour(hourCounts)
 		commonName, ebirdCode := getSpeciesInfo(labels, sci)
+		if ebirdCode == "" && taxonomyCodeMap != nil {
+			ebirdCode = taxonomyCodeMap[strings.ToLower(sci)]
+		}
 		ebirdURL := ""
 		if ebirdCode != "" {
 			ebirdURL = fmt.Sprintf("https://ebird.org/species/%s", url.QueryEscape(ebirdCode))
@@ -758,8 +781,8 @@ func ebirdLinkHTML(link string) string {
 	return fmt.Sprintf(`<a href="%s" target="_blank" rel="noopener noreferrer" title="Open eBird species page">eBird</a>`, esc(link))
 }
 
-func buildNotableSpeciesRows(grouped map[string][]*entities.Detection, labels []string, limit int) []speciesRow {
-	rows := buildSpeciesRows(grouped, labels, 1000)
+func buildNotableSpeciesRows(grouped map[string][]*entities.Detection, labels []string, taxonomyCodeMap map[string]string, limit int) []speciesRow {
+	rows := buildSpeciesRows(grouped, labels, taxonomyCodeMap, 1000)
 	sort.Slice(rows, func(i, j int) bool {
 		if rows[i].Detections == rows[j].Detections {
 			return rows[i].AvgConfidencePct > rows[j].AvgConfidencePct

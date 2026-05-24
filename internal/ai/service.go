@@ -122,6 +122,8 @@ type speciesRow struct {
 	FirstSeenUnix    int64
 	LastSeenUnix     int64
 	EBirdURL         string
+	WikipediaURL     string
+	AllAboutBirdsURL string
 }
 
 type weatherSummary struct {
@@ -379,8 +381,8 @@ func (s *ReportService) computeStats(ctx context.Context, dets []*entities.Detec
 	}
 
 	settings := s.settingsSnapshot()
-	stats.TopSpecies = buildSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, maxTopSpeciesRows)
-	stats.NotableSpecies = buildNotableSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, maxNotableSpeciesRows)
+	stats.TopSpecies = buildSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, settings.AI.UTMParameters, maxTopSpeciesRows)
+	stats.NotableSpecies = buildNotableSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, settings.AI.UTMParameters, maxNotableSpeciesRows)
 	stats.Weather = s.fetchWeatherSummary(ctx)
 	stats.EBirdContextIncluded = settings.Realtime.EBird.Enabled && s.ebirdClient != nil
 
@@ -632,17 +634,18 @@ func (s *ReportService) renderTopSpecies(stats *reportStats) string {
 	rows := []string{"<h2>Top Detections</h2>", `<table><thead><tr><th>Thumbnail</th><th>Common</th><th>Scientific</th><th>Detections</th><th>Avg confidence</th><th>Peak</th><th>Links</th></tr></thead><tbody>`}
 	for _, row := range stats.TopSpecies {
 		thumb := imageHTML(row.ScientificName, row.CommonName)
-		link := ebirdLinkHTML(row.EBirdURL)
-		rows = append(rows, fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%d</td><td>%.1f%%</td><td>%s</td><td>%s</td></tr>", thumb, esc(row.CommonName), esc(row.ScientificName), row.Detections, row.AvgConfidencePct, hourWindow(row.PeakHour), link))
+		links := speciesLinksHTML(row)
+		rows = append(rows, fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%d</td><td>%.1f%%</td><td>%s</td><td>%s</td></tr>", thumb, esc(row.CommonName), esc(row.ScientificName), row.Detections, row.AvgConfidencePct, hourWindow(row.PeakHour), links))
 	}
 	rows = append(rows, "</tbody></table>")
 	return strings.Join(rows, "\n")
 }
 
 func (s *ReportService) renderNotableSpecies(stats *reportStats) string {
-	rows := []string{"<h2>Rare / Notable Detections</h2>", `<table><thead><tr><th>Thumbnail</th><th>Species</th><th>Detections</th><th>Avg confidence</th><th>First seen</th><th>Last seen</th></tr></thead><tbody>`}
+	rows := []string{"<h2>Rare / Notable Detections</h2>", `<table><thead><tr><th>Thumbnail</th><th>Species</th><th>Detections</th><th>Avg confidence</th><th>First seen</th><th>Last seen</th><th>Links</th></tr></thead><tbody>`}
 	for _, row := range stats.NotableSpecies {
-		rows = append(rows, fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%d</td><td>%.1f%%</td><td>%s</td><td>%s</td></tr>", imageHTML(row.ScientificName, row.CommonName), esc(row.CommonName), row.Detections, row.AvgConfidencePct, time.Unix(row.FirstSeenUnix, 0).Format("01-02-2006 15:04:05"), time.Unix(row.LastSeenUnix, 0).Format("01-02-2006 15:04:05")))
+		links := speciesLinksHTML(row)
+		rows = append(rows, fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%d</td><td>%.1f%%</td><td>%s</td><td>%s</td><td>%s</td></tr>", imageHTML(row.ScientificName, row.CommonName), esc(row.CommonName), row.Detections, row.AvgConfidencePct, time.Unix(row.FirstSeenUnix, 0).Format("01-02-2006 15:04:05"), time.Unix(row.LastSeenUnix, 0).Format("01-02-2006 15:04:05"), links))
 	}
 	rows = append(rows, "</tbody></table>")
 	return strings.Join(rows, "\n")
@@ -688,7 +691,7 @@ func getSpeciesInfo(labels []string, scientificName string) (commonName, ebirdCo
 	return scientificName, ""
 }
 
-func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string, taxonomyCodeMap map[string]string, limit int) []speciesRow {
+func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string, taxonomyCodeMap map[string]string, utmParams string, limit int) []speciesRow {
 	rows := make([]speciesRow, 0, len(grouped))
 	for sci, items := range grouped {
 		if len(items) == 0 {
@@ -716,7 +719,18 @@ func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string,
 		ebirdURL := ""
 		if ebirdCode != "" {
 			ebirdURL = fmt.Sprintf("https://ebird.org/species/%s", url.QueryEscape(ebirdCode))
+			ebirdURL = appendUTMParameters(ebirdURL, utmParams)
 		}
+
+		wikiURL := fmt.Sprintf("https://wikipedia.org/wiki/%s", url.PathEscape(strings.ReplaceAll(sci, " ", "_")))
+		wikiURL = appendUTMParameters(wikiURL, utmParams)
+		aabURL := ""
+		if commonName != "" && commonName != sci {
+			cleanedCommon := strings.ReplaceAll(commonName, "'", "")
+			aabURL = fmt.Sprintf("https://allaboutbirds.org/guide/%s", url.PathEscape(strings.ReplaceAll(cleanedCommon, " ", "_")))
+			aabURL = appendUTMParameters(aabURL, utmParams)
+		}
+
 		rows = append(rows, speciesRow{
 			CommonName:       commonName,
 			ScientificName:   sci,
@@ -726,6 +740,8 @@ func buildSpeciesRows(grouped map[string][]*entities.Detection, labels []string,
 			FirstSeenUnix:    first,
 			LastSeenUnix:     last,
 			EBirdURL:         ebirdURL,
+			WikipediaURL:     wikiURL,
+			AllAboutBirdsURL: aabURL,
 		})
 	}
 
@@ -781,8 +797,37 @@ func ebirdLinkHTML(link string) string {
 	return fmt.Sprintf(`<a href="%s" target="_blank" rel="noopener noreferrer" title="Open eBird species page">eBird</a>`, esc(link))
 }
 
-func buildNotableSpeciesRows(grouped map[string][]*entities.Detection, labels []string, taxonomyCodeMap map[string]string, limit int) []speciesRow {
-	rows := buildSpeciesRows(grouped, labels, taxonomyCodeMap, 1000)
+func speciesLinksHTML(row speciesRow) string {
+	var links []string
+	if strings.TrimSpace(row.EBirdURL) != "" {
+		links = append(links, fmt.Sprintf(`<a href="%s" target="_blank" rel="noopener noreferrer" title="Open eBird species page">eBird</a>`, esc(row.EBirdURL)))
+	}
+	if strings.TrimSpace(row.WikipediaURL) != "" {
+		links = append(links, fmt.Sprintf(`<a href="%s" target="_blank" rel="noopener noreferrer" title="Open Wikipedia page">Wikipedia</a>`, esc(row.WikipediaURL)))
+	}
+	if strings.TrimSpace(row.AllAboutBirdsURL) != "" {
+		links = append(links, fmt.Sprintf(`<a href="%s" target="_blank" rel="noopener noreferrer" title="Open All About Birds page">All About Birds</a>`, esc(row.AllAboutBirdsURL)))
+	}
+	if len(links) == 0 {
+		return "—"
+	}
+	return strings.Join(links, "<br>")
+}
+
+func appendUTMParameters(rawURL, utm string) string {
+	utm = strings.TrimSpace(utm)
+	if utm == "" {
+		return rawURL
+	}
+	utm = strings.TrimLeft(utm, "?&")
+	if strings.Contains(rawURL, "?") {
+		return rawURL + "&" + utm
+	}
+	return rawURL + "?" + utm
+}
+
+func buildNotableSpeciesRows(grouped map[string][]*entities.Detection, labels []string, taxonomyCodeMap map[string]string, utmParams string, limit int) []speciesRow {
+	rows := buildSpeciesRows(grouped, labels, taxonomyCodeMap, utmParams, 1000)
 	sort.Slice(rows, func(i, j int) bool {
 		if rows[i].Detections == rows[j].Detections {
 			return rows[i].AvgConfidencePct > rows[j].AvgConfidencePct

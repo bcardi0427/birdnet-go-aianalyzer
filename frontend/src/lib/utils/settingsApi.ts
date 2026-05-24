@@ -59,6 +59,7 @@ export interface AISettings {
   reportDays: number;
   cacheHours: number;
   systemPrompt: string;
+  utmParameters?: string;
   gemini?: AIProviderSettings;
   openai?: AIProviderSettings;
   openrouter?: AIProviderSettings;

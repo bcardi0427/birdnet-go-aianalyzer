@@ -785,9 +785,10 @@ type AISettings struct {
 	APIKeyFile   string `yaml:"apikeyfile" json:"apiKeyFile"`     // file path to provider API key
 	BaseURL      string `yaml:"baseurl" json:"baseUrl"`           // Optional provider base URL override
 	Model        string `yaml:"model" json:"model"`               // Model to use, provider-specific
-	ReportDays   int    `yaml:"reportdays" json:"reportDays"`     // Number of days included in AI report window
-	CacheHours   int    `yaml:"cachehours" json:"cacheHours"`     // Hours to cache the report (default 4)
-	SystemPrompt string `yaml:"systemprompt" json:"systemPrompt"` // Custom instruction prompt
+	ReportDays    int    `yaml:"reportdays" json:"reportDays"`       // Number of days included in AI report window
+	CacheHours    int    `yaml:"cachehours" json:"cacheHours"`       // Hours to cache the report (default 4)
+	SystemPrompt  string `yaml:"systemprompt" json:"systemPrompt"`   // Custom instruction prompt
+	UTMParameters string `yaml:"utmparameters" json:"utmParameters"` // UTM/tracking parameters to append to report links
 
 	// Provider-specific configurations
 	Gemini           AIProviderSettings `yaml:"gemini" json:"gemini"`

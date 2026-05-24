@@ -29,6 +29,7 @@
     reportDays: 1,
     cacheHours: 4,
     systemPrompt: '',
+    utmParameters: '',
     gemini: { ...defaultProviderSettings, model: 'gemini-2.5-flash' },
     openai: { ...defaultProviderSettings, model: 'gpt-4o-mini', baseUrl: 'https://api.openai.com/v1' },
     openrouter: { ...defaultProviderSettings, model: 'openai/gpt-4o-mini', baseUrl: 'https://openrouter.ai/api/v1' },
@@ -488,6 +489,13 @@
           step={1}
           helpText={t('settings.ai.fields.cacheHoursHelp')}
           onUpdate={value => (settings.cacheHours = value)}
+        />
+
+        <TextInput
+          label="UTM Parameters"
+          bind:value={settings.utmParameters}
+          placeholder="utm_source=birdnet-go&utm_medium=report"
+          helpText="Optional UTM/tracking parameters to append to generated report links (e.g. bcardi0427 or utm_source=birdnet-go)."
         />
 
         {#key settings.provider}

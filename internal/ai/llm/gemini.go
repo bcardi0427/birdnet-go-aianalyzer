@@ -2,6 +2,7 @@ package llm
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 
@@ -55,7 +56,7 @@ func (p *geminiProvider) ListModels(ctx context.Context) ([]Model, error) {
 		}
 
 		nextPage, err := modelPage.Next(ctx)
-		if err == genai.ErrPageDone {
+		if errors.Is(err, genai.ErrPageDone) {
 			break
 		}
 		if err != nil {

@@ -7,7 +7,24 @@ set -euo pipefail
 REPO_OWNER="${REPO_OWNER:-bcardi0427}"
 REPO_NAME="${REPO_NAME:-birdnet-go-aianalyzer}"
 RELEASE_TAG="${RELEASE_TAG:-latest}"
-ASSET_NAME="${ASSET_NAME:-birdnet-go-linux-amd64}"
+
+# Auto-detect architecture for the default asset name
+ARCH="$(uname -m)"
+case "${ARCH}" in
+  x86_64)
+    DEFAULT_ASSET="birdnet-go-linux-amd64"
+    ;;
+  aarch64|arm64)
+    DEFAULT_ASSET="birdnet-go-linux-arm64"
+    ;;
+  *)
+    # Fallback to amd64 if detection is inconclusive
+    DEFAULT_ASSET="birdnet-go-linux-amd64"
+    ;;
+esac
+
+ASSET_NAME="${ASSET_NAME:-${DEFAULT_ASSET}}"
+
 
 SERVICE_NAME="${SERVICE_NAME:-birdnet}"
 BINARY_PATH="${BINARY_PATH:-/usr/local/bin/birdnet-go}"

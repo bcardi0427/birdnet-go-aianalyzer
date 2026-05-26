@@ -118,6 +118,8 @@ internal/api/v2/api.go
 internal/conf/config.go
 internal/conf/defaults.go
 internal/conf/validate_ai.go
+internal/conf/secret_encryption.go
+internal/conf/storage.go
 ```
 
 Key frontend areas:
@@ -138,6 +140,17 @@ Protected/token-spending actions include:
 - Updating AI settings.
 
 Guests should not be able to trigger fresh AI generation.
+
+## Configuration Secrets Encryption
+
+Sensitives settings (like AI API keys, MySQL/MQTT passwords, and session secrets) are automatically encrypted using AES-GCM when written to `config.yaml` and decrypted when read. 
+
+Key resolution order:
+1. `BIRDNET_CONFIG_ENCRYPTION_KEY` environment variable.
+2. `config.encryption.key` file in the default config directory.
+3. Automatically generated 32-byte key saved to `config.encryption.key` (with secure `0600` permissions) if neither of the above is found.
+
+Any new sensitive settings should be added to the lists in `internal/conf/secret_encryption.go` so they are securely redacted/encrypted on storage write.
 
 ## Visitor Logging Feature Areas
 

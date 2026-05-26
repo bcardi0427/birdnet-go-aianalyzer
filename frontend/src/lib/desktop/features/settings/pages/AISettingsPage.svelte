@@ -12,7 +12,12 @@
   import { t } from '$lib/i18n';
   import { toastActions } from '$lib/stores/toast';
   import { appState } from '$lib/stores/appState.svelte';
-  import { settingsAPI, type AIModel, type AISettings, type AIProviderSettings } from '$lib/utils/settingsApi';
+  import {
+    settingsAPI,
+    type AIModel,
+    type AISettings,
+    type AIProviderSettings,
+  } from '$lib/utils/settingsApi';
 
   const defaultProviderSettings = {
     apiKey: '',
@@ -31,14 +36,24 @@
     systemPrompt: '',
     utmParameters: '',
     gemini: { ...defaultProviderSettings, model: 'gemini-2.5-flash' },
-    openai: { ...defaultProviderSettings, model: 'gpt-4o-mini', baseUrl: 'https://api.openai.com/v1' },
-    openrouter: { ...defaultProviderSettings, model: 'openai/gpt-4o-mini', baseUrl: 'https://openrouter.ai/api/v1' },
+    openai: {
+      ...defaultProviderSettings,
+      model: 'gpt-4o-mini',
+      baseUrl: 'https://api.openai.com/v1',
+    },
+    openrouter: {
+      ...defaultProviderSettings,
+      model: 'openai/gpt-4o-mini',
+      baseUrl: 'https://openrouter.ai/api/v1',
+    },
     openaiCompatible: { ...defaultProviderSettings },
     ollama: { ...defaultProviderSettings, model: 'llama3.2', baseUrl: 'http://localhost:11434/v1' },
     anthropic: { ...defaultProviderSettings, model: 'claude-3-5-haiku-latest' },
   };
 
-  function getProviderKey(provider: string): 'gemini' | 'openai' | 'openrouter' | 'openaiCompatible' | 'ollama' | 'anthropic' {
+  function getProviderKey(
+    provider: string
+  ): 'gemini' | 'openai' | 'openrouter' | 'openaiCompatible' | 'ollama' | 'anthropic' {
     if (provider === 'openai-compatible') return 'openaiCompatible';
     return provider as any;
   }
@@ -74,7 +89,9 @@
     anthropic: { model: 'claude-3-5-haiku-latest', baseUrl: '' },
   };
 
-  let showBaseUrl = $derived(settings.provider === 'openai-compatible' || settings.provider === 'ollama');
+  let showBaseUrl = $derived(
+    settings.provider === 'openai-compatible' || settings.provider === 'ollama'
+  );
   let requiresApiKey = $derived(settings.provider !== 'ollama');
   let activeModel = $derived(settings[getProviderKey(settings.provider)]?.model || '');
   let modelOptions = $derived<SelectOption[]>([
@@ -104,13 +121,23 @@
         gemini: { ...defaultSettings.gemini, ...data.gemini } as AIProviderSettings,
         openai: { ...defaultSettings.openai, ...data.openai } as AIProviderSettings,
         openrouter: { ...defaultSettings.openrouter, ...data.openrouter } as AIProviderSettings,
-        openaiCompatible: { ...defaultSettings.openaiCompatible, ...data.openaiCompatible } as AIProviderSettings,
+        openaiCompatible: {
+          ...defaultSettings.openaiCompatible,
+          ...data.openaiCompatible,
+        } as AIProviderSettings,
         ollama: { ...defaultSettings.ollama, ...data.ollama } as AIProviderSettings,
         anthropic: { ...defaultSettings.anthropic, ...data.anthropic } as AIProviderSettings,
       };
 
       // Ensure defaults are populated for all providers if they are empty
-      for (const provider of ['gemini', 'openai', 'openrouter', 'openai-compatible', 'ollama', 'anthropic']) {
+      for (const provider of [
+        'gemini',
+        'openai',
+        'openrouter',
+        'openai-compatible',
+        'ollama',
+        'anthropic',
+      ]) {
         const key = getProviderKey(provider);
         const pSettings = settings[key];
         if (pSettings) {
@@ -173,11 +200,14 @@
       if (active) {
         if (!active.baseUrl?.trim()) {
           if (settings.provider === 'openai') active.baseUrl = providerDefaults.openai.baseUrl;
-          if (settings.provider === 'openrouter') active.baseUrl = providerDefaults.openrouter.baseUrl;
+          if (settings.provider === 'openrouter')
+            active.baseUrl = providerDefaults.openrouter.baseUrl;
           if (settings.provider === 'ollama') active.baseUrl = providerDefaults.ollama.baseUrl;
         }
 
-        const normalizedModel = String(active.model || '').trim().toLowerCase();
+        const normalizedModel = String(active.model || '')
+          .trim()
+          .toLowerCase();
         const modelLooksGemini =
           normalizedModel.startsWith('gemini') || normalizedModel.startsWith('models/gemini');
         if (!active.model || (settings.provider !== 'gemini' && modelLooksGemini)) {
@@ -194,7 +224,9 @@
       const payload: AISettings = JSON.parse(JSON.stringify(settings));
 
       // Guard against dropdown binding edge-cases: always persist a normalized provider.
-      payload.provider = String(payload.provider || settings.provider || 'gemini').trim().toLowerCase();
+      payload.provider = String(payload.provider || settings.provider || 'gemini')
+        .trim()
+        .toLowerCase();
       if (!payload.provider) payload.provider = 'gemini';
 
       const updated = await settingsAPI.ai.updateSettings(payload);
@@ -204,7 +236,10 @@
         gemini: { ...defaultSettings.gemini, ...updated.gemini } as AIProviderSettings,
         openai: { ...defaultSettings.openai, ...updated.openai } as AIProviderSettings,
         openrouter: { ...defaultSettings.openrouter, ...updated.openrouter } as AIProviderSettings,
-        openaiCompatible: { ...defaultSettings.openaiCompatible, ...updated.openaiCompatible } as AIProviderSettings,
+        openaiCompatible: {
+          ...defaultSettings.openaiCompatible,
+          ...updated.openaiCompatible,
+        } as AIProviderSettings,
         ollama: { ...defaultSettings.ollama, ...updated.ollama } as AIProviderSettings,
         anthropic: { ...defaultSettings.anthropic, ...updated.anthropic } as AIProviderSettings,
       };
@@ -272,7 +307,9 @@
         toastActions.success('Fresh AI report generated without cache.');
       }
     } catch (err) {
-      toastActions.error(err instanceof Error ? err.message : 'Failed to generate fresh AI report.');
+      toastActions.error(
+        err instanceof Error ? err.message : 'Failed to generate fresh AI report.'
+      );
     } finally {
       generatingFreshReport = false;
     }
@@ -338,7 +375,9 @@
       description={t('settings.ai.configuration.description')}
       {hasChanges}
     >
-      <div class="mb-3 rounded border border-[var(--color-base-300)] bg-[var(--color-base-200)]/40 px-3 py-2 text-xs text-[var(--color-base-content)]/80">
+      <div
+        class="mb-3 rounded border border-[var(--color-base-300)] bg-[var(--color-base-200)]/40 px-3 py-2 text-xs text-[var(--color-base-content)]/80"
+      >
         Runtime build: <span class="font-mono">{appState.version}</span>
       </div>
 
@@ -364,24 +403,22 @@
             bind:value={settings[getProviderKey(settings.provider)]!.apiKey}
             autocomplete="off"
             allowReveal={false}
-            helpText={
-              settings.provider === 'openrouter'
-                ? 'OpenRouter API key. Required unless using a keyless local gateway.'
-                : settings.provider === 'openai'
-                  ? 'OpenAI API key.'
-                  : settings.provider === 'anthropic'
-                    ? 'Anthropic API key.'
-                    : settings.provider === 'ollama'
-                      ? 'Optional for local Ollama unless your gateway requires it.'
-                      : settings.provider === 'openai-compatible'
-                        ? 'API key for your compatible gateway, if required.'
-                        : 'Google AI Studio API key.'
-            }
+            helpText={settings.provider === 'openrouter'
+              ? 'OpenRouter API key. Required unless using a keyless local gateway.'
+              : settings.provider === 'openai'
+                ? 'OpenAI API key.'
+                : settings.provider === 'anthropic'
+                  ? 'Anthropic API key.'
+                  : settings.provider === 'ollama'
+                    ? 'Optional for local Ollama unless your gateway requires it.'
+                    : settings.provider === 'openai-compatible'
+                      ? 'API key for your compatible gateway, if required.'
+                      : 'Google AI Studio API key.'}
           />
 
           <div class="form-control">
             <label class="label" for="ai-test-connection">
-                <span class="label-text">Test AI Provider Connection</span>
+              <span class="label-text">Test AI Provider Connection</span>
             </label>
             <div class="flex items-center gap-2">
               <button
@@ -389,7 +426,8 @@
                 type="button"
                 class="btn btn-sm btn-outline gap-2"
                 onclick={testConnection}
-                disabled={testingConnection || (requiresApiKey && !settings[getProviderKey(settings.provider)]?.apiKey)}
+                disabled={testingConnection ||
+                  (requiresApiKey && !settings[getProviderKey(settings.provider)]?.apiKey)}
               >
                 {#if testingConnection}
                   <LoadingSpinner size="xs" />
@@ -407,7 +445,9 @@
                 </span>
               {/if}
             </div>
-            <span class="help-text">Checks provider access and verifies the configured endpoint is reachable.</span>
+            <span class="help-text"
+              >Checks provider access and verifies the configured endpoint is reachable.</span
+            >
             <div class="mt-2">
               <button
                 type="button"
@@ -424,7 +464,8 @@
               </button>
             </div>
             <span class="help-text">
-              Generates a one-time report without reading or writing cache. Regular report views still use cache.
+              Generates a one-time report without reading or writing cache. Regular report views
+              still use cache.
             </span>
           </div>
 
@@ -444,7 +485,9 @@
                 type="button"
                 class="btn btn-sm btn-outline mb-0.5"
                 onclick={loadModels}
-                 disabled={loadingModels || hasChanges || (requiresApiKey && !settings[getProviderKey(settings.provider)]?.apiKey)}
+                disabled={loadingModels ||
+                  hasChanges ||
+                  (requiresApiKey && !settings[getProviderKey(settings.provider)]?.apiKey)}
               >
                 {#if loadingModels}
                   <LoadingSpinner size="sm" />
@@ -463,7 +506,9 @@
             <TextInput
               label="Base URL"
               bind:value={settings[getProviderKey(settings.provider)]!.baseUrl}
-              placeholder={settings.provider === 'ollama' ? 'http://localhost:11434/v1' : 'https://your-provider/v1'}
+              placeholder={settings.provider === 'ollama'
+                ? 'http://localhost:11434/v1'
+                : 'https://your-provider/v1'}
               helpText={settings.provider === 'openai-compatible'
                 ? 'Required for OpenAI-compatible providers.'
                 : 'Optional override for Ollama endpoint.'}

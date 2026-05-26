@@ -614,6 +614,8 @@ func renderSanitizedNode(b *strings.Builder, n *xhtml.Node) {
 			b.WriteString(tag)
 			b.WriteString(">")
 		}
+	case xhtml.ErrorNode, xhtml.DocumentNode, xhtml.CommentNode, xhtml.DoctypeNode, xhtml.RawNode:
+		// Do nothing for other node types
 	}
 }
 

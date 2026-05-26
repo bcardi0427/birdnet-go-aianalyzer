@@ -28,7 +28,6 @@ func TestNewProvider_SupportedProvidersReturnProvider(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 			provider, err := NewProvider(conf.AISettings{Provider: tt.provider}, "test-key", nil)
@@ -71,7 +70,7 @@ func TestOpenAICompatibleProvider_GenerateAndListModels(t *testing.T) {
 		case "/chat/completions":
 			assert.Equal(t, "Bearer test-key", r.Header.Get("Authorization"))
 			var req openAIChatRequest
-			require.NoError(t, json.NewDecoder(r.Body).Decode(&req))
+			assert.NoError(t, json.NewDecoder(r.Body).Decode(&req))
 			assert.Equal(t, "custom-model", req.Model)
 			assert.Len(t, req.Messages, 2)
 			_, _ = w.Write([]byte(`{"choices":[{"message":{"role":"assistant","content":"hello birds"}}]}`))

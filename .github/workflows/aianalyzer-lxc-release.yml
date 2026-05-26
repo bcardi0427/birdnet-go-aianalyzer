@@ -18,7 +18,7 @@ permissions:
   contents: write
 
 jobs:
-  build-linux-amd64:
+  build:
     runs-on: ubuntu-24.04
 
     steps:
@@ -43,8 +43,14 @@ jobs:
       - name: Install Linux system dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: build-essential pkg-config
+          packages: build-essential pkg-config gcc-aarch64-linux-gnu
           version: 1.0
+
+      - name: Fix cross-compiler symlinks
+        run: |
+          # cache-apt-pkgs-action restores debs but skips post-install triggers,
+          # so create the symlinks that update-alternatives would normally manage
+          sudo ln -sf /usr/bin/aarch64-linux-gnu-gcc-13 /usr/bin/aarch64-linux-gnu-gcc
 
       - name: Install Task
         uses: arduino/setup-task@v2
@@ -52,10 +58,15 @@ jobs:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup ONNX Runtime
+      - name: Setup ONNX Runtime (linux-amd64)
         uses: ./.github/actions/setup-onnxruntime
         with:
           target-platform: linux-amd64
+
+      - name: Setup ONNX Runtime (linux-arm64)
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          target-platform: linux-arm64
 
       - name: Build Linux AMD64 binary
         run: task linux_amd64
@@ -67,26 +78,43 @@ jobs:
           PUPPETEER_SKIP_DOWNLOAD: true
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
 
-      - name: Prepare LXC release asset
+      - name: Prepare AMD64 release asset
         run: |
           cp bin/birdnet-go birdnet-go-linux-amd64
           chmod 755 birdnet-go-linux-amd64
 
-      - name: Publish LXC release asset
+      - name: Build Linux ARM64 binary
+        run: task linux_arm64
+        env:
+          GOOS: linux
+          GOARCH: arm64
+          CGO_ENABLED: 1
+          BUILD_VERSION: aianalyzer-${{ github.run_number }}
+          PUPPETEER_SKIP_DOWNLOAD: true
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+
+      - name: Prepare ARM64 release asset
+        run: |
+          cp bin/birdnet-go birdnet-go-linux-arm64
+          chmod 755 birdnet-go-linux-arm64
+
+      - name: Publish LXC release assets
         uses: softprops/action-gh-release@v3
         with:
           tag_name: aianalyzer-lxc-latest
           name: AI Analyzer LXC Latest
           body: |
-            Latest Linux AMD64 binary for Proxmox helper-script LXC upgrades.
+            Latest Linux AMD64 and ARM64 binaries for Proxmox helper-script LXC upgrades and Raspberry Pi.
 
-            Install inside the LXC with:
+            Install inside the LXC or Raspberry Pi with:
 
             ```bash
             curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/scripts/install-aianalyzer-lxc.sh -o install-aianalyzer-lxc.sh
             bash ./install-aianalyzer-lxc.sh
             ```
-          files: birdnet-go-linux-amd64
+          files: |
+            birdnet-go-linux-amd64
+            birdnet-go-linux-arm64
           make_latest: true
           overwrite_files: true
         env:

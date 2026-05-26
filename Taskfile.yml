@@ -1055,10 +1055,14 @@ tasks:
       - |
         if [ ! -f "{{.TFLITE_LIB_DIR}}/{{.LIB_FILENAME}}" ]; then
           URL="https://github.com/tphakala/tflite_c/releases/download/{{.TFLITE_VERSION}}/tflite_c_{{.TFLITE_VERSION}}_{{.TFLITE_LIB_ARCH}}"
+          echo "Debug: TARGET={{.TARGET}}"
+          echo "Debug: TFLITE_VERSION={{.TFLITE_VERSION}}"
+          echo "Debug: TFLITE_LIB_ARCH={{.TFLITE_LIB_ARCH}}"
+          echo "Debug: URL=$URL"
           if command -v curl >/dev/null 2>&1; then
-            curl -fsSL "$URL" -o "tflite_c_{{.TFLITE_VERSION}}_{{.TFLITE_LIB_ARCH}}"
+            curl -fL "$URL" -o "tflite_c_{{.TFLITE_VERSION}}_{{.TFLITE_LIB_ARCH}}"
           else
-            wget -q "$URL" -P ./
+            wget "$URL" -O "tflite_c_{{.TFLITE_VERSION}}_{{.TFLITE_LIB_ARCH}}"
           fi
           
           # Only create directory if it doesn't exist

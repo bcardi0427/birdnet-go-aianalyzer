@@ -14,55 +14,46 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Cache ONNX Runtime
-      id: cache-onnxruntime
-      uses: actions/cache@v5
-      with:
-        path: ${{ github.workspace }}/onnxruntime-bin
-        key: onnxruntime-${{ inputs.target-platform }}-${{ inputs.onnxruntime-version }}
-
     - name: Download ONNX Runtime
       shell: bash
       run: |
         ONNX_DIR="${{ github.workspace }}/onnxruntime-bin"
-        if [ ! -d "$ONNX_DIR/lib" ] || [ -z "$(ls -A "$ONNX_DIR/lib" 2>/dev/null)" ]; then
-          echo "ONNX Runtime lib folder not found or empty. Downloading..."
-          VERSION="${{ inputs.onnxruntime-version }}"
-          mkdir -p "$ONNX_DIR"
+        echo "Downloading ONNX Runtime..."
+        VERSION="${{ inputs.onnxruntime-version }}"
+        mkdir -p "$ONNX_DIR"
 
-          case "${{ inputs.target-platform }}" in
-            linux-amd64)
-              curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-linux-x64-${VERSION}.tgz" \
-                -o "$ONNX_DIR.tgz"
-              tar -xzf "$ONNX_DIR.tgz" -C "$ONNX_DIR" --strip-components=1
-              rm "$ONNX_DIR.tgz"
-              ;;
-            linux-arm64)
-              curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-linux-aarch64-${VERSION}.tgz" \
-                -o "$ONNX_DIR.tgz"
-              tar -xzf "$ONNX_DIR.tgz" -C "$ONNX_DIR" --strip-components=1
-              rm "$ONNX_DIR.tgz"
-              ;;
-            windows-amd64)
-              curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-win-x64-${VERSION}.zip" \
-                -o "$ONNX_DIR.zip"
-              TMPDIR=$(mktemp -d)
-              unzip -q "$ONNX_DIR.zip" -d "$TMPDIR"
-              cp -r "$TMPDIR"/onnxruntime-*/* "$ONNX_DIR"/
-              rm -rf "$TMPDIR" "$ONNX_DIR.zip"
-              ;;
-            darwin-arm64)
-              curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-osx-arm64-${VERSION}.tgz" \
-                -o "$ONNX_DIR.tgz"
-              tar -xzf "$ONNX_DIR.tgz" -C "$ONNX_DIR" --strip-components=1
-              rm "$ONNX_DIR.tgz"
-              ;;
-            *)
-              echo "::error::Unsupported platform: ${{ inputs.target-platform }}"
-              exit 1
-              ;;
-          esac
-        fi
+        case "${{ inputs.target-platform }}" in
+          linux-amd64)
+            curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-linux-x64-${VERSION}.tgz" \
+              -o "$ONNX_DIR.tgz"
+            tar -xzf "$ONNX_DIR.tgz" -C "$ONNX_DIR" --strip-components=1
+            rm "$ONNX_DIR.tgz"
+            ;;
+          linux-arm64)
+            curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-linux-aarch64-${VERSION}.tgz" \
+              -o "$ONNX_DIR.tgz"
+            tar -xzf "$ONNX_DIR.tgz" -C "$ONNX_DIR" --strip-components=1
+            rm "$ONNX_DIR.tgz"
+            ;;
+          windows-amd64)
+            curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-win-x64-${VERSION}.zip" \
+              -o "$ONNX_DIR.zip"
+            TMPDIR=$(mktemp -d)
+            unzip -q "$ONNX_DIR.zip" -d "$TMPDIR"
+            cp -r "$TMPDIR"/onnxruntime-*/* "$ONNX_DIR"/
+            rm -rf "$TMPDIR" "$ONNX_DIR.zip"
+            ;;
+          darwin-arm64)
+            curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-osx-arm64-${VERSION}.tgz" \
+              -o "$ONNX_DIR.tgz"
+            tar -xzf "$ONNX_DIR.tgz" -C "$ONNX_DIR" --strip-components=1
+            rm "$ONNX_DIR.tgz"
+            ;;
+          *)
+            echo "::error::Unsupported platform: ${{ inputs.target-platform }}"
+            exit 1
+            ;;
+        esac
 
     - name: Install ONNX Runtime to system path
       shell: bash

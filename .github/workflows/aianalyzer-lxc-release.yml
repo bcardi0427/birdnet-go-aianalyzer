@@ -97,6 +97,15 @@ jobs:
       - name: Prepare release assets
         shell: bash
         run: |
+          echo "=== DEBUGGING WORKSPACE LAYOUT ==="
+          echo "Current working directory: $(pwd)"
+          echo "Workspace contents:"
+          ls -la
+          echo "Checking onnxruntime-bin directory:"
+          ls -la onnxruntime-bin || true
+          ls -la onnxruntime-bin/lib || true
+          echo "=================================="
+
           # Create artifacts directory
           mkdir -p artifacts
           

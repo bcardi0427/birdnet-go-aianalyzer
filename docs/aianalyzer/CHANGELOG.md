@@ -21,6 +21,7 @@ All notable AI Analyzer fork changes are documented here. The root `CHANGELOG.md
 - Fixed TypeScript typecheck and compilation issues on the AI Settings Page, including making `utmParameters` a required field in AI Settings.
 - Added missing untracked packages for embedded dependencies (including tflite/XNNPACK CGO/nocgo wrappers, ffmpeg path detection, and RTSP health integrations).
 - Fixed TensorFlow Lite C library download failures on macOS build runners by preferring `curl -fsSL` and falling back to `wget` in [Taskfile.yml](file:///F:/AntiGravity%20Sources/birdnet-go/Taskfile.yml) (and updating the `check-tools` task validation).
+- Fixed empty or corrupted ONNX Runtime caches breaking release builds by adding a bash verification step in [.github/actions/setup-onnxruntime/action.yml](file:///F:/AntiGravity%20Sources/birdnet-go/.github/actions/setup-onnxruntime/action.yml) to trigger a fresh download if the cached folder is empty or missing.
 
 ### Documentation
 

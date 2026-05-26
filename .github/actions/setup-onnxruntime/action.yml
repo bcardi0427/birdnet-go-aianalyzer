@@ -22,11 +22,12 @@ runs:
         key: onnxruntime-${{ inputs.target-platform }}-${{ inputs.onnxruntime-version }}
 
     - name: Download ONNX Runtime
-      if: steps.cache-onnxruntime.outputs.cache-hit != 'true'
       shell: bash
       run: |
-        VERSION="${{ inputs.onnxruntime-version }}"
-        mkdir -p /tmp/onnxruntime
+        if [ ! -d "/tmp/onnxruntime/lib" ] || [ -z "$(ls -A /tmp/onnxruntime/lib 2>/dev/null)" ]; then
+          echo "ONNX Runtime lib folder not found or empty. Downloading..."
+          VERSION="${{ inputs.onnxruntime-version }}"
+          mkdir -p /tmp/onnxruntime
 
         case "${{ inputs.target-platform }}" in
           linux-amd64)
@@ -60,6 +61,7 @@ runs:
             exit 1
             ;;
         esac
+        fi
 
     - name: Install ONNX Runtime to system path
       shell: bash

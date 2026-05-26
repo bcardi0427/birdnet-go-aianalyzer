@@ -619,12 +619,16 @@ tasks:
   check-tools:
     cmds:
       - |
-        for cmd in go unzip git wget; do
+        for cmd in go unzip git; do
           if ! command -v $cmd >/dev/null; then
             echo "$cmd not found. Please install it."
             exit 1
           fi
         done
+        if ! command -v wget >/dev/null && ! command -v curl >/dev/null; then
+          echo "Neither wget nor curl found. Please install one of them."
+          exit 1
+        fi
 
   check-tensorflow:
     cmds:
@@ -1050,8 +1054,12 @@ tasks:
     cmds:
       - |
         if [ ! -f "{{.TFLITE_LIB_DIR}}/{{.LIB_FILENAME}}" ]; then
-          echo "TensorFlow Lite C library not found. Downloading..."
-          wget -q "https://github.com/tphakala/tflite_c/releases/download/{{.TFLITE_VERSION}}/tflite_c_{{.TFLITE_VERSION}}_{{.TFLITE_LIB_ARCH}}" -P ./
+          URL="https://github.com/tphakala/tflite_c/releases/download/{{.TFLITE_VERSION}}/tflite_c_{{.TFLITE_VERSION}}_{{.TFLITE_LIB_ARCH}}"
+          if command -v curl >/dev/null 2>&1; then
+            curl -fsSL "$URL" -o "tflite_c_{{.TFLITE_VERSION}}_{{.TFLITE_LIB_ARCH}}"
+          else
+            wget -q "$URL" -P ./
+          fi
           
           # Only create directory if it doesn't exist
           if [ ! -d "{{.TFLITE_LIB_DIR}}" ]; then

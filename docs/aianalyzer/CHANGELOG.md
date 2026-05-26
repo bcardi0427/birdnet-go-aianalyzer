@@ -20,6 +20,7 @@ All notable AI Analyzer fork changes are documented here. The root `CHANGELOG.md
 - Fixed eBird URL generation by using correct species codes resolved from the BirdNET offline taxonomy database instead of hyphenated scientific names.
 - Fixed TypeScript typecheck and compilation issues on the AI Settings Page, including making `utmParameters` a required field in AI Settings.
 - Added missing untracked packages for embedded dependencies (including tflite/XNNPACK CGO/nocgo wrappers, ffmpeg path detection, and RTSP health integrations).
+- Fixed TensorFlow Lite C library download failures on macOS build runners by preferring `curl -fsSL` and falling back to `wget` in [Taskfile.yml](file:///F:/AntiGravity%20Sources/birdnet-go/Taskfile.yml) (and updating the `check-tools` task validation).
 
 ### Documentation
 

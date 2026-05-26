@@ -19,7 +19,23 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            os: ubuntu-24.04
+          - goos: linux
+            goarch: arm64
+            os: ubuntu-24.04
+          - goos: windows
+            goarch: amd64
+            os: ubuntu-24.04
+          - goos: darwin
+            goarch: arm64
+            os: macos-latest
 
     steps:
       - name: Checkout code
@@ -41,15 +57,19 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install Linux system dependencies
+        if: matrix.os == 'ubuntu-24.04'
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: build-essential pkg-config gcc-aarch64-linux-gnu
+          packages: build-essential pkg-config gcc-aarch64-linux-gnu gcc-mingw-w64-x86-64
           version: 1.0
 
       - name: Fix cross-compiler symlinks
+        if: matrix.os == 'ubuntu-24.04'
         run: |
           # cache-apt-pkgs-action restores debs but skips post-install triggers,
           # so create the symlinks that update-alternatives would normally manage
+          sudo ln -sf /usr/bin/x86_64-w64-mingw32-gcc-posix /usr/bin/x86_64-w64-mingw32-gcc
+          sudo ln -sf /usr/bin/x86_64-w64-mingw32-g++-posix /usr/bin/x86_64-w64-mingw32-g++
           sudo ln -sf /usr/bin/aarch64-linux-gnu-gcc-13 /usr/bin/aarch64-linux-gnu-gcc
 
       - name: Install Task
@@ -58,45 +78,62 @@ jobs:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup ONNX Runtime (linux-amd64)
+      - name: Setup ONNX Runtime
         uses: ./.github/actions/setup-onnxruntime
         with:
-          target-platform: linux-amd64
+          target-platform: ${{ matrix.goos }}-${{ matrix.goarch }}
 
-      - name: Setup ONNX Runtime (linux-arm64)
-        uses: ./.github/actions/setup-onnxruntime
-        with:
-          target-platform: linux-arm64
-
-      - name: Build Linux AMD64 binary
-        run: task linux_amd64
+      - name: Build binary
+        run: task ${{ matrix.goos }}_${{ matrix.goarch }}
         env:
-          GOOS: linux
-          GOARCH: amd64
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
           CGO_ENABLED: 1
           BUILD_VERSION: aianalyzer-${{ github.run_number }}
           PUPPETEER_SKIP_DOWNLOAD: true
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
 
-      - name: Prepare AMD64 release asset
+      - name: Prepare release assets
+        shell: bash
         run: |
-          cp bin/birdnet-go birdnet-go-linux-amd64
-          chmod 755 birdnet-go-linux-amd64
-
-      - name: Build Linux ARM64 binary
-        run: task linux_arm64
-        env:
-          GOOS: linux
-          GOARCH: arm64
-          CGO_ENABLED: 1
-          BUILD_VERSION: aianalyzer-${{ github.run_number }}
-          PUPPETEER_SKIP_DOWNLOAD: true
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
-
-      - name: Prepare ARM64 release asset
-        run: |
-          cp bin/birdnet-go birdnet-go-linux-arm64
-          chmod 755 birdnet-go-linux-arm64
+          # Create artifacts directory
+          mkdir -p artifacts
+          
+          # Set binary name based on OS
+          BINARY_NAME=birdnet-go
+          if [ "${{ matrix.goos }}" = "windows" ]; then
+            BINARY_NAME=birdnet-go.exe
+          fi
+          
+          # Copy binary
+          cp bin/$BINARY_NAME artifacts/
+          
+          # Copy raw binary for LXC upgrades (Linux only)
+          if [ "${{ matrix.goos }}" = "linux" ]; then
+            cp bin/birdnet-go birdnet-go-linux-${{ matrix.goarch }}
+            chmod 755 birdnet-go-linux-${{ matrix.goarch }}
+          fi
+          
+          # Copy required library files based on OS and architecture
+          if [ "${{ matrix.goos }}" = "linux" ]; then
+            if [ "${{ matrix.goarch }}" = "amd64" ]; then
+              cp /usr/lib/libtensorflowlite_c.so artifacts/
+              cp /usr/lib/libonnxruntime.so artifacts/
+            elif [ "${{ matrix.goarch }}" = "arm64" ]; then
+              cp /usr/aarch64-linux-gnu/lib/libtensorflowlite_c.so artifacts/
+              cp /usr/aarch64-linux-gnu/lib/libonnxruntime.so artifacts/
+            fi
+          elif [ "${{ matrix.goos }}" = "windows" ]; then
+            cp /usr/x86_64-w64-mingw32/lib/tensorflowlite_c.dll artifacts/
+            cp /tmp/onnxruntime/lib/*.dll artifacts/
+          elif [ "${{ matrix.goos }}" = "darwin" ]; then
+            cp /opt/homebrew/lib/libtensorflowlite_c.dylib artifacts/
+            cp /tmp/onnxruntime/lib/libonnxruntime.dylib artifacts/
+          fi
+          
+          # Create tarball
+          cd artifacts
+          tar czf ../birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz *
 
       - name: Publish LXC release assets
         uses: softprops/action-gh-release@v3
@@ -104,17 +141,19 @@ jobs:
           tag_name: aianalyzer-lxc-latest
           name: AI Analyzer LXC Latest
           body: |
-            Latest Linux AMD64 and ARM64 binaries for Proxmox helper-script LXC upgrades and Raspberry Pi.
+            Latest release binaries and packaged archives for the AI Analyzer fork.
 
-            Install inside the LXC or Raspberry Pi with:
+            For Proxmox LXC upgrades and Raspberry Pi, run the update script inside your terminal:
 
             ```bash
             curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/scripts/install-aianalyzer-lxc.sh -o install-aianalyzer-lxc.sh
             bash ./install-aianalyzer-lxc.sh
             ```
           files: |
+            birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz
             birdnet-go-linux-amd64
             birdnet-go-linux-arm64
+          fail_on_unmatched_files: false
           make_latest: true
           overwrite_files: true
         env:

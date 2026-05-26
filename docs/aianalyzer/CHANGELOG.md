@@ -12,8 +12,8 @@ All notable AI Analyzer fork changes are documented here. The root `CHANGELOG.md
 - Added UTM tracking parameter settings to the AI Settings Page and backend configurations to customize referral links.
 - Updated AI analysis reports to stack external bird links in a cleaner layout.
 - Added dynamic, dashboard-styled SVG initials for missing species thumbnail images in reports.
-- Added `linux-arm64` binary target and release assets to the AI LXC Release GitHub Actions workflow for Raspberry Pi/arm64 support.
-- Updated LXC upgrade script ([install-aianalyzer-lxc.sh](file:///F:/AntiGravity%20Sources/birdnet-go/scripts/install-aianalyzer-lxc.sh)) to automatically detect host architecture (`amd64` or `arm64`) and download the correct release binary.
+- Added `linux-amd64`, `linux-arm64`, `windows-amd64`, and `darwin-arm64` build targets to the release workflow. This packages the binaries and their required shared library dependencies (`.so`, `.dll`, `.dylib` files for TensorFlow Lite and ONNX Runtime) into `.tar.gz` archives, matching the upstream release scheme.
+- Updated the LXC upgrade script ([install-aianalyzer-lxc.sh](file:///F:/AntiGravity%20Sources/birdnet-go/scripts/install-aianalyzer-lxc.sh)) to automatically detect the host CPU architecture (`amd64` or `arm64`) and fetch the correct raw binary.
 
 ### Fixes
 

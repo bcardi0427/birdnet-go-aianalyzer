@@ -46,8 +46,10 @@ runs:
           darwin-arm64)
             curl -fsSL "https://github.com/microsoft/onnxruntime/releases/download/v${VERSION}/onnxruntime-osx-arm64-${VERSION}.tgz" \
               -o "$ONNX_DIR.tgz"
-            tar -xzf "$ONNX_DIR.tgz" -C "$ONNX_DIR" --strip-components=1
-            rm "$ONNX_DIR.tgz"
+            TMPDIR=$(mktemp -d)
+            tar -xzf "$ONNX_DIR.tgz" -C "$TMPDIR"
+            cp -r "$TMPDIR"/onnxruntime-*/* "$ONNX_DIR"/
+            rm -rf "$TMPDIR" "$ONNX_DIR.tgz"
             ;;
           *)
             echo "::error::Unsupported platform: ${{ inputs.target-platform }}"

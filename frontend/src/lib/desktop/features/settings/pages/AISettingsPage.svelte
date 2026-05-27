@@ -92,7 +92,9 @@
   let showBaseUrl = $derived(
     settings.provider === 'openai-compatible' || settings.provider === 'ollama'
   );
-  let requiresApiKey = $derived(settings.provider !== 'ollama');
+  let requiresApiKey = $derived(
+    settings.provider !== 'ollama' && settings.provider !== 'openai-compatible'
+  );
   let activeModel = $derived(settings[getProviderKey(settings.provider)]?.model || '');
   let modelOptions = $derived<SelectOption[]>([
     ...(activeModel && !models.some(model => model.id === activeModel)

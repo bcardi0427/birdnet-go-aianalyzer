@@ -3,6 +3,7 @@ package api
 
 import (
 	"context"
+	"encoding/xml"
 	"fmt"
 	"io/fs"
 	"math"
@@ -2866,7 +2867,11 @@ func generateSpeciesBadgeSVG(scientificName, commonName string) []byte {
 	}
 	color := colors[hash%len(colors)]
 
-	svg := fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><rect width="64" height="64" rx="16" fill="%s" /><text x="32" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="600" fill="#ffffff" text-anchor="middle" dominant-baseline="central">%s</text></svg>`, color, initials)
+	var buf strings.Builder
+	_ = xml.EscapeText(&buf, []byte(initials))
+	escapedInitials := buf.String()
+
+	svg := fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><rect width="64" height="64" rx="16" fill="%s" /><text x="32" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="600" fill="#ffffff" text-anchor="middle" dominant-baseline="central">%s</text></svg>`, color, escapedInitials)
 	return []byte(svg)
 }
 

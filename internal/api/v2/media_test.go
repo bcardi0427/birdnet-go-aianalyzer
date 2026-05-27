@@ -1264,55 +1264,34 @@ func TestSpeciesImageNotFound_Returns404(t *testing.T) {
 	}
 	controller.BirdImageCache.SetImageProvider(notFoundProvider)
 
-	tests := []struct {
-		name    string
-		handler func(echo.Context) error
-		setup   func(*echo.Echo) echo.Context
-	}{
-		{
-			name:    "GetSpeciesImageInfo returns 404 for missing species image",
-			handler: controller.GetSpeciesImageInfo,
-			setup: func(e *echo.Echo) echo.Context {
-				req := httptest.NewRequest(http.MethodGet, "/api/v2/media/species-image/info?name=Nonexistus+fictus", http.NoBody)
-				rec := httptest.NewRecorder()
-				return e.NewContext(req, rec)
-			},
-		},
-		{
-			name:    "ServeSpeciesImageProxy returns 404 for missing species image",
-			handler: controller.ServeSpeciesImageProxy,
-			setup: func(e *echo.Echo) echo.Context {
-				req := httptest.NewRequest(http.MethodGet, "/api/v2/media/image/Nonexistus%20fictus", http.NoBody)
-				rec := httptest.NewRecorder()
-				c := e.NewContext(req, rec)
-				c.SetParamNames("scientific_name")
-				c.SetParamValues("Nonexistus fictus")
-				return c
-			},
-		},
-		{
-			name:    "GetSpeciesImage returns 404 for missing species image",
-			handler: controller.GetSpeciesImage,
-			setup: func(e *echo.Echo) echo.Context {
-				req := httptest.NewRequest(http.MethodGet, "/api/v2/media/species-image?name=Nonexistus+fictus", http.NoBody)
-				rec := httptest.NewRecorder()
-				return e.NewContext(req, rec)
-			},
-		},
-	}
+	t.Run("GetSpeciesImageInfo returns 404 for missing species image", func(t *testing.T) {
+		req := httptest.NewRequest(http.MethodGet, "/api/v2/media/species-image/info?name=Nonexistus+fictus", http.NoBody)
+		rec := httptest.NewRecorder()
+		ctx := e.NewContext(req, rec)
+		_ = controller.GetSpeciesImageInfo(ctx)
+		assert.Equal(t, http.StatusNotFound, rec.Code)
+		assert.Contains(t, rec.Body.String(), "Image not found")
+	})
 
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			ctx := tt.setup(e)
-			_ = tt.handler(ctx)
+	t.Run("ServeSpeciesImageProxy returns 200 SVG badge for missing species image", func(t *testing.T) {
+		req := httptest.NewRequest(http.MethodGet, "/api/v2/media/image/Nonexistus%20fictus", http.NoBody)
+		rec := httptest.NewRecorder()
+		ctx := e.NewContext(req, rec)
+		ctx.SetParamNames("scientific_name")
+		ctx.SetParamValues("Nonexistus fictus")
+		_ = controller.ServeSpeciesImageProxy(ctx)
+		assert.Equal(t, http.StatusOK, rec.Code)
+		assert.Contains(t, rec.Body.String(), "<svg")
+	})
 
-			rec := ctx.Response().Writer.(*httptest.ResponseRecorder)
-			assert.Equal(t, http.StatusNotFound, rec.Code,
-				"Expected 404 Not Found for missing species image, got %d", rec.Code)
-			assert.Contains(t, rec.Body.String(), "Image not found",
-				"Response body should indicate image was not found")
-		})
-	}
+	t.Run("GetSpeciesImage returns 200 SVG badge for missing species image", func(t *testing.T) {
+		req := httptest.NewRequest(http.MethodGet, "/api/v2/media/species-image?name=Nonexistus+fictus", http.NoBody)
+		rec := httptest.NewRecorder()
+		ctx := e.NewContext(req, rec)
+		_ = controller.GetSpeciesImage(ctx)
+		assert.Equal(t, http.StatusOK, rec.Code)
+		assert.Contains(t, rec.Body.String(), "<svg")
+	})
 }
 
 // TestGetSpectrogramLogger tests that the spectrogram logger is never nil

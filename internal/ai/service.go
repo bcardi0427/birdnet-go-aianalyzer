@@ -19,6 +19,7 @@ import (
 	"github.com/tphakala/birdnet-go/internal/datastore/v2/entities"
 	"github.com/tphakala/birdnet-go/internal/datastore/v2/repository"
 	"github.com/tphakala/birdnet-go/internal/ebird"
+	"github.com/tphakala/birdnet-go/internal/errors"
 	"github.com/tphakala/birdnet-go/internal/logger"
 	"github.com/tphakala/birdnet-go/internal/secrets"
 	xhtml "golang.org/x/net/html"
@@ -58,6 +59,8 @@ var (
 	}
 )
 
+// ReportService orchestrates the generation, caching, and retrieval of
+// AI-powered daily bird activity reports.
 type ReportService struct {
 	settings    *conf.Settings
 	detection   repository.DetectionRepository
@@ -72,6 +75,8 @@ func (s *ReportService) settingsSnapshot() *conf.Settings {
 	return conf.CurrentOrFallback(s.settings)
 }
 
+// ReportPayload represents the returned data structure of a generated AI report,
+// including the raw report text, timestamp, and cache status.
 type ReportPayload struct {
 	Report      string `json:"report"`
 	GeneratedAt string `json:"generatedAt"`
@@ -138,6 +143,8 @@ type weatherSummary struct {
 	Condition string
 }
 
+// NewReportService creates and initializes a new ReportService instance,
+// ensuring the cache directories are created.
 func NewReportService(
 	settings *conf.Settings,
 	detectionRepo repository.DetectionRepository,
@@ -162,17 +169,28 @@ func NewReportService(
 	}
 }
 
+// GetDailyReport retrieves the daily AI bird detection report, either generating
+// a new one using the configured provider or returning a cached version if valid.
 func (s *ReportService) GetDailyReport(ctx context.Context, bypassCache bool) (*ReportPayload, error) {
 	settings := s.settingsSnapshot()
 	if !settings.AI.Enabled {
-		return nil, fmt.Errorf("AI analysis is disabled in settings")
+		return nil, errors.Newf("AI analysis is disabled in settings").
+			Component("ai").
+			Category(errors.CategoryConfiguration).
+			Build()
 	}
 	apiKey, err := s.resolveProviderAPIKey()
 	if err != nil {
-		return nil, fmt.Errorf("failed to resolve AI provider API key: %w", err)
+		return nil, errors.Newf("failed to resolve AI provider API key: %w", err).
+			Component("ai").
+			Category(errors.CategoryConfiguration).
+			Build()
 	}
 	if strings.TrimSpace(apiKey) == "" {
-		return nil, fmt.Errorf("AI provider API key is not configured")
+		return nil, errors.Newf("AI provider API key is not configured").
+			Component("ai").
+			Category(errors.CategoryConfiguration).
+			Build()
 	}
 
 	if !bypassCache {
@@ -281,7 +299,10 @@ func (s *ReportService) generateReport(ctx context.Context, apiKey string) (stri
 
 	dets, _, err := s.detection.GetByDateRange(ctx, start, end, 10000, 0)
 	if err != nil {
-		return "", time.Time{}, false, fmt.Errorf("failed to load detections: %w", err)
+		return "", time.Time{}, false, errors.Newf("failed to load detections: %w", err).
+			Component("ai").
+			Category(errors.CategoryDatabase).
+			Build()
 	}
 
 	if len(dets) == 0 {
@@ -486,7 +507,10 @@ func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStat
 	model := effectiveModel(settings.AI)
 	provider, err := llm.NewProvider(settings.AI, apiKey, s.log)
 	if err != nil {
-		return "", providerID, model, fmt.Errorf("failed to create AI provider %q: %w", providerID, err)
+		return "", providerID, model, errors.Newf("failed to create AI provider %q: %w", providerID, err).
+			Component("ai").
+			Category(errors.CategoryConfiguration).
+			Build()
 	}
 
 	facts := map[string]any{

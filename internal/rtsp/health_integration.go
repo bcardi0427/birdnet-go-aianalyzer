@@ -1,53 +1,52 @@
 package rtsp
 
-// This file contains a minimal integration point to wire known-good RTSP bypass
-// into the RTSP health check path. The actual wiring into the real health check
-// should call ShouldBypassRTSP(url) and short-circuit unhealthy status when true.
-// The function below is a placeholder to be used by the health-check caller.
+// ShouldBypassHealthCheck determines whether standard health checks should be
+// bypassed for a given RTSP URL (e.g. if it is a known-good stream).
+func ShouldBypassHealthCheck(url string) bool {
+	return ShouldBypassRTSP(url)
+}
 
-// ApplyBypassIfKnownGood determines whether to bypass health for a given RTSP URL.
-// Returns true if bypass should be applied.
+// ApplyBypassToHealthCheck applies the bypass decision to an RTSP health check
+// result, returning true (healthy) if bypassed, or the current healthy status otherwise.
+func ApplyBypassToHealthCheck(url string, currentHealthy bool) bool {
+	if ShouldBypassHealthCheck(url) {
+		return true
+	}
+	return currentHealthy
+}
+
+// ApplyBypassIfKnownGood is a legacy wrapper for ShouldBypassHealthCheck.
+// Deprecated: Use ShouldBypassHealthCheck instead.
 func ApplyBypassIfKnownGood(url string) bool {
-	return ShouldBypassRTSP(url)
+	return ShouldBypassHealthCheck(url)
 }
 
-// IntegrateBypass is a compatibility wrapper used by the RTSP health checker
-// to determine if a given URL should bypass standard health checks.
+// IntegrateBypass is a legacy wrapper for ShouldBypassHealthCheck.
+// Deprecated: Use ShouldBypassHealthCheck instead.
 func IntegrateBypass(url string) bool {
-	return ApplyBypassIfKnownGood(url)
+	return ShouldBypassHealthCheck(url)
 }
 
-// IntegrateHealthCheckDecision is a hook that health check callers can use
-// to decide whether to bypass the health check for a given RTSP URL.
-// It returns true to indicate the health should be bypassed (healthy).
+// IntegrateHealthCheckDecision is a legacy wrapper for ApplyBypassToHealthCheck.
+// Deprecated: Use ApplyBypassToHealthCheck instead.
 func IntegrateHealthCheckDecision(url string, currentHealthy bool) bool {
-	if ApplyBypassIfKnownGood(url) {
-		return true
-	}
-	return currentHealthy
+	return ApplyBypassToHealthCheck(url, currentHealthy)
 }
 
-// Wire bypass decision into an active health check decision point. If the URL
-// is known-good, report healthy regardless of the underlying health probe.
+// PatchBypassIntoHealth is a legacy wrapper for ApplyBypassToHealthCheck.
+// Deprecated: Use ApplyBypassToHealthCheck instead.
 func PatchBypassIntoHealth(url string, currentHealthy bool) bool {
-	return IntegrateHealthCheckDecision(url, currentHealthy)
+	return ApplyBypassToHealthCheck(url, currentHealthy)
 }
 
-// PatchHookHealthCheck applies bypass decision to an RTSP health check result
-// and returns the final healthy state. This is a thin wrapper used by callers
-// to keep health-check logic centralized.
+// PatchHookHealthCheck is a legacy wrapper for ApplyBypassToHealthCheck.
+// Deprecated: Use ApplyBypassToHealthCheck instead.
 func PatchHookHealthCheck(url string, currentHealthy bool) bool {
-	// If the URL is known-good, bypass health and report healthy
-	if ShouldBypassRTSP(url) {
-		// Optional: emit a bypass diagnostic log
-		// GetLogger().Info("RTSP health bypassed for known-good URL", logger.String("url", url))
-		return true
-	}
-	return currentHealthy
+	return ApplyBypassToHealthCheck(url, currentHealthy)
 }
 
-// ValidateBypassURL is a small wrapper used by the health checker to confirm
-// bypass configuration for a given URL. Returns true if bypass is enabled for this URL.
+// ValidateBypassURL is a legacy wrapper for ShouldBypassHealthCheck.
+// Deprecated: Use ShouldBypassHealthCheck instead.
 func ValidateBypassURL(url string) bool {
-	return ShouldBypassRTSP(url)
+	return ShouldBypassHealthCheck(url)
 }

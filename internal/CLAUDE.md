@@ -9,8 +9,8 @@
 
 To build or run tests on Windows, CGO is required. The compiler and library paths are:
 - **MSYS2 UCRT64 GCC compiler**: `C:\msys64\ucrt64\bin` (must be added to `PATH`)
-- **TensorFlow Lite C Headers**: `C:\Users\Bcardi\src\tensorflow` (passed via `CGO_CFLAGS="-IC:\Users\Bcardi\src\tensorflow"`)
-- **TensorFlow Lite C DLL**: `F:\AntiGravity Sources\birdnet-go` (where `tensorflowlite_c.dll` is located; must be added to `PATH` to run the binary/tests)
+- **TensorFlow Lite C Headers**: Path containing headers, e.g. `%TENSORFLOW_PATH%` (passed via `CGO_CFLAGS="-I%TENSORFLOW_PATH%"`)
+- **TensorFlow Lite C DLL**: Path containing `tensorflowlite_c.dll`, e.g. `%TENSORFLOW_PATH%` (must be added to `PATH` to run the binary/tests)
 - **CGO Enabled**: `CGO_ENABLED="1"`
 
 To apply these settings in your shell:

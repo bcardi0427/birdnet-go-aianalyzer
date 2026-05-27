@@ -1039,7 +1039,6 @@ func getSectionValidators() map[string]sectionValidator {
 		SettingsSectionRealtime:  validateRealtimeSection,
 		"notification":           validateNotificationSection,
 		"alerting":               validateAlertingSection,
-		"ai":                     validateAISection,
 	}
 }
 
@@ -1545,20 +1544,7 @@ func validateAlertingSection(data json.RawMessage) error {
 	return nil
 }
 
-// validateAISection validates AI integration settings.
-func validateAISection(data json.RawMessage) error {
-	var aiSettings conf.AISettings
-	if err := json.Unmarshal(data, &aiSettings); err != nil {
-		return err
-	}
 
-	result := conf.ValidateAISettings(&aiSettings)
-	if !result.Valid {
-		return fmt.Errorf("ai settings errors: %s", strings.Join(result.Errors, "; "))
-	}
-
-	return nil
-}
 
 // getSettingsSection returns the requested section of settings
 func getSettingsSection(settings *conf.Settings, section string) (any, error) {

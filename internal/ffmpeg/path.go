@@ -5,6 +5,13 @@ import (
 	"path/filepath"
 )
 
+// Common Windows installation paths for FFmpeg.
+const (
+	winInstallPath1 = `C:\ffmpeg\bin\ffmpeg.exe`
+	winInstallPath2 = `C:\Program Files\FFmpeg\bin\ffmpeg.exe`
+	winInstallPath3 = `C:\Program Files (x86)\FFmpeg\bin\ffmpeg.exe`
+)
+
 // GetFFmpegPath returns the configured FFmpeg binary path.
 // It checks an environment variable first, then common install locations.
 func GetFFmpegPath() string {
@@ -15,9 +22,9 @@ func GetFFmpegPath() string {
 	}
 	// Common Windows install locations
 	candidates := []string{
-		`C:\ffmpeg\bin\ffmpeg.exe`,
-		`C:\Program Files\FFmpeg\bin\ffmpeg.exe`,
-		`C:\Program Files (x86)\FFmpeg\bin\ffmpeg.exe`,
+		winInstallPath1,
+		winInstallPath2,
+		winInstallPath3,
 	}
 	for _, c := range candidates {
 		if isExe(c) {
@@ -32,14 +39,23 @@ func isExe(path string) bool {
 	if path == "" {
 		return false
 	}
-	if fi, err := os.Stat(path); err == nil {
+
+	// Clean the path to resolve any traversal elements
+	cleaned := filepath.Clean(path)
+
+	// Validate against path traversal for relative paths
+	if !filepath.IsAbs(cleaned) && !filepath.IsLocal(cleaned) {
+		return false
+	}
+
+	if fi, err := os.Stat(cleaned); err == nil {
 		if fi.Mode().IsRegular() {
 			return true
 		}
-		// If path points to a file without execution bit, still consider as executable on Windows
 	}
-	// Try to resolve using filepath.Clean in case of quotes or spaces
-	if abs, err := filepath.Abs(path); err == nil {
+
+	// Try to resolve using absolute path in case of relative path checks
+	if abs, err := filepath.Abs(cleaned); err == nil {
 		if fi, err := os.Stat(abs); err == nil {
 			return fi.Mode().IsRegular()
 		}

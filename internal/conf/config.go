@@ -807,47 +807,17 @@ func (a *AISettings) MigrateAndSync(populateDefaults bool) {
 	// 1. Migrate legacy single provider configuration to provider-specific structure
 	switch provider {
 	case aiProviderGemini:
-		if a.Gemini.APIKey == "" && a.Gemini.APIKeyFile == "" && a.Gemini.BaseURL == "" && a.Gemini.Model == "" {
-			a.Gemini.APIKey = a.APIKey
-			a.Gemini.APIKeyFile = a.APIKeyFile
-			a.Gemini.BaseURL = a.BaseURL
-			a.Gemini.Model = a.Model
-		}
+		migrateSingleProvider(&a.Gemini, a.APIKey, a.APIKeyFile, a.BaseURL, a.Model)
 	case aiProviderOpenAI:
-		if a.OpenAI.APIKey == "" && a.OpenAI.APIKeyFile == "" && a.OpenAI.BaseURL == "" && a.OpenAI.Model == "" {
-			a.OpenAI.APIKey = a.APIKey
-			a.OpenAI.APIKeyFile = a.APIKeyFile
-			a.OpenAI.BaseURL = a.BaseURL
-			a.OpenAI.Model = a.Model
-		}
+		migrateSingleProvider(&a.OpenAI, a.APIKey, a.APIKeyFile, a.BaseURL, a.Model)
 	case aiProviderOpenRouter:
-		if a.OpenRouter.APIKey == "" && a.OpenRouter.APIKeyFile == "" && a.OpenRouter.BaseURL == "" && a.OpenRouter.Model == "" {
-			a.OpenRouter.APIKey = a.APIKey
-			a.OpenRouter.APIKeyFile = a.APIKeyFile
-			a.OpenRouter.BaseURL = a.BaseURL
-			a.OpenRouter.Model = a.Model
-		}
+		migrateSingleProvider(&a.OpenRouter, a.APIKey, a.APIKeyFile, a.BaseURL, a.Model)
 	case aiProviderOpenAICompatible:
-		if a.OpenAICompatible.APIKey == "" && a.OpenAICompatible.APIKeyFile == "" && a.OpenAICompatible.BaseURL == "" && a.OpenAICompatible.Model == "" {
-			a.OpenAICompatible.APIKey = a.APIKey
-			a.OpenAICompatible.APIKeyFile = a.APIKeyFile
-			a.OpenAICompatible.BaseURL = a.BaseURL
-			a.OpenAICompatible.Model = a.Model
-		}
+		migrateSingleProvider(&a.OpenAICompatible, a.APIKey, a.APIKeyFile, a.BaseURL, a.Model)
 	case aiProviderOllama:
-		if a.Ollama.APIKey == "" && a.Ollama.APIKeyFile == "" && a.Ollama.BaseURL == "" && a.Ollama.Model == "" {
-			a.Ollama.APIKey = a.APIKey
-			a.Ollama.APIKeyFile = a.APIKeyFile
-			a.Ollama.BaseURL = a.BaseURL
-			a.Ollama.Model = a.Model
-		}
+		migrateSingleProvider(&a.Ollama, a.APIKey, a.APIKeyFile, a.BaseURL, a.Model)
 	case aiProviderAnthropic:
-		if a.Anthropic.APIKey == "" && a.Anthropic.APIKeyFile == "" && a.Anthropic.BaseURL == "" && a.Anthropic.Model == "" {
-			a.Anthropic.APIKey = a.APIKey
-			a.Anthropic.APIKeyFile = a.APIKeyFile
-			a.Anthropic.BaseURL = a.BaseURL
-			a.Anthropic.Model = a.Model
-		}
+		migrateSingleProvider(&a.Anthropic, a.APIKey, a.APIKeyFile, a.BaseURL, a.Model)
 	}
 
 	// 2. Pre-populate defaults if fields are empty and requested
@@ -881,36 +851,34 @@ func (a *AISettings) MigrateAndSync(populateDefaults bool) {
 	// 3. Synchronize active provider settings to root fields
 	switch provider {
 	case aiProviderGemini:
-		a.APIKey = a.Gemini.APIKey
-		a.APIKeyFile = a.Gemini.APIKeyFile
-		a.BaseURL = a.Gemini.BaseURL
-		a.Model = a.Gemini.Model
+		syncActiveProvider(a, &a.Gemini)
 	case aiProviderOpenAI:
-		a.APIKey = a.OpenAI.APIKey
-		a.APIKeyFile = a.OpenAI.APIKeyFile
-		a.BaseURL = a.OpenAI.BaseURL
-		a.Model = a.OpenAI.Model
+		syncActiveProvider(a, &a.OpenAI)
 	case aiProviderOpenRouter:
-		a.APIKey = a.OpenRouter.APIKey
-		a.APIKeyFile = a.OpenRouter.APIKeyFile
-		a.BaseURL = a.OpenRouter.BaseURL
-		a.Model = a.OpenRouter.Model
+		syncActiveProvider(a, &a.OpenRouter)
 	case aiProviderOpenAICompatible:
-		a.APIKey = a.OpenAICompatible.APIKey
-		a.APIKeyFile = a.OpenAICompatible.APIKeyFile
-		a.BaseURL = a.OpenAICompatible.BaseURL
-		a.Model = a.OpenAICompatible.Model
+		syncActiveProvider(a, &a.OpenAICompatible)
 	case aiProviderOllama:
-		a.APIKey = a.Ollama.APIKey
-		a.APIKeyFile = a.Ollama.APIKeyFile
-		a.BaseURL = a.Ollama.BaseURL
-		a.Model = a.Ollama.Model
+		syncActiveProvider(a, &a.Ollama)
 	case aiProviderAnthropic:
-		a.APIKey = a.Anthropic.APIKey
-		a.APIKeyFile = a.Anthropic.APIKeyFile
-		a.BaseURL = a.Anthropic.BaseURL
-		a.Model = a.Anthropic.Model
+		syncActiveProvider(a, &a.Anthropic)
 	}
+}
+
+func migrateSingleProvider(p *AIProviderSettings, rootKey, rootKeyFile, rootBaseURL, rootModel string) {
+	if p.APIKey == "" && p.APIKeyFile == "" && p.BaseURL == "" && p.Model == "" {
+		p.APIKey = rootKey
+		p.APIKeyFile = rootKeyFile
+		p.BaseURL = rootBaseURL
+		p.Model = rootModel
+	}
+}
+
+func syncActiveProvider(a *AISettings, p *AIProviderSettings) {
+	a.APIKey = p.APIKey
+	a.APIKeyFile = p.APIKeyFile
+	a.BaseURL = p.BaseURL
+	a.Model = p.Model
 }
 
 

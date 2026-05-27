@@ -35,7 +35,9 @@ func TestValidateAISettings_DefaultProviderGeminiWhenEmpty(t *testing.T) {
 	result := ValidateAISettings(settings)
 	assert.True(t, result.Valid)
 
-	normalized := result.Normalized.(*AISettings)
+	normalized, ok := result.Normalized.(*AISettings)
+	require.True(t, ok)
+	require.NotNil(t, normalized)
 	assert.Equal(t, "gemini", normalized.Provider)
 }
 
@@ -101,7 +103,9 @@ func TestValidateAISettings_OllamaDoesNotRequireAPIKey(t *testing.T) {
 	result := ValidateAISettings(settings)
 	assert.True(t, result.Valid, "ollama should allow keyless configuration")
 
-	normalized := result.Normalized.(*AISettings)
+	normalized, ok := result.Normalized.(*AISettings)
+	require.True(t, ok)
+	require.NotNil(t, normalized)
 	assert.Equal(t, "http://localhost:11434/v1", normalized.BaseURL)
 }
 

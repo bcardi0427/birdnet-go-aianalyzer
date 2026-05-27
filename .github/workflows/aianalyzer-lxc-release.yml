@@ -40,18 +40,19 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
         with:
           go-version-file: go.mod
           check-latest: true
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "24"
           cache: npm
@@ -59,7 +60,7 @@ jobs:
 
       - name: Install Linux system dependencies
         if: matrix.os == 'ubuntu-24.04'
-        uses: awalsh128/cache-apt-pkgs-action@latest
+        uses: awalsh128/cache-apt-pkgs-action@2c09a5e66da6c8016428a2172bd76e5e4f14bb17 # latest (v1.5.3)
         with:
           packages: build-essential pkg-config gcc-aarch64-linux-gnu gcc-mingw-w64-x86-64
           version: 1.0
@@ -74,7 +75,7 @@ jobs:
           sudo ln -sf /usr/bin/aarch64-linux-gnu-gcc-13 /usr/bin/aarch64-linux-gnu-gcc
 
       - name: Install Task
-        uses: arduino/setup-task@v2
+        uses: arduino/setup-task@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.0.0
         with:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -146,7 +147,7 @@ jobs:
           tar czf ../birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz *
 
       - name: Publish LXC release assets
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
         with:
           tag_name: aianalyzer-lxc-latest
           name: AI Analyzer LXC Latest

@@ -4,7 +4,6 @@ package api
 import (
 	"context"
 	"errors"
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -16,6 +15,7 @@ import (
 	"github.com/tphakala/birdnet-go/internal/api/auth"
 	"github.com/tphakala/birdnet-go/internal/conf"
 	"github.com/tphakala/birdnet-go/internal/datastore/v2/repository"
+	interrors "github.com/tphakala/birdnet-go/internal/errors"
 	"github.com/tphakala/birdnet-go/internal/logger"
 	"github.com/tphakala/birdnet-go/internal/secrets"
 )
@@ -55,7 +55,7 @@ func (c *Controller) initAIRoutes() {
 	c.logInfoIfEnabled("AI routes initialized successfully")
 }
 
-// GetAISettings handles GET /api/v2/ai/settings
+// GetAISettings retrieves the current AI settings with API keys redacted.
 func (c *Controller) GetAISettings(ctx echo.Context) error {
 	c.logInfoIfEnabled("Getting AI settings",
 		logger.String("path", ctx.Request().URL.Path),
@@ -79,7 +79,8 @@ func (c *Controller) GetAISettings(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, settings)
 }
 
-// UpdateAISettings handles PATCH /api/v2/ai/settings
+// UpdateAISettings updates the AI settings, supporting legacy and new formats,
+// validating the settings and storing them.
 func (c *Controller) UpdateAISettings(ctx echo.Context) error {
 	c.logInfoIfEnabled("Updating AI settings",
 		logger.String("path", ctx.Request().URL.Path),
@@ -104,7 +105,10 @@ func (c *Controller) UpdateAISettings(ctx echo.Context) error {
 
 	current := c.getSettingsOrFallback()
 	if current == nil {
-		return c.HandleError(ctx, fmt.Errorf("settings not initialized"), "Failed to get settings", http.StatusInternalServerError)
+		return c.HandleError(ctx, interrors.Newf("settings not initialized").
+			Component("api").
+			Category(interrors.CategorySystem).
+			Build(), "Failed to get settings", http.StatusInternalServerError)
 	}
 
 	currentProvider := strings.TrimSpace(strings.ToLower(current.AI.Provider))
@@ -127,66 +131,9 @@ func (c *Controller) UpdateAISettings(ctx echo.Context) error {
 	keyAction := "saved"
 
 	if isLegacy {
-		// Legacy client: Restore root key from current if redacted
-		if update.APIKey == redactedValue {
-			if providerChanged {
-				// When provider changes, a redacted placeholder represents the previous
-				// provider's hidden key and must not be carried over to the new provider.
-				keyAction = "cleared_on_provider_change"
-				update.APIKey = ""
-			} else {
-				keyAction = "preserved"
-				update.APIKey = current.AI.APIKey
-			}
-		} else if update.APIKey == "" {
-			keyAction = "cleared"
-		}
-
-		// Perform migration/sync to populate active provider structure
-		update.MigrateAndSync(false)
-
-		// Restore all other (inactive) providers from current so we don't lose them
-		if incomingProvider != "gemini" { update.Gemini = current.AI.Gemini }
-		if incomingProvider != "openai" { update.OpenAI = current.AI.OpenAI }
-		if incomingProvider != "openrouter" { update.OpenRouter = current.AI.OpenRouter }
-		if incomingProvider != "openai-compatible" { update.OpenAICompatible = current.AI.OpenAICompatible }
-		if incomingProvider != "ollama" { update.Ollama = current.AI.Ollama }
-		if incomingProvider != "anthropic" { update.Anthropic = current.AI.Anthropic }
+		keyAction = restoreLegacyAISettings(&update, &current.AI, providerChanged, incomingProvider)
 	} else {
-		// New client: Restore redacted keys for each provider if redacted
-		if update.Gemini.APIKey == redactedValue {
-			update.Gemini.APIKey = current.AI.Gemini.APIKey
-		}
-		if update.OpenAI.APIKey == redactedValue {
-			update.OpenAI.APIKey = current.AI.OpenAI.APIKey
-		}
-		if update.OpenRouter.APIKey == redactedValue {
-			update.OpenRouter.APIKey = current.AI.OpenRouter.APIKey
-		}
-		if update.OpenAICompatible.APIKey == redactedValue {
-			update.OpenAICompatible.APIKey = current.AI.OpenAICompatible.APIKey
-		}
-		if update.Ollama.APIKey == redactedValue {
-			update.Ollama.APIKey = current.AI.Ollama.APIKey
-		}
-		if update.Anthropic.APIKey == redactedValue {
-			update.Anthropic.APIKey = current.AI.Anthropic.APIKey
-		}
-
-		// If a provider struct in update is completely empty (because the client
-		// omitted it in a partial payload), restore it from current.
-		isEmpty := func(p conf.AIProviderSettings) bool {
-			return p.APIKey == "" && p.APIKeyFile == "" && p.BaseURL == "" && p.Model == ""
-		}
-		if isEmpty(update.Gemini) { update.Gemini = current.AI.Gemini }
-		if isEmpty(update.OpenAI) { update.OpenAI = current.AI.OpenAI }
-		if isEmpty(update.OpenRouter) { update.OpenRouter = current.AI.OpenRouter }
-		if isEmpty(update.OpenAICompatible) { update.OpenAICompatible = current.AI.OpenAICompatible }
-		if isEmpty(update.Ollama) { update.Ollama = current.AI.Ollama }
-		if isEmpty(update.Anthropic) { update.Anthropic = current.AI.Anthropic }
-
-		// Sync the active provider settings to root fields of update
-		update.MigrateAndSync(false)
+		restoreNewAISettings(&update, &current.AI)
 	}
 
 	if strings.TrimSpace(update.BaseURL) == "" && strings.TrimSpace(current.AI.BaseURL) != "" {
@@ -256,7 +203,7 @@ func (c *Controller) UpdateAISettings(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, update)
 }
 
-// GetAIModels handles GET /api/v2/ai/models
+// GetAIModels fetches the list of available models from the configured AI provider.
 func (c *Controller) GetAIModels(ctx echo.Context) error {
 	c.logInfoIfEnabled("Fetching AI provider models",
 		logger.String("path", ctx.Request().URL.Path),
@@ -316,7 +263,7 @@ func (c *Controller) GetAIModels(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, providerModels)
 }
 
-// GetAIReport handles GET /api/v2/ai/report
+// GetAIReport generates or retrieves the daily bird detection report.
 func (c *Controller) GetAIReport(ctx echo.Context) error {
 	c.logInfoIfEnabled("Generating AI report",
 		logger.String("path", ctx.Request().URL.Path),
@@ -358,6 +305,8 @@ func (c *Controller) GetAIReport(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, report)
 }
 
+// isExplicitlyAuthenticated checks if the request is authenticated with basic auth,
+// token, oauth, browser session, or API key.
 func (c *Controller) isExplicitlyAuthenticated(ctx echo.Context) bool {
 	if c.authService != nil && !c.authService.IsAuthRequired(ctx) {
 		return true
@@ -374,4 +323,67 @@ func (c *Controller) isExplicitlyAuthenticated(ctx echo.Context) bool {
 	default:
 		return false
 	}
+}
+
+// restoreLegacyAISettings handles restoring redacted root API keys and synchronizing
+// settings for legacy clients. It returns the action taken on the key.
+func restoreLegacyAISettings(update, current *conf.AISettings, providerChanged bool, incomingProvider string) string {
+	keyAction := "saved"
+	if update.APIKey == redactedValue {
+		if providerChanged {
+			keyAction = "cleared_on_provider_change"
+			update.APIKey = ""
+		} else {
+			keyAction = "preserved"
+			update.APIKey = current.APIKey
+		}
+	} else if update.APIKey == "" {
+		keyAction = "cleared"
+	}
+
+	update.MigrateAndSync(false)
+
+	if incomingProvider != "gemini" { update.Gemini = current.Gemini }
+	if incomingProvider != "openai" { update.OpenAI = current.OpenAI }
+	if incomingProvider != "openrouter" { update.OpenRouter = current.OpenRouter }
+	if incomingProvider != "openai-compatible" { update.OpenAICompatible = current.OpenAICompatible }
+	if incomingProvider != "ollama" { update.Ollama = current.Ollama }
+	if incomingProvider != "anthropic" { update.Anthropic = current.Anthropic }
+
+	return keyAction
+}
+
+// restoreNewAISettings restores redacted API keys for each provider and handles
+// merging empty provider structures for newer clients.
+func restoreNewAISettings(update, current *conf.AISettings) {
+	if update.Gemini.APIKey == redactedValue {
+		update.Gemini.APIKey = current.Gemini.APIKey
+	}
+	if update.OpenAI.APIKey == redactedValue {
+		update.OpenAI.APIKey = current.OpenAI.APIKey
+	}
+	if update.OpenRouter.APIKey == redactedValue {
+		update.OpenRouter.APIKey = current.OpenRouter.APIKey
+	}
+	if update.OpenAICompatible.APIKey == redactedValue {
+		update.OpenAICompatible.APIKey = current.OpenAICompatible.APIKey
+	}
+	if update.Ollama.APIKey == redactedValue {
+		update.Ollama.APIKey = current.Ollama.APIKey
+	}
+	if update.Anthropic.APIKey == redactedValue {
+		update.Anthropic.APIKey = current.Anthropic.APIKey
+	}
+
+	isEmpty := func(p conf.AIProviderSettings) bool {
+		return p.APIKey == "" && p.APIKeyFile == "" && p.BaseURL == "" && p.Model == ""
+	}
+	if isEmpty(update.Gemini) { update.Gemini = current.Gemini }
+	if isEmpty(update.OpenAI) { update.OpenAI = current.OpenAI }
+	if isEmpty(update.OpenRouter) { update.OpenRouter = current.OpenRouter }
+	if isEmpty(update.OpenAICompatible) { update.OpenAICompatible = current.OpenAICompatible }
+	if isEmpty(update.Ollama) { update.Ollama = current.Ollama }
+	if isEmpty(update.Anthropic) { update.Anthropic = current.Anthropic }
+
+	update.MigrateAndSync(false)
 }

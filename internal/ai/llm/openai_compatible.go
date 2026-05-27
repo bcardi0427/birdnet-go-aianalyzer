@@ -21,19 +21,19 @@ type openAICompatibleProvider struct {
 	log          logger.Logger
 }
 
-func newOpenAIProvider(apiKey string, log logger.Logger) (Provider, error) {
+func newOpenAIProvider(apiKey string, log logger.Logger) (*openAICompatibleProvider, error) {
 	return newOpenAICompatible(ProviderOpenAI, DefaultOpenAIBaseURL, apiKey, DefaultOpenAIModel, log), nil
 }
 
-func newOpenRouterProvider(apiKey string, log logger.Logger) (Provider, error) {
+func newOpenRouterProvider(apiKey string, log logger.Logger) (*openAICompatibleProvider, error) {
 	return newOpenAICompatible(ProviderOpenRouter, DefaultOpenRouterBaseURL, apiKey, DefaultOpenRouterModel, log), nil
 }
 
-func newOpenAICompatibleProvider(baseURL, apiKey string, log logger.Logger) (Provider, error) {
+func newOpenAICompatibleProvider(baseURL, apiKey string, log logger.Logger) (*openAICompatibleProvider, error) {
 	return newOpenAICompatible(ProviderOpenAICompatible, baseURL, apiKey, "", log), nil
 }
 
-func newOllamaProvider(baseURL, apiKey string, log logger.Logger) (Provider, error) {
+func newOllamaProvider(baseURL, apiKey string, log logger.Logger) (*openAICompatibleProvider, error) {
 	if strings.TrimSpace(baseURL) == "" {
 		baseURL = DefaultOllamaBaseURL
 	}

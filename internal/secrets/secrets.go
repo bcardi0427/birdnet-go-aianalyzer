@@ -165,6 +165,9 @@ func ReadFile(path string) (string, error) {
 //
 // Returns the resolved secret value or an error.
 func Resolve(filePath, value string) (string, error) {
+	filePath = strings.TrimSpace(filePath)
+	value = strings.TrimSpace(value)
+
 	// Priority 1: File-based secret
 	if filePath != "" {
 		secret, err := ReadFile(filePath)
@@ -189,14 +192,17 @@ func Resolve(filePath, value string) (string, error) {
 
 // ResolveWithSource resolves a secret and returns its source class.
 func ResolveWithSource(filePath, value string) (secret string, source SecretSource, err error) {
+	filePath = strings.TrimSpace(filePath)
+	value = strings.TrimSpace(value)
+
 	secret, err = Resolve(filePath, value)
 	if err != nil {
 		return "", SecretSourceNone, err
 	}
-	if strings.TrimSpace(filePath) != "" {
+	if filePath != "" {
 		return secret, SecretSourceFile, nil
 	}
-	if strings.TrimSpace(value) != "" {
+	if value != "" {
 		return secret, SecretSourceEnvOrText, nil
 	}
 	return "", SecretSourceNone, nil
@@ -210,6 +216,9 @@ func IsEnvReference(value string) bool {
 // MustResolve is like Resolve but returns an error if no secret is provided.
 // Use this when a secret is required (not optional).
 func MustResolve(fieldName, filePath, value string) (string, error) {
+	filePath = strings.TrimSpace(filePath)
+	value = strings.TrimSpace(value)
+
 	secret, err := Resolve(filePath, value)
 	if err != nil {
 		return "", err

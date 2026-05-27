@@ -794,6 +794,13 @@ func (c *Controller) Shutdown() {
 		c.detectionCache.Flush()
 	}
 
+	// Close SecureFS instance to release file/directory handles and prevent resource locking
+	if c.SFS != nil {
+		if err := c.SFS.Close(); err != nil {
+			GetLogger().Error("Error closing SecureFS", logger.Error(err))
+		}
+	}
+
 	c.Debug("API Controller shutdown complete")
 }
 

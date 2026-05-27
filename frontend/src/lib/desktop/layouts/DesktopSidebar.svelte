@@ -964,7 +964,7 @@ Performance Optimizations:
                           : 'text-[var(--color-base-content)]/80 hover:text-[var(--color-base-content)] hover:menu-hover'
                       )}
                     >
-                      <Users class="size-4 shrink-0" />Visitors
+                      <Users class="size-4 shrink-0" />{t('settings.sections.visitors')}
                     </button>
                     <button
                       onclick={() => navigate(navigationUrls.settingsSupport)}
@@ -1126,7 +1126,7 @@ Performance Optimizations:
                         : 'text-[var(--color-base-content)]/80 hover:text-[var(--color-base-content)] hover:menu-hover'
                     )}
                   >
-                    <Users class="size-4 shrink-0" />Visitors
+                    <Users class="size-4 shrink-0" />{t('settings.sections.visitors')}
                   </button>
                   <button
                     onclick={() => navigate(navigationUrls.settingsSupport)}

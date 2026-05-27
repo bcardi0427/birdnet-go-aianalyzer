@@ -15,10 +15,10 @@ import (
 )
 
 const (
-	defaultVisitorLimit = 100
-	maxVisitorLimit     = 500
-	aiReportPath        = "/ui/ai-analysis"
-	visitorLogPath      = "logs/visitor.log"
+	defaultVisitorLimit  = 100
+	maxVisitorLimit      = 500
+	aiReportPath         = "/ui/ai-analysis"
+	defaultVisitorLogPath = "logs/visitor.log"
 )
 
 func (c *Controller) initVisitorRoutes() {
@@ -71,15 +71,18 @@ type visitorLogResponse struct {
 	LogPath             string            `json:"logPath"`
 }
 
+// GetVisitorLog retrieves the recent visitor log entries, parsing the log file
+// configured in the logging settings.
 func (c *Controller) GetVisitorLog(ctx echo.Context) error {
 	limit := parseVisitorLimit(ctx.QueryParam("limit"))
+	logPath := c.getVisitorLogPath()
 
-	entries, err := readRecentVisitorEntries(visitorLogPath, limit)
+	entries, err := readRecentVisitorEntries(logPath, limit)
 	if err != nil {
 		if os.IsNotExist(err) {
 			return ctx.JSON(http.StatusOK, visitorLogResponse{
 				Entries: []visitorLogEntry{},
-				LogPath: visitorLogPath,
+				LogPath: logPath,
 			})
 		}
 		return ctx.JSON(http.StatusInternalServerError, map[string]string{
@@ -87,9 +90,10 @@ func (c *Controller) GetVisitorLog(ctx echo.Context) error {
 		})
 	}
 
-	return ctx.JSON(http.StatusOK, buildVisitorLogResponse(entries, visitorLogPath))
+	return ctx.JSON(http.StatusOK, buildVisitorLogResponse(entries, logPath))
 }
 
+// RecordVisitorPageView logs a page view event from the frontend SPA.
 func (c *Controller) RecordVisitorPageView(ctx echo.Context) error {
 	path := strings.TrimSpace(ctx.QueryParam("path"))
 	if !isAllowedVisitorPagePath(path) {
@@ -122,6 +126,17 @@ func (c *Controller) RecordVisitorPageView(ctx echo.Context) error {
 	)
 
 	return ctx.NoContent(http.StatusNoContent)
+}
+
+// getVisitorLogPath returns the path to the visitor log file from settings
+// or falls back to the default path.
+func (c *Controller) getVisitorLogPath() string {
+	if c.Settings != nil {
+		if out, ok := c.Settings.Logging.ModuleOutputs["visitor"]; ok && out.FilePath != "" {
+			return out.FilePath
+		}
+	}
+	return defaultVisitorLogPath
 }
 
 func sanitizeVisitorReferer(value string) string {

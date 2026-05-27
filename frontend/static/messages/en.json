@@ -1670,7 +1670,7 @@
   },
   "aiAnalysis": {
     "title": "AI Analysis",
-    "badge": "Gemini report",
+    "badge": "AI report",
     "description": "A generated summary of the last 24 hours of detected bird activity, formatted for quick review.",
     "loading": "Generating report...",
     "empty": "No AI report is available yet.",
@@ -1731,19 +1731,19 @@
     },
     "ai": {
       "title": "AI Reports",
-      "description": "Configure Gemini-powered daily reports for detected bird activity.",
+      "description": "Configure AI-powered daily reports for detected bird activity.",
       "saved": "AI settings saved",
       "configuration": {
-        "title": "Gemini Configuration",
-        "description": "Connect BirdNET-Go to Gemini and tune report generation."
+        "title": "AI Provider Configuration",
+        "description": "Connect BirdNET-Go to an AI provider and tune report generation."
       },
       "fields": {
         "enabled": "Enable AI reports",
         "enabledHelp": "When enabled, BirdNET-Go can generate daily markdown summaries from recent detections.",
-        "apiKey": "Gemini API key",
+        "apiKey": "API key",
         "apiKeyHelp": "Stored with the server settings and redacted after saving.",
         "model": "Model",
-        "modelPlaceholder": "Select a Gemini model",
+        "modelPlaceholder": "Select a model",
         "fallbackModel": "Model ID",
         "fallbackModelHelp": "Use this field when the model list is unavailable or you want to enter an exact model ID.",
         "cacheHours": "Cache hours",
@@ -1758,8 +1758,8 @@
       "errors": {
         "loadFailed": "Failed to load AI settings",
         "saveFailed": "Failed to save AI settings",
-        "modelsFailed": "Failed to load Gemini models",
-        "apiKeyRequiredForModels": "Enter and save a Gemini API key before loading models."
+        "modelsFailed": "Failed to load models",
+        "apiKeyRequiredForModels": "Enter and save an API key before loading models."
       }
     },
     "main": {

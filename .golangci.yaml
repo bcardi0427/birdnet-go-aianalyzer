@@ -1,4 +1,4 @@
-# version: "2"
+version: "2"
 output:
   sort-results: true
   sort-order:

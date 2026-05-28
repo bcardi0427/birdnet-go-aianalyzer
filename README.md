@@ -1,12 +1,18 @@
-# BirdNET-Go
+# BirdNET-Go (bcardi0427 Fork)
 
-## AI Analyzer Fork (bcardi0427)
+This repository is a comprehensive reprogramming of BirdNET-Go, featuring the **AI Analyzer** and other custom enhancements. Originally based on `tphakala/birdnet-go`.
 
-This repository is the AI Analyzer fork of BirdNET-Go, based on `tphakala/birdnet-go`.
+<p align="center">
+  <img src="doc/BirdNET-Go-AI-Analyzer-logo.png" width="450" />
+</p>
 
-Fork README: [AI Analyzer documentation](docs/aianalyzer/README.md)
+## AI Analyzer
 
-Quick install for this fork:
+The AI Analyzer is a major component of this fork. 
+
+
+
+Quick install for the AI Analyzer:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/install-aianalyzer.sh -o install-aianalyzer.sh
@@ -22,12 +28,9 @@ Fork-specific documentation:
 This fork remains under the upstream BirdNET-Go license and privacy expectations. Review scripts before running them, especially when installing directly from GitHub.
 
 <p align="center">
-  <img src="doc/BirdNET-Go-logo.webp" />
-</p>
-<p align="center">
   <!-- Project Status -->
-  <a href="https://github.com/tphakala/birdnet-go/releases">
-    <img src="https://img.shields.io/github/v/release/tphakala/birdnet-go?include_prereleases&style=flat-square&color=blue">
+  <a href="https://github.com/bcardi0427/birdnet-go-aianalyzer/releases">
+    <img src="https://img.shields.io/github/v/release/bcardi0427/birdnet-go-aianalyzer?include_prereleases&style=flat-square&color=blue">
   </a>
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
     <img src="https://badgen.net/badge/License/CC-BY-NC-SA%204.0/green">
@@ -40,28 +43,21 @@ This fork remains under the upstream BirdNET-Go license and privacy expectations
   <a href="https://golang.org">
     <img src="https://img.shields.io/badge/Built%20with-Go-teal?style=flat-square&logo=go">
   </a>
-  <a href="https://goreportcard.com/report/github.com/tphakala/birdnet-go">
-    <img src="https://goreportcard.com/badge/github.com/tphakala/birdnet-go?style=flat-square">
+  <a href="https://goreportcard.com/report/github.com/bcardi0427/birdnet-go-aianalyzer">
+    <img src="https://goreportcard.com/badge/github.com/bcardi0427/birdnet-go-aianalyzer?style=flat-square">
   </a>
 
   <br>
 
   <!-- Community -->
-  <a href="https://github.com/tphakala/birdnet-go/network/members">
-    <img src="https://img.shields.io/github/forks/tphakala/birdnet-go?style=flat-square&color=purple">
-  <a href="https://github.com/tphakala/birdnet-go/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/tphakala/birdnet-go?style=flat-square&color=orange">
+  <a href="https://github.com/bcardi0427/birdnet-go-aianalyzer/network/members">
+    <img src="https://img.shields.io/github/forks/bcardi0427/birdnet-go-aianalyzer?style=flat-square&color=purple">
   </a>
+  <a href="https://github.com/bcardi0427/birdnet-go-aianalyzer/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/bcardi0427/birdnet-go-aianalyzer?style=flat-square&color=orange">
   </a>
-  <a href="https://github.com/tphakala/birdnet-go/issues">
-    <img src="https://img.shields.io/github/issues/tphakala/birdnet-go?style=flat-square&color=red">
-  </a>
-  <a href="https://discord.gg/gcSCFGUtsd">
-    <img src="https://img.shields.io/discord/1298738918239100939?style=flat-square&logo=discord&color=5865F2&label=Discord">
-  </a>
-
-  <a href="https://coderabbit.ai">
-    <img src="https://img.shields.io/coderabbit/prs/github/tphakala/birdnet-go?utm_source=oss&utm_medium=github&utm_campaign=tphakala%2Fbirdnet-go&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews">
+  <a href="https://github.com/bcardi0427/birdnet-go-aianalyzer/issues">
+    <img src="https://img.shields.io/github/issues/bcardi0427/birdnet-go-aianalyzer?style=flat-square&color=red">
   </a>
 </p>
 
@@ -90,7 +86,7 @@ BirdNET-Go is an AI solution for continuous avian monitoring and identification
 Quick install script for Debian, Ubuntu and Raspberry Pi OS based systems:
 
 ```bash
-curl -fsSL https://github.com/tphakala/birdnet-go/raw/main/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/install.sh -o install.sh
 bash ./install.sh
 ```
 
@@ -102,8 +98,8 @@ For developers who want to contribute or build from source:
 
 ```bash
 # Clone the repository
-git clone https://github.com/tphakala/birdnet-go.git
-cd birdnet-go
+git clone https://github.com/bcardi0427/birdnet-go-aianalyzer.git
+cd birdnet-go-aianalyzer
 
 # Install Task (if not already installed)
 # Linux: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
@@ -132,13 +128,19 @@ The `setup-dev` task will automatically install:
 
 <img src="doc/BirdNET-Go-dashboard.webp" />
 
+### Local Hostname Access
+
+To access the dashboard via a clean local hostname rather than `localhost:8080`, you can resolve the application at **`http://birdnet-go.local:8080`**:
+- **Windows**: Run the **`setup_hosts.ps1`** script as Administrator (it will request elevation to add `birdnet-go.local` to your local hosts file).
+- **Linux/macOS**: Running the `install-aianalyzer.sh` wrapper script with `sudo` will configure this automatically. Alternatively, manually add `127.0.0.1 birdnet-go.local` to your `/etc/hosts` file.
+
 For detailed installation instructions, see the [installation documentation](doc/wiki/installation.md). For securing your BirdNET-Go installation, see the [security documentation](doc/wiki/security.md). See [recommended hardware](doc/wiki/hardware.md) for optimal performance.
 
 There is more detailed usage documentation at [Wiki](doc/wiki/guide.md)
 
 ## Community
 
-Join our [Discord server](https://discord.gg/gcSCFGUtsd) for support, discussions, and updates about BirdNET-Go!
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/bcardi0427/birdnet-go-aianalyzer/issues).
 
 ## Related Projects
 
@@ -167,38 +169,6 @@ Join our [Discord server](https://discord.gg/gcSCFGUtsd) for support, discussion
 
 - [Perch](https://github.com/arunrajiah/perch) - Open-source Android/iOS companion app. Connects to your BirdNET-Go station via the BirdWeather API. Live detection feed, audio playback, species browser, 14-day chart, and local notifications for favourite species. MIT licensed.
 
-## Contributing
-
-**Want to contribute?** We welcome contributions from the community! 🎉
-
-For comprehensive contributing guidelines, development setup, and workflow documentation, see [**CONTRIBUTING.md**](CONTRIBUTING.md).
-
-### Quick Start for Contributors
-
-**Experienced developers** can get started in 5 minutes:
-
-```bash
-git clone https://github.com/tphakala/birdnet-go.git && cd birdnet-go
-task setup-dev  # One command installs everything (Go, Node.js, tools, git hooks)
-air realtime    # Start developing with hot reload
-```
-
-**New to the project?** The [contributing guide](CONTRIBUTING.md) includes:
-
-- 📋 [TL;DR Quick Start](CONTRIBUTING.md#tldr---quick-start-for-experienced-developers) - 5-minute setup
-- 🔧 [Automated Environment Setup](CONTRIBUTING.md#development-environment-setup) - `task setup-dev` handles everything
-- 📖 [Development Workflow](CONTRIBUTING.md#development-workflow) - Hot reload, git hooks, testing
-- ⚖️ [License & Privacy](CONTRIBUTING.md#license-and-legal) - CC BY-NC-SA 4.0, privacy-by-design
-- 💬 [Discord Community](https://discord.gg/gcSCFGUtsd) - Get help and discuss features
-
-All contributions must follow:
-
-- ✅ Privacy-by-design principles
-- ✅ Code quality standards (automated via git hooks)
-- ✅ CC BY-NC-SA 4.0 license terms
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for complete details.
-
 ## Data Sources
 
 ### Taxonomy Data
@@ -220,11 +190,9 @@ Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 
 ## Authors
 
-Tomi P. Hakala
+Jerry Haygood (Bcardi0427)
 
-Contributions by Hampus Carlsson, Jan Vrska, @twt--, @aster1sk, @hoover67
-
-Please let me know if you are missing from contributors list!
+Original BirdNET-Go codebase by Tomi P. Hakala.
 
 BirdNET AI model by the K. Lisa Yang Center for Conservation Bioacoustics at the Cornell Lab of Ornithology in collaboration with Chemnitz University of Technology. Stefan Kahl, Connor Wood, Maximilian Eibl, Holger Klinck.
 

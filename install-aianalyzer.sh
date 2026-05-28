@@ -16,3 +16,18 @@ echo "  ${INSTALL_URL}"
 
 curl -fsSL "${INSTALL_URL}" -o "${TMP_INSTALL_SCRIPT}"
 bash "${TMP_INSTALL_SCRIPT}" "$@"
+
+# Add local hostname resolution helper for birdnet-go.local
+if [ "$(id -u)" -eq 0 ]; then
+    if ! grep -q "birdnet-go.local" /etc/hosts; then
+        echo "Adding birdnet-go.local to /etc/hosts..."
+        echo "127.0.0.1 birdnet-go.local" >> /etc/hosts
+        echo "Successfully added local hostname resolution!"
+    fi
+else
+    echo ""
+    echo "Tip: To access the dashboard via http://birdnet-go.local:8080,"
+    echo "     re-run this installer with sudo, or manually add this line to your /etc/hosts file:"
+    echo "     127.0.0.1 birdnet-go.local"
+fi
+

@@ -1,0 +1,291 @@
+FAIL	github.com/tphakala/birdnet-go [setup failed]
+# github.com/tphakala/birdnet-go
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+# github.com/tphakala/birdnet-go/cmd
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+FAIL	github.com/tphakala/birdnet-go/cmd [setup failed]
+# github.com/tphakala/birdnet-go/cmd/benchmark
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+FAIL	github.com/tphakala/birdnet-go/cmd/benchmark [setup failed]
+# github.com/tphakala/birdnet-go/cmd/rangefilter
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+FAIL	github.com/tphakala/birdnet-go/cmd/rangefilter [setup failed]
+# github.com/tphakala/birdnet-go/cmd/serve
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+FAIL	github.com/tphakala/birdnet-go/cmd/serve [setup failed]
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+# github.com/tphakala/birdnet-go/internal/analysis
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+FAIL	github.com/tphakala/birdnet-go/internal/analysis [setup failed]
+# github.com/tphakala/birdnet-go/internal/analysis/processor
+FAIL	github.com/tphakala/birdnet-go/internal/analysis/processor [setup failed]
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+# github.com/tphakala/birdnet-go/internal/api
+FAIL	github.com/tphakala/birdnet-go/internal/api [setup failed]
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+# github.com/tphakala/birdnet-go/internal/api/v2
+FAIL	github.com/tphakala/birdnet-go/internal/api/v2 [setup failed]
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+FAIL	github.com/tphakala/birdnet-go/internal/classifier [setup failed]
+# github.com/tphakala/birdnet-go/internal/classifier
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+# github.com/tphakala/birdnet-go/internal/imageprovider
+FAIL	github.com/tphakala/birdnet-go/internal/imageprovider [setup failed]
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+FAIL	github.com/tphakala/birdnet-go/internal/inference/tflite [setup failed]
+# github.com/tphakala/birdnet-go/internal/inference/tflite
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+# github.com/tphakala/birdnet-go/internal/mqtt
+FAIL	github.com/tphakala/birdnet-go/internal/mqtt [setup failed]
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+FAIL	github.com/tphakala/birdnet-go/internal/observability [setup failed]
+# github.com/tphakala/birdnet-go/internal/observability
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+FAIL	github.com/tphakala/birdnet-go/internal/serviceapi [setup failed]
+# github.com/tphakala/birdnet-go/internal/serviceapi
+package github.com/tphakala/birdnet-go
+	imports github.com/tphakala/birdnet-go/cmd
+	imports github.com/tphakala/birdnet-go/cmd/benchmark
+	imports github.com/tphakala/birdnet-go/internal/classifier
+	imports github.com/tphakala/birdnet-go/internal/inference/tflite
+	imports github.com/tphakala/go-tflite/delegates/xnnpack: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\tphakala\go-tflite@v0.2.2-0.20260514101223-29408e53fff7\delegates\xnnpack
+github.com/yalue/onnxruntime_go: build constraints exclude all Go files in C:\Users\Bcardi\go\pkg\mod\github.com\yalue\onnxruntime_go@v1.30.1
+?   	github.com/tphakala/birdnet-go/cmd/authors	[no test files]
+?   	github.com/tphakala/birdnet-go/cmd/license	[no test files]
+?   	github.com/tphakala/birdnet-go/cmd/notify	[no test files]
+?   	github.com/tphakala/birdnet-go/cmd/support	[no test files]
+# github.com/tphakala/birdnet-go/internal/datastore/dbstats
+internal\datastore\dbstats\callbacks.go:81:44: undefined: sqlite3.Error
+internal\datastore\dbstats\callbacks.go:82:36: undefined: sqlite3.ErrBusy
+internal\datastore\dbstats\callbacks.go:82:73: undefined: sqlite3.ErrLocked
+?   	github.com/tphakala/birdnet-go/frontend	[no test files]
+?   	github.com/tphakala/birdnet-go/frontend/node_modules/flatted/golang/pkg/flatted	[no test files]
+FAIL	github.com/tphakala/birdnet-go/internal/ai [build failed]
+FAIL	github.com/tphakala/birdnet-go/internal/alerting [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/analysis/jobqueue	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/analysis/species [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/api/auth	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/api/middleware	(cached) [no tests to run]
+?   	github.com/tphakala/birdnet-go/internal/api/v2/dto	[no test files]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/app	(cached) [no tests to run]
+# github.com/tphakala/birdnet-go/internal/audiocore
+internal\audiocore\capabilities.go:137:25: undefined: malgo.InitContext
+internal\audiocore\capabilities.go:137:69: undefined: malgo.ContextConfig
+internal\audiocore\capabilities.go:159:26: undefined: malgo.DeviceInfo
+internal\audiocore\capabilities.go:226:41: undefined: malgo.DataFormat
+internal\audiocore\capabilities.go:251:34: undefined: malgo.AllocatedContext
+internal\audiocore\capabilities.go:251:70: undefined: malgo.DeviceInfo
+internal\audiocore\capabilities.go:258:8: undefined: freeDeviceIDPtr
+internal\audiocore\capture.go:61:40: undefined: malgo.DeviceInfo
+internal\audiocore\capture.go:156:50: undefined: malgo.DeviceInfo
+internal\audiocore\capture.go:167:38: undefined: malgo.AllocatedContext
+internal\audiocore\capabilities.go:258:8: too many errors
+FAIL	github.com/tphakala/birdnet-go/internal/audiocore [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/audiocore/buffer	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/audiocore/convert	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/audiocore/engine [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/audiocore/equalizer	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/audiocore/ffmpeg [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/audiocore/readfile	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/audiocore/resample	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/audiocore/schedule	(cached) [no tests to run]
+# github.com/tphakala/birdnet-go/internal/backup/sources
+internal\backup\sources\sqlite.go:343:95: undefined: sqlite3.SQLiteBackup
+internal\backup\sources\sqlite.go:345:27: dstDb.Backup undefined (type *sqlite3.SQLiteConn has no field or method Backup)
+internal\backup\sources\sqlite.go:379:84: undefined: sqlite3.SQLiteBackup
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/audiocore/soundlevel	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/audiocore/ultrasonic	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/backup	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/backup/sources [build failed]
+?   	github.com/tphakala/birdnet-go/internal/backup/targets	[no test files]
+FAIL	github.com/tphakala/birdnet-go/internal/birdweather [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/classifier/inferencestats	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/conf	(cached) [no tests to run]
+?   	github.com/tphakala/birdnet-go/internal/cpuspec	[no test files]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore [build failed]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore/dbstats [build failed]
+?   	github.com/tphakala/birdnet-go/internal/datastore/entities	[no test files]
+?   	github.com/tphakala/birdnet-go/internal/datastore/mapper	[no test files]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore/mocks [build failed]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore/v2 [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/datastore/v2/entities	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore/v2/labels [build failed]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore/v2/migration [build failed]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore/v2/migration/testutil [build failed]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore/v2/repository [build failed]
+FAIL	github.com/tphakala/birdnet-go/internal/datastore/v2only [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/detection	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/diskmanager	(cached) [no tests to run]
+?   	github.com/tphakala/birdnet-go/internal/diskmanager/mocks	[no test files]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/ebird	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/errors	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/events	(cached) [no tests to run]
+?   	github.com/tphakala/birdnet-go/internal/events/mocks	[no test files]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/httpclient	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/inference [build failed]
+FAIL	github.com/tphakala/birdnet-go/internal/inference/onnx [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/logger	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/logger/reader	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/monitor [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/notification	(cached) [no tests to run]
+?   	github.com/tphakala/birdnet-go/internal/notification/mocks	[no test files]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/observability/metrics	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/privacy	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/restart	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/secrets	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/securefs	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/security	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/spectrogram [build failed]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/suncalc	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/support	(cached) [no tests to run]
+?   	github.com/tphakala/birdnet-go/internal/sysinfo	[no test files]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/telemetry	(cached) [no tests to run]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/templatefuncs	(cached) [no tests to run]
+?   	github.com/tphakala/birdnet-go/internal/testutil	[no test files]
+?   	github.com/tphakala/birdnet-go/internal/testutil/containers	[no test files]
+testing: warning: no tests to run
+PASS
+ok  	github.com/tphakala/birdnet-go/internal/tls	(cached) [no tests to run]
+FAIL	github.com/tphakala/birdnet-go/internal/weather [build failed]
+?   	github.com/tphakala/birdnet-go/scripts	[no test files]
+FAIL	github.com/tphakala/birdnet-go/tools/dbexport [build failed]
+FAIL

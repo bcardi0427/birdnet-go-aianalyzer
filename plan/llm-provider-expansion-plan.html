@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>llm-provider-expansion-plan.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="llm-provider-expansion-plan-for-ai-analyzer">LLM Provider Expansion Plan for AI Analyzer</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#llm-provider-expansion-plan-for-ai-analyzer">LLM Provider Expansion Plan for AI Analyzer</a>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#goal">Goal</a></li>
+<li><a href="#deliverables">Deliverables</a></li>
+<li><a href="#success-criteria">Success Criteria</a></li>
+<li><a href="#current-state-summary">Current State Summary</a></li>
+<li><a href="#proposed-architecture">Proposed Architecture</a></li>
+<li><a href="#proposed-configuration-shape">Proposed Configuration Shape</a>
+<ul>
+<li><a href="#provider-ids">Provider IDs</a></li>
+<li><a href="#provider-defaults">Provider Defaults</a></li>
+</ul>
+</li>
+<li><a href="#implementation-phases">Implementation Phases</a>
+<ul>
+<li><a href="#phase-1-add-provider-neutral-settings">Phase 1: Add Provider-Neutral Settings</a></li>
+<li><a href="#phase-2-update-validation-and-normalization">Phase 2: Update Validation and Normalization</a></li>
+<li><a href="#phase-3-introduce-an-llm-provider-abstraction">Phase 3: Introduce an LLM Provider Abstraction</a></li>
+<li><a href="#phase-4-implement-provider-adapters">Phase 4: Implement Provider Adapters</a>
+<ul>
+<li><a href="#gemini-adapter">Gemini Adapter</a></li>
+<li><a href="#openai-adapter">OpenAI Adapter</a></li>
+<li><a href="#openai-compatible-adapter">OpenAI-Compatible Adapter</a></li>
+<li><a href="#ollama-adapter">Ollama Adapter</a></li>
+<li><a href="#anthropic-adapter">Anthropic Adapter</a></li>
+</ul>
+</li>
+<li><a href="#phase-5-refactor-report-generation">Phase 5: Refactor Report Generation</a></li>
+<li><a href="#phase-6-update-cache-compatibility">Phase 6: Update Cache Compatibility</a></li>
+<li><a href="#phase-7-update-api-routes">Phase 7: Update API Routes</a></li>
+<li><a href="#phase-8-update-frontend-settings-ui">Phase 8: Update Frontend Settings UI</a></li>
+<li><a href="#phase-9-testing-plan">Phase 9: Testing Plan</a>
+<ul>
+<li><a href="#backend-config-tests">Backend Config Tests</a></li>
+<li><a href="#backend-api-tests">Backend API Tests</a></li>
+<li><a href="#report-service-tests">Report Service Tests</a></li>
+<li><a href="#provider-adapter-tests">Provider Adapter Tests</a></li>
+<li><a href="#frontend-tests">Frontend Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#documentation-plan">Documentation Plan</a>
+<ul>
+<li><a href="#example-gemini">Example: Gemini</a></li>
+<li><a href="#example-openai">Example: OpenAI</a></li>
+<li><a href="#example-openai-compatible">Example: OpenAI-Compatible</a></li>
+<li><a href="#example-ollama">Example: Ollama</a></li>
+<li><a href="#example-anthropic">Example: Anthropic</a></li>
+</ul>
+</li>
+<li><a href="#dependency-strategy">Dependency Strategy</a></li>
+<li><a href="#migration-and-compatibility-notes">Migration and Compatibility Notes</a></li>
+<li><a href="#open-questions">Open Questions</a></li>
+<li><a href="#recommended-first-implementation-scope">Recommended First Implementation Scope</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="goal">Goal</h2>
+<p>Add provider-neutral LLM support to the AI Analyzer daily report feature so BirdNET-Go can use more providers than the current Gemini-only implementation.</p>
+<p>Initial provider targets:</p>
+<ul>
+<li>Google Gemini, preserving current behavior.</li>
+<li>OpenAI.</li>
+<li>OpenAI-compatible providers such as LiteLLM, LM Studio, LocalAI, OpenRouter-style gateways, or self-hosted compatible APIs.</li>
+<li>Ollama.</li>
+<li>Anthropic.</li>
+</ul>
+<h2 id="deliverables">Deliverables</h2>
+<ul>
+<li>Provider-neutral backend configuration for AI Analyzer settings.</li>
+<li>A common LLM provider interface used by the daily report service.</li>
+<li>Provider adapters for Gemini, OpenAI, OpenAI-compatible APIs, Ollama, and Anthropic.</li>
+<li>Provider-aware model listing or graceful fallback behavior where model listing is unsupported.</li>
+<li>Provider-aware AI Settings UI updates.</li>
+<li>Backward-compatible migration/defaulting for existing Gemini users.</li>
+<li>Updated tests for config validation, API behavior, report generation, cache invalidation, and frontend settings behavior.</li>
+<li>Documentation with setup examples for each supported provider.</li>
+</ul>
+<h2 id="success-criteria">Success Criteria</h2>
+<ul>
+<li>Existing Gemini configurations continue to work without user action.</li>
+<li><code>ai.provider</code> defaults to <code>gemini</code> when omitted.</li>
+<li>Users can select a provider in the AI Settings UI.</li>
+<li>API keys remain redacted in API responses and logs.</li>
+<li>Saving a redacted/masked key preserves the stored secret.</li>
+<li>OpenAI-compatible and Ollama providers support configurable base URLs.</li>
+<li>AI report cache invalidates when provider, base URL, model, system prompt, report window, cache duration, weather state, or eBird state changes.</li>
+<li><code>internal/ai/service.go</code> no longer creates provider-specific clients directly.</li>
+<li>Tests pass for backend and frontend code touched by the implementation.</li>
+</ul>
+<h2 id="current-state-summary">Current State Summary</h2>
+<p>The current implementation is Gemini-specific in several places:</p>
+<ul>
+<li><code>internal/ai/service.go</code>
+<ul>
+<li>Uses <code>google.golang.org/genai</code> directly.</li>
+<li>Resolves only a Gemini API key via <code>resolveGeminiAPIKey()</code>.</li>
+<li>Uses <code>defaultGeminiModel</code> and <code>geminiRequestTimeout</code> constants.</li>
+<li>Logs Gemini narrative-generation failures.</li>
+<li>Cache validation only includes model, prompt, report days, cache hours, AI enabled, weather enabled, and eBird enabled.</li>
+</ul>
+</li>
+<li><code>internal/conf/config.go</code>
+<ul>
+<li><code>AISettings</code> has no provider or base URL field.</li>
+<li>Existing fields are <code>Enabled</code>, <code>APIKey</code>, <code>APIKeyFile</code>, <code>Model</code>, <code>ReportDays</code>, <code>CacheHours</code>, and <code>SystemPrompt</code>.</li>
+</ul>
+</li>
+<li><code>internal/conf/validate_ai.go</code>
+<ul>
+<li>Validation messages mention Gemini directly.</li>
+<li>API key and model are required whenever AI is enabled.</li>
+</ul>
+</li>
+<li><code>internal/api/v2/ai.go</code>
+<ul>
+<li><code>/api/v2/ai/models</code> creates a Gemini client directly.</li>
+<li>Logs use <code>gemini_api_key</code>.</li>
+<li>Error responses mention Gemini API keys.</li>
+</ul>
+</li>
+<li><code>frontend/src/lib/utils/settingsApi.ts</code>
+<ul>
+<li><code>AISettings</code> lacks provider and base URL fields.</li>
+</ul>
+</li>
+<li><code>frontend/src/lib/desktop/features/settings/pages/AISettingsPage.svelte</code>
+<ul>
+<li>Uses Gemini-specific labels, placeholders, and connection-test copy.</li>
+<li>Default model is <code>gemini-2.5-flash</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="proposed-architecture">Proposed Architecture</h2>
+<p>The target architecture separates UI/API concerns, report generation, and provider-specific LLM transport code. The daily report service should only build report facts/prompts and call a provider-neutral interface.</p>
+<pre><code class="language-mermaid"><div class="mermaid">flowchart TD
+    User[User] --> UI[AI Settings UI\nAIAnalysisPage]
+    UI -->|GET/PATCH settings| SettingsAPI[/api/v2/ai/settings/]
+    UI -->|GET models| ModelsAPI[/api/v2/ai/models/]
+    UI -->|GET report| ReportAPI[/api/v2/ai/report/]
+
+    SettingsAPI --> Conf[conf.AISettings\nprovider, apiKey, baseUrl, model]
+    ModelsAPI --> ProviderFactory[llm.NewProvider]
+    ReportAPI --> ReportService[internal/ai.ReportService]
+
+    ReportService --> Repos[Detection, Weather, Label, eBird repositories]
+    ReportService --> PromptBuilder[Stats + Prompt Builder]
+    PromptBuilder --> ProviderFactory
+
+    ProviderFactory --> Gemini[Gemini Adapter\ngoogle.golang.org/genai]
+    ProviderFactory --> OpenAI[OpenAI Adapter\n/v1 chat or responses]
+    ProviderFactory --> Compatible[OpenAI-Compatible Adapter\nconfigurable baseUrl]
+    ProviderFactory --> Ollama[Ollama Adapter\n/v1 or native API]
+    ProviderFactory --> Anthropic[Anthropic Adapter\nMessages API]
+
+    Gemini --> LLMs[External or Local LLM Provider]
+    OpenAI --> LLMs
+    Compatible --> LLMs
+    Ollama --> LLMs
+    Anthropic --> LLMs
+
+    LLMs --> Narrative[Generated Narrative]
+    Narrative --> Sanitizer[Narrative Sanitizer]
+    Sanitizer --> Cache[AI Report Cache\nprovider + model + baseUrl aware]
+    Cache --> ReportAPI
+</div></code></pre>
+<p>Key boundaries:</p>
+<ul>
+<li><code>internal/api/v2/ai.go</code> handles HTTP, settings redaction, validation responses, and endpoint auth rules.</li>
+<li><code>internal/ai/service.go</code> handles report facts, prompts, cache, fallback narrative, and sanitization.</li>
+<li><code>internal/ai/llm/*</code> handles provider-specific request mapping, model listing, and response parsing.</li>
+<li><code>internal/conf/*</code> handles provider-neutral settings, defaults, and validation.</li>
+</ul>
+<h2 id="proposed-configuration-shape">Proposed Configuration Shape</h2>
+<p>Use one active provider at a time with a unified credential field. This keeps the migration small and preserves the existing AI Settings flow.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">type</span> AISettings <span class="hljs-keyword">struct</span> {
+    Enabled      <span class="hljs-type">bool</span>   <span class="hljs-string">`yaml:&quot;enabled&quot; json:&quot;enabled&quot;`</span>
+    Provider     <span class="hljs-type">string</span> <span class="hljs-string">`yaml:&quot;provider&quot; json:&quot;provider&quot;`</span>
+    APIKey       <span class="hljs-type">string</span> <span class="hljs-string">`yaml:&quot;apikey&quot; json:&quot;apiKey&quot;`</span>
+    APIKeyFile   <span class="hljs-type">string</span> <span class="hljs-string">`yaml:&quot;apikeyfile&quot; json:&quot;apiKeyFile&quot;`</span>
+    BaseURL      <span class="hljs-type">string</span> <span class="hljs-string">`yaml:&quot;baseurl&quot; json:&quot;baseUrl&quot;`</span>
+    Model        <span class="hljs-type">string</span> <span class="hljs-string">`yaml:&quot;model&quot; json:&quot;model&quot;`</span>
+    ReportDays   <span class="hljs-type">int</span>    <span class="hljs-string">`yaml:&quot;reportdays&quot; json:&quot;reportDays&quot;`</span>
+    CacheHours   <span class="hljs-type">int</span>    <span class="hljs-string">`yaml:&quot;cachehours&quot; json:&quot;cacheHours&quot;`</span>
+    SystemPrompt <span class="hljs-type">string</span> <span class="hljs-string">`yaml:&quot;systemprompt&quot; json:&quot;systemPrompt&quot;`</span>
+}
+</div></code></pre>
+<h3 id="provider-ids">Provider IDs</h3>
+<p>Use stable lowercase provider IDs:</p>
+<table>
+<thead>
+<tr>
+<th>Provider ID</th>
+<th>Label</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gemini</code></td>
+<td>Google Gemini</td>
+<td>Backward-compatible default.</td>
+</tr>
+<tr>
+<td><code>openai</code></td>
+<td>OpenAI</td>
+<td>Uses OpenAI-hosted API.</td>
+</tr>
+<tr>
+<td><code>openai-compatible</code></td>
+<td>OpenAI-compatible</td>
+<td>Requires configurable <code>baseUrl</code>.</td>
+</tr>
+<tr>
+<td><code>ollama</code></td>
+<td>Ollama</td>
+<td>Local-first provider. Should not require an API key by default.</td>
+</tr>
+<tr>
+<td><code>anthropic</code></td>
+<td>Anthropic</td>
+<td>Uses Anthropic Messages API.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="provider-defaults">Provider Defaults</h3>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Default model</th>
+<th>Default base URL</th>
+<th>API key required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gemini</code></td>
+<td><code>gemini-2.5-flash</code></td>
+<td>SDK default</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>openai</code></td>
+<td><code>gpt-4o-mini</code> or current preferred small model</td>
+<td><code>https://api.openai.com/v1</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>openai-compatible</code></td>
+<td>User supplied</td>
+<td>Required</td>
+<td>Usually yes</td>
+</tr>
+<tr>
+<td><code>ollama</code></td>
+<td><code>llama3.2</code> or user supplied</td>
+<td><code>http://localhost:11434/v1</code> if using OpenAI-compatible mode</td>
+<td>No by default</td>
+</tr>
+<tr>
+<td><code>anthropic</code></td>
+<td><code>claude-3-5-haiku-latest</code> or current preferred small model</td>
+<td>API default</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementation-phases">Implementation Phases</h2>
+<h3 id="phase-1-add-provider-neutral-settings">Phase 1: Add Provider-Neutral Settings</h3>
+<p>Files likely affected:</p>
+<ul>
+<li><code>internal/conf/config.go</code></li>
+<li><code>internal/conf/defaults.go</code></li>
+<li><code>internal/conf/config_yaml_tags_test.go</code></li>
+<li><code>frontend/src/lib/utils/settingsApi.ts</code></li>
+</ul>
+<p>Tasks:</p>
+<ol>
+<li>Add <code>Provider</code> and <code>BaseURL</code> fields to <code>conf.AISettings</code>.</li>
+<li>Add default values:
+<ul>
+<li><code>ai.provider</code>: <code>gemini</code></li>
+<li><code>ai.baseurl</code>: empty for Gemini/OpenAI/Anthropic unless a provider-specific default is applied at runtime.</li>
+<li><code>ai.reportdays</code>: existing default <code>1</code>.</li>
+<li><code>ai.cachehours</code>: existing effective default <code>4</code>.</li>
+</ul>
+</li>
+<li>Update YAML tag tests to verify new fields round-trip.</li>
+<li>Update frontend <code>AISettings</code> TypeScript interface:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">AISettings</span> {
+  <span class="hljs-attr">enabled</span>: <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-attr">provider</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">apiKey</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">apiKeyFile</span>?: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">baseUrl</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">model</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">reportDays</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">cacheHours</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">systemPrompt</span>: <span class="hljs-built_in">string</span>;
+}
+</div></code></pre>
+<p>Backward compatibility requirement:</p>
+<ul>
+<li>Existing configs without <code>ai.provider</code> must behave as Gemini configs.</li>
+</ul>
+<h3 id="phase-2-update-validation-and-normalization">Phase 2: Update Validation and Normalization</h3>
+<p>Files likely affected:</p>
+<ul>
+<li><code>internal/conf/validate_ai.go</code></li>
+<li><code>internal/conf/validate.go</code></li>
+<li>new or existing <code>internal/conf/*_test.go</code></li>
+</ul>
+<p>Tasks:</p>
+<ol>
+<li>Add provider validation against a known provider map.</li>
+<li>Normalize empty provider to <code>gemini</code>.</li>
+<li>Normalize provider IDs with <code>strings.TrimSpace</code> and lowercase.</li>
+<li>Require model when AI is enabled.</li>
+<li>Require API key or API key file for:
+<ul>
+<li><code>gemini</code></li>
+<li><code>openai</code></li>
+<li><code>openai-compatible</code>, unless explicitly allowing keyless local gateways</li>
+<li><code>anthropic</code></li>
+</ul>
+</li>
+<li>Do not require an API key for <code>ollama</code> by default.</li>
+<li>Require or default base URL for:
+<ul>
+<li><code>openai-compatible</code>: require explicit <code>baseUrl</code>.</li>
+<li><code>ollama</code>: default to <code>http://localhost:11434/v1</code> if using the OpenAI-compatible endpoint approach.</li>
+</ul>
+</li>
+<li>Replace Gemini-specific validation messages with provider-aware messages.</li>
+</ol>
+<p>Example validation messages:</p>
+<ul>
+<li><code>AI provider must be one of: gemini, openai, openai-compatible, ollama, anthropic</code></li>
+<li><code>AI provider API key is required for openai when AI is enabled</code></li>
+<li><code>AI model is required when AI is enabled</code></li>
+<li><code>AI base URL is required for openai-compatible when AI is enabled</code></li>
+</ul>
+<h3 id="phase-3-introduce-an-llm-provider-abstraction">Phase 3: Introduce an LLM Provider Abstraction</h3>
+<p>Add a small package:</p>
+<pre class="hljs"><code><div>internal/ai/llm/
+</div></code></pre>
+<p>Suggested files:</p>
+<pre class="hljs"><code><div>internal/ai/llm/provider.go
+internal/ai/llm/factory.go
+internal/ai/llm/gemini.go
+internal/ai/llm/openai.go
+internal/ai/llm/openai_compatible.go
+internal/ai/llm/ollama.go
+internal/ai/llm/anthropic.go
+</div></code></pre>
+<p>Core interface:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">type</span> Provider <span class="hljs-keyword">interface</span> {
+    Generate(ctx context.Context, req GenerateRequest) (GenerateResponse, <span class="hljs-type">error</span>)
+    ListModels(ctx context.Context) ([]Model, <span class="hljs-type">error</span>)
+}
+
+<span class="hljs-keyword">type</span> GenerateRequest <span class="hljs-keyword">struct</span> {
+    SystemPrompt <span class="hljs-type">string</span>
+    Prompt       <span class="hljs-type">string</span>
+    Model        <span class="hljs-type">string</span>
+}
+
+<span class="hljs-keyword">type</span> GenerateResponse <span class="hljs-keyword">struct</span> {
+    Text <span class="hljs-type">string</span>
+}
+
+<span class="hljs-keyword">type</span> Model <span class="hljs-keyword">struct</span> {
+    ID          <span class="hljs-type">string</span>
+    DisplayName <span class="hljs-type">string</span>
+    Description <span class="hljs-type">string</span>
+}
+</div></code></pre>
+<p>Factory:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewProvider</span><span class="hljs-params">(settings conf.AISettings, apiKey <span class="hljs-type">string</span>, log logger.Logger)</span></span> (Provider, <span class="hljs-type">error</span>)
+</div></code></pre>
+<p>Design constraints:</p>
+<ul>
+<li>Provider adapters own request/response mapping.</li>
+<li><code>internal/ai/service.go</code> should only depend on the interface and factory.</li>
+<li>No provider adapter may log API keys.</li>
+<li>Prefer <code>net/http</code> for OpenAI-compatible, Ollama, and Anthropic to avoid unnecessary SDK dependency growth.</li>
+<li>Keep existing Gemini SDK unless there is a strong reason to replace it.</li>
+</ul>
+<h3 id="phase-4-implement-provider-adapters">Phase 4: Implement Provider Adapters</h3>
+<h4 id="gemini-adapter">Gemini Adapter</h4>
+<ul>
+<li>Move existing <code>google.golang.org/genai</code> client creation into <code>internal/ai/llm/gemini.go</code>.</li>
+<li>Preserve current Gemini behavior and model listing.</li>
+<li>Keep default model <code>gemini-2.5-flash</code>.</li>
+</ul>
+<h4 id="openai-adapter">OpenAI Adapter</h4>
+<ul>
+<li>Use the OpenAI chat/completions API or responses API.</li>
+<li>Prefer plain <code>net/http</code> unless an SDK significantly reduces risk.</li>
+<li>Default base URL: <code>https://api.openai.com/v1</code>.</li>
+<li>Support model listing via <code>/models</code> if practical.</li>
+</ul>
+<h4 id="openai-compatible-adapter">OpenAI-Compatible Adapter</h4>
+<ul>
+<li>Use the same implementation as OpenAI, but require configurable <code>BaseURL</code>.</li>
+<li>Avoid OpenAI-only assumptions where possible.</li>
+<li>Allow model listing via <code>/models</code>, but tolerate providers that do not support it.</li>
+</ul>
+<h4 id="ollama-adapter">Ollama Adapter</h4>
+<p>Two possible approaches:</p>
+<ol>
+<li>Prefer OpenAI-compatible mode against <code>http://localhost:11434/v1</code> to reuse OpenAI-compatible code.</li>
+<li>Use native Ollama APIs:
+<ul>
+<li>Generate: <code>/api/generate</code> or <code>/api/chat</code></li>
+<li>Models: <code>/api/tags</code></li>
+</ul>
+</li>
+</ol>
+<p>Recommended starting point:</p>
+<ul>
+<li>Use OpenAI-compatible mode first for smaller implementation.</li>
+<li>Add native mode later if needed.</li>
+</ul>
+<h4 id="anthropic-adapter">Anthropic Adapter</h4>
+<ul>
+<li>Use Anthropic Messages API.</li>
+<li>Map system prompt to Anthropic's system field.</li>
+<li>Map the report prompt into a user message.</li>
+<li>Support model listing only if the API endpoint is available and stable; otherwise return configured/default model as a fallback.</li>
+</ul>
+<h3 id="phase-5-refactor-report-generation">Phase 5: Refactor Report Generation</h3>
+<p>Files likely affected:</p>
+<ul>
+<li><code>internal/ai/service.go</code></li>
+<li>new <code>internal/ai/llm/*</code></li>
+</ul>
+<p>Tasks:</p>
+<ol>
+<li>Rename Gemini-specific constants/functions:
+<ul>
+<li><code>defaultGeminiModel</code> → provider-specific default helper.</li>
+<li><code>geminiRequestTimeout</code> → <code>llmRequestTimeout</code>.</li>
+<li><code>resolveGeminiAPIKey()</code> → <code>resolveProviderAPIKey()</code>.</li>
+</ul>
+</li>
+<li>Add helpers:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">effectiveProvider</span><span class="hljs-params">(provider <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">effectiveModel</span><span class="hljs-params">(settings conf.AISettings)</span></span> <span class="hljs-type">string</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">effectiveBaseURL</span><span class="hljs-params">(settings conf.AISettings)</span></span> <span class="hljs-type">string</span>
+</div></code></pre>
+<ol start="3">
+<li>Keep stats computation, prompt construction, report rendering, and sanitization in <code>ReportService</code>.</li>
+<li>Replace direct Gemini call with provider interface call:</li>
+</ol>
+<pre class="hljs"><code><div>provider, err := llm.NewProvider(settings.AI, apiKey, s.log)
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>, fmt.Errorf(<span class="hljs-string">&quot;failed to create AI provider %q: %w&quot;</span>, providerID, err)
+}
+
+response, err := provider.Generate(requestCtx, llm.GenerateRequest{
+    SystemPrompt: basePrompt,
+    Prompt:       prompt,
+    Model:        effectiveModel(settings.AI),
+})
+</div></code></pre>
+<ol start="5">
+<li>Update fallback logs:</li>
+</ol>
+<pre class="hljs"><code><div>s.log.Warn(<span class="hljs-string">&quot;AI narrative generation failed, using fallback&quot;</span>,
+    logger.String(<span class="hljs-string">&quot;provider&quot;</span>, providerID),
+    logger.String(<span class="hljs-string">&quot;model&quot;</span>, model),
+    logger.Error(err),
+)
+</div></code></pre>
+<h3 id="phase-6-update-cache-compatibility">Phase 6: Update Cache Compatibility</h3>
+<p>Files likely affected:</p>
+<ul>
+<li><code>internal/ai/service.go</code></li>
+</ul>
+<p>Extend cache metadata:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">type</span> reportCacheFile <span class="hljs-keyword">struct</span> {
+    Report            <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;report&quot;`</span>
+    GeneratedAt       <span class="hljs-type">int64</span>  <span class="hljs-string">`json:&quot;generatedAt&quot;`</span>
+    Provider          <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;provider&quot;`</span>
+    Model             <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;model&quot;`</span>
+    BaseURL           <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;baseUrl&quot;`</span>
+    SystemPrompt      <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;systemPrompt&quot;`</span>
+    ReportDays        <span class="hljs-type">int</span>    <span class="hljs-string">`json:&quot;reportDays&quot;`</span>
+    CacheHours        <span class="hljs-type">int</span>    <span class="hljs-string">`json:&quot;cacheHours&quot;`</span>
+    AIEnabled         <span class="hljs-type">bool</span>   <span class="hljs-string">`json:&quot;aiEnabled&quot;`</span>
+    WeatherEnabled    <span class="hljs-type">bool</span>   <span class="hljs-string">`json:&quot;weatherEnabled&quot;`</span>
+    EBirdEnabled      <span class="hljs-type">bool</span>   <span class="hljs-string">`json:&quot;ebirdEnabled&quot;`</span>
+    GeneratedUnixHour <span class="hljs-type">int64</span>  <span class="hljs-string">`json:&quot;generatedUnixHour&quot;`</span>
+}
+</div></code></pre>
+<p>Cache invalidation should include:</p>
+<ul>
+<li>Effective provider.</li>
+<li>Effective model.</li>
+<li>Effective base URL.</li>
+<li>System prompt.</li>
+<li>Report days.</li>
+<li>Cache hours.</li>
+<li>AI enabled.</li>
+<li>Weather enabled.</li>
+<li>eBird enabled.</li>
+</ul>
+<h3 id="phase-7-update-api-routes">Phase 7: Update API Routes</h3>
+<p>Files likely affected:</p>
+<ul>
+<li><code>internal/api/v2/ai.go</code></li>
+<li><code>internal/api/v2/ai_test.go</code></li>
+</ul>
+<p>Keep existing endpoints stable:</p>
+<ul>
+<li><code>GET /api/v2/ai/settings</code></li>
+<li><code>PATCH /api/v2/ai/settings</code></li>
+<li><code>GET /api/v2/ai/models</code></li>
+<li><code>GET /api/v2/ai/report</code></li>
+</ul>
+<p>Tasks:</p>
+<ol>
+<li>Make <code>/api/v2/ai/models</code> provider-aware via <code>llm.NewProvider</code>.</li>
+<li>Resolve the API key based on the same unified <code>apiKey</code> / <code>apiKeyFile</code> fields.</li>
+<li>Permit keyless model listing for Ollama if possible.</li>
+<li>Return a stable response shape:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;gpt-4o-mini&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;displayName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;gpt-4o-mini&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;OpenAI model&quot;</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+</div></code></pre>
+<ol start="5">
+<li>For providers that cannot list models, either:
+<ul>
+<li>return the configured model/default model as a single-item list, or</li>
+<li>return a structured error that the UI handles gracefully.</li>
+</ul>
+</li>
+</ol>
+<p>Recommended first implementation:</p>
+<ul>
+<li>Return configured/default model as fallback to keep the UI simple.</li>
+</ul>
+<ol start="6">
+<li>Rename log field <code>gemini_api_key</code> to <code>ai_api_key</code> and include <code>provider</code>.</li>
+<li>Replace Gemini-specific error messages in report generation with provider-aware messages.</li>
+<li>Continue preserving redacted API keys during PATCH.</li>
+<li>Consider preserving redacted <code>apiKeyFile</code> too if the UI starts exposing it through the AI-specific settings endpoint.</li>
+</ol>
+<h3 id="phase-8-update-frontend-settings-ui">Phase 8: Update Frontend Settings UI</h3>
+<p>Files likely affected:</p>
+<ul>
+<li><code>frontend/src/lib/utils/settingsApi.ts</code></li>
+<li><code>frontend/src/lib/desktop/features/settings/pages/AISettingsPage.svelte</code></li>
+<li><code>frontend/src/lib/i18n/messages.ts</code></li>
+<li><code>frontend/src/lib/i18n/types.generated.ts</code></li>
+</ul>
+<p>Tasks:</p>
+<ol>
+<li>Add provider options:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> providerOptions = [
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;gemini&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Google Gemini&#x27;</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;openai&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;OpenAI&#x27;</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;openai-compatible&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;OpenAI-compatible&#x27;</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;ollama&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Ollama&#x27;</span> },
+  { <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;anthropic&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Anthropic&#x27;</span> },
+];
+</div></code></pre>
+<ol start="2">
+<li>Add a provider dropdown near the enabled checkbox.</li>
+<li>Add a base URL field:
+<ul>
+<li>visible and required for <code>openai-compatible</code>.</li>
+<li>visible for <code>ollama</code>, defaulting to <code>http://localhost:11434/v1</code>.</li>
+<li>hidden or advanced for Gemini/OpenAI/Anthropic.</li>
+</ul>
+</li>
+<li>Make API key help provider-aware:
+<ul>
+<li>Gemini: Google AI Studio API key.</li>
+<li>OpenAI: OpenAI API key.</li>
+<li>OpenAI-compatible: provider gateway key, if required.</li>
+<li>Ollama: optional or not required for local default.</li>
+<li>Anthropic: Anthropic API key.</li>
+</ul>
+</li>
+<li>Replace UI copy:
+<ul>
+<li><code>Test Gemini Connection</code> → <code>Test AI Provider Connection</code>.</li>
+<li><code>Checks your API key and verifies Gemini is reachable.</code> → provider-neutral copy.</li>
+<li><code>Gemini API key is missing</code> → <code>AI provider API key is missing</code> or provider-aware copy.</li>
+</ul>
+</li>
+<li>Update model placeholder based on provider.</li>
+<li>When provider changes, optionally update model/base URL to provider defaults if current values are empty or still equal to previous provider defaults.</li>
+<li>Ensure model refresh gracefully handles fallback model lists.</li>
+</ol>
+<h3 id="phase-9-testing-plan">Phase 9: Testing Plan</h3>
+<h4 id="backend-config-tests">Backend Config Tests</h4>
+<p>Add or update tests for:</p>
+<ul>
+<li>Empty provider defaults to Gemini.</li>
+<li>Unknown provider fails validation.</li>
+<li>Remote providers require API key or API key file when enabled.</li>
+<li>Ollama does not require API key by default.</li>
+<li>OpenAI-compatible requires base URL when enabled.</li>
+<li>Report days and cache hours retain existing normalization behavior.</li>
+<li>YAML tags round-trip <code>provider</code> and <code>baseUrl</code>.</li>
+</ul>
+<h4 id="backend-api-tests">Backend API Tests</h4>
+<p>Update <code>internal/api/v2/ai_test.go</code>:</p>
+<ul>
+<li><code>GET /api/v2/ai/settings</code> redacts API key and includes provider/base URL.</li>
+<li><code>PATCH /api/v2/ai/settings</code> preserves redacted API key.</li>
+<li><code>PATCH /api/v2/ai/settings</code> saves provider, base URL, and model.</li>
+<li>Disabled AI allows missing key/model as before.</li>
+<li>Validation errors are provider-aware and not Gemini-specific except when provider is Gemini.</li>
+</ul>
+<h4 id="report-service-tests">Report Service Tests</h4>
+<p>Add tests for:</p>
+<ul>
+<li>Selected provider receives the generated prompt.</li>
+<li>Provider errors trigger fallback narrative and skip cache write.</li>
+<li>Cache invalidates on provider change.</li>
+<li>Cache invalidates on base URL change.</li>
+<li>Cache invalidates on model change.</li>
+</ul>
+<p>Consider injecting a provider factory into <code>ReportService</code> for testability instead of constructing providers directly inside <code>generateNarrative()</code>.</p>
+<h4 id="provider-adapter-tests">Provider Adapter Tests</h4>
+<p>Use <code>httptest</code> for HTTP-based providers:</p>
+<ul>
+<li>OpenAI request shape and response parsing.</li>
+<li>OpenAI-compatible base URL handling.</li>
+<li>Ollama request shape if native mode is used.</li>
+<li>Anthropic request shape and response parsing.</li>
+<li>Error response mapping.</li>
+<li>Timeout/context cancellation behavior.</li>
+</ul>
+<h4 id="frontend-tests">Frontend Tests</h4>
+<p>Add or update tests for:</p>
+<ul>
+<li><code>AISettings</code> type includes <code>provider</code> and <code>baseUrl</code>.</li>
+<li>Provider dropdown renders expected options.</li>
+<li>Base URL field visibility changes based on provider.</li>
+<li>Test connection copy is provider-neutral.</li>
+<li>API key requirement hints are provider-aware.</li>
+</ul>
+<h2 id="documentation-plan">Documentation Plan</h2>
+<p>Update:</p>
+<ul>
+<li><code>docs/aianalyzer/README.md</code></li>
+<li>Optionally add a dedicated provider setup page under <code>docs/aianalyzer/</code>.</li>
+</ul>
+<p>Document:</p>
+<ul>
+<li>Provider selection overview.</li>
+<li>Supported provider IDs.</li>
+<li>Model selection behavior.</li>
+<li>Cache behavior.</li>
+<li>Secret handling recommendations.</li>
+<li>YAML examples.</li>
+</ul>
+<h3 id="example-gemini">Example: Gemini</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">ai:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">provider:</span> <span class="hljs-string">gemini</span>
+  <span class="hljs-attr">apikey:</span> <span class="hljs-string">${GEMINI_API_KEY}</span>
+  <span class="hljs-attr">model:</span> <span class="hljs-string">gemini-2.5-flash</span>
+  <span class="hljs-attr">reportdays:</span> <span class="hljs-number">1</span>
+  <span class="hljs-attr">cachehours:</span> <span class="hljs-number">4</span>
+</div></code></pre>
+<h3 id="example-openai">Example: OpenAI</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">ai:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">provider:</span> <span class="hljs-string">openai</span>
+  <span class="hljs-attr">apikey:</span> <span class="hljs-string">${OPENAI_API_KEY}</span>
+  <span class="hljs-attr">model:</span> <span class="hljs-string">gpt-4o-mini</span>
+  <span class="hljs-attr">reportdays:</span> <span class="hljs-number">1</span>
+  <span class="hljs-attr">cachehours:</span> <span class="hljs-number">4</span>
+</div></code></pre>
+<h3 id="example-openai-compatible">Example: OpenAI-Compatible</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">ai:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">provider:</span> <span class="hljs-string">openai-compatible</span>
+  <span class="hljs-attr">apikey:</span> <span class="hljs-string">${OPENAI_COMPATIBLE_API_KEY}</span>
+  <span class="hljs-attr">baseurl:</span> <span class="hljs-string">http://localhost:4000/v1</span>
+  <span class="hljs-attr">model:</span> <span class="hljs-string">my-model</span>
+  <span class="hljs-attr">reportdays:</span> <span class="hljs-number">1</span>
+  <span class="hljs-attr">cachehours:</span> <span class="hljs-number">4</span>
+</div></code></pre>
+<h3 id="example-ollama">Example: Ollama</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">ai:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">provider:</span> <span class="hljs-string">ollama</span>
+  <span class="hljs-attr">baseurl:</span> <span class="hljs-string">http://localhost:11434/v1</span>
+  <span class="hljs-attr">model:</span> <span class="hljs-string">llama3.2</span>
+  <span class="hljs-attr">reportdays:</span> <span class="hljs-number">1</span>
+  <span class="hljs-attr">cachehours:</span> <span class="hljs-number">4</span>
+</div></code></pre>
+<h3 id="example-anthropic">Example: Anthropic</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">ai:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">provider:</span> <span class="hljs-string">anthropic</span>
+  <span class="hljs-attr">apikey:</span> <span class="hljs-string">${ANTHROPIC_API_KEY}</span>
+  <span class="hljs-attr">model:</span> <span class="hljs-string">claude-3-5-haiku-latest</span>
+  <span class="hljs-attr">reportdays:</span> <span class="hljs-number">1</span>
+  <span class="hljs-attr">cachehours:</span> <span class="hljs-number">4</span>
+</div></code></pre>
+<h2 id="dependency-strategy">Dependency Strategy</h2>
+<ul>
+<li>Keep <code>google.golang.org/genai</code> for Gemini because it is already in use.</li>
+<li>Prefer standard-library <code>net/http</code> for OpenAI, OpenAI-compatible, Ollama, and Anthropic adapters.</li>
+<li>Avoid adding multiple provider SDKs unless request signing, streaming, or model listing becomes complex enough to justify them.</li>
+<li>Keep all provider-specific dependencies isolated to <code>internal/ai/llm</code>.</li>
+</ul>
+<h2 id="migration-and-compatibility-notes">Migration and Compatibility Notes</h2>
+<ul>
+<li>Existing configs with only <code>ai.apikey</code> and <code>ai.model</code> should become Gemini configs by default.</li>
+<li>Do not rename existing YAML keys for API key/model in the first implementation.</li>
+<li>Do not remove Gemini-specific model values from existing user configs.</li>
+<li>API routes should remain unchanged to avoid frontend routing churn.</li>
+<li>Logs and validation messages should become provider-neutral where practical.</li>
+</ul>
+<h2 id="open-questions">Open Questions</h2>
+<ol>
+<li>Should OpenAI-compatible providers be allowed without an API key for local-only gateways?</li>
+<li>Should Ollama use native APIs immediately, or start through its OpenAI-compatible <code>/v1</code> API?</li>
+<li>Should the UI expose <code>apiKeyFile</code>, or keep that as YAML/config-file-only for now?</li>
+<li>Should model listing failures return fallback models or a structured warning response?</li>
+<li>Should each provider have separate stored credentials, or is one active-provider credential enough for the first release?</li>
+</ol>
+<h2 id="recommended-first-implementation-scope">Recommended First Implementation Scope</h2>
+<p>For the first pass, keep scope tight:</p>
+<ol>
+<li>Add provider/base URL fields and validation.</li>
+<li>Add the LLM provider interface and factory.</li>
+<li>Move Gemini into the provider interface.</li>
+<li>Add OpenAI-compatible HTTP adapter.</li>
+<li>Implement OpenAI as OpenAI-compatible with default base URL.</li>
+<li>Implement Ollama via OpenAI-compatible <code>/v1</code> endpoint.</li>
+<li>Add Anthropic via direct HTTP adapter.</li>
+<li>Update cache keys.</li>
+<li>Update API model listing with fallback model behavior.</li>
+<li>Update the AI Settings page with provider and base URL fields.</li>
+<li>Add focused tests around validation, API settings, and provider request mapping.</li>
+</ol>
+<p>This sequence preserves current Gemini behavior while creating enough abstraction to add or refine providers incrementally.</p>
+
+</body>
+</html>

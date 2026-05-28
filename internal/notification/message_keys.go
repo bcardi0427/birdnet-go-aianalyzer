@@ -41,6 +41,7 @@ const (
 	MsgSettingsReconfiguringPushNotifications = "notifications.content.settings.reconfiguringPushNotifications"
 	MsgSettingsRecalculatingThresholds        = "notifications.content.settings.recalculatingThresholds"
 	MsgSettingsReconfiguringDynamicThresholds = "notifications.content.settings.reconfiguringDynamicThresholds"
+	MsgSettingsReconfiguringWeather           = "notifications.content.settings.reconfiguringWeather"
 	MsgSettingsWebserverRestart               = "notifications.content.settings.webserverRestartRequired"
 
 	// Audio settings toasts

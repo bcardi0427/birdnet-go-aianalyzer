@@ -395,6 +395,7 @@
         "reconfiguringSpeciesTracking": "Updating species tracking...",
         "recalculatingThresholds": "Recalculating dynamic thresholds for new base value",
         "reconfiguringDynamicThresholds": "Reconfiguring dynamic thresholds...",
+        "reconfiguringWeather": "Updating weather service settings...",
         "webserverRestartRequired": "Web server settings changed. Restart required.",
         "reconfiguringSoundLevel": "Updating sound level monitoring...",
         "reconfiguringAudioSources": "Reconfiguring audio sources...",

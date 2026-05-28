@@ -20,6 +20,7 @@ func getSoxSpectrogramArgsHelper(t *testing.T, ctx context.Context, audioPath, o
 	tempDir := t.TempDir()
 	sfs, err := securefs.New(tempDir)
 	require.NoError(t, err, "Failed to create SecureFS")
+	t.Cleanup(func() { _ = sfs.Close() })
 	gen := spectrogram.NewGenerator(settings, sfs, logger.Global().Module("spectrogram.test"))
 	return gen.GetSoxSpectrogramArgsForTest(ctx, audioPath, outputPath, width, raw)
 }
@@ -30,6 +31,7 @@ func getSoxSpectrogramArgsBenchHelper(b *testing.B, ctx context.Context, audioPa
 	tempDir := b.TempDir()
 	sfs, err := securefs.New(tempDir)
 	require.NoError(b, err, "Failed to create SecureFS")
+	b.Cleanup(func() { _ = sfs.Close() })
 	gen := spectrogram.NewGenerator(settings, sfs, logger.Global().Module("spectrogram.test"))
 	return gen.GetSoxSpectrogramArgsForTest(ctx, audioPath, outputPath, width, raw)
 }

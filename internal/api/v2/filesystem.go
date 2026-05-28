@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/labstack/echo/v4"
@@ -187,10 +188,18 @@ func (c *Controller) validateSymlinkTarget(symlinkPath string) error {
 		return fmt.Errorf("failed to read symlink target: %w", err)
 	}
 
-	// If target is relative, resolve it relative to the symlink's directory
+	// Resolve the target path securely.
+	// On Windows, volume-relative paths (e.g. starting with "/" or "\") are not absolute
+	// according to filepath.IsAbs, but they refer to the root of the current drive,
+	// which escapes the sandbox.
 	var targetPath string
 	if filepath.IsAbs(target) {
 		targetPath = target
+	} else if strings.HasPrefix(target, "/") || strings.HasPrefix(target, "\\") {
+		// Resolve to the root of the symlink's volume on Windows.
+		// On Unix, this branch is not reached because filepath.IsAbs("/") is true.
+		vol := filepath.VolumeName(symlinkPath)
+		targetPath = vol + target
 	} else {
 		// Resolve relative target relative to the symlink's directory
 		symlinkDir := filepath.Dir(symlinkPath)

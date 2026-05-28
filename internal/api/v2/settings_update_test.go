@@ -197,6 +197,7 @@ func TestWeatherPartialUpdate(t *testing.T) {
 	// Get initial settings and override some values for testing
 	initialSettings := getTestSettings(t)
 	initialSettings.Realtime.Weather.Debug = true
+	initialSettings.Realtime.Weather.OpenWeather.APIKey = "mock-api-key"
 
 	// Capture initial values
 	initialPollInterval := initialSettings.Realtime.Weather.PollInterval

@@ -8,6 +8,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 
 	"github.com/labstack/echo/v4"
@@ -549,6 +550,16 @@ func TestValidateSymlinkTarget(t *testing.T) {
 	targetDir := filepath.Join(tempDir, "target")
 	require.NoError(t, os.Mkdir(targetDir, 0o750))
 
+	// Check if symlinks can be created on this system (especially on Windows)
+	dummyLink := filepath.Join(tempDir, "dummy_link")
+	if err := os.Symlink(targetDir, dummyLink); err != nil {
+		if runtime.GOOS == "windows" {
+			t.Skip("Skipping symlink tests: symlinks are not supported or permitted on this Windows environment")
+		}
+		require.NoError(t, err)
+	}
+	_ = os.Remove(dummyLink)
+
 	targetFile := filepath.Join(targetDir, "file.txt")
 	require.NoError(t, os.WriteFile(targetFile, []byte("target"), 0o600))
 
@@ -627,6 +638,16 @@ func TestBrowseFileSystem_SymlinkHandling(t *testing.T) {
 	targetDir := filepath.Join(tempDir, "target")
 	require.NoError(t, os.Mkdir(targetDir, 0o750))
 	require.NoError(t, os.WriteFile(filepath.Join(targetDir, "file.txt"), []byte("content"), 0o600))
+
+	// Check if symlinks can be created on this system (especially on Windows)
+	dummyLink := filepath.Join(tempDir, "dummy_link")
+	if err := os.Symlink(targetDir, dummyLink); err != nil {
+		if runtime.GOOS == "windows" {
+			t.Skip("Skipping symlink tests: symlinks are not supported or permitted on this Windows environment")
+		}
+		require.NoError(t, err)
+	}
+	_ = os.Remove(dummyLink)
 
 	// Create a valid symlink to the target directory
 	validLink := filepath.Join(tempDir, "valid_link")

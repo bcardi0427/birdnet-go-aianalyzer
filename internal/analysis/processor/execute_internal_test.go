@@ -184,7 +184,11 @@ func TestValidateCommandPath_PathTraversalCleaned(t *testing.T) {
 func TestValidateCommandPath_NonExistentFile(t *testing.T) {
 	t.Parallel()
 
-	_, err := validateCommandPath("/tmp/this_file_definitely_does_not_exist_12345.sh")
+	testPath := "/tmp/this_file_definitely_does_not_exist_12345.sh"
+	if runtime.GOOS == "windows" {
+		testPath = `C:\this_file_definitely_does_not_exist_12345.sh`
+	}
+	_, err := validateCommandPath(testPath)
 	require.Error(t, err)
 
 	// Regression: a missing file must produce a single enhanced error with

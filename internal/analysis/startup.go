@@ -25,10 +25,22 @@ func InitializeMetrics() (*observability.Metrics, error) {
 
 // PrintSystemDetails prints system information and analyzer configuration.
 func PrintSystemDetails(settings *conf.Settings) {
+	if settings == nil {
+		return
+	}
 	log := GetLogger()
 
 	// Get system details with gopsutil
-	info, err := host.Info()
+	var info *host.InfoStat
+	var err error
+	func() {
+		defer func() {
+			if r := recover(); r != nil {
+				log.Warn("panic recovered while retrieving host info", logger.Any("recover", r))
+			}
+		}()
+		info, err = host.Info()
+	}()
 	if err != nil {
 		log.Warn("failed to retrieve host info", logger.Error(err))
 	}

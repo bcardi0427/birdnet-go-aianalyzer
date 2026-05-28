@@ -4,6 +4,7 @@ import (
 	"context"
 	"os"
 	"os/signal"
+	"runtime"
 	"sync"
 	"syscall"
 	"testing"
@@ -130,6 +131,9 @@ func TestShutdownSequenceWithContext(t *testing.T) {
 
 // Helper function to test signal handling without actually sending signals to the process
 func TestSignalNotification(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skip("Skipping signal notification test on Windows as os.Process.Signal is not fully supported")
+	}
 	t.Run("signal channel receives notifications", func(t *testing.T) {
 		sigChan := make(chan os.Signal, 1)
 

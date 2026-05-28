@@ -64,6 +64,9 @@ type ControlMonitor struct {
 
 	// Quiet hours scheduler for stream/soundcard lifecycle management
 	quietHoursScheduler *schedule.QuietHoursScheduler
+
+	// reconfigureWeatherFn terminates and restarts the weather polling service with updated config
+	reconfigureWeatherFn func()
 }
 
 // NewControlMonitor creates a new ControlMonitor instance.
@@ -77,7 +80,7 @@ type ControlMonitor struct {
 // sound level manager is restarted so that router routes exist when the
 // publisher starts (enable) or are gone before the publisher stops (disable).
 // May be nil in contexts where no sound level pipeline is owned.
-func NewControlMonitor(wg *sync.WaitGroup, controlChan chan string, quitChan, restartChan chan struct{}, bufferManager *BufferManager, proc *processor.Processor, audioLevelChan chan audiocore.AudioLevelData, soundLevelChan chan soundlevel.SoundLevelData, apiController *apiv2.Controller, metrics *observability.Metrics, quietHoursScheduler *schedule.QuietHoursScheduler, audioEngine *engine.AudioEngine, reconfigureSourcesFn, reconfigureSoundLevelFn func()) *ControlMonitor {
+func NewControlMonitor(wg *sync.WaitGroup, controlChan chan string, quitChan, restartChan chan struct{}, bufferManager *BufferManager, proc *processor.Processor, audioLevelChan chan audiocore.AudioLevelData, soundLevelChan chan soundlevel.SoundLevelData, apiController *apiv2.Controller, metrics *observability.Metrics, quietHoursScheduler *schedule.QuietHoursScheduler, audioEngine *engine.AudioEngine, reconfigureSourcesFn, reconfigureSoundLevelFn, reconfigureWeatherFn func()) *ControlMonitor {
 	cm := &ControlMonitor{
 		wg:                      wg,
 		controlChan:             controlChan,
@@ -94,6 +97,7 @@ func NewControlMonitor(wg *sync.WaitGroup, controlChan chan string, quitChan, re
 		engine:                  audioEngine,
 		reconfigureSourcesFn:    reconfigureSourcesFn,
 		reconfigureSoundLevelFn: reconfigureSoundLevelFn,
+		reconfigureWeatherFn:    reconfigureWeatherFn,
 	}
 
 	// Initialize the sound level manager but don't start it yet
@@ -232,6 +236,8 @@ func (cm *ControlMonitor) handleControlSignal(signal string) {
 		cm.handleReconfigureStreams()
 	case "reconfigure_birdweather":
 		cm.handleReconfigureBirdWeather()
+	case "reconfigure_weather":
+		cm.handleReconfigureWeather()
 	case "update_detection_intervals":
 		cm.handleUpdateDetectionIntervals()
 	case "reconfigure_sound_level":
@@ -428,6 +434,18 @@ func (cm *ControlMonitor) handleReconfigureBirdWeather() {
 		// If BirdWeather is disabled, client is already set to nil by DisconnectBwClient
 		GetLogger().Info("BirdWeather integration disabled")
 		cm.notifySuccess("BirdWeather integration disabled")
+	}
+}
+
+// handleReconfigureWeather reconfigures the weather polling service
+func (cm *ControlMonitor) handleReconfigureWeather() {
+	GetLogger().Info("Reconfiguring weather polling service")
+	if cm.reconfigureWeatherFn != nil {
+		cm.reconfigureWeatherFn()
+		GetLogger().Info("Weather service reconfigured successfully")
+		cm.notifySuccess("Weather service reconfigured successfully")
+	} else {
+		GetLogger().Warn("Weather reconfiguration function not available")
 	}
 }
 

@@ -52,7 +52,7 @@ describe('AIAnalysisPage', () => {
     render(AIAnalysisPage);
 
     await waitFor(() => {
-      expect(screen.getByRole('alert')).toHaveTextContent('Gemini API key is missing');
+      expect(screen.getByRole('alert')).toHaveTextContent('AI API key is missing');
     });
   });
 });

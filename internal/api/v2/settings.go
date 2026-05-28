@@ -2127,6 +2127,7 @@ var settingsChangeChecks = []settingsChangeCheck{
 	{"Dynamic thresholds", "reconfigure_dynamic_thresholds", dynamicThresholdEnabledChanged, "Reconfiguring dynamic thresholds...", notification.MsgSettingsReconfiguringDynamicThresholds, "info", toastDurationMedium},
 	{"MQTT", "reconfigure_mqtt", mqttSettingsChanged, "Reconfiguring MQTT connection...", notification.MsgSettingsReconfiguringMqtt, "info", toastDurationMedium},
 	{"BirdWeather", "reconfigure_birdweather", birdWeatherSettingsChanged, "Reconfiguring BirdWeather integration...", notification.MsgSettingsReconfiguringBirdweather, "info", toastDurationMedium},
+	{"Weather", "reconfigure_weather", weatherSettingsChanged, "Reconfiguring weather service...", notification.MsgSettingsReconfiguringWeather, "info", toastDurationMedium},
 	{"Streams", "reconfigure_rtsp_sources", streamsSettingsChanged, "Reconfiguring audio streams...", notification.MsgSettingsReconfiguringStreams, "info", toastDurationMedium},
 	{"Telemetry", "reconfigure_telemetry", telemetrySettingsChanged, "Reconfiguring telemetry settings...", notification.MsgSettingsReconfiguringTelemetry, "info", toastDurationShort},
 	{"Species tracking", "reconfigure_species_tracking", speciesTrackingSettingsChanged, "Reconfiguring species tracking...", notification.MsgSettingsReconfiguringSpeciesTracking, "info", toastDurationShort},
@@ -2361,6 +2362,24 @@ func birdWeatherSettingsChanged(oldSettings, currentSettings *conf.Settings) boo
 	}
 
 	return false
+}
+
+// weatherSettingsChanged checks if Weather settings have changed
+func weatherSettingsChanged(oldSettings, currentSettings *conf.Settings) bool {
+	oldW := oldSettings.Realtime.Weather
+	newW := currentSettings.Realtime.Weather
+
+	return oldW.Provider != newW.Provider ||
+		oldW.PollInterval != newW.PollInterval ||
+		oldW.Debug != newW.Debug ||
+		oldW.OpenWeather.APIKey != newW.OpenWeather.APIKey ||
+		oldW.OpenWeather.APIKeyFile != newW.OpenWeather.APIKeyFile ||
+		oldW.OpenWeather.Units != newW.OpenWeather.Units ||
+		oldW.OpenWeather.Language != newW.OpenWeather.Language ||
+		oldW.Wunderground.APIKey != newW.Wunderground.APIKey ||
+		oldW.Wunderground.APIKeyFile != newW.Wunderground.APIKeyFile ||
+		oldW.Wunderground.StationID != newW.Wunderground.StationID ||
+		oldW.Wunderground.Units != newW.Wunderground.Units
 }
 
 // pushNotificationSettingsChanged checks if push notification settings have changed.

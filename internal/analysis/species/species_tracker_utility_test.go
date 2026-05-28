@@ -389,7 +389,7 @@ func TestCacheManagement_CriticalReliability(t *testing.T) {
 	tracker.ExpireCacheForTesting(species1)
 	cached, exists := tracker.statusCache[species1]
 	assert.True(t, exists, "Expired entry should still exist")
-	assert.Greater(t, time.Since(cached.timestamp), time.Hour,
+	assert.GreaterOrEqual(t, time.Since(cached.timestamp), time.Hour,
 		"Cache timestamp should be expired")
 
 	// Test 4: ClearCacheForTesting

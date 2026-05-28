@@ -67,7 +67,12 @@ type AudioPipelineService struct {
 	// active for that source. Populated by registerSoundLevelConsumers, drained
 	// by removeAllSoundLevelConsumers.
 	soundLevelConsumers map[string]string
+
+	weatherMu      sync.Mutex
+	weatherService *weather.Service
+	weatherStop    chan struct{}
 }
+
 
 // NewAudioPipelineService creates a new AudioPipelineService with the given dependencies.
 // The service is not started; call Start() to initialize the audio pipeline.
@@ -263,7 +268,7 @@ func (p *AudioPipelineService) Start(_ context.Context) error {
 	}
 	reconfigureSoundLevelFn := p.ReconfigureSoundLevel
 	apiController := p.apiService.APIController()
-	p.ctrlMonitor = NewControlMonitor(&p.wg, p.apiService.ControlChan(), p.done, p.restartChan, p.bufferMgr, proc, apiAudioLevelChan, p.soundLevelChan, apiController, metrics, p.quietHoursScheduler, p.engine, reconfigureFn, reconfigureSoundLevelFn)
+	p.ctrlMonitor = NewControlMonitor(&p.wg, p.apiService.ControlChan(), p.done, p.restartChan, p.bufferMgr, proc, apiAudioLevelChan, p.soundLevelChan, apiController, metrics, p.quietHoursScheduler, p.engine, reconfigureFn, reconfigureSoundLevelFn, p.reconfigureWeather)
 	p.ctrlMonitor.Start()
 
 	// Start restart loop goroutine.
@@ -324,6 +329,15 @@ func (p *AudioPipelineService) Stop(ctx context.Context) error {
 		p.quietHoursScheduler.Stop()
 		p.quietHoursScheduler = nil
 	}
+
+	// Stop weather service polling.
+	p.weatherMu.Lock()
+	if p.weatherStop != nil {
+		close(p.weatherStop)
+		p.weatherStop = nil
+	}
+	p.weatherService = nil
+	p.weatherMu.Unlock()
 
 	// Close done channel to signal restart loop and clip cleanup goroutines.
 	// Protected by sync.Once to prevent panic on double-close.
@@ -1088,7 +1102,11 @@ func resolveModelTargets(configModelIDs []string, loadedModels map[string]classi
 
 // startWeatherPolling initializes and starts the weather polling routine.
 func (p *AudioPipelineService) startWeatherPolling(metrics *observability.Metrics) {
-	weatherService, err := weather.NewService(p.settings, p.dbService.DataStore(), metrics.Weather)
+	p.weatherMu.Lock()
+	defer p.weatherMu.Unlock()
+
+	settings := conf.Setting()
+	weatherService, err := weather.NewService(settings, p.dbService.DataStore(), metrics.Weather)
 	if err != nil {
 		// ErrWeatherDisabled is expected when provider is empty/unrecognized
 		if errors.Is(err, weather.ErrWeatherDisabled) {
@@ -1100,8 +1118,54 @@ func (p *AudioPipelineService) startWeatherPolling(metrics *observability.Metric
 		return
 	}
 
+	p.weatherService = weatherService
+	p.weatherStop = make(chan struct{})
+	stopChan := p.weatherStop
+
 	p.wg.Go(func() {
-		weatherService.StartPolling(p.done)
+		weatherService.StartPolling(stopChan)
+	})
+}
+
+// reconfigureWeather stops the active weather service polling loop, reinstantiates
+// the service with the latest settings, and restarts the polling loop.
+func (p *AudioPipelineService) reconfigureWeather() {
+	p.weatherMu.Lock()
+	defer p.weatherMu.Unlock()
+
+	// Stop the existing weather polling if running
+	if p.weatherStop != nil {
+		close(p.weatherStop)
+		p.weatherStop = nil
+	}
+	p.weatherService = nil
+
+	// Check if weather is still enabled in the new settings
+	settings := conf.Setting()
+	if settings.Realtime.Weather.Provider == policyNone {
+		GetLogger().Info("weather service disabled via settings change",
+			logger.String("operation", "reconfigure_weather_service"))
+		return
+	}
+
+	metrics := p.apiService.Metrics()
+	weatherService, err := weather.NewService(settings, p.dbService.DataStore(), metrics.Weather)
+	if err != nil {
+		if errors.Is(err, weather.ErrWeatherDisabled) {
+			return
+		}
+		GetLogger().Error("failed to reconfigure weather service",
+			logger.Error(err),
+			logger.String("operation", "reconfigure_weather_service"))
+		return
+	}
+
+	p.weatherService = weatherService
+	p.weatherStop = make(chan struct{})
+	stopChan := p.weatherStop
+
+	p.wg.Go(func() {
+		weatherService.StartPolling(stopChan)
 	})
 }
 

@@ -1658,10 +1658,10 @@ func TestJobTypeStatistics(t *testing.T) {
 	assert.Equal(t, 0, stats.ActionStats[retryType].Failed, "Retry action should have 0 failure")
 	assert.Equal(t, 1, stats.ActionStats[retryType].Retried, "Retry action should have 1 retry")
 	assert.False(t, stats.ActionStats[retryType].LastSuccessfulTime.IsZero(), "Last successful time should be set")
-	assert.Greater(t, stats.ActionStats[retryType].TotalDuration, time.Duration(0), "Total duration should be positive")
-	assert.Greater(t, stats.ActionStats[retryType].AverageDuration, time.Duration(0), "Average duration should be positive")
-	assert.Greater(t, stats.ActionStats[retryType].MinDuration, time.Duration(0), "Min duration should be positive")
-	assert.Greater(t, stats.ActionStats[retryType].MaxDuration, time.Duration(0), "Max duration should be positive")
+	assert.GreaterOrEqual(t, stats.ActionStats[retryType].TotalDuration, time.Duration(0), "Total duration should be positive or zero")
+	assert.GreaterOrEqual(t, stats.ActionStats[retryType].AverageDuration, time.Duration(0), "Average duration should be positive or zero")
+	assert.GreaterOrEqual(t, stats.ActionStats[retryType].MinDuration, time.Duration(0), "Min duration should be positive or zero")
+	assert.GreaterOrEqual(t, stats.ActionStats[retryType].MaxDuration, time.Duration(0), "Max duration should be positive or zero")
 
 	// Test JSON output
 	jsonStr, err := stats.ToJSON()

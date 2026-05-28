@@ -85,6 +85,7 @@ Performance Optimizations:
   import { scheme } from '$lib/stores/scheme';
   import { logoStyle } from '$lib/stores/logoStyle';
   import { SCHEME_GRADIENT_MAP, type LogoVariant } from '$lib/stores/logoVariant';
+  import { mainSettings } from '$lib/stores/settings';
 
   interface Props {
     securityEnabled?: boolean;
@@ -381,7 +382,7 @@ Performance Optimizations:
           <LogoBadge size="md" variant={logoVariant} />
           {#if !isCollapsed}
             <span class="text-xl font-bold tracking-tight text-[var(--color-base-content)]"
-              >BirdNET-Go</span
+              >{$mainSettings?.name || 'BirdNET-Go'}</span
             >
           {/if}
         </button>

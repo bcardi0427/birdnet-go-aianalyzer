@@ -17,6 +17,11 @@ Source: Apache-2.0
 License: https://github.com/googleapis/google-cloud-go/blob/auth/oauth2adapt/v0.2.8/auth/oauth2adapt/LICENSE
 Source: Apache-2.0
 
+### cloud.google.com/go/civil
+
+License: https://github.com/googleapis/google-cloud-go/blob/v0.116.0/LICENSE
+Source: Apache-2.0
+
 ### cloud.google.com/go/compute/metadata
 
 License: https://github.com/googleapis/google-cloud-go/blob/compute/metadata/v0.9.0/compute/metadata/LICENSE
@@ -131,6 +136,11 @@ Source: MIT
 
 License: https://github.com/golang-jwt/jwt/blob/v5.3.1/LICENSE
 Source: MIT
+
+### github.com/google/go-cmp/cmp
+
+License: https://github.com/google/go-cmp/blob/v0.7.0/LICENSE
+Source: BSD-3-Clause
 
 ### github.com/google/s2a-go
 
@@ -546,6 +556,11 @@ Source: BSD-3-Clause
 
 License: https://github.com/googleapis/google-api-go-client/blob/v0.278.0/LICENSE
 Source: BSD-3-Clause
+
+### google.golang.org/genai
+
+License: https://github.com/googleapis/go-genai/blob/v1.57.0/LICENSE
+Source: Apache-2.0
 
 ### google.golang.org/genproto/googleapis/rpc
 

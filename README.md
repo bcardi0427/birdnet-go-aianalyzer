@@ -12,20 +12,31 @@ The AI Analyzer is a major component of this fork.
 
 
 
-Quick install for the AI Analyzer:
+### Installation Options
+
+#### 1. Proxmox VE Helper Script (LXC Container)
+If you are running Proxmox VE, you can deploy the complete BirdNET-Go AI Analyzer fork inside a dedicated Debian 13 LXC container with a single command. The script handles everything: provisioning the container, configuring audio output/decoders, auto-detecting your timezone/location, and starting the daemon service:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/scripts/lxc-build.sh)"
+```
+Simply run this command in your Proxmox VE host shell to get the whole thing set up and running on your Proxmox server in seconds!
+
+#### 2. General Linux / Raspberry Pi Installer
+To install on an existing Debian/Ubuntu or Raspberry Pi OS host:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/install-aianalyzer.sh -o install-aianalyzer.sh
 bash ./install-aianalyzer.sh
 ```
 
-Fork-specific documentation:
-
+### Fork-specific Documentation
 - [AI Analyzer docs](docs/aianalyzer/README.md)
 - [Wrapper installer script](install-aianalyzer.sh)
-- [Proxmox helper LXC upgrade script](scripts/install-aianalyzer-lxc.sh)
+- [Proxmox helper LXC upgrade script](scripts/install-aianalyzer-lxc.sh) (for existing installations)
 
 This fork remains under the upstream BirdNET-Go license and privacy expectations. Review scripts before running them, especially when installing directly from GitHub.
+
 
 <p align="center">
   <!-- Project Status -->

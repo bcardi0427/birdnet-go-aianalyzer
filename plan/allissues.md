@@ -22,11 +22,11 @@ These are bugs, crashes, or regressions that affect core functionality, correctn
 | [#3221](https://github.com/tphakala/birdnet-go/issues/3221) | Webhook push provider receives empty/missing detection metadata for rules-engine (alert) notifications | *bug, pkg:notification* | General |
 | [#3126](https://github.com/tphakala/birdnet-go/issues/3126) | bug: perch v2 checkbox disappeared from audio interface | *bug, pkg:api* | `frontend/src/lib/...` |
 | [#3121](https://github.com/tphakala/birdnet-go/issues/3121) | bug: Perch detection considered new species but same species already exists | *bug, pkg:analysis, translation, has-dump* | General |
-| [#3103](https://github.com/tphakala/birdnet-go/issues/3103) | bug: After entering weather provider's api, the api is lost even after saving | *bug, pkg:weather* | `internal/api/v2/settings.go` |
+| `[DONE]` ~~[#3103](https://github.com/tphakala/birdnet-go/issues/3103)~~ | ~~bug: After entering weather provider's api, the api is lost even after saving~~ | *bug, pkg:weather* | `internal/api/v2/settings.go` |
 | [#3000](https://github.com/tphakala/birdnet-go/issues/3000) | bug: Let's Encrypt (autotls) configuration not working | *bug, has-dump* | General |
 | [#2837](https://github.com/tphakala/birdnet-go/issues/2837) | bug: Systematic Old World taxon misidentification in North American deployments — 5 species requiring location-aware code remapping | *bug, pkg:analysis, pkg:birdnet* | General |
 | [#2679](https://github.com/tphakala/birdnet-go/issues/2679) | Web UI audio source change corrupts config and crashes BirdNET-Go on restart | *None* | General |
-| [#2599](https://github.com/tphakala/birdnet-go/issues/2599) | Title: printSystemDetails nil pointer dereference on macOS ARM64 under launchd | *None* | `internal/analysis/startup.go` |
+| `[DONE]` ~~[#2599](https://github.com/tphakala/birdnet-go/issues/2599)~~ | ~~Title: printSystemDetails nil pointer dereference on macOS ARM64 under launchd~~ | *None* | `internal/analysis/startup.go` |
 | [#2389](https://github.com/tphakala/birdnet-go/issues/2389) | api/v2/analytics/species/summary seems to be missing recent detections | *None* | General |
 | [#2206](https://github.com/tphakala/birdnet-go/issues/2206) | improvement: FFmpeg process killed by OOM in memory-constrained containers | *enhancement* | Memory limits in FFmpeg process |
 | [#2204](https://github.com/tphakala/birdnet-go/issues/2204) | improvement: Add graceful handling for disk-full conditions | *enhancement* | Disk monitoring in database service |
@@ -58,12 +58,12 @@ Can be implemented with simple localization updates, direct UI fixes, or minor G
 | Issue | Title | Scope |
 | :--- | :--- | :--- |
 | [#3161](https://github.com/tphakala/birdnet-go/issues/3161) | feat: separate secrets from config.yaml into dedicated secret store | Secret separation enhancement |
-| [#3103](https://github.com/tphakala/birdnet-go/issues/3103) | bug: After entering weather provider's api, the api is lost even after saving | Go Weather settings trigger |
+| `[DONE]` ~~[#3103](https://github.com/tphakala/birdnet-go/issues/3103)~~ | ~~bug: After entering weather provider's api, the api is lost even after saving~~ | Go Weather settings trigger |
 | [#2847](https://github.com/tphakala/birdnet-go/issues/2847) | feat: request wakelock on live audio tab | Minor Bug / Enhancement |
 | [#2698](https://github.com/tphakala/birdnet-go/issues/2698) | Playback controls in search results table are missing for screen width >= 768 px | Minor Bug / Enhancement |
 | [#2682](https://github.com/tphakala/birdnet-go/issues/2682) | Minor feature request: Sum of daily species seen | Minor Bug / Enhancement |
-| [#2599](https://github.com/tphakala/birdnet-go/issues/2599) | Title: printSystemDetails nil pointer dereference on macOS ARM64 under launchd | Go Panic recovery in `startup.go` |
-| [#2237](https://github.com/tphakala/birdnet-go/issues/2237) | Allow the name in the sidebar to reflect the node name | Frontend Svelte change (Sidebar node name) |
+| `[DONE]` ~~[#2599](https://github.com/tphakala/birdnet-go/issues/2599)~~ | ~~Title: printSystemDetails nil pointer dereference on macOS ARM64 under launchd~~ | Go Panic recovery in `startup.go` |
+| `[DONE]` ~~[#2237](https://github.com/tphakala/birdnet-go/issues/2237)~~ | ~~Allow the name in the sidebar to reflect the node name~~ | Frontend Svelte change (Sidebar node name) |
 | [#1986](https://github.com/tphakala/birdnet-go/issues/1986) | Feature Request: Ability to exclude specific species from saved Clip Recordings while still tracking detections | Minor Bug / Enhancement |
 | [#1948](https://github.com/tphakala/birdnet-go/issues/1948) | 15 Hungarian translation | Minor Bug / Enhancement |
 | [#1672](https://github.com/tphakala/birdnet-go/issues/1672) | "latest" docker tag not being maintained | Minor Bug / Enhancement |

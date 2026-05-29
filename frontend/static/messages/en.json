@@ -584,6 +584,9 @@
     "dailySummary": {
       "title": "Daily Activity",
       "subtitle": "Species detections by hour",
+      "totalSpeciesZero": "No species seen",
+      "totalSpeciesOne": "1 species seen",
+      "totalSpeciesOther": "{count} species seen",
       "columns": {
         "species": "Species",
         "detections": "Detections"

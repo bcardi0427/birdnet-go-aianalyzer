@@ -41,11 +41,15 @@
 
 <!-- Mobile bottom-sheet modal wrapping the existing AudioPlayer -->
 <div
-  class="fixed inset-0 z-50 bg-black/50 flex items-end md:hidden"
+  class="fixed inset-0 z-50 bg-black/50 flex items-end md:items-center md:justify-center"
   role="dialog"
   aria-modal="true"
+  onclick={handleClose}
 >
-  <div class="w-full rounded-t-3xl shadow-2xl relative overflow-hidden bg-[var(--color-base-100)]">
+  <div
+    class="w-full rounded-t-3xl md:rounded-2xl shadow-2xl relative overflow-hidden bg-[var(--color-base-100)] md:max-w-[480px] md:m-4"
+    onclick={e => e.stopPropagation()}
+  >
     <!-- Header -->
     <div class="flex items-center justify-between p-4 border-b border-[var(--color-base-300)]">
       <div class="flex-1 min-w-0">

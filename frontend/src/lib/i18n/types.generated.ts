@@ -477,6 +477,9 @@ export type TranslationKey =
   | 'dashboard.rejected'
   | 'dashboard.dailySummary.title'
   | 'dashboard.dailySummary.subtitle'
+  | 'dashboard.dailySummary.totalSpeciesZero'
+  | 'dashboard.dailySummary.totalSpeciesOne'
+  | 'dashboard.dailySummary.totalSpeciesOther' // params: count
   | 'dashboard.dailySummary.columns.species'
   | 'dashboard.dailySummary.columns.detections'
   | 'dashboard.dailySummary.daylight.label'
@@ -3412,6 +3415,7 @@ export type TranslationParams = {
   'search.detailsPanel.viewDetails': { species: string | number };
   'search.errors.searchFailed': { error: string | number };
   'search.pagination.page': { current: string | number; total: string | number };
+  'dashboard.dailySummary.totalSpeciesOther': { count: string | number };
   'dashboard.dailySummary.daylight.sunrise': { time: string | number };
   'dashboard.dailySummary.daylight.sunset': { time: string | number };
   'dashboard.dailySummary.tooltips.viewHourly': { hour: string | number };

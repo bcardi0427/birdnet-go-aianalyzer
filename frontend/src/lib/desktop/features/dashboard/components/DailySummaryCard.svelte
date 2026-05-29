@@ -753,6 +753,16 @@ Responsive Breakpoints:
 
     return `${finalWidth}rem`;
   });
+
+  function getSpeciesSeenLabel(count: number): string {
+    if (count === 0) {
+      return t('dashboard.dailySummary.totalSpeciesZero');
+    }
+    if (count === 1) {
+      return t('dashboard.dailySummary.totalSpeciesOne');
+    }
+    return t('dashboard.dailySummary.totalSpeciesOther', { count });
+  }
 </script>
 
 {#snippet navigationControls()}
@@ -865,7 +875,7 @@ Responsive Breakpoints:
         <div class="flex flex-col">
           <h3 class="font-semibold">{t('dashboard.dailySummary.title')}</h3>
           <p class="text-sm text-[var(--color-base-content)]/60">
-            {t('dashboard.dailySummary.subtitle')}
+            {t('dashboard.dailySummary.subtitle')} • {getSpeciesSeenLabel(data.length)}
           </p>
         </div>
         {@render navigationControls()}

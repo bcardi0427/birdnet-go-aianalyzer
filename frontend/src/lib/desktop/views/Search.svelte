@@ -936,7 +936,7 @@
                         class="btn btn-xs btn-square"
                         onclick={e => {
                           e.preventDefault();
-                          // TODO: Implement audio playback function
+                          openMobilePlayer(result);
                         }}
                         disabled={!result.hasAudio}
                         aria-label={t('search.detailsPanel.playAudio', {
@@ -1218,14 +1218,12 @@
           {/each}
 
           {#if showMobilePlayer}
-            <div class="md:hidden">
-              <MobileAudioPlayer
-                audioUrl={selectedAudioUrl}
-                speciesName={selectedSpeciesName}
-                detectionId={selectedDetectionId}
-                onClose={closeMobilePlayer}
-              />
-            </div>
+            <MobileAudioPlayer
+              audioUrl={selectedAudioUrl}
+              speciesName={selectedSpeciesName}
+              detectionId={selectedDetectionId}
+              onClose={closeMobilePlayer}
+            />
           {/if}
         </div>
       {/if}

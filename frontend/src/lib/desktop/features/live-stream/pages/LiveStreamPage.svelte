@@ -94,6 +94,7 @@
   let abortController: AbortController | null = null;
   let activeStreamToken: string | null = null;
   let activeSourceId: string | null = null;
+  let wakeLock = $state<any>(null);
 
   // Initialize composable during component init (registers cleanup $effect)
   const spectro = useSpectrogramAnalyser({ fftSize: FFT_SIZE, audioOutput: true });
@@ -159,6 +160,25 @@
       ranges.push(`${el.buffered.start(i).toFixed(2)}-${el.buffered.end(i).toFixed(2)}`);
     }
     return ranges.join(', ');
+  }
+
+  async function requestWakeLock() {
+    if (!('wakeLock' in navigator)) return;
+    try {
+      if (wakeLock) await wakeLock.release().catch(() => {});
+      wakeLock = await navigator.wakeLock.request('screen');
+      logger.info('Screen Wake Lock acquired successfully');
+    } catch (err) {
+      logger.warn('Failed to acquire screen wake lock:', err);
+    }
+  }
+
+  async function releaseWakeLock() {
+    if (wakeLock) {
+      await wakeLock.release().catch(() => {});
+      wakeLock = null;
+      logger.info('Screen Wake Lock released');
+    }
   }
 
   async function startStream() {
@@ -748,6 +768,26 @@
     }, LABEL_POLL_INTERVAL_MS);
 
     return () => globalThis.clearInterval(interval);
+  });
+
+  $effect(() => {
+    if (isStreaming) {
+      requestWakeLock();
+      
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === 'visible' && isStreaming) {
+          requestWakeLock();
+        }
+      };
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      return () => {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+        releaseWakeLock();
+      };
+    } else {
+      releaseWakeLock();
+    }
   });
 </script>
 

@@ -47,4 +47,6 @@ REFACTOR_CHANGELOG.md
 .worktrees/
 .leann/
 rollout-*.json
-birdnet-go.zip
+birdnet-go.zip
+/*.html
+/*.pdf

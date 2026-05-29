@@ -494,10 +494,10 @@ Fixes #123
 
 ### Documentation
 
-- [User Guide](doc/wiki/guide.md)
-- [Installation Guide](doc/wiki/installation.md)
-- [Security Guide](doc/wiki/security.md)
-- [Hardware Recommendations](doc/wiki/hardware.md)
+- [User Guide](docs/wiki/guide.md)
+- [Installation Guide](docs/wiki/installation.md)
+- [Security Guide](docs/wiki/security.md)
+- [Hardware Recommendations](docs/wiki/hardware.md)
 - [AST-Grep Setup](frontend/doc/AST-GREP-SETUP.md)
 
 ### Development Guidelines

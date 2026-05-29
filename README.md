@@ -3,7 +3,7 @@
 This repository is a comprehensive reprogramming of BirdNET-Go, featuring the **AI Analyzer** and other custom enhancements. Originally based on `tphakala/birdnet-go`.
 
 <p align="center">
-  <img src="doc/BirdNET-Go-AI-Analyzer-logo.png" width="450" />
+  <img src="docs/assets/BirdNET-Go-AI-Analyzer-logo.png" width="450" />
 </p>
 
 ## AI Analyzer
@@ -73,7 +73,7 @@ BirdNET-Go is an AI solution for continuous avian monitoring and identification
 - Local processing, Internet connectivity not required
 - Easy to use Web user interface for data visualisation
 - Supports over 40 languages for species names
-- Advanced features like [Deep Detection](doc/wiki/guide.md#deep-detection) for improved accuracy and [Live Audio Streaming](doc/wiki/guide.md#live-audio-streaming).
+- Advanced features like [Deep Detection](docs/wiki/guide.md#deep-detection) for improved accuracy and [Live Audio Streaming](docs/wiki/guide.md#live-audio-streaming).
 - BirdWeather.com API integration
 - Realtime log file output can be used as overlay in OBS for bird feeder streams etc.
 - Minimal runtime dependencies, BirdNET Tensorflow Lite model is embedded in compiled binary
@@ -126,7 +126,7 @@ The `setup-dev` task will automatically install:
 
 ## Web Dashboard
 
-<img src="doc/BirdNET-Go-dashboard.webp" />
+<img src="docs/assets/BirdNET-Go-dashboard.webp" />
 
 ### Local Hostname Access
 
@@ -134,9 +134,9 @@ To access the dashboard via a clean local hostname rather than `localhost:8080`,
 - **Windows**: Run the **`setup_hosts.ps1`** script as Administrator (it will request elevation to add `birdnet-go.local` to your local hosts file).
 - **Linux/macOS**: Running the `install-aianalyzer.sh` wrapper script with `sudo` will configure this automatically. Alternatively, manually add `127.0.0.1 birdnet-go.local` to your `/etc/hosts` file.
 
-For detailed installation instructions, see the [installation documentation](doc/wiki/installation.md). For securing your BirdNET-Go installation, see the [security documentation](doc/wiki/security.md). See [recommended hardware](doc/wiki/hardware.md) for optimal performance.
+For detailed installation instructions, see the [installation documentation](docs/wiki/installation.md). For securing your BirdNET-Go installation, see the [security documentation](docs/wiki/security.md). See [recommended hardware](docs/wiki/hardware.md) for optimal performance.
 
-There is more detailed usage documentation at [Wiki](doc/wiki/guide.md)
+There is more detailed usage documentation at [Wiki](docs/wiki/guide.md)
 
 ## Community
 

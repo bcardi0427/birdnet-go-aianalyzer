@@ -26,7 +26,7 @@ All notable AI Analyzer fork changes are documented here. The root `CHANGELOG.md
 ### Documentation
 
 - Added the AI Analyzer Fork Handoff Guide under [AI_ASSISTANT_HANDOFF.md](file:///F:/AntiGravity%20Sources/birdnet-go/docs/aianalyzer/AI_ASSISTANT_HANDOFF.md).
-- Added layout thumbnail link plan ([thumbnail_link_plan.md](file:///F:/AntiGravity%20Sources/birdnet-go/thumbnail_link_plan.md)) documenting the thumbnail image strategy.
+- Added layout thumbnail link plan ([thumbnail_link_plan.md](../../plan/thumbnail_link_plan.md)) documenting the thumbnail image strategy.
 
 ## [1.0.0-beta.1] - 2026-05-20
 

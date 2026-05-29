@@ -285,7 +285,7 @@ services:
 
 ## See Also
 
-- [Docker Compose Guide](../doc/wiki/docker_compose_guide.md)
+- [Docker Compose Guide](../docs/wiki/docker_compose_guide.md)
 - [Dockerfile](../Dockerfile) - Container build configuration
 - [entrypoint.sh](entrypoint.sh) - Container initialization script
 - [startup-wrapper.sh](startup-wrapper.sh) - Application wrapper script

@@ -1,6 +1,6 @@
 # BirdNET-Go AI Report Implementation Checklist
 
-This checklist is the working task list for implementing the AI daily analysis report described in [`ai_feature_blueprint.md`](ai_feature_blueprint.md).
+This checklist is the working task list for implementing the AI daily analysis report described in [`feature_blueprint.md`](feature_blueprint.md).
 
 ## Core Implementation Rule
 
@@ -12,7 +12,7 @@ This checklist is the working task list for implementing the AI daily analysis r
 
 ## Phase 0: Pre-flight Review
 
-- [x] Re-read `ai_feature_blueprint.md` before starting implementation.
+- [x] Re-read `feature_blueprint.md` before starting implementation.
 - [x] Review existing AI settings implementation:
   - [x] `internal/conf/config.go`
   - [x] `internal/conf/validate_ai.go`
@@ -258,7 +258,7 @@ This checklist is the working task list for implementing the AI daily analysis r
 
 ## Phase 11: Documentation / Follow-up
 
-- [ ] Update `ai_feature_blueprint.md` if implementation decisions change.
+- [ ] Update `feature_blueprint.md` if implementation decisions change.
 - [ ] Document any new AI report API response fields.
 - [ ] Document report limitations:
   - [ ] AI narrative is interpretive.

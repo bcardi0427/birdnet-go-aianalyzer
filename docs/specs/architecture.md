@@ -2550,4 +2550,4 @@ func Example() *Detection {
 }
 ```
 
-For questions or contributions, see [CONTRIBUTING.md](CONTRIBUTING.md) or join our [Discord](https://discord.gg/gcSCFGUtsd).
+For questions or contributions, see [CONTRIBUTING.md](../../CONTRIBUTING.md) or join our [Discord](https://discord.gg/gcSCFGUtsd).

@@ -49,4 +49,5 @@ REFACTOR_CHANGELOG.md
 rollout-*.json
 birdnet-go.zip
 /*.html
-/*.pdf
+/*.pdf
+/*.dll

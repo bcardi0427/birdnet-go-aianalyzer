@@ -1988,7 +1988,16 @@ func (p *Processor) getDefaultActions(det *Detections) []Action {
 	// take 10-30+ seconds, which previously caused CompositeAction 30s timeouts
 	// (Sentry BIRDNET-GO-WD), preventing SSE/MQTT from ever firing.
 	if settings.Realtime.Audio.Export.Enabled && databaseAction != nil {
-		actions = append(actions, p.buildSaveAudioAction(det, detectionCtx))
+		excluded := false
+		for _, species := range settings.Realtime.Audio.Export.ExcludedSpecies {
+			if strings.EqualFold(species, det.Result.Species.ScientificName) || strings.EqualFold(species, det.Result.Species.CommonName) {
+				excluded = true
+				break
+			}
+		}
+		if !excluded {
+			actions = append(actions, p.buildSaveAudioAction(det, detectionCtx))
+		}
 	}
 
 	// Add BirdWeatherAction if enabled and client is initialized

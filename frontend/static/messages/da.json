@@ -1680,7 +1680,8 @@
       "security": "Sikkerhed",
       "species": "Arter",
       "notifications": "Notifikationer",
-      "support": "Support"
+      "support": "Support",
+      "visitors": "Besøgende"
     },
     "notFound": {
       "title": "Indstillinger ikke fundet",

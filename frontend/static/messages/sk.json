@@ -1680,7 +1680,8 @@
       "security": "Zabezpečenie",
       "species": "Druhy",
       "notifications": "Upozornenia",
-      "support": "Podpora"
+      "support": "Podpora",
+      "visitors": "Návštevníci"
     },
     "notFound": {
       "title": "Nastavenia sa nenašli",

@@ -1656,7 +1656,8 @@
       "notifications": "Notifications",
       "security": "Sécurité",
       "species": "Espèces",
-      "support": "Support"
+      "support": "Support",
+      "visitors": "Visiteurs"
     },
     "notFound": {
       "title": "Paramètres non trouvés",

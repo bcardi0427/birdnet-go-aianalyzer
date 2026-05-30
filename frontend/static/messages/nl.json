@@ -1656,7 +1656,8 @@
       "security": "Beveiliging",
       "species": "Soorten",
       "notifications": "Meldingen",
-      "support": "Ondersteuning"
+      "support": "Ondersteuning",
+      "visitors": "Bezoekers"
     },
     "notFound": {
       "title": "Instellingen niet gevonden",

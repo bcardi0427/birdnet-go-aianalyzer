@@ -1680,7 +1680,8 @@
       "security": "Drošība",
       "species": "Sugas",
       "notifications": "Paziņojumi",
-      "support": "Atbalsts"
+      "support": "Atbalsts",
+      "visitors": "Apmeklētāji"
     },
     "notFound": {
       "title": "Iestatījumi nav atrasti",

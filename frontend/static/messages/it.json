@@ -1680,7 +1680,8 @@
       "security": "Sicurezza",
       "species": "Specie",
       "notifications": "Notifiche",
-      "support": "Supporto"
+      "support": "Supporto",
+      "visitors": "Visitatori"
     },
     "notFound": {
       "title": "Impostazioni Non Trovate",

@@ -1680,7 +1680,8 @@
       "security": "Säkerhet",
       "species": "Arter",
       "notifications": "Aviseringar",
-      "support": "Support"
+      "support": "Support",
+      "visitors": "Besökare"
     },
     "notFound": {
       "title": "Inställningar hittades inte",

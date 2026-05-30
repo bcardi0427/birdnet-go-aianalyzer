@@ -1656,7 +1656,8 @@
       "notifications": "Ilmoitukset",
       "security": "Turvallisuus",
       "species": "Lajit",
-      "support": "Tuki"
+      "support": "Tuki",
+      "visitors": "Vierailijat"
     },
     "notFound": {
       "title": "Asetuksia ei löytynyt",

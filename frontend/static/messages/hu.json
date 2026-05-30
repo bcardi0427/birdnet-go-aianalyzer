@@ -1680,7 +1680,8 @@
       "security": "Biztonság",
       "species": "Fajok",
       "notifications": "Értesítések",
-      "support": "Támogatás"
+      "support": "Támogatás",
+      "visitors": "Látogatók"
     },
     "notFound": {
       "title": "Beállítások nem találhatók",

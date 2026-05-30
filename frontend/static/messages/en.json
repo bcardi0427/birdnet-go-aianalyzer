@@ -1701,7 +1701,8 @@
       "security": "Security",
       "species": "Species",
       "notifications": "Notifications",
-      "support": "Support"
+      "support": "Support",
+      "visitors": "Visitors"
     },
     "notFound": {
       "title": "Settings Not Found",

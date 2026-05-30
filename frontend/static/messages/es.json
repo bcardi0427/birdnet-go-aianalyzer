@@ -1656,7 +1656,8 @@
       "notifications": "Notificaciones",
       "security": "Seguridad",
       "species": "Especies",
-      "support": "Soporte"
+      "support": "Soporte",
+      "visitors": "Visitantes"
     },
     "notFound": {
       "title": "Configuración no encontrada",

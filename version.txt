@@ -1,1 +1,1 @@
-aianalyzer version 0.27
+aianalyzer version 0.28

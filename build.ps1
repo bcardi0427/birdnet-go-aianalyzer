@@ -16,8 +16,19 @@ $env:PATH = "C:\msys64\ucrt64\bin;$scriptDir;" + $env:PATH
 $env:CGO_ENABLED = "1"
 $env:CGO_CFLAGS = "-I$env:TENSORFLOW_PATH"
 
-Write-Host "Building birdnet-go.exe..."
-go build -trimpath -o birdnet-go.exe .
+$version = "unknown"
+if (Test-Path -Path "$scriptDir\version.txt") {
+    $version = (Get-Content -Path "$scriptDir\version.txt" -Raw).Trim()
+} else {
+    $gitVersion = git describe --tags --always 2>$null
+    if ($gitVersion) { $version = $gitVersion }
+}
+
+$buildDate = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+$ldflags = "-s -w -X 'main.buildDate=$buildDate' -X 'main.version=$version'"
+
+Write-Host "Building birdnet-go.exe with version: $version..."
+go build -trimpath -ldflags $ldflags -o birdnet-go.exe .
 if ($LASTEXITCODE -eq 0) {
     Write-Host "Build succeeded!" -ForegroundColor Green
 } else {

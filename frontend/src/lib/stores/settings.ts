@@ -264,6 +264,7 @@ export interface ExportSettings {
   preCapture: number; // pre-capture in seconds
   gain: number; // gain in dB for audio capture
   normalization: NormalizationSettings; // audio normalization settings (EBU R128)
+  excludedSpecies?: string[]; // species to exclude from clip saving
 }
 
 export interface NormalizationSettings {

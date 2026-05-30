@@ -22,7 +22,19 @@
 -->
 <script lang="ts">
   import Card from '$lib/desktop/components/ui/Card.svelte';
-  import { Star, Globe, Info, Clock, FileText, CircleCheck, User } from '@lucide/svelte';
+  import {
+    Globe,
+    Info,
+    Clock,
+    FileText,
+    CircleCheck,
+    User,
+    BrainCircuit,
+    Radio,
+    Terminal,
+    ArrowUpRight,
+    Heart,
+  } from '@lucide/svelte';
   import GithubIcon from '$lib/desktop/components/ui/GithubIcon.svelte';
   import { onMount } from 'svelte';
   import { t } from '$lib/i18n';
@@ -58,56 +70,149 @@
   });
 </script>
 
-<div class="col-span-12 space-y-4">
+<div class="col-span-12 space-y-6">
   <!-- Header with Logo -->
-  <div class="card bg-[var(--color-base-100)] shadow-sm">
-    <div class="card-body flex flex-col items-center text-center">
+  <div
+    class="card bg-gradient-to-br from-[var(--color-primary)]/15 via-[var(--color-base-100)] to-[var(--color-secondary)]/5 border border-[var(--color-primary)]/10 shadow-md"
+  >
+    <div class="card-body flex flex-col items-center text-center p-8 md:p-12">
       <div
-        class="w-36 h-36 rounded-full bg-gradient-to-b from-[var(--surface-200)] to-[var(--color-base-100)] flex items-center justify-center p-1 border border-[var(--border-100)]"
+        class="w-36 h-36 rounded-full bg-gradient-to-b from-[var(--surface-200)] to-[var(--color-base-100)] flex items-center justify-center p-1.5 shadow-lg border border-[var(--border-200)] hover:scale-105 transition-transform duration-300"
       >
         <img
           src="/ui/assets/BirdNET-Go-logo.webp"
-          alt={t('about.logoAlt')}
+          alt="BirdNET-Go AI Analyzer Logo"
           class="w-full h-full object-contain rounded-full"
         />
       </div>
-      <div class="mt-4">
-        <h1 class="text-4xl font-bold">{t('about.title')}</h1>
-        <p class="text-[var(--color-base-content)] opacity-70 text-lg mt-2">
-          {t('about.subtitle')}
+      <div class="mt-6">
+        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-[var(--color-base-content)]">
+          BirdNET-Go <span
+            class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent"
+            >AI Analyzer</span
+          >
+        </h1>
+        <p
+          class="text-[var(--color-base-content)] opacity-80 text-lg md:text-xl max-w-2xl mx-auto mt-3 font-light leading-relaxed"
+        >
+          An enhanced fork featuring real-time bird sound detection, deep AI analytics, and
+          optimized Proxmox LXC installation scripts.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- About BirdNET-Go Section -->
-  <Card title={t('about.overview')} className="bg-[var(--color-base-100)] shadow-sm">
-    <p>
-      {t('about.overviewText')}
-    </p>
-
-    <div class="mt-4 p-4 bg-[var(--color-base-200)] rounded-lg">
-      <p
-        class="text-sm text-[var(--color-base-content)] opacity-80 text-center flex items-center justify-center gap-2"
-      >
-        <span class="text-yellow-500">
-          <Star class="size-5" />
-        </span>
-        {t('about.githubStarPrompt')}
+  <!-- About This Fork Section -->
+  <Card
+    title="AI Analyzer Fork Overview"
+    className="bg-[var(--color-base-100)] shadow-sm border border-[var(--border-100)]"
+  >
+    <div class="space-y-4">
+      <p class="text-[var(--color-base-content)] leading-relaxed">
+        This repository is a customized fork of <strong>BirdNET-Go</strong> maintained by
+        <strong>@bcardi0427</strong>. It is built to maintain full compatibility with upstream
+        updates while enriching the platform with custom features, including Large Language Model
+        (LLM) insights, optimized media playback controls, and system-level screen lock management.
       </p>
-    </div>
 
-    <div class="mt-4 flex justify-center">
-      <a
-        href="https://github.com/bcardi0427/birdnet-go-aianalyzer"
-        class="btn btn-outline-primary gap-2"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={t('about.visitGithubAriaLabel')}
-      >
-        <GithubIcon class="size-5" />
-        {t('about.viewOnGithub')}
-      </a>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Feature 1 -->
+        <div
+          class="p-4 bg-[var(--color-base-200)]/60 rounded-xl border border-[var(--border-100)] hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 flex gap-4"
+        >
+          <div
+            class="p-3 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-lg h-fit"
+          >
+            <BrainCircuit class="size-6" />
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-[var(--color-base-content)]">AI Analysis & LLMs</h3>
+            <p class="text-sm text-[var(--color-base-content)] opacity-70 mt-1">
+              Harness advanced Large Language Models to describe behaviors, habits, and details of
+              species detections dynamically.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div
+          class="p-4 bg-[var(--color-base-200)]/60 rounded-xl border border-[var(--border-100)] hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 flex gap-4"
+        >
+          <div
+            class="p-3 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-lg h-fit"
+          >
+            <Radio class="size-6" />
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-[var(--color-base-content)]">Screen Wake Lock</h3>
+            <p class="text-sm text-[var(--color-base-content)] opacity-70 mt-1">
+              Keep client displays awake automatically on the live audio spectrogram page for
+              uninterrupted monitoring.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div
+          class="p-4 bg-[var(--color-base-200)]/60 rounded-xl border border-[var(--border-100)] hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 flex gap-4"
+        >
+          <div
+            class="p-3 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-lg h-fit"
+          >
+            <Clock class="size-6" />
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-[var(--color-base-content)]">
+              Desktop Playback Controls
+            </h3>
+            <p class="text-sm text-[var(--color-base-content)] opacity-70 mt-1">
+              Play and check recorded calls on the fly within the search result rows, completely
+              optimized for desktop screens.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div
+          class="p-4 bg-[var(--color-base-200)]/60 rounded-xl border border-[var(--border-100)] hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200 flex gap-4"
+        >
+          <div
+            class="p-3 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-lg h-fit"
+          >
+            <Terminal class="size-6" />
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-[var(--color-base-content)]">
+              LXC Deployment & Upgrades
+            </h3>
+            <p class="text-sm text-[var(--color-base-content)] opacity-70 mt-1">
+              Use the optimized LXC wrapper script to host, migrate, or upgrade the server natively
+              inside Proxmox environments.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <a
+          href="https://github.com/bcardi0427/birdnet-go-aianalyzer"
+          class="btn btn-primary gap-2 w-full sm:w-auto"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GithubIcon class="size-5" />
+          View Fork on GitHub
+        </a>
+        <a
+          href="https://github.com/bcardi0427/birdnet-go-aianalyzer/issues"
+          class="btn btn-outline gap-2 w-full sm:w-auto"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Report an Issue
+          <ArrowUpRight class="size-4" />
+        </a>
+      </div>
     </div>
   </Card>
 
@@ -158,6 +263,14 @@
   <Card title={t('about.contributors')} className="bg-[var(--color-base-100)] shadow-sm">
     <p>
       {t('about.contributorsText')}
+    </p>
+
+    <p class="text-xl font-medium mt-6">Fork Maintainer</p>
+    <p class="flex items-center gap-2 mt-2">
+      <Heart class="size-5 text-[var(--color-error)] fill-[var(--color-error)]" />
+      <a href="https://github.com/bcardi0427" class="btn btn-ghost btn-sm justify-start normal-case"
+        >Gerald Haygood (@bcardi0427)</a
+      >
     </p>
 
     <p class="text-xl font-medium mt-6">{t('about.mainDeveloper')}</p>

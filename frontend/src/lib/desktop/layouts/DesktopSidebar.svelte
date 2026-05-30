@@ -1199,11 +1199,11 @@ Performance Optimizations:
       {#if !isCollapsed}
         <div class="mt-3 text-center">
           <a
-            href="https://github.com/tphakala/birdnet-go"
+            href="https://github.com/bcardi0427/birdnet-go-aianalyzer"
             target="_blank"
             rel="noopener noreferrer"
             class="text-xs text-[var(--color-base-content)]/60 hover:text-[var(--color-base-content)]/80 transition-colors duration-150"
-            aria-label="View BirdNET-Go repository on GitHub (opens in new window)"
+            aria-label="View aianalyzer repository on GitHub (opens in new window)"
           >
             {version}
           </a>

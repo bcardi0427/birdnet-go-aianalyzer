@@ -62,7 +62,7 @@
       </a>
       {#if showDetails}
         <a
-          href="https://github.com/tphakala/birdnet-go/issues"
+          href="https://github.com/bcardi0427/birdnet-go-aianalyzer/issues"
           class="btn btn-accent normal-case text-base font-semibold transition duration-300"
         >
           {t('common.reportIssue')}

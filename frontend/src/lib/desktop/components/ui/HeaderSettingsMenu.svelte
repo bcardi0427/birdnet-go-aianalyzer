@@ -226,7 +226,7 @@
 
         <!-- GitHub link -->
         <a
-          href="https://github.com/tphakala/birdnet-go"
+          href="https://github.com/bcardi0427/birdnet-go-aianalyzer"
           target="_blank"
           rel="noopener noreferrer"
           class="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-normal text-[var(--color-base-content)] transition-colors duration-150 hover:bg-[var(--color-base-content)]/10"

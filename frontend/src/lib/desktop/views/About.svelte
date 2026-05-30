@@ -99,7 +99,7 @@
 
     <div class="mt-4 flex justify-center">
       <a
-        href="https://github.com/tphakala/birdnet-go"
+        href="https://github.com/bcardi0427/birdnet-go-aianalyzer"
         class="btn btn-outline-primary gap-2"
         target="_blank"
         rel="noopener noreferrer"

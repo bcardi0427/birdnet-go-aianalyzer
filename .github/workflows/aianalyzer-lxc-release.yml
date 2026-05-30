@@ -85,13 +85,20 @@ jobs:
         with:
           target-platform: ${{ matrix.goos }}-${{ matrix.goarch }}
 
+      - name: Read version from version.txt
+        id: read_version
+        shell: bash
+        run: |
+          VERSION=$(cat version.txt)
+          echo "BUILD_VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Build binary
         run: task ${{ matrix.goos }}_${{ matrix.goarch }}
         env:
           GOOS: ${{ matrix.goos }}
           GOARCH: ${{ matrix.goarch }}
           CGO_ENABLED: 1
-          BUILD_VERSION: aianalyzer-${{ github.run_number }}
+          BUILD_VERSION: ${{ env.BUILD_VERSION }}
           PUPPETEER_SKIP_DOWNLOAD: true
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
 

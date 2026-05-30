@@ -147,6 +147,7 @@
             loudnessRange: 7.0, // Typical range for broadcast
             truePeak: -2.0, // Headroom to prevent clipping
           },
+          excludedSpecies: [],
         },
       };
 
@@ -225,12 +226,14 @@
         length: store.originalData.realtime?.audio?.export?.length,
         preCapture: store.originalData.realtime?.audio?.export?.preCapture,
         gain: store.originalData.realtime?.audio?.export?.gain,
+        excludedSpecies: store.originalData.realtime?.audio?.export?.excludedSpecies,
       },
       {
         enabled: store.formData.realtime?.audio?.export?.enabled,
         length: store.formData.realtime?.audio?.export?.length,
         preCapture: store.formData.realtime?.audio?.export?.preCapture,
         gain: store.formData.realtime?.audio?.export?.gain,
+        excludedSpecies: store.formData.realtime?.audio?.export?.excludedSpecies,
       }
     )
   );
@@ -1123,6 +1126,35 @@
                 formatValue={(v: number) => `${v} dB`}
                 helpText={t('settings.audio.clipRecording.gainHelp')}
               />
+              <div class="col-span-full pt-4 border-t border-[var(--color-base-300)] mt-4">
+                <SpeciesListEditor
+                  id="excluded-species-list"
+                  label="Excluded Species"
+                  description="Do not save clips for the following species. Use scientific names or common names."
+                  species={settings.audio.export.excludedSpecies || []}
+                  availableSpecies={speciesListState.data}
+                  loading={speciesListState.loading}
+                  disabled={!settings.audio.export.enabled || store.isLoading || store.isSaving}
+                  onUpdate={value => {
+                    const cleaned = value.map(s => {
+                      if (s.endsWith(GENUS_SUFFIX)) return s.slice(0, -GENUS_SUFFIX.length);
+                      if (s.endsWith(FAMILY_SUFFIX)) {
+                        const withoutSuffix = s.slice(0, -FAMILY_SUFFIX.length);
+                        const dashIdx = withoutSuffix.indexOf(' — ');
+                        return dashIdx >= 0 ? withoutSuffix.slice(0, dashIdx) : withoutSuffix;
+                      }
+                      if (s.endsWith(ORDER_SUFFIX)) return s.slice(0, -ORDER_SUFFIX.length);
+                      return s;
+                    });
+                    settingsActions.updateSection('realtime', {
+                      audio: {
+                        ...$audioSettings!,
+                        export: { ...settings.audio.export, excludedSpecies: cleaned },
+                      },
+                    })
+                  }}
+                />
+              </div>
             </div>
           </div>
         </fieldset>

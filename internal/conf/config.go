@@ -41,16 +41,17 @@ type EqualizerSettings struct {
 }
 
 type ExportSettings struct {
-	Debug         bool                  `yaml:"debug" json:"debug" mapstructure:"debug"`                         // true to enable audio export debug
-	Enabled       bool                  `yaml:"enabled" json:"enabled" mapstructure:"enabled"`                   // export audio clips containing indentified bird calls
-	Path          string                `yaml:"path" json:"path" mapstructure:"path"`                            // path to audio clip export directory
-	Type          string                `yaml:"type" json:"type" mapstructure:"type"`                            // audio file type, wav, mp3 or flac
-	Bitrate       string                `yaml:"bitrate" json:"bitrate" mapstructure:"bitrate"`                   // bitrate for audio export
-	Retention     RetentionSettings     `yaml:"retention" json:"retention" mapstructure:"retention"`             // retention settings
-	Length        int                   `yaml:"length" json:"length" mapstructure:"length"`                      // audio capture length in seconds
-	PreCapture    int                   `yaml:"precapture" json:"preCapture" mapstructure:"preCapture"`          // pre-capture in seconds
-	Gain          float64               `yaml:"gain" json:"gain" mapstructure:"gain"`                            // gain in dB for audio capture
-	Normalization NormalizationSettings `yaml:"normalization" json:"normalization" mapstructure:"normalization"` // audio normalization settings (EBU R128)
+	Debug           bool                  `yaml:"debug" json:"debug" mapstructure:"debug"`                               // true to enable audio export debug
+	Enabled         bool                  `yaml:"enabled" json:"enabled" mapstructure:"enabled"`                         // export audio clips containing indentified bird calls
+	Path            string                `yaml:"path" json:"path" mapstructure:"path"`                                  // path to audio clip export directory
+	Type            string                `yaml:"type" json:"type" mapstructure:"type"`                                  // audio file type, wav, mp3 or flac
+	Bitrate         string                `yaml:"bitrate" json:"bitrate" mapstructure:"bitrate"`                         // bitrate for audio export
+	Retention       RetentionSettings     `yaml:"retention" json:"retention" mapstructure:"retention"`                   // retention settings
+	Length          int                   `yaml:"length" json:"length" mapstructure:"length"`                            // audio capture length in seconds
+	PreCapture      int                   `yaml:"precapture" json:"preCapture" mapstructure:"preCapture"`                // pre-capture in seconds
+	Gain            float64               `yaml:"gain" json:"gain" mapstructure:"gain"`                                  // gain in dB for audio capture
+	Normalization   NormalizationSettings `yaml:"normalization" json:"normalization" mapstructure:"normalization"`       // audio normalization settings (EBU R128)
+	ExcludedSpecies []string              `yaml:"excludedspecies" json:"excludedSpecies" mapstructure:"excludedspecies"` // species to exclude from clip saving
 }
 
 // NormalizationSettings contains audio normalization configuration based on EBU R128 standard
@@ -778,13 +779,13 @@ type AIProviderSettings struct {
 
 // AISettings contains settings for AI integration features (like daily reports).
 type AISettings struct {
-	Enabled      bool   `yaml:"enabled" json:"enabled"`           // true to enable AI features
-	Encrypted    bool   `yaml:"encrypted" json:"encrypted"`       // true when secret values are encrypted at rest
-	Provider     string `yaml:"provider" json:"provider"`         // Active AI provider, defaults to "gemini"
-	APIKey       string `yaml:"apikey" json:"apiKey"`             // API key for the active provider
-	APIKeyFile   string `yaml:"apikeyfile" json:"apiKeyFile"`     // file path to provider API key
-	BaseURL      string `yaml:"baseurl" json:"baseUrl"`           // Optional provider base URL override
-	Model        string `yaml:"model" json:"model"`               // Model to use, provider-specific
+	Enabled       bool   `yaml:"enabled" json:"enabled"`             // true to enable AI features
+	Encrypted     bool   `yaml:"encrypted" json:"encrypted"`         // true when secret values are encrypted at rest
+	Provider      string `yaml:"provider" json:"provider"`           // Active AI provider, defaults to "gemini"
+	APIKey        string `yaml:"apikey" json:"apiKey"`               // API key for the active provider
+	APIKeyFile    string `yaml:"apikeyfile" json:"apiKeyFile"`       // file path to provider API key
+	BaseURL       string `yaml:"baseurl" json:"baseUrl"`             // Optional provider base URL override
+	Model         string `yaml:"model" json:"model"`                 // Model to use, provider-specific
 	ReportDays    int    `yaml:"reportdays" json:"reportDays"`       // Number of days included in AI report window
 	CacheHours    int    `yaml:"cachehours" json:"cacheHours"`       // Hours to cache the report (default 4)
 	SystemPrompt  string `yaml:"systemprompt" json:"systemPrompt"`   // Custom instruction prompt
@@ -880,7 +881,6 @@ func syncActiveProvider(a *AISettings, p *AIProviderSettings) {
 	a.BaseURL = p.BaseURL
 	a.Model = p.Model
 }
-
 
 // RealtimeSettings contains all settings related to realtime processing.
 type RealtimeSettings struct {

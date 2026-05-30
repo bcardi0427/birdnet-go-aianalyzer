@@ -13,7 +13,7 @@
 <div class="flex flex-col items-center gap-4 pt-6 text-center">
   <div class="flex h-32 w-32 items-center justify-center">
     <img
-      src="/ui/assets/BirdNET-Go-logo.webp"
+      src="/ui/assets/BirdNET-Go-AI-Analyzer-logo.png"
       alt={t('about.logoAlt')}
       class="h-full w-full object-contain"
     />

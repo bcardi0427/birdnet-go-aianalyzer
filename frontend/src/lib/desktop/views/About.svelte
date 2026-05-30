@@ -80,7 +80,7 @@
         class="w-36 h-36 rounded-full bg-gradient-to-b from-[var(--surface-200)] to-[var(--color-base-100)] flex items-center justify-center p-1.5 shadow-lg border border-[var(--border-200)] hover:scale-105 transition-transform duration-300"
       >
         <img
-          src="/ui/assets/BirdNET-Go-logo.webp"
+          src="/ui/assets/BirdNET-Go-AI-Analyzer-logo.png"
           alt="BirdNET-Go AI Analyzer Logo"
           class="w-full h-full object-contain rounded-full"
         />

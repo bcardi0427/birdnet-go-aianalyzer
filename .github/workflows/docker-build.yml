@@ -61,6 +61,8 @@ jobs:
           # Podman-prefixed tags for easier discovery by Podman users
           # Same OCI image, just different tags for user convenience
           tags: |
+            ghcr.io/${{ env.REPO }}:latest
+            ghcr.io/${{ env.REPO }}:podman-latest
             ghcr.io/${{ env.REPO }}:dev
             ghcr.io/${{ env.REPO }}:${{ github.sha }}
             ghcr.io/${{ env.REPO }}:podman-dev

@@ -359,6 +359,12 @@
   }
 
   function handleRouting(path: string): void {
+    // Redirect to home/dashboard if AI analysis page is requested but AI is disabled
+    if (path === uiPath('ai-analysis') && !appState.features.aiAnalysisEnabled) {
+      navigate('/');
+      return;
+    }
+
     // Special handling for detection detail pages
     if (UI_DETECTIONS_PREFIX_RE.test(path) && path.split('/').length > 3) {
       const pathParts = path.split('/');

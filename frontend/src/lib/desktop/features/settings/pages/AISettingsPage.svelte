@@ -11,7 +11,7 @@
   import type { SelectOption } from '$lib/desktop/components/forms/SelectDropdown.types';
   import { t } from '$lib/i18n';
   import { toastActions } from '$lib/stores/toast';
-  import { appState } from '$lib/stores/appState.svelte';
+  import { appState, initApp } from '$lib/stores/appState.svelte';
   import {
     settingsAPI,
     type AIModel,
@@ -246,6 +246,8 @@
         anthropic: { ...defaultSettings.anthropic, ...updated.anthropic } as AIProviderSettings,
       };
       originalSettings = JSON.parse(JSON.stringify(settings));
+      // Refresh app configuration to update feature flags and navigation menu
+      await initApp();
       toastActions.success(t('settings.ai.saved'));
     } catch (err) {
       error = err instanceof Error ? err.message : t('settings.ai.errors.saveFailed');

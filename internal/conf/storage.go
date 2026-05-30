@@ -60,10 +60,10 @@ func Load() (*Settings, error) {
 			Build()
 	}
 
-	if err := decryptConfigSecrets(settings); err != nil {
+	if err := loadSecrets(settings); err != nil {
 		return nil, errors.New(err).
 			Category(errors.CategoryConfiguration).
-			Context("operation", "decrypt-config-secrets").
+			Context("operation", "load-secrets").
 			Build()
 	}
 
@@ -465,10 +465,10 @@ func SaveSettings() error {
 	// Ensure AI settings are migrated and synchronized before encryption/saving
 	settingsCopy.AI.MigrateAndSync(false)
 
-	if err := encryptConfigSecrets(&settingsCopy); err != nil {
+	if err := saveSecrets(&settingsCopy); err != nil {
 		return errors.New(err).
 			Category(errors.CategoryConfiguration).
-			Context("operation", "encrypt-config-secrets").
+			Context("operation", "save-secrets").
 			Build()
 	}
 

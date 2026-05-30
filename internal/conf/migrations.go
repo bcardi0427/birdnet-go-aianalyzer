@@ -17,7 +17,7 @@ func persistMigration(settings *Settings, label string) {
 		return
 	}
 	settingsCopy := CloneSettings(settings)
-	if err := encryptConfigSecrets(settingsCopy); err != nil {
+	if err := saveSecrets(settingsCopy); err != nil {
 		GetLogger().Warn("Failed to encrypt configuration secrets for "+label, logger.Error(err))
 		return
 	}
@@ -73,7 +73,7 @@ func ensureSessionSecret(settings *Settings) error {
 	}
 
 	settingsCopy := CloneSettings(settings)
-	if err := encryptConfigSecrets(settingsCopy); err != nil {
+	if err := saveSecrets(settingsCopy); err != nil {
 		GetLogger().Warn("Failed to encrypt configuration secrets for SessionSecret save", logger.Error(err))
 		return nil
 	}
@@ -460,3 +460,4 @@ func (s *Settings) MigrateLocationConfigured() bool {
 	s.BirdNET.LocationConfigured = true
 	return true
 }
+

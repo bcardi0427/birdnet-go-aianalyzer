@@ -159,7 +159,7 @@ jobs:
           tag_name: aianalyzer-lxc-latest
           name: AI Analyzer LXC Latest
           body: |
-            Latest release binaries and packaged archives for the AI Analyzer fork.
+            Latest release binaries and packaged archives for the AI Analyzer.
 
             For Proxmox LXC upgrades and Raspberry Pi, run the update script inside your terminal:
 

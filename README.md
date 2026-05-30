@@ -1,4 +1,4 @@
-# BirdNET-Go (bcardi0427 Fork)
+# BirdNET-Go (AI Analyzer Edition)
 
 This repository is a comprehensive reprogramming of BirdNET-Go, featuring the **AI Analyzer** and other custom enhancements. Originally based on `tphakala/birdnet-go`.
 
@@ -8,14 +8,14 @@ This repository is a comprehensive reprogramming of BirdNET-Go, featuring the **
 
 ## AI Analyzer
 
-The AI Analyzer is a major component of this fork. 
+The AI Analyzer is a major component of this repository. 
 
 
 
 ### Installation Options
 
 #### 1. Proxmox VE Helper Script (LXC Container)
-If you are running Proxmox VE, you can deploy the complete BirdNET-Go AI Analyzer fork inside a dedicated Debian 13 LXC container with a single command. The script handles everything: provisioning the container, configuring audio output/decoders, auto-detecting your timezone/location, and starting the daemon service:
+If you are running Proxmox VE, you can deploy the complete BirdNET-Go AI Analyzer inside a dedicated Debian 13 LXC container with a single command. The script handles everything: provisioning the container, configuring audio output/decoders, auto-detecting your timezone/location, and starting the daemon service:
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/aianalyzer/main/scripts/lxc-build.sh)"
@@ -30,12 +30,12 @@ curl -fsSL https://raw.githubusercontent.com/bcardi0427/birdnet-go-aianalyzer/ai
 bash ./install-aianalyzer.sh
 ```
 
-### Fork-specific Documentation
+### AI Analyzer Documentation
 - [AI Analyzer docs](docs/aianalyzer/README.md)
 - [Wrapper installer script](install-aianalyzer.sh)
 - [Proxmox helper LXC upgrade script](scripts/install-aianalyzer-lxc.sh) (for existing installations)
 
-This fork remains under the upstream BirdNET-Go license and privacy expectations. Review scripts before running them, especially when installing directly from GitHub.
+This repository remains under the upstream BirdNET-Go license and privacy expectations. Review scripts before running them, especially when installing directly from GitHub.
 
 
 <p align="center">

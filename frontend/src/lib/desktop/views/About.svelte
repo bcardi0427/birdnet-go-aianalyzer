@@ -95,21 +95,21 @@
         <p
           class="text-[var(--color-base-content)] opacity-80 text-lg md:text-xl max-w-2xl mx-auto mt-3 font-light leading-relaxed"
         >
-          An enhanced fork featuring real-time bird sound detection, deep AI analytics, and
+          An enhanced edition featuring real-time bird sound detection, deep AI analytics, and
           optimized Proxmox LXC installation scripts.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- About This Fork Section -->
+  <!-- About This Edition Section -->
   <Card
-    title="AI Analyzer Fork Overview"
+    title="AI Analyzer Overview"
     className="bg-[var(--color-base-100)] shadow-sm border border-[var(--border-100)]"
   >
     <div class="space-y-4">
       <p class="text-[var(--color-base-content)] leading-relaxed">
-        This repository is a customized fork of <strong>BirdNET-Go</strong> maintained by
+        This repository is a customized edition based on <strong>BirdNET-Go</strong>, maintained by
         <strong>@bcardi0427</strong>. It is built to maintain full compatibility with upstream
         updates while enriching the platform with custom features, including Large Language Model
         (LLM) insights, optimized media playback controls, and system-level screen lock management.
@@ -201,7 +201,7 @@
           rel="noopener noreferrer"
         >
           <GithubIcon class="size-5" />
-          View Fork on GitHub
+          View on GitHub
         </a>
         <a
           href="https://github.com/bcardi0427/birdnet-go-aianalyzer/issues"
@@ -265,7 +265,7 @@
       {t('about.contributorsText')}
     </p>
 
-    <p class="text-xl font-medium mt-6">Fork Maintainer</p>
+    <p class="text-xl font-medium mt-6">Project Maintainer</p>
     <p class="flex items-center gap-2 mt-2">
       <Heart class="size-5 text-[var(--color-error)] fill-[var(--color-error)]" />
       <a href="https://github.com/bcardi0427" class="btn btn-ghost btn-sm justify-start normal-case"

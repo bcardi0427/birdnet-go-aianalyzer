@@ -2,7 +2,7 @@
 //
 // These tests validate:
 // 1. Loading of all label files in the V2.4 directory for each supported locale
-// 2. Line count validation - ensuring each file has exactly GetExpectedLinesV24() (6522) lines
+// 2. Line count validation - ensuring each file has exactly GetExpectedLinesV24() (6523) lines
 // 3. Format validation - checking proper scientific_name_common_name format
 // 4. Consistency validation - comparing scientific names across locales (with reporting)
 // 5. Error handling for unsupported models/locales

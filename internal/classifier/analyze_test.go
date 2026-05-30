@@ -82,15 +82,15 @@ func TestPairLabelsAndConfidence(t *testing.T) {
 		},
 		{
 			name:       "Large dataset (BirdNET size)",
-			labels:     generateTestLabels(6522),
-			confidence: generateTestConfidence(6522),
+			labels:     generateTestLabels(6523),
+			confidence: generateTestConfidence(6523),
 			wantErr:    false,
 			validate: func(t *testing.T, results []datastore.Results) {
 				t.Helper()
-				require.Len(t, results, 6522)
+				require.Len(t, results, 6523)
 				// Verify a few samples
 				assert.Equal(t, "Species_000001", results[0].Species, "First species incorrect")
-				assert.Equal(t, "Species_006522", results[6521].Species, "Last species incorrect")
+				assert.Equal(t, "Species_006523", results[6521].Species, "Last species incorrect")
 			},
 		},
 		{
@@ -745,7 +745,7 @@ func TestGetTopKResults(t *testing.T) {
 		},
 		{
 			name:  "Large dataset (realistic BirdNET size)",
-			input: generateLargeTestResults(6522),
+			input: generateLargeTestResults(6523),
 			k:     10,
 			validate: func(t *testing.T, results []datastore.Results, k int) {
 				t.Helper()

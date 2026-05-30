@@ -9,7 +9,7 @@ import (
 
 // BenchmarkPairLabelsAndConfidenceAlloc tests different allocation strategies
 func BenchmarkPairLabelsAndConfidenceAlloc(b *testing.B) {
-	speciesCount := 6523
+	speciesCount := 6522
 	labels := make([]string, speciesCount)
 	confidence := make([]float32, speciesCount)
 
@@ -54,8 +54,8 @@ func BenchmarkResultsStructSize(b *testing.B) {
 	b.Logf("Size of datastore.Results struct: %d bytes", unsafe.Sizeof(datastore.Results{}))
 	b.Logf("Size of slice header: %d bytes", unsafe.Sizeof([]datastore.Results{}))
 
-	// Calculate expected memory for 6523 results
-	count := 6523
+	// Calculate expected memory for 6522 results
+	count := 6522
 	structSize := unsafe.Sizeof(datastore.Results{})
 	sliceHeaderSize := unsafe.Sizeof([]datastore.Results{})
 	totalExpected := int(structSize)*count + int(sliceHeaderSize)
@@ -72,7 +72,7 @@ func BenchmarkResultsStructSize(b *testing.B) {
 
 // BenchmarkPairLabelsVariations tests different implementation approaches
 func BenchmarkPairLabelsVariations(b *testing.B) {
-	speciesCount := 6523
+	speciesCount := 6522
 	labels := make([]string, speciesCount)
 	confidence := make([]float32, speciesCount)
 

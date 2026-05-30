@@ -4,9 +4,9 @@ Abroscopus superciliaris_Yellow-bellied Warbler
 Aburria aburri_Wattled Guan
 Acanthagenys rufogularis_Spiny-cheeked Honeyeater
 Acanthidops bairdi_Peg-billed Finch
-Acanthis cabaret_Î’ÏÎµÏ„Î±Î½Î¹ÎºÎ® Î£Î·Î¼Ï…Î´ÏŒÏƒÏ€Î¹Î¶Î±
-Acanthis flammea_Î£Î·Î¼Ï…Î´ÏŒÏƒÏ€Î¹Î¶Î±
-Acanthis hornemanni_Î§Î¹Î¿Î½ÏŒÏƒÏ€Î¹Î¶Î±
+Acanthis cabaret_Βρετανική Σημυδόσπιζα
+Acanthis flammea_Σημυδόσπιζα
+Acanthis hornemanni_Χιονόσπιζα
 Acanthisitta chloris_Rifleman
 Acanthiza apicalis_Inland Thornbill
 Acanthiza chrysorrhoa_Yellow-rumped Thornbill
@@ -19,23 +19,23 @@ Acanthiza reguloides_Buff-rumped Thornbill
 Acanthiza uropygialis_Chestnut-rumped Thornbill
 Acanthorhynchus superciliosus_Western Spinebill
 Acanthorhynchus tenuirostris_Eastern Spinebill
-Accipiter badius_Î£Î±ÎÎ½Î¹ Î£Î¯ÎºÏÎ±
+Accipiter badius_Σαΐνι Σίκρα
 Accipiter bicolor_Bicolored Hawk
 Accipiter cirrocephalus_Collared Sparrowhawk
 Accipiter cooperii_Cooper's Hawk
 Accipiter fasciatus_Brown Goshawk
-Accipiter gentilis_Î”Î¹Ï€Î»Î¿ÏƒÎ¬Î¹Î½Î¿
+Accipiter gentilis_Διπλοσάινο
 Accipiter gularis_Japanese Sparrowhawk
 Accipiter hiogaster_Variable Goshawk
 Accipiter melanoleucus_Black Goshawk
 Accipiter minullus_Little Sparrowhawk
-Accipiter nisus_ÎžÎµÏ†Ï„Î­ÏÎ¹
+Accipiter nisus_Ξεφτέρι
 Accipiter novaehollandiae_Gray Goshawk
 Accipiter poliogaster_Gray-bellied Hawk
 Accipiter soloensis_Chinese Sparrowhawk
 Accipiter striatus_Sharp-shinned Hawk
 Accipiter superciliosus_Tiny Hawk
-Accipiter tachiro_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ Î”Î¹Ï€Î»Î¿ÏƒÎ¬Î¹Î½Î¿
+Accipiter tachiro_Αφρικανικό Διπλοσάινο
 Accipiter trinotatus_Spot-tailed Goshawk
 Accipiter trivirgatus_Crested Goshawk
 Accipiter virgatus_Besra
@@ -43,32 +43,32 @@ Aceros nipalensis_Rufous-necked Hornbill
 Achaetops pycnopygius_Rockrunner
 Acridotheres burmannicus_Burmese Myna
 Acridotheres cristatellus_Crested Myna
-Acridotheres fuscus_ÎœÎ¬Î¹Î½Î± Ï„Î·Ï‚ Î–Î¿ÏÎ³ÎºÎ»Î±Ï‚
+Acridotheres fuscus_Μάινα της Ζούγκλας
 Acridotheres ginginianus_Bank Myna
 Acridotheres grandis_Great Myna
 Acridotheres javanicus_Javan Myna
-Acridotheres tristis_ÎšÎ¿Î¹Î½Î® ÎœÎ¬Î¹Î½Î±
+Acridotheres tristis_Κοινή Μάινα
 Acris crepitans_Northern Cricket Frog
 Acris gryllus_Southern Cricket Frog
 Acrobatornis fonsecai_Pink-legged Graveteiro
-Acrocephalus agricola_Î›ÎµÏ…ÎºÏŒÏ†ÏÏ…Î´Î· Î Î¿Ï„Î±Î¼Î¯Î´Î±
-Acrocephalus arundinaceus_Î¤ÏƒÎ¹Ï‡Î»Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
+Acrocephalus agricola_Λευκόφρυδη Ποταμίδα
+Acrocephalus arundinaceus_Τσιχλοποταμίδα
 Acrocephalus australis_Australian Reed Warbler
 Acrocephalus baeticatus_African Reed Warbler
 Acrocephalus bistrigiceps_Black-browed Reed Warbler
 Acrocephalus concinens_Blunt-winged Warbler
-Acrocephalus dumetorum_Î˜Î±Î¼Î½Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
+Acrocephalus dumetorum_Θαμνοποταμίδα
 Acrocephalus gracilirostris_Lesser Swamp Warbler
-Acrocephalus griseldis_Î¤ÏƒÎ¹Ï‡Î»Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î± Ï„Î·Ï‚ Î’Î±ÏƒÏŒÏÎ±Ï‚
-Acrocephalus melanopogon_Î¨Î±Î¸Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
+Acrocephalus griseldis_Τσιχλοποταμίδα της Βασόρας
+Acrocephalus melanopogon_Ψαθοποταμίδα
 Acrocephalus newtoni_Madagascar Swamp Warbler
-Acrocephalus orientalis_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÎ® ÎšÎ±Î»Î±Î¼Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
-Acrocephalus paludicola_ÎÎµÏÎ¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
-Acrocephalus palustris_Î’Î±Î»Ï„Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
+Acrocephalus orientalis_Ανατολική Καλαμοποταμίδα
+Acrocephalus paludicola_Νεροποταμίδα
+Acrocephalus palustris_Βαλτοποταμίδα
 Acrocephalus rufescens_Greater Swamp Warbler
-Acrocephalus schoenobaenus_Î£Ï‡Î¿Î¹Î½Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
-Acrocephalus scirpaceus_ÎšÎ±Î»Î±Î¼Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
-Acrocephalus stentoreus_Î Î±Ï€Ï…ÏÎ¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
+Acrocephalus schoenobaenus_Σχοινοποταμίδα
+Acrocephalus scirpaceus_Καλαμοποταμίδα
+Acrocephalus stentoreus_Παπυροποταμίδα
 Acrocephalus tangorum_Manchurian Reed Warbler
 Acropternis orthonyx_Ocellated Tapaculo
 Actenoides concretus_Rufous-collared Kingfisher
@@ -80,13 +80,13 @@ Actinodura nipalensis_Hoary-throated Barwing
 Actinodura ramsayi_Spectacled Barwing
 Actinodura strigula_Chestnut-tailed Minla
 Actinodura waldeni_Streak-throated Barwing
-Actitis hypoleucos_Î‘ÎºÏ„Î¯Ï„Î·Ï‚
-Actitis macularius_ÎšÎ·Î»Î¹Î´Ï‰Ï„ÏŒÏ‚ Î‘ÎºÏ„Î¯Ï„Î·Ï‚
-Actophilornis africanus_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î“Î¹Î±ÎºÎ¬Î½Î±
+Actitis hypoleucos_Ακτίτης
+Actitis macularius_Κηλιδωτός Ακτίτης
+Actophilornis africanus_Αφρικανική Γιακάνα
 Adelomyia melanogenys_Speckled Hummingbird
 Aechmophorus clarkii_Clark's Grebe
 Aechmophorus occidentalis_Western Grebe
-Aegithalos caudatus_Î‘Î¹Î³Î¯Î¸Î±Î»Î¿Ï‚
+Aegithalos caudatus_Αιγίθαλος
 Aegithalos concinnus_Black-throated Tit
 Aegithalos glaucogularis_Silver-throated Tit
 Aegithalos iouschistos_Black-browed Tit
@@ -95,11 +95,11 @@ Aegithina nigrolutea_White-tailed Iora
 Aegithina tiphia_Common Iora
 Aegithina viridissima_Green Iora
 Aegolius acadicus_Northern Saw-whet Owl
-Aegolius funereus_Î‘Î¹Î³Ï‰Î»Î¹ÏŒÏ‚
+Aegolius funereus_Αιγωλιός
 Aegolius harrisii_Buff-fronted Owl
 Aegolius ridgwayi_Unspotted Saw-whet Owl
 Aegotheles cristatus_Australian Owlet-nightjar
-Aegypius monachus_ÎœÎ±Ï…ÏÏŒÎ³Ï…Ï€Î±Ï‚
+Aegypius monachus_Μαυρόγυπας
 Aerodramus bartschi_Mariana Swiftlet
 Aerodramus fuciphagus_White-nest Swiftlet
 Aerodramus maximus_Black-nest Swiftlet
@@ -117,9 +117,9 @@ Aethopyga siparaja_Crimson Sunbird
 Aethopyga temminckii_Temminck's Sunbird
 Aethopyga vigorsii_Vigors's Sunbird
 Agapornis canus_Gray-headed Lovebird
-Agapornis fischeri_Î‘Î³Î±Ï€ÏŒÏÎ½Î¹Î¸Î± Ï„Î¿Ï… Î¦Î¯ÏƒÎµÏ
-Agapornis personatus_ÎœÎ±ÏƒÎºÎ¿Ï†ÏŒÏÎ± Î‘Î³Î±Ï€ÏŒÏÎ½Î¹Î¸Î±
-Agapornis roseicollis_Î¡Î¿Î´Î¹Î½ÏŒÎ»Î±Î¹Î¼Î· Î‘Î³Î±Ï€ÏŒÏÎ½Î¹Î¸Î±
+Agapornis fischeri_Αγαπόρνιθα του Φίσερ
+Agapornis personatus_Μασκοφόρα Αγαπόρνιθα
+Agapornis roseicollis_Ροδινόλαιμη Αγαπόρνιθα
 Agapornis taranta_Black-winged Lovebird
 Agelaioides badius_Grayish Baywing
 Agelaius phoeniceus_Red-winged Blackbird
@@ -131,27 +131,27 @@ Aglaiocercus coelestis_Violet-tailed Sylph
 Aglaiocercus kingii_Long-tailed Sylph
 Agriornis montanus_Black-billed Shrike-Tyrant
 Agropsar philippensis_Chestnut-cheeked Starling
-Agropsar sturninus_Î¨Î±ÏÏŒÎ½Î¹ Ï„Î¿Ï… Î‘Î¼Î¿ÏÏ
+Agropsar sturninus_Ψαρόνι του Αμούρ
 Ailuroedus crassirostris_Green Catbird
 Ailuroedus maculosus_Spotted Catbird
 Aimophila notosticta_Oaxaca Sparrow
 Aimophila rufescens_Rusty Sparrow
 Aimophila ruficeps_Rufous-crowned Sparrow
-Aix galericulata_ÎœÎ±Î½Î´Î±ÏÎ¯Î½Î¿Ï‚
-Aix sponsa_ÎÏ…Ï†ÏŒÏ€Î±Ï€Î¹Î±
+Aix galericulata_Μανδαρίνος
+Aix sponsa_Νυφόπαπια
 Akletos goeldii_Goeldi's Antbird
 Akletos melanoceps_White-shouldered Antbird
-Alaemon alaudipes_Î”ÏÎµÏ€Î±Î½Î¿ÏƒÏ„Î±ÏÎ®Î¸ÏÎ±
-Alauda arvensis_Î£Î¹Ï„Î±ÏÎ®Î¸ÏÎ±
-Alauda gulgula_Î‘ÏƒÎ¹Î±Ï„Î¹ÎºÎ® Î£Î¹Ï„Î±ÏÎ®Î¸ÏÎ±
+Alaemon alaudipes_Δρεπανοσταρήθρα
+Alauda arvensis_Σιταρήθρα
+Alauda gulgula_Ασιατική Σιταρήθρα
 Alaudala cheleensis_Asian Short-toed Lark
-Alaudala heinei_Î“ÏÎ±Î¼Î¼Ï‰Ï„Î® ÎœÎ¹ÎºÏÎ¿Î³Î±Î»Î¹Î¬Î½Ï„ÏÎ± (Î¤Î¿Ï…ÏÎºÎµÏƒÏ„Î¬Î½)
+Alaudala heinei_Γραμμωτή Μικρογαλιάντρα (Τουρκεστάν)
 Alaudala raytal_Sand Lark
-Alaudala rufescens_Î“ÏÎ±Î¼Î¼Ï‰Ï„Î® ÎœÎ¹ÎºÏÎ¿Î³Î±Î»Î¹Î¬Î½Ï„ÏÎ± (ÎœÎµÏƒÎ¿Î³ÎµÎ¯Î¿Ï…)
+Alaudala rufescens_Γραμμωτή Μικρογαλιάντρα (Μεσογείου)
 Alaudala somalica_Somali Short-toed Lark
-Alca torda_ÎšÎ¿Î¹Î½Î® Î†Î»ÎºÎ±
-Alcedo atthis_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÎ®) Î‘Î»ÎºÏ…ÏŒÎ½Î·
-Alcedo meninting_Î‘ÏƒÎ¹Î±Ï„Î¹ÎºÎ® Î‘Î»ÎºÏ…ÏŒÎ½Î·
+Alca torda_Κοινή Άλκα
+Alcedo atthis_(Ευρωπαϊκή) Αλκυόνη
+Alcedo meninting_Ασιατική Αλκυόνη
 Alcippe brunneicauda_Brown Fulvetta
 Alcippe fratercula_Yunnan Fulvetta
 Alcippe hueti_Huet's Fulvetta
@@ -161,10 +161,10 @@ Alcippe peracensis_Mountain Fulvetta
 Alcippe poioicephala_Brown-cheeked Fulvetta
 Alcippe pyrrhoptera_Javan Fulvetta
 Aleadryas rufinucha_Rufous-naped Bellbird
-Alectoris barbara_Î’ÏÎ±Ï‡Î¿Ï€Î­ÏÎ´Î¹ÎºÎ±
-Alectoris chukar_ÎÎ·ÏƒÎ¹ÏŽÏ„Î¹ÎºÎ· Î Î­ÏÎ´Î¹ÎºÎ±
-Alectoris graeca_Î ÎµÏ„ÏÎ¿Ï€Î­ÏÎ´Î¹ÎºÎ±
-Alectoris rufa_ÎšÎ¿ÎºÎºÎ¹Î½Î¿Ï€Î­ÏÎ´Î¹ÎºÎ±
+Alectoris barbara_Βραχοπέρδικα
+Alectoris chukar_Νησιώτικη Πέρδικα
+Alectoris graeca_Πετροπέρδικα
+Alectoris rufa_Κοκκινοπέρδικα
 Alectura lathami_Australian Brushturkey
 Alethe castanea_Fire-crested Alethe
 Alethe diademata_White-tailed Alethe
@@ -181,10 +181,10 @@ Alophoixus pallidus_Puff-throated Bulbul
 Alophoixus phaeocephalus_Yellow-bellied Bulbul
 Alophoixus tephrogenys_Gray-cheeked Bulbul
 Alopochelidon fucata_Tawny-headed Swallow
-Alopochen aegyptiaca_Î‘Î»Ï‰Ï€ÏŒÏ‡Î·Î½Î±
+Alopochen aegyptiaca_Αλωπόχηνα
 Alouatta pigra_Mexican Black Howler Monkey
 Amalocichla incerta_Lesser Ground-Robin
-Amandava amandava_ÎšÏŒÎºÎºÎ¹Î½Î· Î‘Î¼Î±Î½Ï„Î¬Î²Î±
+Amandava amandava_Κόκκινη Αμαντάβα
 Amaurolimnas concolor_Uniform Crake
 Amaurornis isabellina_Isabelline Bush-hen
 Amaurornis moluccana_Pale-vented Bush-hen
@@ -230,8 +230,8 @@ Amblyramphus holosericeus_Scarlet-headed Blackbird
 Ammodramus aurifrons_Yellow-browed Sparrow
 Ammodramus humeralis_Grassland Sparrow
 Ammodramus savannarum_Grasshopper Sparrow
-Ammomanes cinctura_ÎœÎ¹ÎºÏÎ® Î‘Î¼Î¼Î¿Î³Î±Î»Î¹Î¬Î½Ï„ÏÎ±
-Ammomanes deserti_ÎœÎµÎ³Î¬Î»Î· Î‘Î¼Î¼Î¿Î³Î±Î»Î¹Î¬Î½Ï„ÏÎ±
+Ammomanes cinctura_Μικρή Αμμογαλιάντρα
+Ammomanes deserti_Μεγάλη Αμμογαλιάντρα
 Ammomanes phoenicura_Rufous-tailed Lark
 Ammonastes pelzelni_Gray-bellied Antbird
 Ammospiza caudacuta_Saltmarsh Sparrow
@@ -256,18 +256,18 @@ Anairetes flavirostris_Yellow-billed Tit-Tyrant
 Anairetes nigrocristatus_Black-crested Tit-Tyrant
 Anairetes parulus_Tufted Tit-Tyrant
 Anairetes reguloides_Pied-crested Tit-Tyrant
-Anas acuta_Î¨Î±Î»Î¯Î´Î±
+Anas acuta_Ψαλίδα
 Anas andium_Andean Teal
 Anas castanea_Chestnut Teal
-Anas crecca_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒ) ÎšÎ¹ÏÎºÎ¯ÏÎ¹
+Anas crecca_(Ευρωπαϊκό) Κιρκίρι
 Anas diazi_Mexican Duck
 Anas flavirostris_Yellow-billed Teal
 Anas fulvigula_Mottled Duck
 Anas georgica_Yellow-billed Pintail
 Anas gracilis_Gray Teal
-Anas platyrhynchos_Î ÏÎ±ÏƒÎ¹Î½Î¿ÎºÎ­Ï†Î±Î»Î· Î Î¬Ï€Î¹Î±
+Anas platyrhynchos_Πρασινοκέφαλη Πάπια
 Anas poecilorhyncha_Indian Spot-billed Duck
-Anas rubripes_Î£ÎºÎ¿Ï…ÏÏŒÏ€Î±Ï€Î¹Î±
+Anas rubripes_Σκουρόπαπια
 Anas superciliosa_Pacific Black Duck
 Anas undulata_Yellow-billed Duck
 Anas wyvilliana_Hawaiian Duck
@@ -302,19 +302,19 @@ Anodorhynchus leari_Indigo Macaw
 Anorrhinus galeritus_Bushy-crested Hornbill
 Anous ceruleus_Blue-gray Noddy
 Anous minutus_Black Noddy
-Anous stolidus_ÎšÎ¿Î¹Î½ÏŒ ÎšÎ±Ï€Î½Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
+Anous stolidus_Κοινό Καπνογλάρονο
 Anous tenuirostris_Lesser Noddy
-Anser albifrons_Î‘ÏƒÏ€ÏÎ¿Î¼Î­Ï„Ï‰Ï€Î· Î§Î®Î½Î±
-Anser anser_Î£Ï„Î±Ï‡Ï„ÏŒÏ‡Î·Î½Î±
-Anser brachyrhynchus_Î’ÏÎ±Ï‡ÏÏÎ±Î¼Ï†Î· Î§Î®Î½Î±
-Anser caerulescens_Î›ÎµÏ…ÎºÏŒÏ‡Î·Î½Î±
-Anser canagicus_Î§Î®Î½Î± Ï„Ï‰Î½ Î‘Î»ÎµÎ¿ÏÏ„Î¹Ï‰Î½
-Anser cygnoides_ÎšÏ…ÎºÎ½Î¿ÎµÎ¹Î´Î®Ï‚ Î§Î®Î½Î±
-Anser erythropus_ÎÎ±Î½ÏŒÏ‡Î·Î½Î±
-Anser fabalis_Î§Ï‰ÏÎ±Ï†ÏŒÏ‡Î·Î½Î± (fabalis)
-Anser indicus_Î™Î½Î´Î¹ÎºÎ® Î§Î®Î½Î±
-Anser rossii_ÎœÎ¹ÎºÏÎ® Î›ÎµÏ…ÎºÏŒÏ‡Î·Î½Î±
-Anser serrirostris_Î§Ï‰ÏÎ±Ï†ÏŒÏ‡Î·Î½Î± (serrirostris)
+Anser albifrons_Ασπρομέτωπη Χήνα
+Anser anser_Σταχτόχηνα
+Anser brachyrhynchus_Βραχύραμφη Χήνα
+Anser caerulescens_Λευκόχηνα
+Anser canagicus_Χήνα των Αλεούτιων
+Anser cygnoides_Κυκνοειδής Χήνα
+Anser erythropus_Νανόχηνα
+Anser fabalis_Χωραφόχηνα (fabalis)
+Anser indicus_Ινδική Χήνα
+Anser rossii_Μικρή Λευκόχηνα
+Anser serrirostris_Χωραφόχηνα (serrirostris)
 Anseranas semipalmata_Magpie Goose
 Anthipes monileger_White-gorgeted Flycatcher
 Anthipes solitaris_Rufous-browed Flycatcher
@@ -334,39 +334,39 @@ Anthracothorax nigricollis_Black-throated Mango
 Anthreptes malacensis_Brown-throated Sunbird
 Anthreptes orientalis_Eastern Violet-backed Sunbird
 Anthropoides paradiseus_Blue Crane
-Anthropoides virgo_ÎÏ…Ï†Î¿Î³ÎµÏÎ±Î½ÏŒÏ‚
-Anthus berthelotii_ÎšÎµÎ»Î¬Î´Î± Ï„Ï‰Î½ ÎšÎ±Î½Î±ÏÎ¯Ï‰Î½
+Anthropoides virgo_Νυφογερανός
+Anthus berthelotii_Κελάδα των Καναρίων
 Anthus bogotensis_Paramo Pipit
-Anthus campestris_Î©Ï‡ÏÎ¿ÎºÎµÎ»Î¬Î´Î±
-Anthus cervinus_ÎšÎ¿ÎºÎºÎ¹Î½Î¿ÎºÎµÎ»Î¬Î´Î±
+Anthus campestris_Ωχροκελάδα
+Anthus cervinus_Κοκκινοκελάδα
 Anthus chacoensis_Pampas Pipit
 Anthus cinnamomeus_African Pipit
 Anthus correndera_Correndera Pipit
 Anthus crenatus_Yellow-tufted Pipit
 Anthus furcatus_Short-billed Pipit
-Anthus godlewskii_ÎšÎµÎ»Î¬Î´Î± Ï„Î·Ï‚ ÎœÎ¿Î³Î³Î¿Î»Î¯Î±Ï‚
-Anthus gustavi_Î‘ÏÎºÏ„Î¹ÎºÎ® ÎšÎµÎ»Î¬Î´Î±
+Anthus godlewskii_Κελάδα της Μογγολίας
+Anthus gustavi_Αρκτική Κελάδα
 Anthus hellmayri_Hellmayr's Pipit
-Anthus hodgsoni_Î”Î±ÏƒÎ¿ÎºÎµÎ»Î¬Î´Î±
+Anthus hodgsoni_Δασοκελάδα
 Anthus leucophrys_Plain-backed Pipit
 Anthus lineiventris_Striped Pipit
 Anthus lutescens_Yellowish Pipit
 Anthus nattereri_Ochre-breasted Pipit
 Anthus novaeseelandiae_New Zealand Pipit
 Anthus peruvianus_Peruvian Pipit
-Anthus petrosus_Î˜Î±Î»Î±ÏƒÏƒÎ¿ÎºÎµÎ»Î¬Î´Î±
-Anthus pratensis_Î›Î¹Î²Î±Î´Î¿ÎºÎµÎ»Î¬Î´Î±
-Anthus richardi_Î”Î¹Ï€Î»Î¿ÎºÎµÎ»Î¬Î´Î±
+Anthus petrosus_Θαλασσοκελάδα
+Anthus pratensis_Λιβαδοκελάδα
+Anthus richardi_Διπλοκελάδα
 Anthus roseatus_Rosy Pipit
-Anthus rubescens_ÎÎµÏÎ¿ÎºÎµÎ»Î¬Î´Î± Ï„Î¿Ï… Î•Î¹ÏÎ·Î½Î¹ÎºÎ¿Ï
+Anthus rubescens_Νεροκελάδα του Ειρηνικού
 Anthus rufulus_Paddyfield Pipit
-Anthus similis_(ÎšÎ±ÏƒÏ„Î±Î½Î®) Î’ÏÎ±Ï‡Î¿ÎºÎµÎ»Î¬Î´Î±
-Anthus spinoletta_ÎÎµÏÎ¿ÎºÎµÎ»Î¬Î´Î±
+Anthus similis_(Καστανή) Βραχοκελάδα
+Anthus spinoletta_Νεροκελάδα
 Anthus spragueii_Sprague's Pipit
 Anthus sylvanus_Upland Pipit
-Anthus trivialis_Î”ÎµÎ½Ï„ÏÎ¿ÎºÎµÎ»Î¬Î´Î±
+Anthus trivialis_Δεντροκελάδα
 Antigone antigone_Sarus Crane
-Antigone canadensis_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î£Ï„Î±Ï‡Ï„Î¿Î³ÎµÏÎ±Î½ÏŒÏ‚
+Antigone canadensis_Αμερικανικός Σταχτογερανός
 Antigone rubicunda_Brolga
 Antigone vipio_White-naped Crane
 Antilophia bokermanni_Araripe Manakin
@@ -420,18 +420,18 @@ Aplonis tabuensis_Polynesian Starling
 Aprosmictus erythropterus_Red-winged Parrot
 Aptenodytes patagonicus_King Penguin
 Apteryx mantelli_North Island Brown Kiwi
-Apus affinis_ÎœÎ¹ÎºÏÎ¿ÏƒÏ„Î±Ï‡Ï„Î¬ÏÎ±
-Apus apus_(ÎšÎ¿Î¹Î½Î®) Î£Ï„Î±Ï‡Ï„Î¬ÏÎ±
-Apus caffer_Î›ÎµÏ…ÎºÏŒÏ€Ï…Î³Î· Î£Ï„Î±Ï‡Ï„Î¬ÏÎ±
+Apus affinis_Μικροσταχτάρα
+Apus apus_(Κοινή) Σταχτάρα
+Apus caffer_Λευκόπυγη Σταχτάρα
 Apus melba_Alpine Swift
 Apus nipalensis_House Swift
-Apus pacificus_Î£Ï„Î±Ï‡Ï„Î¬ÏÎ± Ï„Î¿Ï… Î•Î¹ÏÎ·Î½Î¹ÎºÎ¿Ï
-Apus pallidus_Î©Ï‡ÏÎ¿ÏƒÏ„Î±Ï‡Ï„Î¬ÏÎ±
-Apus unicolor_Î£Ï„Î±Ï‡Ï„Î¬ÏÎ± Ï„Ï‰Î½ ÎšÎ±Î½Î±ÏÎ¯Ï‰Î½
-Aquila adalberti_Î™ÏƒÏ€Î±Î½Î¹ÎºÏŒÏ‚ Î’Î±ÏƒÎ¹Î»Î±ÎµÏ„ÏŒÏ‚
-Aquila chrysaetos_Î§ÏÏ…ÏƒÎ±ÎµÏ„ÏŒÏ‚
-Aquila heliaca_(Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÏŒÏ‚) Î’Î±ÏƒÎ¹Î»Î±ÎµÏ„ÏŒÏ‚
-Aquila nipalensis_Î£Ï„ÎµÏ€Î±ÎµÏ„ÏŒÏ‚
+Apus pacificus_Σταχτάρα του Ειρηνικού
+Apus pallidus_Ωχροσταχτάρα
+Apus unicolor_Σταχτάρα των Καναρίων
+Aquila adalberti_Ισπανικός Βασιλαετός
+Aquila chrysaetos_Χρυσαετός
+Aquila heliaca_(Ανατολικός) Βασιλαετός
+Aquila nipalensis_Στεπαετός
 Ara ambiguus_Great Green Macaw
 Ara ararauna_Blue-and-yellow Macaw
 Ara chloropterus_Red-and-green Macaw
@@ -453,7 +453,7 @@ Aramides ypecaha_Giant Wood-Rail
 Aramus guarauna_Limpkin
 Aratinga auricapillus_Golden-capped Parakeet
 Aratinga jandaya_Jandaya Parakeet
-Aratinga nenday_ÎœÎ±Ï…ÏÎ¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î¨Î¹Ï„Ï„Î±ÎºÎ¯ÏƒÎºÎ¿Ï‚
+Aratinga nenday_Μαυροκέφαλος Ψιττακίσκος
 Aratinga weddellii_Dusky-headed Parakeet
 Arborophila atrogularis_White-cheeked Partridge
 Arborophila brunneopectus_Bar-backed Partridge
@@ -465,25 +465,25 @@ Arborophila rufogularis_Rufous-throated Partridge
 Arborophila torqueola_Hill Partridge
 Archilochus alexandri_Black-chinned Hummingbird
 Archilochus colubris_Ruby-throated Hummingbird
-Ardea alba_Î‘ÏÎ³Ï…ÏÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
-Ardea cinerea_Î£Ï„Î±Ï‡Ï„Î¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
+Ardea alba_Αργυροτσικνιάς
+Ardea cinerea_Σταχτοτσικνιάς
 Ardea cocoi_Cocoi Heron
-Ardea herodias_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î£Ï„Î±Ï‡Ï„Î¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
-Ardea intermedia_ÎœÎµÏƒÎ±Î¯Î¿Ï‚ Î‘ÏÎ³Ï…ÏÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
-Ardea melanocephala_ÎœÎ±Ï…ÏÎ¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î•ÏÏ‰Î´Î¹ÏŒÏ‚
-Ardea purpurea_Î Î¿ÏÏ†Ï…ÏÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
+Ardea herodias_Αμερικανικός Σταχτοτσικνιάς
+Ardea intermedia_Μεσαίος Αργυροτσικνιάς
+Ardea melanocephala_Μαυροκέφαλος Ερωδιός
+Ardea purpurea_Πορφυροτσικνιάς
 Ardea sumatrana_Great-billed Heron
 Ardenna bulleri_Buller's Shearwater
-Ardenna carneipes_Î©Ï‡ÏÏŒÏÎ±Î¼Ï†Î¿Ï‚ ÎœÏÏ‡Î¿Ï‚
+Ardenna carneipes_Ωχρόραμφος Μύχος
 Ardenna creatopus_Pink-footed Shearwater
-Ardenna grisea_Î‘Î¹Î¸Î±Î»ÏŒÎ¼Ï…Ï‡Î¿Ï‚
-Ardenna pacifica_ÎœÏÏ‡Î¿Ï‚ Ï„Î¿Ï… Î•Î¹ÏÎ·Î½Î¹ÎºÎ¿Ï
+Ardenna grisea_Αιθαλόμυχος
+Ardenna pacifica_Μύχος του Ειρηνικού
 Ardenna tenuirostris_Short-tailed Shearwater
 Ardeola bacchus_Chinese Pond-Heron
-Ardeola grayii_Î™Î½Î´Î¹ÎºÏŒÏ‚ ÎšÏÏ…Ï€Ï„Î¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
-Ardeola ralloides_(ÎžÎ±Î½Î¸ÏŒÏ‚) ÎšÏÏ…Ï€Ï„Î¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
+Ardeola grayii_Ινδικός Κρυπτοτσικνιάς
+Ardeola ralloides_(Ξανθός) Κρυπτοτσικνιάς
 Ardeola speciosa_Javan Pond-Heron
-Arenaria interpres_Î§Î±Î»Î¹ÎºÎ¿ÎºÏ…Î»Î¹ÏƒÏ„Î®Ï‚
+Arenaria interpres_Χαλικοκυλιστής
 Arenaria melanocephala_Black Turnstone
 Argusianus argus_Great Argus
 Argya affinis_Yellow-billed Babbler
@@ -527,14 +527,14 @@ Artemisiospiza belli_Bell's Sparrow
 Artemisiospiza nevadensis_Sagebrush Sparrow
 Artisornis metopias_African Tailorbird
 Artisornis moreaui_Long-billed Tailorbird
-Arundinax aedon_Î‘Î·Î´Î¿Î½Î¿Ï€Î¿Ï„Î±Î¼Î¯Î´Î±
+Arundinax aedon_Αηδονοποταμίδα
 Arundinicola leucocephala_White-headed Marsh Tyrant
 Asemospiza fuliginosa_Sooty Grassquit
 Asemospiza obscura_Dull-colored Grassquit
 Asio clamator_Striped Owl
-Asio flammeus_Î’Î±Î»Ï„ÏŒÎ¼Ï€Î¿Ï…Ï†Î¿Ï‚
+Asio flammeus_Βαλτόμπουφος
 Asio grammicus_Jamaican Owl
-Asio otus_ÎÎ±Î½ÏŒÎ¼Ï€Î¿Ï…Ï†Î¿Ï‚
+Asio otus_Νανόμπουφος
 Asio stygius_Stygian Owl
 Aspatha gularis_Blue-throated Motmot
 Asthenes anthoides_Austral Canastero
@@ -567,7 +567,7 @@ Atelornis pittoides_Pitta-like Ground-Roller
 Athene blewitti_Forest Owlet
 Athene brama_Spotted Owlet
 Athene cunicularia_Burrowing Owl
-Athene noctua_ÎšÎ¿Ï…ÎºÎ¿Ï…Î²Î¬Î³Î¹Î±
+Athene noctua_Κουκουβάγια
 Athene superciliaris_White-browed Owl
 Atimastillas flavicollis_Yellow-throated Greenbul
 Atlanticus testaceus_Protean Shieldback
@@ -625,14 +625,14 @@ Automolus subulatus_Eastern Woodhaunter
 Aviceda jerdoni_Jerdon's Baza
 Aviceda leuphotes_Black Baza
 Aviceda subcristata_Pacific Baza
-Aythya affinis_ÎœÎ¹ÎºÏÎ® Î£Ï„Î±Ï‡Ï„ÏŒÏ€Î±Ï€Î¹Î±
-Aythya americana_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® ÎšÎ¿ÎºÎºÎ¹Î½Î¿ÎºÎ­Ï†Î±Î»Î·
-Aythya collaris_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î›Î¹Î¼Î½ÏŒÏ€Î±Ï€Î¹Î±
-Aythya ferina_Î“ÎºÎ¹ÏƒÎ¬ÏÎ¹
-Aythya fuligula_ÎœÎ±Ï…ÏÎ¿ÎºÎ­Ï†Î±Î»Î· Î Î¬Ï€Î¹Î±
-Aythya marila_(ÎœÎµÎ³Î¬Î»Î·) Î£Ï„Î±Ï‡Ï„ÏŒÏ€Î±Ï€Î¹Î±
-Aythya nyroca_Î’Î±Î»Ï„ÏŒÏ€Î±Ï€Î¹Î±
-Aythya valisineria_ÎœÎµÎ³Î¬Î»Î· ÎšÎ¿ÎºÎºÎ¹Î½Î¿ÎºÎ­Ï†Î±Î»Î·
+Aythya affinis_Μικρή Σταχτόπαπια
+Aythya americana_Αμερικανική Κοκκινοκέφαλη
+Aythya collaris_Αμερικανική Λιμνόπαπια
+Aythya ferina_Γκισάρι
+Aythya fuligula_Μαυροκέφαλη Πάπια
+Aythya marila_(Μεγάλη) Σταχτόπαπια
+Aythya nyroca_Βαλτόπαπια
+Aythya valisineria_Μεγάλη Κοκκινοκέφαλη
 Baeolophus atricristatus_Black-crested Titmouse
 Baeolophus bicolor_Tufted Titmouse
 Baeolophus inornatus_Oak Titmouse
@@ -647,7 +647,7 @@ Bangsia aureocincta_Gold-ringed Tanager
 Bangsia edwardsi_Moss-backed Tanager
 Bangsia melanochlamys_Black-and-gold Tanager
 Barnardius zonarius_Australian Ringneck
-Bartramia longicauda_ÎœÏ€Î±ÏÏ„ÏÎ¬Î¼Î¹Î±
+Bartramia longicauda_Μπαρτράμια
 Baryphthengus martii_Rufous Motmot
 Baryphthengus ruficapillus_Rufous-capped Motmot
 Basileuterus belli_Golden-browed Warbler
@@ -695,14 +695,14 @@ Bolbopsittacus lunulatus_Guaiabero
 Bolborhynchus lineola_Barred Parakeet
 Bolborhynchus orbygnesius_Andean Parakeet
 Bolemoreus frenatus_Bridled Honeyeater
-Bombycilla cedrorum_ÎšÎ±Î½Î±Î´Î­Î¶Î¹ÎºÎ· Î’Î¿Î¼Î²Ï…ÎºÎ¯Î»Î»Î±
-Bombycilla garrulus_Î’Î¿Î¼Î²Ï…ÎºÎ¯Î»Î»Î±
+Bombycilla cedrorum_Καναδέζικη Βομβυκίλλα
+Bombycilla garrulus_Βομβυκίλλα
 Bombycilla japonica_Japanese Waxwing
 Bonasa umbellus_Ruffed Grouse
 Bostrychia carunculata_Wattled Ibis
 Bostrychia hagedash_Hadada Ibis
-Botaurus lentiginosus_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î‰Ï„Î±Ï…ÏÎ¿Ï‚
-Botaurus stellaris_Î‰Ï„Î±Ï…ÏÎ¿Ï‚
+Botaurus lentiginosus_Αμερικανικός Ήταυρος
+Botaurus stellaris_Ήταυρος
 Brachygalba albogularis_White-throated Jacamar
 Brachygalba lugubris_Brown Jacamar
 Brachypodius eutilotus_Puff-backed Bulbul
@@ -724,10 +724,10 @@ Bradypterus carpalis_White-winged Swamp Warbler
 Bradypterus cinnamomeus_Cinnamon Bracken-Warbler
 Bradypterus lopezi_Evergreen-forest Warbler
 Bradypterus sylvaticus_Knysna Warbler
-Branta bernicla_Î”Î±Ï‡Ï„Ï…Î»Î¹Î´ÏŒÏ‡Î·Î½Î±
-Branta canadensis_ÎšÎ±Î½Î±Î´Î­Î¶Î¹ÎºÎ· Î§Î®Î½Î±
-Branta hutchinsii_Î‘ÏÎºÏ„Î¹ÎºÎ® ÎšÎ±Î½Î±Î´Î­Î¶Î¹ÎºÎ· Î§Î®Î½Î±
-Branta leucopsis_Î‘ÏƒÏ€ÏÎ¿Î¼Î¬Î³Î¿Ï…Î»Î· Î§Î®Î½Î±
+Branta bernicla_Δαχτυλιδόχηνα
+Branta canadensis_Καναδέζικη Χήνα
+Branta hutchinsii_Αρκτική Καναδέζικη Χήνα
+Branta leucopsis_Ασπρομάγουλη Χήνα
 Branta sandvicensis_Hawaiian Goose
 Brotogeris chiriri_Yellow-chevroned Parakeet
 Brotogeris chrysoptera_Golden-winged Parakeet
@@ -741,36 +741,36 @@ Bubalornis albirostris_White-billed Buffalo-Weaver
 Bubalornis niger_Red-billed Buffalo-Weaver
 Bubo africanus_Spotted Eagle-Owl
 Bubo bengalensis_Rock Eagle-Owl
-Bubo bubo_(ÎšÎ¿Î¹Î½ÏŒÏ‚) ÎœÏ€Î¿ÏÏ†Î¿Ï‚
+Bubo bubo_(Κοινός) Μπούφος
 Bubo coromandus_Dusky Eagle-Owl
 Bubo lacteus_Verreaux's Eagle-Owl
 Bubo nipalensis_Spot-bellied Eagle-Owl
-Bubo scandiacus_Î§Î¹Î¿Î½ÏŒÎ³Î»Î±Ï…ÎºÎ±
+Bubo scandiacus_Χιονόγλαυκα
 Bubo sumatranus_Barred Eagle-Owl
-Bubo virginianus_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ ÎœÏ€Î¿ÏÏ†Î¿Ï‚
-Bubulcus ibis_(Î”Ï…Ï„Î¹ÎºÏŒÏ‚) Î“ÎµÎ»Î±Î´Î¬ÏÎ·Ï‚
-Bucanetes githagineus_Î•ÏÎ·Î¼Î¿Ï€ÏÏÏÎ¿Ï…Î»Î±Ï‚
+Bubo virginianus_Αμερικανικός Μπούφος
+Bubulcus ibis_(Δυτικός) Γελαδάρης
+Bucanetes githagineus_Ερημοπύρρουλας
 Buccanodon duchaillui_Yellow-spotted Barbet
 Bucco capensis_Collared Puffbird
 Bucco macrodactylus_Chestnut-capped Puffbird
 Bucco tamatia_Spotted Puffbird
-Bucephala albeola_ÎœÎ¹ÎºÏÎ® Î’Î¿Ï…ÎºÎµÏ†Î¬Î»Î±
-Bucephala clangula_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÎ®) Î’Î¿Ï…ÎºÎµÏ†Î¬Î»Î±
-Bucephala islandica_Î™ÏƒÎ»Î±Î½Î´Î¹ÎºÎ® Î’Î¿Ï…ÎºÎµÏ†Î¬Î»Î±
+Bucephala albeola_Μικρή Βουκεφάλα
+Bucephala clangula_(Ευρωπαϊκή) Βουκεφάλα
+Bucephala islandica_Ισλανδική Βουκεφάλα
 Buceros bicornis_Great Hornbill
 Buceros hydrocorax_Rufous Hornbill
 Buceros rhinoceros_Rhinoceros Hornbill
 Buceros vigil_Helmeted Hornbill
 Bucorvus leadbeateri_Southern Ground-Hornbill
-Bulweria bulwerii_Î˜Î±Î»Î±ÏƒÏƒÎ¿Î´ÏÏŒÎ¼Î¿Ï‚ Ï„Î¿Ï… ÎœÏ€Î¿Ï…Î»Î­Ï
+Bulweria bulwerii_Θαλασσοδρόμος του Μπουλέρ
 Buphagus africanus_Yellow-billed Oxpecker
 Buphagus erythrorynchus_Red-billed Oxpecker
 Burhinus bistriatus_Double-striped Thick-knee
-Burhinus capensis_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î ÎµÏ„ÏÎ¿Ï„Î¿Ï…ÏÎ»Î¯Î´Î±
+Burhinus capensis_Αφρικανική Πετροτουρλίδα
 Burhinus grallarius_Bush Thick-knee
-Burhinus indicus_Î ÎµÏ„ÏÎ¿Ï„Î¿Ï…ÏÎ»Î¯Î´Î± Ï„Î·Ï‚ Î™Î½Î´Î¯Î±Ï‚
-Burhinus oedicnemus_Î ÎµÏ„ÏÎ¿Ï„Î¿Ï…ÏÎ»Î¯Î´Î±
-Burhinus senegalensis_Î ÎµÏ„ÏÎ¿Ï„Î¿Ï…ÏÎ»Î¯Î´Î± Ï„Î·Ï‚ Î£ÎµÎ½ÎµÎ³Î¬Î»Î·Ï‚
+Burhinus indicus_Πετροτουρλίδα της Ινδίας
+Burhinus oedicnemus_Πετροτουρλίδα
+Burhinus senegalensis_Πετροτουρλίδα της Σενεγάλης
 Burhinus superciliaris_Peruvian Thick-knee
 Burhinus vermiculatus_Water Thick-knee
 Busarellus nigricollis_Black-collared Hawk
@@ -781,10 +781,10 @@ Buteo albonotatus_Zone-tailed Hawk
 Buteo augur_Augur Buzzard
 Buteo brachypterus_Madagascar Buzzard
 Buteo brachyurus_Short-tailed Hawk
-Buteo buteo_(ÎšÎ¿Î¹Î½Î®) Î“ÎµÏÎ±ÎºÎ¯Î½Î±
-Buteo jamaicensis_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î“ÎµÏÎ±ÎºÎ¯Î½Î±
+Buteo buteo_(Κοινή) Γερακίνα
+Buteo jamaicensis_Αμερικανική Γερακίνα
 Buteo japonicus_Eastern Buzzard
-Buteo lagopus_Î§Î¹Î¿Î½Î¿Î³ÎµÏÎ±ÎºÎ¯Î½Î±
+Buteo lagopus_Χιονογερακίνα
 Buteo lineatus_Red-shouldered Hawk
 Buteo nitidus_Gray-lined Hawk
 Buteo oreophilus_Mountain Buzzard
@@ -801,8 +801,8 @@ Buteogallus schistaceus_Slate-colored Hawk
 Buteogallus solitarius_Solitary Eagle
 Buteogallus urubitinga_Great Black Hawk
 Buthraupis montana_Hooded Mountain Tanager
-Butorides striata_Î“ÏÎ±Î¼Î¼Î¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
-Butorides virescens_Î ÏÎ±ÏƒÎ¹Î½Î¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
+Butorides striata_Γραμμοτσικνιάς
+Butorides virescens_Πρασινοτσικνιάς
 Bycanistes albotibialis_White-thighed Hornbill
 Bycanistes brevis_Silvery-cheeked Hornbill
 Bycanistes bucinator_Trumpeter Hornbill
@@ -830,17 +830,17 @@ Cacomantis pallidus_Pallid Cuckoo
 Cacomantis passerinus_Gray-bellied Cuckoo
 Cacomantis sonneratii_Banded Bay Cuckoo
 Cacomantis variolosus_Brush Cuckoo
-Cairina moschata_ÎœÎ¿ÏƒÏ‡ÏŒÏ€Î±Ï€Î¹Î±
+Cairina moschata_Μοσχόπαπια
 Calamanthus fuliginosus_Striated Fieldwren
 Calamonastes fasciolatus_Barred Wren-Warbler
 Calamonastes simplex_Gray Wren-Warbler
 Calamonastes stierlingi_Stierling's Wren-Warbler
 Calamospiza melanocorys_Lark Bunting
-Calandrella acutirostris_Î‘ÏƒÎ¹Î±Ï„Î¹ÎºÎ® ÎœÎ¹ÎºÏÎ¿Î³Î±Î»Î¹Î¬Î½Ï„ÏÎ±
-Calandrella brachydactyla_ÎœÎ¹ÎºÏÎ¿Î³Î±Î»Î¹Î¬Î½Ï„ÏÎ±
+Calandrella acutirostris_Ασιατική Μικρογαλιάντρα
+Calandrella brachydactyla_Μικρογαλιάντρα
 Calandrella cinerea_Red-capped Lark
 Calandrella dukhunensis_Mongolian Short-toed Lark
-Calcarius lapponicus_Î›Î±Ï€Ï‰Î½Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Calcarius lapponicus_Λαπωνοτσίχλονο
 Calcarius ornatus_Chestnut-collared Longspur
 Calcarius pictus_Smith's Longspur
 Calendulauda africanoides_Fawn-colored Lark
@@ -849,46 +849,46 @@ Calendulauda alopex_Foxy Lark
 Calendulauda poecilosterna_Pink-breasted Lark
 Calendulauda sabota_Sabota Lark
 Calicalicus madagascariensis_Red-tailed Vanga
-Calidris acuminata_ÎŸÎ¾ÏÎ¿Ï…ÏÎ· Î£ÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris alba_Î›ÎµÏ…ÎºÎ¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris alpina_Î›Î±ÏƒÏ€Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris bairdii_Î›Î¹Î²Î±Î´Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris canutus_ÎšÎ¿ÎºÎºÎ¹Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris falcinellus_Î¡Î±Î²Î´Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris ferruginea_Î”ÏÎµÏ€Î±Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris fuscicollis_Î›ÎµÏ…ÎºÏŒÏ€Ï…Î³Î· Î£ÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris himantopus_ÎœÎ±ÎºÏÏÏ€Î¿Î´Î· Î£ÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris maritima_Î’ÏÎ±Ï‡Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris mauri_ÎÎ±Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ± Ï„Î·Ï‚ Î‘Î»Î¬ÏƒÎºÎ±Ï‚
-Calidris melanotos_Î˜Ï‰ÏÎ±ÎºÏ‰Ï„Î® Î£ÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris minuta_(ÎšÎ¿Î¹Î½Î®) ÎÎ±Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris minutilla_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® ÎÎ±Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
+Calidris acuminata_Οξύουρη Σκαλίδρα
+Calidris alba_Λευκοσκαλίδρα
+Calidris alpina_Λασποσκαλίδρα
+Calidris bairdii_Λιβαδοσκαλίδρα
+Calidris canutus_Κοκκινοσκαλίδρα
+Calidris falcinellus_Ραβδοσκαλίδρα
+Calidris ferruginea_Δρεπανοσκαλίδρα
+Calidris fuscicollis_Λευκόπυγη Σκαλίδρα
+Calidris himantopus_Μακρύποδη Σκαλίδρα
+Calidris maritima_Βραχοσκαλίδρα
+Calidris mauri_Νανοσκαλίδρα της Αλάσκας
+Calidris melanotos_Θωρακωτή Σκαλίδρα
+Calidris minuta_(Κοινή) Νανοσκαλίδρα
+Calidris minutilla_Αμερικανική Νανοσκαλίδρα
 Calidris ptilocnemis_Rock Sandpiper
-Calidris pugnax_ÎœÎ±Ï‡Î·Ï„Î®Ï‚
-Calidris pusilla_ÎšÎ±Î½Î±Î´Î­Î¶Î¹ÎºÎ· ÎÎ±Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
+Calidris pugnax_Μαχητής
+Calidris pusilla_Καναδέζικη Νανοσκαλίδρα
 Calidris pygmaea_Spoon-billed Sandpiper
-Calidris ruficollis_ÎšÎ¿ÎºÎºÎ¹Î½ÏŒÏƒÏ„Î·Î¸Î· ÎÎ±Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris subminuta_Î£Î¹Î²Î·ÏÎ¹ÎºÎ® ÎÎ±Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris subruficollis_Î¤ÏÏ…Î³Î³Î¯Ï„Î·Ï‚
-Calidris temminckii_Î£Ï„Î±Ï‡Ï„Î¹Î¬ ÎÎ±Î½Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
-Calidris tenuirostris_Î”Î¹Ï€Î»Î¿ÏƒÎºÎ±Î»Î¯Î´ÏÎ±
+Calidris ruficollis_Κοκκινόστηθη Νανοσκαλίδρα
+Calidris subminuta_Σιβηρική Νανοσκαλίδρα
+Calidris subruficollis_Τρυγγίτης
+Calidris temminckii_Σταχτιά Νανοσκαλίδρα
+Calidris tenuirostris_Διπλοσκαλίδρα
 Calidris virgata_Surfbird
 Caligavis chrysops_Yellow-faced Honeyeater
 Caligavis subfrenata_Black-throated Honeyeater
 Callacanthis burtoni_Spectacled Finch
 Callaeas wilsoni_North Island Kokako
-Calliope calliope_Î¡Î¿Ï…Î¼Ï€Î¹Î½Î¿Î»Î±Î¯Î¼Î·Ï‚
+Calliope calliope_Ρουμπινολαίμης
 Calliope pectardens_Firethroat
 Calliope pectoralis_Himalayan Rubythroat
 Calliope tschebaiewi_Chinese Rubythroat
-Callipepla californica_ÎšÎ±Î»Î¹Ï†Î¿ÏÎ½Î­Î¶Î¹ÎºÎ¿ ÎŸÏÏ„ÏÎºÎ¹
+Callipepla californica_Καλιφορνέζικο Ορτύκι
 Callipepla douglasii_Elegant Quail
 Callipepla gambelii_Gambel's Quail
 Callipepla squamata_Scaled Quail
 Callocephalon fimbriatum_Gang-gang Cockatoo
 Calocitta colliei_Black-throated Magpie-Jay
 Calocitta formosa_White-throated Magpie-Jay
-Calonectris diomedea_Î‘ÏÏ„Î­Î¼Î·Ï‚
+Calonectris diomedea_Αρτέμης
 Caloramphus fuliginosus_Brown Barbet
 Calothorax lucifer_Lucifer Hummingbird
 Calypte anna_Anna's Hummingbird
@@ -968,7 +968,7 @@ Caprimulgus asiaticus_Indian Nightjar
 Caprimulgus atripennis_Jerdon's Nightjar
 Caprimulgus clarus_Slender-tailed Nightjar
 Caprimulgus climacurus_Long-tailed Nightjar
-Caprimulgus europaeus_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒ) Î“Î¹Î´Î¿Î²ÏÎ¶Î¹
+Caprimulgus europaeus_(Ευρωπαϊκό) Γιδοβύζι
 Caprimulgus fossii_Square-tailed Nightjar
 Caprimulgus indicus_Jungle Nightjar
 Caprimulgus jotaka_Gray Nightjar
@@ -979,37 +979,37 @@ Caprimulgus natalensis_Swamp Nightjar
 Caprimulgus nigriscapularis_Black-shouldered Nightjar
 Caprimulgus pectoralis_Fiery-necked Nightjar
 Caprimulgus poliocephalus_Montane Nightjar
-Caprimulgus ruficollis_ÎšÏŒÎºÎºÎ¹Î½Î¿ Î“Î¹Î´Î¿Î²ÏÎ¶Î¹
+Caprimulgus ruficollis_Κόκκινο Γιδοβύζι
 Caprimulgus rufigena_Rufous-cheeked Nightjar
 Caprimulgus tristigma_Freckled Nightjar
 Capsiempis flaveola_Yellow Tyrannulet
 Caracara plancus_Crested Caracara
-Cardellina canadensis_ÎšÎ±Î½Î±Î´Î­Î¶Î¹ÎºÎ· Î Î¬ÏÎ¿Ï…Î»Î±
-Cardellina pusilla_Î Î¬ÏÎ¿Ï…Î»Î± Ï„Î¿Ï… ÎŸÏ…Î¯Î»ÏƒÎ¿Î½
+Cardellina canadensis_Καναδέζικη Πάρουλα
+Cardellina pusilla_Πάρουλα του Ουίλσον
 Cardellina rubra_Red Warbler
 Cardellina rubrifrons_Red-faced Warbler
 Cardellina versicolor_Pink-headed Warbler
 Cardinalis cardinalis_Northern Cardinal
 Cardinalis phoeniceus_Vermilion Cardinal
 Cardinalis sinuatus_Pyrrhuloxia
-Carduelis carduelis_ÎšÎ±ÏÎ´ÎµÏÎ¯Î½Î±
-Carduelis citrinella_Î£Ï„Î±Ï‡Ï„Î¿ÎºÎ±Î½Î¬ÏÎ¹Î½Î¿
-Carduelis corsicana_Î£Ï„Î±Ï‡Ï„Î¿ÎºÎ±Î½Î¬ÏÎ¹Î½Î¿ Ï„Î·Ï‚ ÎšÎ¿ÏÏƒÎ¹ÎºÎ®Ï‚
+Carduelis carduelis_Καρδερίνα
+Carduelis citrinella_Σταχτοκανάρινο
+Carduelis corsicana_Σταχτοκανάρινο της Κορσικής
 Cariama cristata_Red-legged Seriema
 Carpococcyx radiceus_Bornean Ground-Cuckoo
 Carpococcyx renauldi_Coral-billed Ground-Cuckoo
 Carpodacus dubius_Chinese White-browed Rosefinch
-Carpodacus erythrinus_(ÎšÎ¿Î¹Î½Î®) Î¡Î¿Î´ÏŒÏƒÏ€Î¹Î¶Î±
+Carpodacus erythrinus_(Κοινή) Ροδόσπιζα
 Carpodacus puniceus_Red-fronted Rosefinch
 Carpodacus rodochroa_Pink-browed Rosefinch
-Carpodacus rubicilla_ÎœÎµÎ³Î¬Î»Î· Î¡Î¿Î´ÏŒÏƒÏ€Î¹Î¶Î±
+Carpodacus rubicilla_Μεγάλη Ροδόσπιζα
 Carpodacus rubicilloides_Streaked Rosefinch
-Carpodacus sibiricus_ÎœÎ¬ÎºÏÎ¿Ï…ÏÎ· Î¡Î¿Î´ÏŒÏƒÏ€Î¹Î¶Î±
-Carpodacus synoicus_Î¡Î¿Î´ÏŒÏƒÏ€Î¹Î¶Î± Ï„Î¿Ï… Î£Î¹Î½Î¬
+Carpodacus sibiricus_Μάκρουρη Ροδόσπιζα
+Carpodacus synoicus_Ροδόσπιζα του Σινά
 Carpodacus thura_Himalayan White-browed Rosefinch
 Carpornis cucullata_Hooded Berryeater
 Carpornis melanocephala_Black-headed Berryeater
-Carpospiza brachydactyla_Î›Î¿Ï†Î¿ÏƒÏ€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
+Carpospiza brachydactyla_Λοφοσπουργίτης
 Carterornis chrysomela_Golden Monarch
 Carterornis leucotis_White-eared Monarch
 Carterornis pileatus_White-naped Monarch
@@ -1028,19 +1028,19 @@ Catharus bicknelli_Bicknell's Thrush
 Catharus dryas_Yellow-throated Nightingale-Thrush
 Catharus frantzii_Ruddy-capped Nightingale-Thrush
 Catharus fuscater_Slaty-backed Nightingale-Thrush
-Catharus fuscescens_ÎšÎ±ÏƒÏ„Î±Î½Î® Î˜Î±Î¼Î½ÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Catharus fuscescens_Καστανή Θαμνότσιχλα
 Catharus gracilirostris_Black-billed Nightingale-Thrush
-Catharus guttatus_Î•ÏÏ…Î¸ÏÏŒÎ½Ï‰Ï„Î· Î˜Î±Î¼Î½ÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Catharus guttatus_Ερυθρόνωτη Θαμνότσιχλα
 Catharus maculatus_Speckled Nightingale-Thrush
 Catharus mexicanus_Black-headed Nightingale-Thrush
-Catharus minimus_Î“ÎºÏÎ¹Î¶Î¿Î¼Î¬Î³Î¿Ï…Î»Î· Î˜Î±Î¼Î½ÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Catharus minimus_Γκριζομάγουλη Θαμνότσιχλα
 Catharus occidentalis_Russet Nightingale-Thrush
-Catharus ustulatus_ÎšÎ¿Î¹Î½Î® Î˜Î±Î¼Î½ÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Catharus ustulatus_Κοινή Θαμνότσιχλα
 Catherpes mexicanus_Canyon Wren
 Catreus wallichii_Cheer Pheasant
 Cecropis abyssinica_Lesser Striped Swallow
 Cecropis cucullata_Greater Striped Swallow
-Cecropis daurica_ÎœÎ¹Î»Ï„Î¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
+Cecropis daurica_Μιλτοχελίδονο
 Cecropis semirufa_Rufous-chested Swallow
 Cecropis striolata_Striated Swallow
 Celeus castaneus_Chestnut-colored Woodpecker
@@ -1070,14 +1070,14 @@ Centropus milo_Buff-headed Coucal
 Centropus monachus_Blue-headed Coucal
 Centropus phasianinus_Pheasant Coucal
 Centropus rectunguis_Short-toed Coucal
-Centropus senegalensis_ÎšÎ¿Ï…ÎºÎ¬Î» Ï„Î·Ï‚ Î£ÎµÎ½ÎµÎ³Î¬Î»Î·Ï‚
+Centropus senegalensis_Κουκάλ της Σενεγάλης
 Centropus sinensis_Greater Coucal
 Centropus superciliosus_White-browed Coucal
 Centropus toulou_Malagasy Coucal
 Centropus viridis_Philippine Coucal
 Cephalopterus penduliger_Long-wattled Umbrellabird
 Cepphus columba_Pigeon Guillemot
-Cepphus grylle_ÎœÎ±Ï…ÏÏŒÎºÎµÏ€Ï†Î¿Ï‚
+Cepphus grylle_Μαυρόκεπφος
 Ceratogymna atrata_Black-casqued Hornbill
 Ceratopipra chloromeros_Round-tailed Manakin
 Ceratopipra cornuta_Scarlet-horned Manakin
@@ -1103,17 +1103,17 @@ Cercomacroides serva_Black Antbird
 Cercomacroides tyrannina_Dusky Antbird
 Cercotrichas barbata_Miombo Scrub-Robin
 Cercotrichas coryphoeus_Karoo Scrub-Robin
-Cercotrichas galactotes_ÎšÎ¿Ï…Ï†Î±Î·Î´ÏŒÎ½Î¹
+Cercotrichas galactotes_Κουφαηδόνι
 Cercotrichas hartlaubi_Brown-backed Scrub-Robin
 Cercotrichas leucophrys_Red-backed Scrub-Robin
 Cercotrichas paena_Kalahari Scrub-Robin
-Cercotrichas podobe_ÎœÎ±ÏÏÎ¿ ÎšÎ¿Ï…Ï†Î±Î·Î´ÏŒÎ½Î¹
+Cercotrichas podobe_Μαύρο Κουφαηδόνι
 Cercotrichas quadrivirgata_Bearded Scrub-Robin
 Cercotrichas signata_Brown Scrub-Robin
 Certhia americana_Brown Creeper
-Certhia brachydactyla_ÎšÎ±Î¼Ï€Î¿Î´ÎµÎ½Ï„ÏÎ¿Î²Î¬Ï„Î·Ï‚
+Certhia brachydactyla_Καμποδεντροβάτης
 Certhia discolor_Sikkim Treecreeper
-Certhia familiaris_Î’Î¿Ï…Î½Î¿Î´ÎµÎ½Ï„ÏÎ¿Î²Î¬Ï„Î·Ï‚
+Certhia familiaris_Βουνοδεντροβάτης
 Certhia himalayana_Bar-tailed Treecreeper
 Certhia hodgsoni_Hodgson's Treecreeper
 Certhia manipurensis_Hume's Treecreeper
@@ -1124,10 +1124,10 @@ Certhilauda chuana_Short-clawed Lark
 Certhilauda semitorquata_Eastern Long-billed Lark
 Certhilauda subcoronata_Karoo Long-billed Lark
 Certhionyx variegatus_Pied Honeyeater
-Ceryle rudis_ÎšÎ®ÏÏ…Î»Î¿Ï‚
+Ceryle rudis_Κήρυλος
 Cettia brunnifrons_Gray-sided Bush Warbler
 Cettia castaneocoronata_Chestnut-headed Tesia
-Cettia cetti_Î¨ÎµÏ…Ï„Î±Î·Î´ÏŒÎ½Î¹
+Cettia cetti_Ψευταηδόνι
 Cettia major_Chestnut-crowned Bush Warbler
 Ceuthmochares aereus_Blue Malkoha
 Ceuthmochares australis_Green Malkoha
@@ -1139,7 +1139,7 @@ Chaetura brachyura_Short-tailed Swift
 Chaetura chapmani_Chapman's Swift
 Chaetura cinereiventris_Gray-rumped Swift
 Chaetura meridionalis_Sick's Swift
-Chaetura pelagica_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î’ÎµÎ»Î¿Î½Î¿ÏƒÏ„Î±Ï‡Ï„Î¬ÏÎ±
+Chaetura pelagica_Αμερικανική Βελονοσταχτάρα
 Chaetura spinicaudus_Band-rumped Swift
 Chaetura vauxi_Vaux's Swift
 Chalcomitra amethystina_Amethyst Sunbird
@@ -1164,9 +1164,9 @@ Chamaeza turdina_Schwartz's Antthrush
 Charadrius alexandrinus_Kentish Plover
 Charadrius bicinctus_Double-banded Plover
 Charadrius collaris_Collared Plover
-Charadrius dubius_Î Î¿Ï„Î±Î¼Î¿ÏƒÏ†Ï…ÏÎ¹Ï‡Ï„Î®Ï‚
+Charadrius dubius_Ποταμοσφυριχτής
 Charadrius falklandicus_Two-banded Plover
-Charadrius hiaticula_Î‘Î¼Î¼Î¿ÏƒÏ†Ï…ÏÎ¹Ï‡Ï„Î®Ï‚
+Charadrius hiaticula_Αμμοσφυριχτής
 Charadrius javanicus_Javan Plover
 Charadrius leschenaultii_Greater Sand-Plover
 Charadrius melodus_Piping Plover
@@ -1177,10 +1177,10 @@ Charadrius morinellus_Eurasian Dotterel
 Charadrius nivosus_Snowy Plover
 Charadrius peronii_Malaysian Plover
 Charadrius placidus_Long-billed Plover
-Charadrius semipalmatus_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î‘Î¼Î¼Î¿ÏƒÏ†Ï…ÏÎ¹Ï‡Ï„Î®Ï‚
-Charadrius tricollaris_Î¤ÏÎ¯Î¶Ï‰Î½Î¿Ï‚ Î£Ï†Ï…ÏÎ¹Ï‡Ï„Î®Ï‚
+Charadrius semipalmatus_Αμερικανικός Αμμοσφυριχτής
+Charadrius tricollaris_Τρίζωνος Σφυριχτής
 Charadrius veredus_Oriental Plover
-Charadrius vociferus_Î›Î¹Î²Î±Î´Î¿ÏƒÏ†Ï…ÏÎ¹Ï‡Ï„Î®Ï‚
+Charadrius vociferus_Λιβαδοσφυριχτής
 Charadrius wilsonia_Wilson's Plover
 Charitospiza eucosma_Coal-crested Finch
 Charmosyna papou_West Papuan Lorikeet
@@ -1193,7 +1193,7 @@ Chelidoptera tenebrosa_Swallow-winged Puffbird
 Chelidorhynx hypoxanthus_Yellow-bellied Fairy-Fantail
 Chenonetta jubata_Maned Duck
 Chersomanes albofasciata_Spike-heeled Lark
-Chersophilus duponti_Î§ÎµÏÏƒÏŒÏ†Î¹Î»Î¿Ï‚
+Chersophilus duponti_Χερσόφιλος
 Chionomesa fimbriata_Glittering-throated Emerald
 Chionomesa lactea_Sapphire-spangled Emerald
 Chiroxiphia boliviana_Yungas Manakin
@@ -1204,16 +1204,16 @@ Chiroxiphia pareola_Blue-backed Manakin
 Chlamydera maculata_Spotted Bowerbird
 Chlamydera nuchalis_Great Bowerbird
 Chlidonias albostriatus_Black-fronted Tern
-Chlidonias hybrida_ÎœÎ¿Ï…ÏƒÏ„Î±ÎºÎ¿Î³Î»Î¬ÏÎ¿Î½Î¿
-Chlidonias leucopterus_Î‘ÏÎ³Ï…ÏÎ¿Î³Î»Î¬ÏÎ¿Î½Î¿
-Chlidonias niger_ÎœÎ±Ï…ÏÎ¿Î³Î»Î¬ÏÎ¿Î½Î¿
+Chlidonias hybrida_Μουστακογλάρονο
+Chlidonias leucopterus_Αργυρογλάρονο
+Chlidonias niger_Μαυρογλάρονο
 Chloephaga picta_Upland Goose
 Chlorestes candida_White-bellied Emerald
 Chlorestes cyanus_White-chinned Sapphire
 Chlorestes eliciae_Blue-throated Goldentail
 Chlorestes julie_Violet-bellied Hummingbird
 Chlorestes notata_Blue-chinned Sapphire
-Chloris chloris_Î¦Î»ÏŽÏÎ¿Ï‚
+Chloris chloris_Φλώρος
 Chloris monguilloti_Vietnamese Greenfinch
 Chloris sinica_Oriental Greenfinch
 Chloris spinoides_Yellow-breasted Greenfinch
@@ -1261,23 +1261,23 @@ Chlorothraupis carmioli_Carmiol's Tanager
 Chlorothraupis olivacea_Lemon-spectacled Tanager
 Chlorothraupis stolzmanni_Ochre-breasted Tanager
 Cholornis unicolor_Brown Parrotbill
-Chondestes grammacus_ÎšÎ¿ÏÏ…Î´Î±Î»Î»Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Chondestes grammacus_Κορυδαλλοτσίχλονο
 Chondrohierax uncinatus_Hook-billed Kite
 Chordeiles acutipennis_Lesser Nighthawk
 Chordeiles gundlachii_Antillean Nighthawk
-Chordeiles minor_ÎÏ…Ï‡Ï„Î¿Î²Î¬Ï„Î·Ï‚
+Chordeiles minor_Νυχτοβάτης
 Chordeiles nacunda_Nacunda Nighthawk
 Chordeiles pusillus_Least Nighthawk
-Chroicocephalus brunnicephalus_Î™Î½Î´Î¹ÎºÏŒÏ‚ ÎšÎ±ÏƒÏ„Î±Î½Î¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
-Chroicocephalus cirrocephalus_Î£Ï„Î±Ï‡Ï„Î¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
-Chroicocephalus genei_Î›ÎµÏ€Ï„ÏŒÏÎ±Î¼Ï†Î¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
+Chroicocephalus brunnicephalus_Ινδικός Καστανοκέφαλος Γλάρος
+Chroicocephalus cirrocephalus_Σταχτοκέφαλος Γλάρος
+Chroicocephalus genei_Λεπτόραμφος Γλάρος
 Chroicocephalus maculipennis_Brown-hooded Gull
 Chroicocephalus novaehollandiae_Silver Gull
-Chroicocephalus philadelphia_Î“Î»Î¬ÏÎ¿Ï‚ Ï„Î·Ï‚ Î¦Î¹Î»Î±Î´Î­Î»Ï†ÎµÎ¹Î±Ï‚
-Chroicocephalus ridibundus_ÎšÎ±ÏƒÏ„Î±Î½Î¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
+Chroicocephalus philadelphia_Γλάρος της Φιλαδέλφειας
+Chroicocephalus ridibundus_Καστανοκέφαλος Γλάρος
 Chroicocephalus serranus_Andean Gull
 Chrysococcyx basalis_Horsfield's Bronze-Cuckoo
-Chrysococcyx caprius_ÎœÎµÎ³Î¬Î»Î¿Ï‚ Î§ÏÏ…ÏƒÏŒÎºÎ¿Ï…ÎºÎ¿Ï‚
+Chrysococcyx caprius_Μεγάλος Χρυσόκουκος
 Chrysococcyx cupreus_African Emerald Cuckoo
 Chrysococcyx klaas_Klaas's Cuckoo
 Chrysococcyx lucidus_Shining Bronze-Cuckoo
@@ -1288,8 +1288,8 @@ Chrysococcyx xanthorhynchus_Violet Cuckoo
 Chrysocolaptes festivus_White-naped Woodpecker
 Chrysocolaptes guttacristatus_Greater Flameback
 Chrysolampis mosquitus_Ruby-topaz Hummingbird
-Chrysolophus amherstiae_Î§ÏÏ…ÏƒÏŒÎ¼Î±Ï…ÏÎ¿Ï‚ Î¦Î±ÏƒÎ¹Î±Î½ÏŒÏ‚
-Chrysolophus pictus_Î§ÏÏ…ÏƒÏŒÏ‚ Î¦Î±ÏƒÎ¹Î±Î½ÏŒÏ‚
+Chrysolophus amherstiae_Χρυσόμαυρος Φασιανός
+Chrysolophus pictus_Χρυσός Φασιανός
 Chrysomma altirostre_Jerdon's Babbler
 Chrysomma sinense_Yellow-eyed Babbler
 Chrysomus icterocephalus_Yellow-hooded Blackbird
@@ -1313,8 +1313,8 @@ Cichlopsis leucogenys_Rufous-brown Solitaire
 Cicinnurus magnificus_Magnificent Bird-of-Paradise
 Cicinnurus regius_King Bird-of-Paradise
 Cicinnurus respublica_Wilson's Bird-of-Paradise
-Ciconia ciconia_Î›ÎµÏ…ÎºÏŒÏ‚ Î ÎµÎ»Î±ÏÎ³ÏŒÏ‚
-Ciconia nigra_ÎœÎ±ÏÏÎ¿Ï‚ Î ÎµÎ»Î±ÏÎ³ÏŒÏ‚
+Ciconia ciconia_Λευκός Πελαργός
+Ciconia nigra_Μαύρος Πελαργός
 Cinclidium frontale_Blue-fronted Robin
 Cinclocerthia gutturalis_Gray Trembler
 Cinclodes albidiventris_Chestnut-winged Cinclodes
@@ -1332,7 +1332,7 @@ Cincloramphus timoriensis_Tawny Grassbird
 Cinclosoma ajax_Painted Quail-thrush
 Cinclosoma castaneothorax_Chestnut-breasted Quail-thrush
 Cinclosoma punctatum_Spotted Quail-thrush
-Cinclus cinclus_ÎÎµÏÎ¿ÎºÏŒÏ„ÏƒÏ…Ï†Î±Ï‚
+Cinclus cinclus_Νεροκότσυφας
 Cinclus mexicanus_American Dipper
 Cinclus pallasii_Brown Dipper
 Cinnycerthia fulva_Fulvous Wren
@@ -1356,7 +1356,7 @@ Cinnyris lotenius_Loten's Sunbird
 Cinnyris mariquensis_Marico Sunbird
 Cinnyris mediocris_Eastern Double-collared Sunbird
 Cinnyris nectarinioides_Black-bellied Sunbird
-Cinnyris osea_ÎÎµÎºÏ„Î±ÏÎ¹Î½Î¯Î± Ï„Î·Ï‚ Î Î±Î»Î±Î¹ÏƒÏ„Î¯Î½Î·Ï‚
+Cinnyris osea_Νεκταρινία της Παλαιστίνης
 Cinnyris pulchellus_Beautiful Sunbird
 Cinnyris regius_Regal Sunbird
 Cinnyris reichenowi_Northern Double-collared Sunbird
@@ -1364,16 +1364,16 @@ Cinnyris solaris_Flame-breasted Sunbird
 Cinnyris sovimanga_Souimanga Sunbird
 Cinnyris talatala_White-breasted Sunbird
 Cinnyris venustus_Variable Sunbird
-Circaetus gallicus_Î¦Î¹Î´Î±ÎµÏ„ÏŒÏ‚
-Circus aeruginosus_ÎšÎ±Î»Î±Î¼ÏŒÎºÎ¹ÏÎºÎ¿Ï‚
+Circaetus gallicus_Φιδαετός
+Circus aeruginosus_Καλαμόκιρκος
 Circus approximans_Swamp Harrier
 Circus buffoni_Long-winged Harrier
-Circus cyaneus_Î§ÎµÎ¹Î¼Ï‰Î½ÏŒÎºÎ¹ÏÎºÎ¿Ï‚
-Circus hudsonius_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î§ÎµÎ¹Î¼Ï‰Î½ÏŒÎºÎ¹ÏÎºÎ¿Ï‚
-Circus macrourus_Î£Ï„ÎµÏ€ÏŒÎºÎ¹ÏÎºÎ¿Ï‚
+Circus cyaneus_Χειμωνόκιρκος
+Circus hudsonius_Αμερικανικός Χειμωνόκιρκος
+Circus macrourus_Στεπόκιρκος
 Circus melanoleucos_Pied Harrier
-Circus pygargus_Î›Î¹Î²Î±Î´ÏŒÎºÎ¹ÏÎºÎ¿Ï‚
-Circus spilonotus_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÏŒÏ‚ ÎšÎ±Î»Î±Î¼ÏŒÎºÎ¹ÏÎºÎ¿Ï‚
+Circus pygargus_Λιβαδόκιρκος
+Circus spilonotus_Ανατολικός Καλαμόκιρκος
 Cissa chinensis_Common Green-Magpie
 Cissa hypoleuca_Indochinese Green-Magpie
 Cissa jefferyi_Bornean Green-Magpie
@@ -1393,7 +1393,7 @@ Cisticola exilis_Golden-headed Cisticola
 Cisticola fulvicapilla_Piping Cisticola
 Cisticola haematocephalus_Coastal Cisticola
 Cisticola hunteri_Hunter's Cisticola
-Cisticola juncidis_ÎšÎ¹ÏƒÏ„Î¹ÎºÏŒÎ»Î·
+Cisticola juncidis_Κιστικόλη
 Cisticola lais_Wailing Cisticola
 Cisticola lateralis_Whistling Cisticola
 Cisticola marginatus_Winding Cisticola
@@ -1411,12 +1411,12 @@ Cistothorus palustris_Marsh Wren
 Cistothorus platensis_Grass Wren
 Cistothorus stellaris_Sedge Wren
 Clamator coromandus_Chestnut-winged Cuckoo
-Clamator glandarius_ÎšÎ¹ÏƒÏƒÏŒÎºÎ¿Ï…ÎºÎ¿Ï‚
+Clamator glandarius_Κισσόκουκος
 Clamator jacobinus_Pied Cuckoo
 Clamator levaillantii_Levaillant's Cuckoo
-Clanga clanga_Î£Ï„Î¹ÎºÏ„Î±ÎµÏ„ÏŒÏ‚
-Clanga pomarina_ÎšÏÎ±Ï…Î³Î±ÎµÏ„ÏŒÏ‚
-Clangula hyemalis_Î§Î¹Î¿Î½ÏŒÏ€Î±Ï€Î¹Î±
+Clanga clanga_Στικταετός
+Clanga pomarina_Κραυγαετός
+Clangula hyemalis_Χιονόπαπια
 Claravis pretiosa_Blue Ground Dove
 Clibanornis dendrocolaptoides_Canebrake Groundcreeper
 Clibanornis erythrocephalus_Henna-hooded Foliage-gleaner
@@ -1433,12 +1433,12 @@ Cnipodectes subbrunneus_Brownish Twistwing
 Coccopygia melanotis_Swee Waxbill
 Coccopygia quartinia_Yellow-bellied Waxbill
 Coccothraustes abeillei_Hooded Grosbeak
-Coccothraustes coccothraustes_ÎšÎ¿ÎºÎºÎ¿Î¸ÏÎ±ÏÏƒÏ„Î·Ï‚
-Coccothraustes vespertinus_Î•ÏƒÏ€ÎµÏÎ¯Ï†Ï‰Î½Î¿Ï‚ ÎšÎ¿ÎºÎºÎ¿Î¸ÏÎ±ÏÏƒÏ„Î·Ï‚
+Coccothraustes coccothraustes_Κοκκοθραύστης
+Coccothraustes vespertinus_Εσπερίφωνος Κοκκοθραύστης
 Coccycua cinerea_Ash-colored Cuckoo
 Coccycua minuta_Little Cuckoo
-Coccyzus americanus_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÏÎ±Î¼Ï†Î¿Ï‚ ÎšÎ¿ÏÎºÎ¿Ï‚
-Coccyzus erythropthalmus_ÎœÎ±Ï…ÏÏŒÏÎ±Î¼Ï†Î¿Ï‚ ÎšÎ¿ÏÎºÎ¿Ï‚
+Coccyzus americanus_Κιτρινόραμφος Κούκος
+Coccyzus erythropthalmus_Μαυρόραμφος Κούκος
 Coccyzus euleri_Pearly-breasted Cuckoo
 Coccyzus longirostris_Hispaniolan Lizard-Cuckoo
 Coccyzus melacoryphus_Dark-billed Cuckoo
@@ -1453,7 +1453,7 @@ Coeligena lutetiae_Buff-winged Starfrontlet
 Coeligena wilsoni_Brown Inca
 Coereba flaveola_Bananaquit
 Colaptes atricollis_Black-necked Woodpecker
-Colaptes auratus_Î§ÏÏ…ÏƒÏŒÏ‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Colaptes auratus_Χρυσός Δρυοκολάπτης
 Colaptes auricularis_Gray-crowned Woodpecker
 Colaptes campestris_Campo Flicker
 Colaptes chrysoides_Gilded Flicker
@@ -1471,7 +1471,7 @@ Colibri serrirostris_White-vented Violetear
 Colibri thalassinus_Mexican Violetear
 Colinus cristatus_Crested Bobwhite
 Colinus nigrogularis_Black-throated Bobwhite
-Colinus virginianus_Î”ÎµÎ½Ï„ÏÎ¿Ï€Î­ÏÎ´Î¹ÎºÎ± Ï„Î¿Ï… Î’Î¿ÏÏÎ¬
+Colinus virginianus_Δεντροπέρδικα του Βορρά
 Colius colius_White-backed Mousebird
 Colius striatus_Speckled Mousebird
 Collocalia affinis_Plume-toed Swiftlet
@@ -1487,9 +1487,9 @@ Columba guinea_Speckled Pigeon
 Columba iriditorques_Bronze-naped Pigeon
 Columba janthina_Black Wood-Pigeon
 Columba larvata_Lemon Dove
-Columba livia_Î‘Î³ÏÎ¹Î¿Ï€ÎµÏÎ¯ÏƒÏ„ÎµÏÎ¿
-Columba oenas_Î¦Î±ÏƒÏƒÎ¿Ï€ÎµÏÎ¯ÏƒÏ„ÎµÏÎ¿
-Columba palumbus_Î¦Î¬ÏƒÏƒÎ±
+Columba livia_Αγριοπερίστερο
+Columba oenas_Φασσοπερίστερο
+Columba palumbus_Φάσσα
 Columba unicincta_Afep Pigeon
 Columba vitiensis_Metallic Pigeon
 Columbina buckleyi_Ecuadorian Ground Dove
@@ -1550,9 +1550,9 @@ Copsychus niger_White-vented Shama
 Copsychus pyrropygus_Rufous-tailed Shama
 Copsychus saularis_Oriental Magpie-Robin
 Coracias abyssinicus_Abyssinian Roller
-Coracias benghalensis_Î™Î½Î´Î¹ÎºÎ® Î§Î±Î»ÎºÎ¿ÎºÎ¿Ï…ÏÎ¿ÏÎ½Î±
+Coracias benghalensis_Ινδική Χαλκοκουρούνα
 Coracias caudatus_Lilac-breasted Roller
-Coracias garrulus_Î§Î±Î»ÎºÎ¿ÎºÎ¿Ï…ÏÎ¿ÏÎ½Î±
+Coracias garrulus_Χαλκοκουρούνα
 Coracina caesia_Gray Cuckooshrike
 Coracina cinerea_Madagascar Cuckooshrike
 Coracina lineata_Barred Cuckooshrike
@@ -1570,35 +1570,35 @@ Corapipo gutturalis_White-throated Manakin
 Corcorax melanorhamphos_White-winged Chough
 Cormobates leucophaea_White-throated Treecreeper
 Cormobates placens_Papuan Treecreeper
-Corthylio calendula_ÎšÎ¿ÎºÎºÎ¹Î½Î¿Î²Î±ÏƒÎ¹Î»Î¯ÏƒÎºÎ¿Ï‚
+Corthylio calendula_Κοκκινοβασιλίσκος
 Corvus albicollis_White-necked Raven
 Corvus albus_Pied Crow
 Corvus brachyrhynchos_American Crow
 Corvus capensis_Cape Crow
-Corvus corax_(ÎšÎ¿Î¹Î½ÏŒÏ‚) ÎšÏŒÏÎ±ÎºÎ±Ï‚
-Corvus cornix_(Î£Ï„Î±Ï‡Ï„Î¹Î¬) ÎšÎ¿Ï…ÏÎ¿ÏÎ½Î±
-Corvus corone_ÎœÎ±ÏÏÎ· ÎšÎ¿Ï…ÏÎ¿ÏÎ½Î±
+Corvus corax_(Κοινός) Κόρακας
+Corvus cornix_(Σταχτιά) Κουρούνα
+Corvus corone_Μαύρη Κουρούνα
 Corvus coronoides_Australian Raven
 Corvus cryptoleucus_Chihuahuan Raven
-Corvus dauuricus_ÎšÎ¬ÏÎ³Î¹Î± Ï„Î·Ï‚ ÎœÎ±Î½Ï„Î¶Î¿Ï…ÏÎ¯Î±Ï‚
+Corvus dauuricus_Κάργια της Μαντζουρίας
 Corvus enca_Slender-billed Crow
 Corvus florensis_Flores Crow
-Corvus frugilegus_Î§Î±Î²Î±ÏÏŒÎ½Î¹
+Corvus frugilegus_Χαβαρόνι
 Corvus hawaiiensis_Hawaiian Crow
 Corvus imparatus_Tamaulipas Crow
 Corvus jamaicensis_Jamaican Crow
 Corvus leucognaphalus_White-necked Crow
 Corvus macrorhynchos_Large-billed Crow
 Corvus mellori_Little Raven
-Corvus monedula_ÎšÎ¬ÏÎ³Î¹Î±
+Corvus monedula_Κάργια
 Corvus nasicus_Cuban Crow
 Corvus orru_Torresian Crow
 Corvus ossifragus_Fish Crow
 Corvus palmarum_Hispaniolan Palm-Crow
-Corvus rhipidurus_Î¡Î¹Ï€Î¯Î´Î¿Ï…ÏÎ¿Ï‚ ÎšÏŒÏÎ±ÎºÎ±Ï‚
-Corvus ruficollis_Î•ÏÎ·Î¼Î¿ÎºÏŒÏÎ±ÎºÎ±Ï‚
+Corvus rhipidurus_Ριπίδουρος Κόρακας
+Corvus ruficollis_Ερημοκόρακας
 Corvus sinaloae_Sinaloa Crow
-Corvus splendens_Î™Î½Î´Î¹ÎºÎ® ÎšÎ¿Ï…ÏÎ¿ÏÎ½Î±
+Corvus splendens_Ινδική Κουρούνα
 Corvus tasmanicus_Forest Raven
 Corvus tristis_Gray Crow
 Corvus typicus_Piping Crow
@@ -1626,12 +1626,12 @@ Cossypha humeralis_White-throated Robin-Chat
 Cossypha natalensis_Red-capped Robin-Chat
 Cossypha niveicapilla_Snowy-crowned Robin-Chat
 Cossypha polioptera_Gray-winged Robin-Chat
-Cossypha semirufa_RÃ¼ppell's Robin-Chat
+Cossypha semirufa_Rüppell's Robin-Chat
 Coturnicops noveboracensis_Yellow Rail
 Coturnix coromandelica_Rain Quail
-Coturnix coturnix_(ÎšÎ¿Î¹Î½ÏŒ) ÎŸÏÏ„ÏÎºÎ¹
+Coturnix coturnix_(Κοινό) Ορτύκι
 Coturnix delegorguei_Harlequin Quail
-Coturnix japonica_Î™Î±Ï€Ï‰Î½Î¹ÎºÏŒ ÎŸÏÏ„ÏÎºÎ¹
+Coturnix japonica_Ιαπωνικό Ορτύκι
 Coturnix pectoralis_Stubble Quail
 Coua caerulea_Blue Coua
 Coua coquereli_Coquerel's Coua
@@ -1668,7 +1668,7 @@ Crax fasciolata_Bare-faced Curassow
 Crax rubra_Great Curassow
 Creagrus furcatus_Swallow-tailed Gull
 Creatophora cinerea_Wattled Starling
-Crex crex_ÎŸÏÏ„Ï…ÎºÎ¿Î¼Î¬Î½Î±
+Crex crex_Ορτυκομάνα
 Crinifer piscator_Western Plantain-eater
 Criniger barbatus_Western Bearded-Greenbul
 Criniger calurus_Red-tailed Greenbul
@@ -1713,12 +1713,12 @@ Crypturellus tataupa_Tataupa Tinamou
 Crypturellus transfasciatus_Pale-browed Tinamou
 Crypturellus undulatus_Undulated Tinamou
 Crypturellus variegatus_Variegated Tinamou
-Cuculus canorus_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) ÎšÎ¿ÏÎºÎ¿Ï‚
+Cuculus canorus_(Ευρωπαϊκός) Κούκος
 Cuculus clamosus_Black Cuckoo
-Cuculus gularis_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ ÎšÎ¿ÏÎºÎ¿Ï‚
+Cuculus gularis_Αφρικανικός Κούκος
 Cuculus lepidus_Sunda Cuckoo
 Cuculus micropterus_Indian Cuckoo
-Cuculus optatus_Î•Î»Î±Ï„ÏŒÎºÎ¿Ï…ÎºÎ¿Ï‚
+Cuculus optatus_Ελατόκουκος
 Cuculus poliocephalus_Lesser Cuckoo
 Cuculus rochii_Madagascar Cuckoo
 Cuculus saturatus_Himalayan Cuckoo
@@ -1728,24 +1728,24 @@ Culicicapa helianthea_Citrine Canary-Flycatcher
 Culicivora caudacuta_Sharp-tailed Tyrant
 Curaeus curaeus_Austral Blackbird
 Curruca boehmi_Banded Parisoma
-Curruca communis_Î˜Î±Î¼Î½Î¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
-Curruca conspicillata_ÎšÎ±ÏƒÏ„Î±Î½Î¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
-Curruca crassirostris_ÎœÎµÎ»Ï‰Î´Î¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
-Curruca curruca_Î’Î¿Ï…Î½Î¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
-Curruca hortensis_Î”Ï…Ï„Î¹ÎºÏŒÏ‚ ÎœÎµÎ»Ï‰Î´Î¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
-Curruca iberiae_Î”Ï…Ï„Î¹ÎºÏŒÏ‚ ÎšÎ¿ÎºÎºÎ¹Î½Î¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
-Curruca melanocephala_ÎœÎ±Ï…ÏÎ¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
-Curruca nisoria_Î“ÎµÏÎ±ÎºÎ¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
+Curruca communis_Θαμνοτσιροβάκος
+Curruca conspicillata_Καστανοτσιροβάκος
+Curruca crassirostris_Μελωδοτσιροβάκος
+Curruca curruca_Βουνοτσιροβάκος
+Curruca hortensis_Δυτικός Μελωδοτσιροβάκος
+Curruca iberiae_Δυτικός Κοκκινοτσιροβάκος
+Curruca melanocephala_Μαυροτσιροβάκος
+Curruca nisoria_Γερακοτσιροβάκος
 Curruca subcoerulea_Chestnut-vented Warbler
-Curruca undata_Î¡ÎµÎ¹ÎºÎ¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
+Curruca undata_Ρεικοτσιροβάκος
 Cutia legalleni_Vietnamese Cutia
 Cutia nipalensis_Himalayan Cutia
 Cyanerpes caeruleus_Purple Honeycreeper
 Cyanerpes cyaneus_Red-legged Honeycreeper
 Cyanicterus cyanicterus_Blue-backed Tanager
-Cyanistes caeruleus_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÎ®) Î“Î±Î»Î±Î¶Î¿Ï€Î±Ï€Î±Î´Î¯Ï„ÏƒÎ±
-Cyanistes cyanus_Î›Î±Î¶Î¿Ï…ÏÎ¿Ï€Î±Ï€Î±Î´Î¯Ï„ÏƒÎ±
-Cyanistes teneriffae_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î“Î±Î»Î±Î¶Î¿Ï€Î±Ï€Î±Î´Î¯Ï„ÏƒÎ±
+Cyanistes caeruleus_(Ευρωπαϊκή) Γαλαζοπαπαδίτσα
+Cyanistes cyanus_Λαζουροπαπαδίτσα
+Cyanistes teneriffae_Αφρικανική Γαλαζοπαπαδίτσα
 Cyanocitta cristata_Blue Jay
 Cyanocitta stelleri_Steller's Jay
 Cyanocompsa parellina_Blue Bunting
@@ -1789,19 +1789,19 @@ Cyanomitra cyanolaema_Blue-throated Brown Sunbird
 Cyanomitra olivacea_Olive Sunbird
 Cyanomitra veroxii_Mouse-colored Sunbird
 Cyanomitra verticalis_Green-headed Sunbird
-Cyanopica cooki_Î™Î²Î·ÏÎ¹ÎºÎ® Î“Î±Î»Î±Î¶Î¿ÎºÎ±ÏÎ±ÎºÎ¬Î¾Î±
-Cyanopica cyanus_Î“Î±Î»Î±Î¶Î¿ÎºÎ±ÏÎ±ÎºÎ¬Î¾Î±
+Cyanopica cooki_Ιβηρική Γαλαζοκαρακάξα
+Cyanopica cyanus_Γαλαζοκαρακάξα
 Cyanoptila cumatilis_Zappey's Flycatcher
 Cyanoptila cyanomelana_Blue-and-white Flycatcher
 Cyanoramphus novaezelandiae_Red-crowned Parakeet
 Cyclarhis gujanensis_Rufous-browed Peppershrike
 Cyclarhis nigrirostris_Black-billed Peppershrike
-Cygnus atratus_ÎœÎ±Ï…ÏÏŒÎºÏ…ÎºÎ½Î¿Ï‚
+Cygnus atratus_Μαυρόκυκνος
 Cygnus buccinator_Trumpeter Swan
-Cygnus columbianus_ÎÎ±Î½ÏŒÎºÏ…ÎºÎ½Î¿Ï‚
-Cygnus cygnus_Î‘Î³ÏÎ¹ÏŒÎºÏ…ÎºÎ½Î¿Ï‚
+Cygnus columbianus_Νανόκυκνος
+Cygnus cygnus_Αγριόκυκνος
 Cygnus melancoryphus_Black-necked Swan
-Cygnus olor_ÎšÎ¿Î¹Î½ÏŒÏ‚ ÎšÏÎºÎ½Î¿Ï‚
+Cygnus olor_Κοινός Κύκνος
 Cymbilaimus lineatus_Fasciated Antshrike
 Cymbilaimus sanctaemariae_Bamboo Antshrike
 Cymbirhynchus macrorhynchos_Black-and-red Broadbill
@@ -1843,7 +1843,7 @@ Dacnis lineata_Black-faced Dacnis
 Dacnis venusta_Scarlet-thighed Dacnis
 Dactylortyx thoracicus_Singing Quail
 Daphoenositta chrysoptera_Varied Sittella
-Daption capense_Î˜Î±Î»Î±ÏƒÏƒÎ¿Î´ÏÏŒÎ¼Î¿Ï‚ Ï„Î¿Ï… Î‘ÎºÏÏ‰Ï„Î·ÏÎ¯Î¿Ï…
+Daption capense_Θαλασσοδρόμος του Ακρωτηρίου
 Daptrius ater_Black Caracara
 Dasylophus cumingi_Scale-feathered Malkoha
 Dasyornis brachypterus_Eastern Bristlebird
@@ -1851,7 +1851,7 @@ Dasyornis broadbenti_Rufous Bristlebird
 Dasyornis longirostris_Western Bristlebird
 Deconychura longicauda_Long-tailed Woodcreeper
 Delichon dasypus_Asian House-Martin
-Delichon urbicum_(Î”Ï…Ï„Î¹ÎºÏŒ) Î£Ï€Î¹Ï„Î¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
+Delichon urbicum_(Δυτικό) Σπιτοχελίδονο
 Dendragapus fuliginosus_Sooty Grouse
 Dendragapus obscurus_Dusky Grouse
 Dendrexetastes rufigula_Cinnamon-throated Woodcreeper
@@ -1874,17 +1874,17 @@ Dendrocopos darjellensis_Darjeeling Woodpecker
 Dendrocopos himalayensis_Himalayan Woodpecker
 Dendrocopos hyperythrus_Rufous-bellied Woodpecker
 Dendrocopos leucopterus_White-winged Woodpecker
-Dendrocopos leucotos_Î›ÎµÏ…ÎºÎ¿Î½ÏŽÏ„Î·Ï‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Dendrocopos leucotos_Λευκονώτης Δρυοκολάπτης
 Dendrocopos macei_Fulvous-breasted Woodpecker
-Dendrocopos major_Î ÎµÏ…ÎºÎ¿Î´ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
-Dendrocopos syriacus_Î’Î±Î»ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Dendrocopos major_Πευκοδρυοκολάπτης
+Dendrocopos syriacus_Βαλκανικός Δρυοκολάπτης
 Dendrocoptes auriceps_Brown-fronted Woodpecker
-Dendrocoptes medius_ÎœÎµÏƒÎ±Î¯Î¿Ï‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Dendrocoptes medius_Μεσαίος Δρυοκολάπτης
 Dendrocygna arcuata_Wandering Whistling-Duck
 Dendrocygna autumnalis_Black-bellied Whistling-Duck
-Dendrocygna bicolor_ÎšÏŒÎºÎºÎ¹Î½Î· Î”ÎµÎ½Ï„ÏÏŒÏ€Î±Ï€Î¹Î±
+Dendrocygna bicolor_Κόκκινη Δεντρόπαπια
 Dendrocygna eytoni_Plumed Whistling-Duck
-Dendrocygna javanica_ÎœÎ¹ÎºÏÎ® Î”ÎµÎ½Ï„ÏÏŒÏ€Î±Ï€Î¹Î±
+Dendrocygna javanica_Μικρή Δεντρόπαπια
 Dendrocygna viduata_White-faced Whistling-Duck
 Dendroma erythroptera_Chestnut-winged Foliage-gleaner
 Dendroma rufa_Buff-fronted Foliage-gleaner
@@ -1948,13 +1948,13 @@ Diuca diuca_Diuca Finch
 Dives dives_Melodious Blackbird
 Dives warczewiczi_Scrub Blackbird
 Dog_Dog
-Dolichonyx oryzivorus_Î¡Ï…Î¶Î¿Ï†Î¬Î³Î¿Ï‚
+Dolichonyx oryzivorus_Ρυζοφάγος
 Donacobius atricapilla_Black-capped Donacobius
 Donacospiza albifrons_Long-tailed Reed Finch
 Doryfera ludovicae_Green-fronted Lancebill
 Drepanis coccinea_Iiwi
 Drepanornis albertisi_Black-billed Sicklebill
-Dromas ardeola_ÎšÎ±Î²Î¿Ï…ÏÎ¿Ï†Î¬Î³Î¿Ï‚ Î§Î±ÏÎ±Î´ÏÎ¹ÏŒÏ‚
+Dromas ardeola_Καβουροφάγος Χαραδριός
 Dromococcyx pavoninus_Pavonine Cuckoo
 Dromococcyx phasianellus_Pheasant Cuckoo
 Drymodes brunneopygia_Southern Scrub-Robin
@@ -1983,7 +1983,7 @@ Dryobates fumigatus_Smoky-brown Woodpecker
 Dryobates kirkii_Red-rumped Woodpecker
 Dryobates lignarius_Striped Woodpecker
 Dryobates maculifrons_Yellow-eared Woodpecker
-Dryobates minor_ÎÎ±Î½Î¿Î´ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Dryobates minor_Νανοδρυοκολάπτης
 Dryobates mixtus_Checkered Woodpecker
 Dryobates nigriceps_Bar-bellied Woodpecker
 Dryobates nuttallii_Nuttall's Woodpecker
@@ -1995,7 +1995,7 @@ Dryobates stricklandi_Strickland's Woodpecker
 Dryobates villosus_Hairy Woodpecker
 Dryocopus javensis_White-bellied Woodpecker
 Dryocopus lineatus_Lineated Woodpecker
-Dryocopus martius_ÎœÎ±ÏÏÎ¿Ï‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Dryocopus martius_Μαύρος Δρυοκολάπτης
 Dryocopus pileatus_Pileated Woodpecker
 Dryocopus schulzii_Black-bodied Woodpecker
 Dryolimnas cuvieri_White-throated Rail
@@ -2029,7 +2029,7 @@ Ducula rubricera_Red-knobbed Imperial-Pigeon
 Ducula spilorrhoa_Torresian Imperial-Pigeon
 Ducula zoeae_Zoe's Imperial-Pigeon
 Dulus dominicus_Palmchat
-Dumetella carolinensis_Î“Î±Ï„Î¿Ï€Î¿ÏÎ»Î¹
+Dumetella carolinensis_Γατοπούλι
 Dumetia atriceps_Dark-fronted Babbler
 Dumetia hyperythra_Tawny-bellied Babbler
 Dysithamnus leucostictus_White-streaked Antvireo
@@ -2043,15 +2043,15 @@ Dysithamnus xanthopterus_Rufous-backed Antvireo
 Eclectus roratus_Moluccan Eclectus
 Edolisoma montanum_Black-bellied Cicadabird
 Edolisoma tenuirostre_Common Cicadabird
-Egretta caerulea_Î“Î±Î»Î±Î¶Î¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
+Egretta caerulea_Γαλαζοτσικνιάς
 Egretta eulophotes_Chinese Egret
-Egretta garzetta_Î›ÎµÏ…ÎºÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
-Egretta gularis_Î˜Î±Î»Î±ÏƒÏƒÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
+Egretta garzetta_Λευκοτσικνιάς
+Egretta gularis_Θαλασσοτσικνιάς
 Egretta novaehollandiae_White-faced Heron
 Egretta rufescens_Reddish Egret
 Egretta sacra_Pacific Reef-Heron
-Egretta thula_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î›ÎµÏ…ÎºÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
-Egretta tricolor_Î¤ÏÎ¯Ï‡ÏÏ‰Î¼Î¿Ï‚ Î•ÏÏ‰Î´Î¹ÏŒÏ‚
+Egretta thula_Αμερικανικός Λευκοτσικνιάς
+Egretta tricolor_Τρίχρωμος Ερωδιός
 Elachura formosa_Spotted Elachura
 Elaenia albiceps_White-crested Elaenia
 Elaenia brachyptera_Coopmans's Elaenia
@@ -2072,7 +2072,7 @@ Elaenia sordida_Small-headed Elaenia
 Elaenia spectabilis_Large Elaenia
 Elaenia strepera_Slaty Elaenia
 Elanoides forficatus_Swallow-tailed Kite
-Elanus caeruleus_ÎˆÎ»Î±Î½Î¿Ï‚
+Elanus caeruleus_Έλανος
 Elanus leucurus_White-tailed Kite
 Electron carinatum_Keel-billed Motmot
 Electron platyrhynchum_Broad-billed Motmot
@@ -2084,36 +2084,36 @@ Elminia albonotata_White-tailed Crested Flycatcher
 Elminia longicauda_African Blue Flycatcher
 Elseyornis melanops_Black-fronted Dotterel
 Emarginata sinuata_Sickle-winged Chat
-Emberiza aureola_Î£Î·Î¼Ï…Î´Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza bruniceps_ÎšÎ±ÏƒÏ„Î±Î½ÏŒÏ‚ Î‘Î¼Ï€ÎµÎ»Î¿Ï…ÏÎ³ÏŒÏ‚
-Emberiza buchanani_Î£Ï„Î±Ï‡Ï„ÏŒÎ»Î±Î¹Î¼Î¿ Î¤ÏƒÎ¹Ï‡Î»ÏŒÎ½Î¹
+Emberiza aureola_Σημυδοτσίχλονο
+Emberiza bruniceps_Καστανός Αμπελουργός
+Emberiza buchanani_Σταχτόλαιμο Τσιχλόνι
 Emberiza cabanisi_Cabanis's Bunting
-Emberiza caesia_Î¦ÏÏ…Î³Î±Î½Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza calandra_Î¤ÏƒÎ¹Ï†Ï„Î¬Ï‚
+Emberiza caesia_Φρυγανοτσίχλονο
+Emberiza calandra_Τσιφτάς
 Emberiza capensis_Cape Bunting
-Emberiza chrysophrys_Î§ÏÏ…ÏƒÏŒÏ†ÏÏ…Î´Î¿ Î¤ÏƒÎ¹Ï‡Î»ÏŒÎ½Î¹
-Emberiza cia_Î’Î¿Ï…Î½Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza cineracea_Î£Î¼Ï…ÏÎ½Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Emberiza chrysophrys_Χρυσόφρυδο Τσιχλόνι
+Emberiza cia_Βουνοτσίχλονο
+Emberiza cineracea_Σμυρνοτσίχλονο
 Emberiza cioides_Meadow Bunting
-Emberiza cirlus_Î£Î¹ÏÎ»Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza citrinella_Î§ÏÏ…ÏƒÎ¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Emberiza cirlus_Σιρλοτσίχλονο
+Emberiza citrinella_Χρυσοτσίχλονο
 Emberiza elegans_Yellow-throated Bunting
 Emberiza flaviventris_Golden-breasted Bunting
-Emberiza fucata_ÎšÎ±ÏƒÏ„Î±Î½Î¿Î¼Î¬Î³Î¿Ï…Î»Î¿ Î¤ÏƒÎ¹Ï‡Î»ÏŒÎ½Î¹
+Emberiza fucata_Καστανομάγουλο Τσιχλόνι
 Emberiza godlewskii_Godlewski's Bunting
-Emberiza hortulana_Î’Î»Î±Ï‡Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Emberiza hortulana_Βλαχοτσίχλονο
 Emberiza impetuani_Lark-like Bunting
 Emberiza lathami_Crested Bunting
-Emberiza leucocephalos_Î•Î»Î±Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza melanocephala_Î‘Î¼Ï€ÎµÎ»Î¿Ï…ÏÎ³ÏŒÏ‚
-Emberiza pallasi_ÎœÎ¹ÎºÏÏŒ ÎšÎ±Î»Î±Î¼Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza pusilla_ÎÎ±Î½Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza rustica_Î’Î±Î»Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza sahari_Î£Ï€Î¹Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza schoeniclus_(ÎœÎµÎ³Î¬Î»Î¿) ÎšÎ±Î»Î±Î¼Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Emberiza spodocephala_Î£Ï€Î¿Î´Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿ (spodocephala/sordida)
+Emberiza leucocephalos_Ελατοτσίχλονο
+Emberiza melanocephala_Αμπελουργός
+Emberiza pallasi_Μικρό Καλαμοτσίχλονο
+Emberiza pusilla_Νανοτσίχλονο
+Emberiza rustica_Βαλτοτσίχλονο
+Emberiza sahari_Σπιτοτσίχλονο
+Emberiza schoeniclus_(Μεγάλο) Καλαμοτσίχλονο
+Emberiza spodocephala_Σποδοτσίχλονο (spodocephala/sordida)
 Emberiza stewarti_White-capped Bunting
-Emberiza striolata_Î“ÏÎ±Î¼Î¼Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Emberiza striolata_Γραμμοτσίχλονο
 Emberiza sulphurata_Yellow Bunting
 Emberiza tahapisi_Cinnamon-breasted Bunting
 Emberiza tristrami_Tristram's Bunting
@@ -2126,18 +2126,18 @@ Embernagra platensis_Great Pampa-Finch
 Eminia lepida_Gray-capped Warbler
 Empidonax affinis_Pine Flycatcher
 Empidonax albigularis_White-throated Flycatcher
-Empidonax alnorum_Î©Ï‡ÏÎ¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚ Ï„Ï‰Î½ Î£ÎºÎ»Î®Î¸ÏÏ‰Î½
+Empidonax alnorum_Ωχρομυγοχάφτης των Σκλήθρων
 Empidonax atriceps_Black-capped Flycatcher
 Empidonax difficilis_Western Flycatcher
 Empidonax flavescens_Yellowish Flycatcher
 Empidonax flaviventris_Yellow-bellied Flycatcher
 Empidonax fulvifrons_Buff-breasted Flycatcher
 Empidonax hammondii_Hammond's Flycatcher
-Empidonax minimus_ÎœÎ¹ÎºÏÏŒÏ‚ Î©Ï‡ÏÎ¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚
+Empidonax minimus_Μικρός Ωχρομυγοχάφτης
 Empidonax oberholseri_Dusky Flycatcher
 Empidonax occidentalis_Cordilleran Flycatcher
 Empidonax traillii_Willow Flycatcher
-Empidonax virescens_Î ÏÎ¬ÏƒÎ¹Î½Î¿Ï‚ Î©Ï‡ÏÎ¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚
+Empidonax virescens_Πράσινος Ωχρομυγοχάφτης
 Empidonax wrightii_Gray Flycatcher
 Empidonomus aurantioatrocristatus_Crowned Slaty Flycatcher
 Empidonomus varius_Variegated Flycatcher
@@ -2170,11 +2170,11 @@ Eremomela gregalis_Yellow-rumped Eremomela
 Eremomela icteropygialis_Yellow-bellied Eremomela
 Eremomela pusilla_Senegal Eremomela
 Eremomela scotops_Greencap Eremomela
-Eremophila alpestris_Î§Î¹Î¿Î½Î¬Î´Î±
+Eremophila alpestris_Χιονάδα
 Eremopterix griseus_Ashy-crowned Sparrow-Lark
 Eremopterix hova_Madagascar Lark
-Eremopterix nigriceps_ÎœÎ±ÏÏÎ· Î£Ï€Î¿Ï…ÏÎ³Î¹Ï„Î¿ÏƒÏ„Î±ÏÎ®Î¸ÏÎ±
-Erithacus rubecula_ÎšÎ¿ÎºÎºÎ¹Î½Î¿Î»Î±Î¯Î¼Î·Ï‚
+Eremopterix nigriceps_Μαύρη Σπουργιτοσταρήθρα
+Erithacus rubecula_Κοκκινολαίμης
 Erpornis zantholeuca_White-bellied Erpornis
 Erythrocercus holochlorus_Yellow Flycatcher
 Erythrogenys erythrocnemis_Black-necklaced Scimitar-Babbler
@@ -2192,7 +2192,7 @@ Erythropitta ussheri_Black-crowned Pitta
 Erythrura trichroa_Blue-faced Parrotfinch
 Esacus magnirostris_Beach Thick-knee
 Esacus recurvirostris_Great Thick-knee
-Estrilda astrild_ÎšÎ¿Î¹Î½Î® Î›Î±Î¼Ï€ÏÏŒÏƒÏ€Î¹Î¶Î±
+Estrilda astrild_Κοινή Λαμπρόσπιζα
 Estrilda melpoda_Orange-cheeked Waxbill
 Estrilda nonnula_Black-crowned Waxbill
 Estrilda paludicola_Fawn-breasted Waxbill
@@ -2221,7 +2221,7 @@ Eumyias thalassinus_Verditer Flycatcher
 Eunemobius carolinus_Carolina Ground Cricket
 Eunemobius confusus_Confused Ground Cricket
 Euodice cantans_African Silverbill
-Euodice malabarica_Î™Î½Î´Î¹ÎºÏŒÏ‚ Î‘ÏƒÎ·Î¼Î¿Î¼ÏÏ„Î·Ï‚
+Euodice malabarica_Ινδικός Ασημομύτης
 Eupetes macrocerus_Malaysian Rail-babbler
 Eupetomena cirrochloris_Sombre Hummingbird
 Eupetomena macroura_Swallow-tailed Hummingbird
@@ -2250,7 +2250,7 @@ Euphonia rufiventris_Rufous-bellied Euphonia
 Euphonia trinitatis_Trinidad Euphonia
 Euphonia violacea_Violaceous Euphonia
 Euphonia xanthogaster_Orange-bellied Euphonia
-Euplectes afer_Î§ÏÏ…ÏƒÏŒÏ†Ï„ÎµÏÎ¿Ï‚ Î¥Ï†Î±Î½Ï„Î®Ï‚
+Euplectes afer_Χρυσόφτερος Υφαντής
 Euplectes ardens_Red-collared Widowbird
 Euplectes capensis_Yellow Bishop
 Euplectes franciscanus_Northern Red Bishop
@@ -2285,38 +2285,38 @@ Euscarthmus fulviceps_Fulvous-faced Scrub-Tyrant
 Euscarthmus meloryphus_Fulvous-crowned Scrub-Tyrant
 Euscarthmus rufomarginatus_Rufous-sided Scrub-Tyrant
 Eutoxeres aquila_White-tipped Sicklebill
-Falco amurensis_Î‘ÏƒÎ¹Î±Ï„Î¹ÎºÏŒ ÎœÎ±Ï…ÏÎ¿ÎºÎ¹ÏÎºÎ¯Î½ÎµÎ¶Î¿
+Falco amurensis_Ασιατικό Μαυροκιρκίνεζο
 Falco berigora_Brown Falcon
-Falco columbarius_ÎÎ±Î½Î¿Î³Î­ÏÎ±ÎºÎ¿
+Falco columbarius_Νανογέρακο
 Falco deiroleucus_Orange-breasted Falcon
 Falco femoralis_Aplomado Falcon
 Falco mexicanus_Prairie Falcon
-Falco naumanni_ÎšÎ¹ÏÎºÎ¹Î½Î­Î¶Î¹
-Falco peregrinus_Î ÎµÏ„ÏÎ¯Ï„Î·Ï‚
+Falco naumanni_Κιρκινέζι
+Falco peregrinus_Πετρίτης
 Falco rufigularis_Bat Falcon
-Falco rusticolus_Î‘ÏƒÏ€ÏÎ¿Î³Î­ÏÎ±ÎºÎ¿
-Falco sparverius_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ ÎšÎ¹ÏÎºÎ¹Î½Î­Î¶Î¹
-Falco subbuteo_Î”ÎµÎ½Ï„ÏÎ¿Î³Î­ÏÎ±ÎºÎ¿
-Falco tinnunculus_Î’ÏÎ±Ï‡Î¿ÎºÎ¹ÏÎºÎ¯Î½ÎµÎ¶Î¿
-Falco vespertinus_ÎœÎ±Ï…ÏÎ¿ÎºÎ¹ÏÎºÎ¯Î½ÎµÎ¶Î¿
+Falco rusticolus_Ασπρογέρακο
+Falco sparverius_Αμερικανικό Κιρκινέζι
+Falco subbuteo_Δεντρογέρακο
+Falco tinnunculus_Βραχοκιρκίνεζο
+Falco vespertinus_Μαυροκιρκίνεζο
 Falculea palliata_Sickle-billed Vanga
 Falcunculus frontatus_Eastern Shrike-tit
 Ferminia cerverai_Zapata Wren
-Ficedula albicilla_ÎÎ±Î½Î¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚ Ï„Î·Ï‚ Î¤Î¬Î¹Î³ÎºÎ±Ï‚
-Ficedula albicollis_ÎšÏÎ¹ÎºÎ¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚
+Ficedula albicilla_Νανομυγοχάφτης της Τάιγκας
+Ficedula albicollis_Κρικομυγοχάφτης
 Ficedula basilanica_Little Slaty Flycatcher
 Ficedula dumetoria_Rufous-chested Flycatcher
 Ficedula elisae_Green-backed Flycatcher
 Ficedula erithacus_Slaty-backed Flycatcher
 Ficedula hodgsoni_Pygmy Flycatcher
 Ficedula hyperythra_Snowy-browed Flycatcher
-Ficedula hypoleuca_ÎœÎ±Ï…ÏÎ¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚
+Ficedula hypoleuca_Μαυρομυγοχάφτης
 Ficedula mugimaki_Mugimaki Flycatcher
 Ficedula narcissina_Narcissus Flycatcher
 Ficedula nigrorufa_Black-and-orange Flycatcher
-Ficedula parva_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) ÎÎ±Î½Î¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚
+Ficedula parva_(Ευρωπαϊκός) Νανομυγοχάφτης
 Ficedula ruficauda_Rusty-tailed Flycatcher
-Ficedula semitorquata_Î”ÏÏ…Î¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚
+Ficedula semitorquata_Δρυομυγοχάφτης
 Ficedula strophiata_Rufous-gorgeted Flycatcher
 Ficedula subrubra_Kashmir Flycatcher
 Ficedula superciliaris_Ultramarine Flycatcher
@@ -2353,32 +2353,32 @@ Foudia madagascariensis_Red Fody
 Foudia rubra_Mauritius Fody
 Foulehaio carunculatus_Eastern Wattled-Honeyeater
 Foulehaio procerior_Western Wattled-Honeyeater
-Francolinus francolinus_(ÎœÎ±ÏÏÎ¿Ï‚) Î¦ÏÎ±Î³ÎºÎ¿Î»Î¯Î½Î¿Ï‚
+Francolinus francolinus_(Μαύρος) Φραγκολίνος
 Francolinus pictus_Painted Francolin
 Francolinus pintadeanus_Chinese Francolin
 Fraseria caerulescens_Ashy Flycatcher
 Fraseria griseigularis_Gray-throated Tit-Flycatcher
 Fraseria ocreata_African Forest-Flycatcher
 Fraseria plumbea_Gray Tit-Flycatcher
-Fratercula arctica_Î˜Î±Î»Î±ÏƒÏƒÎ¿ÏˆÎ¹Ï„Ï„Î±ÎºÏŒÏ‚
+Fratercula arctica_Θαλασσοψιττακός
 Frederickena fulva_Fulvous Antshrike
 Frederickena unduliger_Undulated Antshrike
 Frederickena viridis_Black-throated Antshrike
 Fregata andrewsi_Christmas Island Frigatebird
-Fregata ariel_ÎœÎ¹ÎºÏÎ® Î¦ÏÎµÎ³Î¬Ï„Î±
-Fregata magnificens_ÎœÎµÎ³Î¬Î»Î· Î¦ÏÎµÎ³Î¬Ï„Î±
+Fregata ariel_Μικρή Φρεγάτα
+Fregata magnificens_Μεγάλη Φρεγάτα
 Fregata minor_Great Frigatebird
-Fringilla coelebs_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î£Ï€Î¯Î½Î¿Ï‚
-Fringilla montifringilla_Î§ÎµÎ¹Î¼Ï‰Î½ÏŒÏƒÏ€Î¹Î½Î¿Ï‚
+Fringilla coelebs_(Κοινός) Σπίνος
+Fringilla montifringilla_Χειμωνόσπινος
 Fulica alai_Hawaiian Coot
-Fulica americana_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î¦Î±Î»Î±ÏÎ¯Î´Î±
+Fulica americana_Αμερικανική Φαλαρίδα
 Fulica ardesiaca_Slate-colored Coot
 Fulica armillata_Red-gartered Coot
-Fulica atra_(ÎšÎ¿Î¹Î½Î®) Î¦Î±Î»Î±ÏÎ¯Î´Î±
-Fulica cristata_Î›ÎµÎ¹ÏÎ¿Ï†Î±Î»Î±ÏÎ¯Î´Î±
+Fulica atra_(Κοινή) Φαλαρίδα
+Fulica cristata_Λειροφαλαρίδα
 Fulica gigantea_Giant Coot
 Fulica rufifrons_Red-fronted Coot
-Fulmarus glacialis_Î˜Ï…ÎµÎ»Î»Î¿Ï€Î¿ÏÎ»Î¹ (Ï„Î¿Ï… Î‘Ï„Î»Î±Î½Ï„Î¹ÎºÎ¿Ï)
+Fulmarus glacialis_Θυελλοπούλι (του Ατλαντικού)
 Fulvetta formosana_Taiwan Fulvetta
 Fulvetta ruficapilla_Spectacled Fulvetta
 Fulvetta vinipectus_White-browed Fulvetta
@@ -2399,34 +2399,34 @@ Galbula leucogastra_Bronzy Jacamar
 Galbula pastazae_Coppery-chested Jacamar
 Galbula ruficauda_Rufous-tailed Jacamar
 Galbula tombacea_White-chinned Jacamar
-Galerida cristata_ÎšÎ±Ï„ÏƒÎ¿Ï…Î»Î¹Î­ÏÎ·Ï‚
+Galerida cristata_Κατσουλιέρης
 Galerida deva_Tawny Lark
 Galerida magnirostris_Large-billed Lark
 Galerida malabarica_Malabar Lark
-Galerida theklae_Î ÎµÏ„ÏÎ¿ÎºÎ±Ï„ÏƒÎ¿Ï…Î»Î¹Î­ÏÎ·Ï‚
+Galerida theklae_Πετροκατσουλιέρης
 Gallicrex cinerea_Watercock
 Gallinago andina_Puna Snipe
 Gallinago delicata_Wilson's Snipe
-Gallinago gallinago_(ÎšÎ¿Î¹Î½ÏŒ) ÎœÏ€ÎµÎºÎ±Ï„ÏƒÎ¯Î½Î¹
+Gallinago gallinago_(Κοινό) Μπεκατσίνι
 Gallinago hardwickii_Latham's Snipe
 Gallinago imperialis_Imperial Snipe
 Gallinago jamesoni_Jameson's Snipe
 Gallinago magellanica_Magellanic Snipe
-Gallinago media_Î”Î¹Ï€Î»Î¿Î¼Ï€ÎµÎºÎ¬Ï„ÏƒÎ¹Î½Î¿
-Gallinago megala_ÎœÏ€ÎµÎºÎ±Ï„ÏƒÎ¯Î½Î¹ Ï„Î·Ï‚ Î£Î¹Î²Î·ÏÎ¯Î±Ï‚
+Gallinago media_Διπλομπεκάτσινο
+Gallinago megala_Μπεκατσίνι της Σιβηρίας
 Gallinago nobilis_Noble Snipe
-Gallinago paraguaiae_ÎœÏ€ÎµÎºÎ±Ï„ÏƒÎ¯Î½Î¹ Ï„Î·Ï‚ Î Î±ÏÎ±Î³Î¿Ï…Î¬Î·Ï‚
-Gallinago stenura_Î’ÎµÎ»Î¿Î½Î¿Î¼Ï€ÎµÎºÎ¬Ï„ÏƒÎ¹Î½Î¿
+Gallinago paraguaiae_Μπεκατσίνι της Παραγουάης
+Gallinago stenura_Βελονομπεκάτσινο
 Gallinago undulata_Giant Snipe
-Gallinula chloropus_ÎÎµÏÏŒÎºÎ¿Ï„Î±
-Gallinula galeata_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® ÎÎµÏÏŒÎºÎ¿Ï„Î±
+Gallinula chloropus_Νερόκοτα
+Gallinula galeata_Αμερικανική Νερόκοτα
 Gallinula tenebrosa_Dusky Moorhen
 Gallirallus australis_Weka
 Gallirallus philippensis_Buff-banded Rail
 Gallirallus torquatus_Barred Rail
 Galloperdix bicalcarata_Sri Lanka Spurfowl
 Galloperdix spadicea_Red Spurfowl
-Gallus gallus_ÎšÏŒÏ„Î±
+Gallus gallus_Κότα
 Gallus lafayettii_Sri Lanka Junglefowl
 Gallus sonneratii_Gray Junglefowl
 Gallus varius_Green Junglefowl
@@ -2440,21 +2440,21 @@ Garrulax monileger_Lesser Necklaced Laughingthrush
 Garrulax palliatus_Sunda Laughingthrush
 Garrulax strepitans_White-necked Laughingthrush
 Garrulax taewanus_Taiwan Hwamei
-Garrulus glandarius_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÎ®) ÎšÎ¯ÏƒÏƒÎ±
+Garrulus glandarius_(Ευρωπαϊκή) Κίσσα
 Garrulus lanceolatus_Black-headed Jay
 Garrulus lidthi_Lidth's Jay
 Gastrophryne carolinensis_Eastern Narrow-mouthed Toad
 Gastrophryne olivacea_Great Plains Narrow-mouthed Toad
-Gavia adamsii_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÏÎ±Î¼Ï†Î¿ Î Î±Î³Î¿Î²Î¿ÏÏ„Î¹
-Gavia arctica_Î›Î±Î¼Ï€ÏÎ¿Î²Î¿ÏÏ„Î¹
-Gavia immer_Î Î±Î³Î¿Î²Î¿ÏÏ„Î¹
-Gavia pacifica_Î›Î±Î¼Ï€ÏÎ¿Î²Î¿ÏÏ„Î¹ Ï„Î¿Ï… Î•Î¹ÏÎ·Î½Î¹ÎºÎ¿Ï
-Gavia stellata_ÎšÎ·Î»Î¹Î´Î¿Î²Î¿ÏÏ„Î¹
+Gavia adamsii_Κιτρινόραμφο Παγοβούτι
+Gavia arctica_Λαμπροβούτι
+Gavia immer_Παγοβούτι
+Gavia pacifica_Λαμπροβούτι του Ειρηνικού
+Gavia stellata_Κηλιδοβούτι
 Gavicalis fasciogularis_Mangrove Honeyeater
 Gavicalis virescens_Singing Honeyeater
 Gecinulus grantia_Pale-headed Woodpecker
 Gecinulus viridis_Bamboo Woodpecker
-Gelochelidon nilotica_Î“ÎµÎ»Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
+Gelochelidon nilotica_Γελογλάρονο
 Geocerthia serrana_Striated Earthcreeper
 Geococcyx californianus_Greater Roadrunner
 Geococcyx velox_Lesser Roadrunner
@@ -2465,7 +2465,7 @@ Geokichla gurneyi_Orange Ground-Thrush
 Geokichla guttata_Spotted Ground-Thrush
 Geokichla peronii_Orange-banded Thrush
 Geokichla piaggiae_Abyssinian Ground-Thrush
-Geokichla sibirica_Î¤ÏƒÎ¯Ï‡Î»Î± Ï„Î·Ï‚ Î£Î¹Î²Î·ÏÎ¯Î±Ï‚
+Geokichla sibirica_Τσίχλα της Σιβηρίας
 Geokichla spiloptera_Spot-winged Thrush
 Geopelia humeralis_Bar-shouldered Dove
 Geopelia placida_Peaceful Dove
@@ -2487,7 +2487,7 @@ Geothlypis rostrata_Bahama Yellowthroat
 Geothlypis semiflava_Olive-crowned Yellowthroat
 Geothlypis speciosa_Black-polled Yellowthroat
 Geothlypis tolmiei_MacGillivray's Warbler
-Geothlypis trichas_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ ÎšÎ¹Ï„ÏÎ¹Î½Î¿Î»Î±Î¯Î¼Î·Ï‚
+Geothlypis trichas_Αμερικανικός Κιτρινολαίμης
 Geotrygon chrysia_Key West Quail-Dove
 Geotrygon montana_Ruddy Quail-Dove
 Geotrygon violacea_Violaceous Quail-Dove
@@ -2495,7 +2495,7 @@ Geranoaetus albicaudatus_White-tailed Hawk
 Geranoaetus melanoleucus_Black-chested Buzzard-Eagle
 Geranoaetus polyosoma_Variable Hawk
 Geranospiza caerulescens_Crane Hawk
-Geronticus eremita_Î¦Î±Î»Î±ÎºÏÎ® ÎŠÎ²Î¹Î´Î±
+Geronticus eremita_Φαλακρή Ίβιδα
 Gerygone chloronota_Green-backed Gerygone
 Gerygone flavolateralis_Fan-tailed Gerygone
 Gerygone fusca_Western Gerygone
@@ -2507,8 +2507,8 @@ Gerygone olivacea_White-throated Gerygone
 Gerygone palpebrosa_Fairy Gerygone
 Gerygone sulphurea_Golden-bellied Gerygone
 Glareola lactea_Small Pratincole
-Glareola maldivarum_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÏŒ ÎÎµÏÎ¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
-Glareola pratincola_ÎÎµÏÎ¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
+Glareola maldivarum_Ανατολικό Νεροχελίδονο
+Glareola pratincola_Νεροχελίδονο
 Glaucestrilda caerulescens_Lavender Waxbill
 Glaucidium bolivianum_Yungas Pygmy-Owl
 Glaucidium brasilianum_Ferruginous Pygmy-Owl
@@ -2526,7 +2526,7 @@ Glaucidium nana_Austral Pygmy-Owl
 Glaucidium nubicola_Cloud-forest Pygmy-Owl
 Glaucidium palmarum_Colima Pygmy-Owl
 Glaucidium parkeri_Subtropical Pygmy-Owl
-Glaucidium passerinum_Î£Ï€Î¿Ï…ÏÎ³Î¹Ï„ÏŒÎ³Î»Î±Ï…ÎºÎ±
+Glaucidium passerinum_Σπουργιτόγλαυκα
 Glaucidium perlatum_Pearl-spotted Owlet
 Glaucidium peruanum_Peruvian Pygmy-Owl
 Glaucidium radiatum_Jungle Owlet
@@ -2595,7 +2595,7 @@ Granatina ianthinogaster_Purple Grenadier
 Grantiella picta_Painted Honeyeater
 Graydidascalus brachyurus_Short-tailed Parrot
 Grus americana_Whooping Crane
-Grus grus_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) Î“ÎµÏÎ±Î½ÏŒÏ‚
+Grus grus_(Ευρωπαϊκός) Γερανός
 Grus japonensis_Red-crowned Crane
 Grus monacha_Hooded Crane
 Grus nigricollis_Black-necked Crane
@@ -2625,8 +2625,8 @@ Gymnorhinus cyanocephalus_Pinyon Jay
 Gymnoris dentata_Sahel Bush Sparrow
 Gymnoris pyrgita_Yellow-spotted Bush Sparrow
 Gymnoris superciliaris_Yellow-throated Bush Sparrow
-Gymnoris xanthocollis_ÎžÎ±Î½Î¸ÏŒÎ»Î±Î¹Î¼Î¿Ï‚ Î ÎµÏ„ÏÎ¿ÏƒÏ€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
-Gyps fulvus_ÎŒÏÎ½Î¹Î¿
+Gymnoris xanthocollis_Ξανθόλαιμος Πετροσπουργίτης
+Gyps fulvus_Όρνιο
 Gyps himalayensis_Himalayan Griffon
 Gypsophila brevicaudata_Streaked Wren-Babbler
 Gypsophila rufipectus_Rusty-breasted Wren-Babbler
@@ -2641,12 +2641,12 @@ Haematopus finschi_South Island Oystercatcher
 Haematopus fuliginosus_Sooty Oystercatcher
 Haematopus leucopodus_Magellanic Oystercatcher
 Haematopus longirostris_Pied Oystercatcher
-Haematopus ostralegus_Î£Ï„ÏÎµÎ¹Î´Î¿Ï†Î¬Î³Î¿Ï‚
+Haematopus ostralegus_Στρειδοφάγος
 Haematopus palliatus_American Oystercatcher
 Haematopus unicolor_Variable Oystercatcher
 Haematortyx sanguiniceps_Crimson-headed Partridge
 Haemorhous cassinii_Cassin's Finch
-Haemorhous mexicanus_ÎšÎ±ÏÏ€Î¿Î´Î¬ÎºÎ¿Ï‚
+Haemorhous mexicanus_Καρποδάκος
 Haemorhous purpureus_Purple Finch
 Hafferia fortis_Sooty Antbird
 Hafferia immaculata_Blue-lored Antbird
@@ -2660,13 +2660,13 @@ Halcyon leucocephala_Gray-headed Kingfisher
 Halcyon malimbica_Blue-breasted Kingfisher
 Halcyon pileata_Black-capped Kingfisher
 Halcyon senegalensis_Woodland Kingfisher
-Halcyon smyrnensis_Î£Î¼Ï…ÏÎ½Î±Î»ÎºÏ…ÏŒÎ½Î·
-Haliaeetus albicilla_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) Î˜Î±Î»Î±ÏƒÏƒÎ±ÎµÏ„ÏŒÏ‚
+Halcyon smyrnensis_Σμυρναλκυόνη
+Haliaeetus albicilla_(Ευρωπαϊκός) Θαλασσαετός
 Haliaeetus humilis_Lesser Fish-Eagle
 Haliaeetus ichthyaetus_Gray-headed Fish-Eagle
-Haliaeetus leucocephalus_Î›ÎµÏ…ÎºÎ¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î˜Î±Î»Î±ÏƒÏƒÎ±ÎµÏ„ÏŒÏ‚
+Haliaeetus leucocephalus_Λευκοκέφαλος Θαλασσαετός
 Haliaeetus leucogaster_White-bellied Sea-Eagle
-Haliaeetus pelagicus_Î˜Î±Î»Î±ÏƒÏƒÎ±ÎµÏ„ÏŒÏ‚ Ï„Î¿Ï… Steller
+Haliaeetus pelagicus_Θαλασσαετός του Steller
 Haliaeetus vocifer_African Fish-Eagle
 Haliastur indus_Brahminy Kite
 Haliastur sphenurus_Whistling Kite
@@ -2690,7 +2690,7 @@ Harpagus diodon_Rufous-thighed Kite
 Harpia harpyja_Harpy Eagle
 Harpyopsis novaeguineae_New Guinea Eagle
 Hedydipna collaris_Collared Sunbird
-Hedydipna metallica_ÎÎµÎºÏ„Î±ÏÎ¹Î½Î¯Î± Ï„Î¿Ï… ÎÎµÎ¯Î»Î¿Ï…
+Hedydipna metallica_Νεκταρινία του Νείλου
 Hedydipna platura_Pygmy Sunbird
 Heliangelus amethysticollis_Amethyst-throated Sunangel
 Heliangelus exortis_Tourmaline Sunangel
@@ -2778,7 +2778,7 @@ Heterophasia melanoleuca_Black-backed Sibia
 Heterophasia picaoides_Long-tailed Sibia
 Heterophasia pulchella_Beautiful Sibia
 Heterospingus xanthopygius_Scarlet-browed Tanager
-Hieraaetus pennatus_Î“ÎµÏÎ±ÎºÎ±ÎµÏ„ÏŒÏ‚
+Hieraaetus pennatus_Γερακαετός
 Hierococcyx bocki_Dark Hawk-Cuckoo
 Hierococcyx fugax_Malaysian Hawk-Cuckoo
 Hierococcyx hyperythrus_Northern Hawk-Cuckoo
@@ -2787,23 +2787,23 @@ Hierococcyx pectoralis_Philippine Hawk-Cuckoo
 Hierococcyx sparverioides_Large Hawk-Cuckoo
 Hierococcyx vagans_Moustached Hawk-Cuckoo
 Hierococcyx varius_Common Hawk-Cuckoo
-Himantopus himantopus_ÎšÎ±Î»Î±Î¼Î¿ÎºÎ±Î½Î¬Ï‚
+Himantopus himantopus_Καλαμοκανάς
 Himantopus leucocephalus_Pied Stilt
-Himantopus mexicanus_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ ÎšÎ±Î»Î±Î¼Î¿ÎºÎ±Î½Î¬Ï‚
+Himantopus mexicanus_Αμερικανικός Καλαμοκανάς
 Himatione sanguinea_Apapane
-Hippolais icterina_ÎšÎ¹Ï„ÏÎ¹Î½Î¿ÏƒÏ„ÏÎ¹Ï„ÏƒÎ¯Î´Î±
-Hippolais languida_Î’Î¿Ï…Î½Î¿ÏƒÏ„ÏÎ¹Ï„ÏƒÎ¯Î´Î±
-Hippolais olivetorum_Î›Î¹Î¿ÏƒÏ„ÏÎ¹Ï„ÏƒÎ¯Î´Î±
-Hippolais polyglotta_ÎŸÏÏ†ÎµÎ¿ÏƒÏ„ÏÎ¹Ï„ÏƒÎ¯Î´Î±
-Hirundapus caudacutus_Î›ÎµÏ…ÎºÏŒÎ»Î±Î¹Î¼Î· Î’ÎµÎ»Î¿Î½Î¿ÏƒÏ„Î±Ï‡Ï„Î¬ÏÎ±
+Hippolais icterina_Κιτρινοστριτσίδα
+Hippolais languida_Βουνοστριτσίδα
+Hippolais olivetorum_Λιοστριτσίδα
+Hippolais polyglotta_Ορφεοστριτσίδα
+Hirundapus caudacutus_Λευκόλαιμη Βελονοσταχτάρα
 Hirundapus giganteus_Brown-backed Needletail
 Hirundinea ferruginea_Cliff Flycatcher
 Hirundo angolensis_Angola Swallow
 Hirundo neoxena_Welcome Swallow
-Hirundo rustica_Î£Ï„Î±Î²Î»Î¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
+Hirundo rustica_Σταβλοχελίδονο
 Hirundo smithii_Wire-tailed Swallow
 Hirundo tahitica_Pacific Swallow
-Histrionicus histrionicus_Î‘ÏÎ»ÎµÎºÎ¹Î½ÏŒÏ€Î±Ï€Î¹Î±
+Histrionicus histrionicus_Αρλεκινόπαπια
 Histurgops ruficauda_Rufous-tailed Weaver
 Horizocerus albocristatus_Western Long-tailed Hornbill
 Horornis acanthizoides_Yellowish-bellied Bush Warbler
@@ -2819,14 +2819,14 @@ Horornis vulcanius_Sunda Bush Warbler
 Human non-vocal_Human non-vocal
 Human vocal_Human vocal
 Human whistle_Human whistle
-Hydrobates castro_Î©ÎºÎµÎ±Î½Î¿Î´ÏÏŒÎ¼Î¿Ï‚ Ï„Î·Ï‚ ÎœÎ±Î´Î­ÏÎ±Ï‚
-Hydrobates leucorhous_Î©ÎºÎµÎ±Î½Î¿Î´ÏÏŒÎ¼Î¿Ï‚ Ï„Î¿Ï… Î‘Ï„Î»Î±Î½Ï„Î¹ÎºÎ¿Ï
-Hydrobates monorhis_ÎœÎ¿Î½ÏŒÏ‡ÏÏ‰Î¼Î¿Ï‚ Î©ÎºÎµÎ±Î½Î¿Î´ÏÏŒÎ¼Î¿Ï‚
-Hydrobates pelagicus_Î¥Î´ÏÎ¿Î²Î¬Ï„Î·Ï‚
+Hydrobates castro_Ωκεανοδρόμος της Μαδέρας
+Hydrobates leucorhous_Ωκεανοδρόμος του Ατλαντικού
+Hydrobates monorhis_Μονόχρωμος Ωκεανοδρόμος
+Hydrobates pelagicus_Υδροβάτης
 Hydrobates tristrami_Tristram's Storm-Petrel
-Hydrocoloeus minutus_ÎÎ±Î½ÏŒÎ³Î»Î±ÏÎ¿Ï‚
+Hydrocoloeus minutus_Νανόγλαρος
 Hydrophasianus chirurgus_Pheasant-tailed Jacana
-Hydroprogne caspia_ÎšÎ±ÏÎ±Ï„Î¶Î¬Ï‚
+Hydroprogne caspia_Καρατζάς
 Hydropsalis cayennensis_White-tailed Nightjar
 Hydropsalis climacocerca_Ladder-tailed Nightjar
 Hydropsalis maculicaudus_Spot-tailed Nightjar
@@ -2848,7 +2848,7 @@ Hylia prasina_Green Hylia
 Hyliola regilla_Pacific Chorus Frog
 Hylocharis chrysura_Gilded Hummingbird
 Hylocharis sapphirina_Rufous-throated Sapphire
-Hylocichla mustelina_Î›Î±ÏƒÏ€ÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Hylocichla mustelina_Λασπότσιχλα
 Hylomanes momotula_Tody Motmot
 Hylopezus macularius_Spotted Antpitta
 Hylopezus ochroleucus_White-browed Antpitta
@@ -2881,7 +2881,7 @@ Hypocnemis striata_Spix's Warbling-Antbird
 Hypocnemis subflava_Yellow-breasted Warbling-Antbird
 Hypocnemoides maculicauda_Band-tailed Antbird
 Hypocnemoides melanopogon_Black-chinned Antbird
-Hypocolius ampelinus_Î¥Ï€Î¿ÎºÎ¿Î»Î¿Î¹ÏŒÏ‚
+Hypocolius ampelinus_Υποκολοιός
 Hypoedaleus guttatus_Spot-backed Antshrike
 Hypopyrrhus pyrohypogaster_Red-bellied Grackle
 Hypothymis azurea_Black-naped Monarch
@@ -2898,8 +2898,8 @@ Ianthocincla ocellata_Spotted Laughingthrush
 Ianthocincla rufogularis_Rufous-chinned Laughingthrush
 Ibidorhyncha struthersii_Ibisbill
 Ibycter americanus_Red-throated Caracara
-Ichthyaetus audouinii_Î‘Î¹Î³Î±Î¹ÏŒÎ³Î»Î±ÏÎ¿Ï‚
-Ichthyaetus melanocephalus_ÎœÎ±Ï…ÏÎ¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
+Ichthyaetus audouinii_Αιγαιόγλαρος
+Ichthyaetus melanocephalus_Μαυροκέφαλος Γλάρος
 Icteria virens_Yellow-breasted Chat
 Icterus abeillei_Black-backed Oriole
 Icterus auratus_Orange Oriole
@@ -2909,7 +2909,7 @@ Icterus cayanensis_Epaulet Oriole
 Icterus chrysater_Yellow-backed Oriole
 Icterus croconotus_Orange-backed Troupial
 Icterus cucullatus_Hooded Oriole
-Icterus galbula_ÎšÎ¹Ï„ÏÎ¹Î½Î¿Ï€Î¿ÏÎ»Î¹ Ï„Î¿Ï… Î’Î¿ÏÏÎ¬
+Icterus galbula_Κιτρινοπούλι του Βορρά
 Icterus graceannae_White-edged Oriole
 Icterus graduacauda_Audubon's Oriole
 Icterus gularis_Altamira Oriole
@@ -2929,11 +2929,11 @@ Icterus wagleri_Black-vented Oriole
 Ictinaetus malaiensis_Black Eagle
 Ictinia mississippiensis_Mississippi Kite
 Ictinia plumbea_Plumbeous Kite
-Iduna caligata_Î˜Î±Î¼Î½Î¿ÏƒÏ„ÏÎ¹Ï„ÏƒÎ¯Î´Î±
+Iduna caligata_Θαμνοστριτσίδα
 Iduna natalensis_African Yellow-Warbler
-Iduna opaca_ÎšÎ±ÏƒÏ„Î±Î½Î¿ÏƒÏ„ÏÎ¹Ï„ÏƒÎ¯Î´Î±
-Iduna pallida_Î©Ï‡ÏÎ¿ÏƒÏ„ÏÎ¹Ï„ÏƒÎ¯Î´Î±
-Iduna rama_Î£Ï„ÎµÏ€Î¿ÏƒÏ„ÏÎ¹Ï„ÏƒÎ¯Î´Î±
+Iduna opaca_Καστανοστριτσίδα
+Iduna pallida_Ωχροστριτσίδα
+Iduna rama_Στεποστριτσίδα
 Iduna similis_Mountain Yellow-Warbler
 Ifrita kowaldi_Blue-capped Ifrita
 Ilicura militaris_Pin-tailed Manakin
@@ -2960,7 +2960,7 @@ Iole crypta_Buff-vented Bulbul
 Iole indica_Yellow-browed Bulbul
 Iole propinqua_Gray-eyed Bulbul
 Iole viridescens_Olive Bulbul
-Irania gutturalis_Î‘ÏƒÏ€ÏÎ¿Î»Î±Î¯Î¼Î·Ï‚
+Irania gutturalis_Ασπρολαίμης
 Irena cyanogastra_Philippine Fairy-bluebird
 Irena puella_Asian Fairy-bluebird
 Iridosornis analis_Yellow-throated Tanager
@@ -2971,14 +2971,14 @@ Isleria hauxwelli_Plain-throated Antwren
 Ithaginis cruentus_Blood Pheasant
 Ixobrychus cinnamomeus_Cinnamon Bittern
 Ixobrychus dubius_Black-backed Bittern
-Ixobrychus eurhythmus_Î‘ÏƒÎ¹Î±Ï„Î¹ÎºÏŒÏ‚ ÎœÎ¹ÎºÏÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
-Ixobrychus exilis_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ ÎœÎ¹ÎºÏÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
+Ixobrychus eurhythmus_Ασιατικός Μικροτσικνιάς
+Ixobrychus exilis_Αμερικανικός Μικροτσικνιάς
 Ixobrychus flavicollis_Black Bittern
 Ixobrychus involucris_Stripe-backed Bittern
-Ixobrychus minutus_ÎœÎ¹ÎºÏÎ¿Ï„ÏƒÎ¹ÎºÎ½Î¹Î¬Ï‚
+Ixobrychus minutus_Μικροτσικνιάς
 Ixobrychus sinensis_Yellow Bittern
 Ixonotus guttatus_Spotted Greenbul
-Ixoreus naevius_Î–Ï‰Î½ÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Ixoreus naevius_Ζωνότσιχλα
 Ixos malaccensis_Streaked Bulbul
 Ixos mcclellandii_Mountain Bulbul
 Ixothraupis guttata_Speckled Tanager
@@ -2990,16 +2990,16 @@ Jacamaralcyon tridactyla_Three-toed Jacamar
 Jacamerops aureus_Great Jacamar
 Jacana jacana_Wattled Jacana
 Jacana spinosa_Northern Jacana
-Junco hyemalis_ÎœÎ¿Î»Ï…Î²Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Junco hyemalis_Μολυβοτσίχλονο
 Junco phaeonotus_Yellow-eyed Junco
 Jynx ruficollis_Rufous-necked Wryneck
-Jynx torquilla_Î£Ï„ÏÎ±Î²Î¿Î»Î±Î¯Î¼Î·Ï‚
+Jynx torquilla_Στραβολαίμης
 Kakamega poliothorax_Gray-chested Babbler
 Kaupifalco monogrammicus_Lizard Buzzard
 Kenopia striata_Striped Wren-Babbler
 Ketupa blakistoni_Blakiston's Fish-Owl
 Ketupa ketupu_Buffy Fish-Owl
-Ketupa zeylonensis_Î¨Î±ÏÏŒÎ¼Ï€Î¿Ï…Ï†Î¿Ï‚
+Ketupa zeylonensis_Ψαρόμπουφος
 Klais guimeti_Violet-headed Hummingbird
 Kleinothraupis atropileus_Black-capped Hemispingus
 Kleinothraupis parodii_Parodi's Hemispingus
@@ -3012,10 +3012,10 @@ Lacedo pulchella_Banded Kingfisher
 Lafresnaya lafresnayi_Mountain Velvetbreast
 Lagonosticta rhodopareia_Jameson's Firefinch
 Lagonosticta rubricata_African Firefinch
-Lagonosticta senegala_Î Ï…ÏÏÏŒÏƒÏ€Î¹Î¶Î± Ï„Î·Ï‚ Î£ÎµÎ½ÎµÎ³Î¬Î»Î·Ï‚
-Lagopus lagopus_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î›Î±Î³ÏŒÏ€Î¿Î´Î±Ï‚
+Lagonosticta senegala_Πυρρόσπιζα της Σενεγάλης
+Lagopus lagopus_(Κοινός) Λαγόποδας
 Lagopus leucura_White-tailed Ptarmigan
-Lagopus muta_Î’Î¿Ï…Î½Î¿Î»Î±Î³ÏŒÏ€Î¿Î´Î±Ï‚
+Lagopus muta_Βουνολαγόποδας
 Lalage aurea_Rufous-bellied Triller
 Lalage fimbriata_Lesser Cuckooshrike
 Lalage leucomela_Varied Triller
@@ -3039,7 +3039,7 @@ Lamprotornis chloropterus_Lesser Blue-eared Starling
 Lamprotornis hildebrandti_Hildebrandt's Starling
 Lamprotornis mevesii_Meves's Starling
 Lamprotornis nitens_Cape Starling
-Lamprotornis purpuroptera_RÃ¼ppell's Starling
+Lamprotornis purpuroptera_Rüppell's Starling
 Lamprotornis splendidus_Splendid Starling
 Lamprotornis superbus_Superb Starling
 Lamprotornis unicolor_Ashy Starling
@@ -3050,9 +3050,9 @@ Laniarius barbarus_Yellow-crowned Gonolek
 Laniarius bicolor_Gabon Boubou
 Laniarius erythrogaster_Black-headed Gonolek
 Laniarius ferrugineus_Southern Boubou
-Laniarius fuelleborni_FÃ¼lleborn's Boubou
+Laniarius fuelleborni_Fülleborn's Boubou
 Laniarius funebris_Slate-colored Boubou
-Laniarius luehderi_LÃ¼hder's Bushshrike
+Laniarius luehderi_Lühder's Bushshrike
 Laniarius major_Tropical Boubou
 Laniarius mufumbiri_Papyrus Gonolek
 Laniarius poensis_Western Boubou
@@ -3068,49 +3068,49 @@ Lanius borealis_Northern Shrike
 Lanius bucephalus_Bull-headed Shrike
 Lanius cabanisi_Long-tailed Fiscal
 Lanius collaris_Southern Fiscal
-Lanius collurio_Î‘ÎµÏ„Î¿Î¼Î¬Ï‡Î¿Ï‚
+Lanius collurio_Αετομάχος
 Lanius collurioides_Burmese Shrike
 Lanius corvinus_Yellow-billed Shrike
-Lanius cristatus_ÎšÎ±ÏƒÏ„Î±Î½Î¿ÎºÎµÏ†Î±Î»Î¬Ï‚
-Lanius excubitor_Î”Î¹Ï€Î»Î¿ÎºÎµÏ†Î±Î»Î¬Ï‚
+Lanius cristatus_Καστανοκεφαλάς
+Lanius excubitor_Διπλοκεφαλάς
 Lanius humeralis_Northern Fiscal
-Lanius isabellinus_ÎžÎ±Î½Î¸Î¿ÎºÎµÏ†Î±Î»Î¬Ï‚
+Lanius isabellinus_Ξανθοκεφαλάς
 Lanius ludovicianus_Loggerhead Shrike
-Lanius meridionalis_Î™Î²Î·ÏÎ¹ÎºÏŒÏ‚ Î”Î¹Ï€Î»Î¿ÎºÎµÏ†Î±Î»Î¬Ï‚
-Lanius minor_Î£Ï„Î±Ï‡Ï„Î¿ÎºÎµÏ†Î±Î»Î¬Ï‚
-Lanius nubicus_Î Î±ÏÎ´Î±Î»Î¿ÎºÎµÏ†Î±Î»Î¬Ï‚
-Lanius phoenicuroides_ÎšÎµÏ†Î±Î»Î¬Ï‚ Ï„Î¿Ï… Î¤Î¿Ï…ÏÎºÎµÏƒÏ„Î¬Î½
-Lanius schach_ÎœÎ¬ÎºÏÎ¿Ï…ÏÎ¿Ï‚ ÎšÎµÏ†Î±Î»Î¬Ï‚
-Lanius senator_ÎšÎ¿ÎºÎºÎ¹Î½Î¿ÎºÎµÏ†Î±Î»Î¬Ï‚
+Lanius meridionalis_Ιβηρικός Διπλοκεφαλάς
+Lanius minor_Σταχτοκεφαλάς
+Lanius nubicus_Παρδαλοκεφαλάς
+Lanius phoenicuroides_Κεφαλάς του Τουρκεστάν
+Lanius schach_Μάκρουρος Κεφαλάς
+Lanius senator_Κοκκινοκεφαλάς
 Lanius sphenocercus_Chinese Gray Shrike
 Lanius tephronotus_Gray-backed Shrike
 Lanius tigrinus_Tiger Shrike
 Lanius vittatus_Bay-backed Shrike
 Larosterna inca_Inca Tern
-Larus argentatus_Î‘ÏƒÎ·Î¼ÏŒÎ³Î»Î±ÏÎ¿Ï‚ Ï„Î¿Ï… Î’Î¿ÏÏÎ¬
+Larus argentatus_Ασημόγλαρος του Βορρά
 Larus belcheri_Belcher's Gull
 Larus brachyrhynchus_Short-billed Gull
-Larus cachinnans_Î‘ÏƒÎ·Î¼ÏŒÎ³Î»Î±ÏÎ¿Ï‚ Ï„Î·Ï‚ ÎšÎ±ÏƒÏ€Î¯Î±Ï‚
+Larus cachinnans_Ασημόγλαρος της Κασπίας
 Larus californicus_California Gull
-Larus canus_Î˜Ï…ÎµÎ»Î»ÏŒÎ³Î»Î±ÏÎ¿Ï‚
+Larus canus_Θυελλόγλαρος
 Larus crassirostris_Black-tailed Gull
-Larus delawarensis_Î”Î±ÎºÏ„Ï…Î»Î¹ÏŒÏÎ±Î¼Ï†Î¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
-Larus dominicanus_ÎœÎµÎ»Î±Î½ÏŒÎ³Î»Î±ÏÎ¿Ï‚ Ï„Î¿Ï… ÎÏŒÏ„Î¿Ï…
-Larus fuscus_ÎœÎµÎ»Î±Î½ÏŒÎ³Î»Î±ÏÎ¿Ï‚
-Larus glaucescens_Î“Î»Î¬ÏÎ¿Ï‚ Ï„Î·Ï‚ Î‘Î»Î¬ÏƒÎºÎ±Ï‚
-Larus glaucoides_Î“Î»Î¬ÏÎ¿Ï‚ Ï„Î·Ï‚ Î™ÏƒÎ»Î±Î½Î´Î¯Î±Ï‚
+Larus delawarensis_Δακτυλιόραμφος Γλάρος
+Larus dominicanus_Μελανόγλαρος του Νότου
+Larus fuscus_Μελανόγλαρος
+Larus glaucescens_Γλάρος της Αλάσκας
+Larus glaucoides_Γλάρος της Ισλανδίας
 Larus heermanni_Heermann's Gull
-Larus hyperboreus_Î Î±Î³ÏŒÎ³Î»Î±ÏÎ¿Ï‚
+Larus hyperboreus_Παγόγλαρος
 Larus livens_Yellow-footed Gull
-Larus marinus_Î“Î¹Î³Î±Î½Ï„ÏŒÎ³Î»Î±ÏÎ¿Ï‚
-Larus michahellis_Î‘ÏƒÎ·Î¼ÏŒÎ³Î»Î±ÏÎ¿Ï‚ Ï„Î·Ï‚ ÎœÎµÏƒÎ¿Î³ÎµÎ¯Î¿Ï…
+Larus marinus_Γιγαντόγλαρος
+Larus michahellis_Ασημόγλαρος της Μεσογείου
 Larus occidentalis_Western Gull
-Larus schistisagus_Î“ÎºÏÎ¹Î¶ÏŒÎ¼Î±Ï…ÏÎ¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
+Larus schistisagus_Γκριζόμαυρος Γλάρος
 Larvivora akahige_Japanese Robin
 Larvivora brunnea_Indian Blue Robin
-Larvivora cyane_Î“Î±Î»Î¬Î¶Î¹Î¿ Î‘Î·Î´ÏŒÎ½Î¹
+Larvivora cyane_Γαλάζιο Αηδόνι
 Larvivora komadori_Ryukyu Robin
-Larvivora sibilans_Î‘Î·Î´ÏŒÎ½Î¹ Ï„Î·Ï‚ Î£Î¹Î²Î·ÏÎ¯Î±Ï‚
+Larvivora sibilans_Αηδόνι της Σιβηρίας
 Laterallus albigularis_White-throated Crake
 Laterallus exilis_Gray-breasted Crake
 Laterallus jamaicensis_Black Rail
@@ -3129,12 +3129,11 @@ Leioptila annectens_Rufous-backed Sibia
 Leiothlypis celata_Orange-crowned Warbler
 Leiothlypis crissalis_Colima Warbler
 Leiothlypis luciae_Lucy's Warbler
-Leiothlypis peregrina_Î Î¬ÏÎ¿Ï…Î»Î± Ï„Î¿Ï… Î¤ÎµÎ½ÎµÏƒÎ¯
+Leiothlypis peregrina_Πάρουλα του Τενεσί
 Leiothlypis ruficapilla_Nashville Warbler
 Leiothlypis virginiae_Virginia's Warbler
 Leiothrix argentauris_Silver-eared Mesia
 Leiothrix lutea_Red-billed Leiothrix
-Leipoa ocellata_Malleefowl
 Leistes bellicosus_Peruvian Meadowlark
 Leistes loyca_Long-tailed Meadowlark
 Leistes militaris_Red-breasted Meadowlark
@@ -3177,7 +3176,7 @@ Leptopogon amaurocephalus_Sepia-capped Flycatcher
 Leptopogon rufipectus_Rufous-breasted Flycatcher
 Leptopogon superciliaris_Slaty-capped Flycatcher
 Leptopogon taczanowskii_Inca Flycatcher
-Leptoptilos crumenifer_ÎœÎ±ÏÎ±Î¼Ï€Î¿Ï
+Leptoptilos crumenifer_Μαραμπού
 Leptosittaca branickii_Golden-plumed Parakeet
 Leptosomus discolor_Cuckoo-roller
 Leptotila cassinii_Gray-chested Dove
@@ -3193,10 +3192,10 @@ Lesbia nuna_Green-tailed Trainbearer
 Lesbia victoriae_Black-tailed Trainbearer
 Leucippus fallax_Buffy Hummingbird
 Leucochloris albicollis_White-throated Hummingbird
-Leucogeranus leucogeranus_Î›ÎµÏ…ÎºÎ¿Î³ÎµÏÎ±Î½ÏŒÏ‚ Ï„Î·Ï‚ Î£Î¹Î²Î·ÏÎ¯Î±Ï‚
+Leucogeranus leucogeranus_Λευκογερανός της Σιβηρίας
 Leucolia violiceps_Violet-crowned Hummingbird
-Leucophaeus atricilla_Î‘Î¶Ï„ÎµÎºÏŒÎ³Î»Î±ÏÎ¿Ï‚
-Leucophaeus modestus_Î›ÎµÏ…ÎºÏŒÏƒÏ„Î¹ÎºÏ„Î¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
+Leucophaeus atricilla_Αζτεκόγλαρος
+Leucophaeus modestus_Λευκόστικτος Γλάρος
 Leucophaeus pipixcan_Franklin's Gull
 Leucophaeus scoresbii_Dolphin Gull
 Leucopternis kuhli_White-browed Hawk
@@ -3216,17 +3215,17 @@ Lichmera limbata_Indonesian Honeyeater
 Lichmera squamata_White-tufted Honeyeater
 Limnoctites rectirostris_Straight-billed Reedhaunter
 Limnoctites sulphuriferus_Sulphur-bearded Reedhaunter
-Limnodromus griseus_ÎœÎ¹ÎºÏÏŒÏ‚ Î›Î¹Î¼Î½Î¿Î´ÏÏŒÎ¼Î¿Ï‚
-Limnodromus scolopaceus_Î›Î¹Î¼Î½ÏŒÎ´ÏÎ¿Î¼Î¿Ï‚
-Limnodromus semipalmatus_Î‘ÏƒÎ¹Î±Ï„Î¹ÎºÏŒÏ‚ Î›Î¹Î¼Î½Î¿Î´ÏÏŒÎ¼Î¿Ï‚
+Limnodromus griseus_Μικρός Λιμνοδρόμος
+Limnodromus scolopaceus_Λιμνόδρομος
+Limnodromus semipalmatus_Ασιατικός Λιμνοδρόμος
 Limnornis curvirostris_Curve-billed Reedhaunter
 Limnothlypis swainsonii_Swainson's Warbler
 Limosa fedoa_Marbled Godwit
-Limosa haemastica_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î›Î¹Î¼ÏŒÎ¶Î±
-Limosa lapponica_Î˜Î±Î»Î±ÏƒÏƒÎ¿Î»Î¹Î¼ÏŒÎ¶Î±
-Limosa limosa_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÎ®) Î›Î¹Î¼ÏŒÎ¶Î±
-Linaria cannabina_Î¦Î±Î½Î­Ï„Î¿
-Linaria flavirostris_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÏÎ±Î¼Ï†Î¿ Î¦Î±Î½Î­Ï„Î¿
+Limosa haemastica_Αμερικανική Λιμόζα
+Limosa lapponica_Θαλασσολιμόζα
+Limosa limosa_(Ευρωπαϊκή) Λιμόζα
+Linaria cannabina_Φανέτο
+Linaria flavirostris_Κιτρινόραμφο Φανέτο
 Linaria yemenensis_Yemen Linnet
 Liocichla phoenicea_Red-faced Liocichla
 Liocichla ripponi_Scarlet-faced Liocichla
@@ -3247,13 +3246,13 @@ Lochmias nematura_Sharp-tailed Streamcreeper
 Locustella alishanensis_Taiwan Bush Warbler
 Locustella caudata_Long-tailed Bush Warbler
 Locustella davidi_Baikal Bush Warbler
-Locustella fluviatilis_Î Î¿Ï„Î±Î¼Î¿Ï„ÏÎ¹Î»Î¹ÏƒÏ„Î®Ï‚
-Locustella lanceolata_Î“ÏÎ±Î¼Î¼Î¿Ï„ÏÎ¹Î»Î¹ÏƒÏ„Î®Ï‚
-Locustella luscinioides_ÎšÎ±Î»Î±Î¼Î¿Ï„ÏÎ¹Î»Î¹ÏƒÏ„Î®Ï‚
+Locustella fluviatilis_Ποταμοτριλιστής
+Locustella lanceolata_Γραμμοτριλιστής
+Locustella luscinioides_Καλαμοτριλιστής
 Locustella luteoventris_Brown Bush Warbler
 Locustella mandelli_Russet Bush Warbler
 Locustella montis_Javan Bush Warbler
-Locustella naevia_Î˜Î±Î¼Î½Î¿Ï„ÏÎ¹Î»Î¹ÏƒÏ„Î®Ï‚
+Locustella naevia_Θαμνοτριλιστής
 Locustella tacsanowskia_Chinese Bush Warbler
 Locustella thoracica_Spotted Bush Warbler
 Lonchura atricapilla_Chestnut Munia
@@ -3261,7 +3260,7 @@ Lonchura castaneothorax_Chestnut-breasted Munia
 Lonchura kelaarti_Black-throated Munia
 Lonchura leucogastroides_Javan Munia
 Lonchura maja_White-headed Munia
-Lonchura malacca_ÎœÎ±Ï…ÏÎ¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î‘ÏƒÎ·Î¼Î¿Î¼ÏÏ„Î·Ï‚
+Lonchura malacca_Μαυροκέφαλος Ασημομύτης
 Lonchura punctulata_Scaly-breasted Munia
 Lonchura striata_White-rumped Munia
 Lophaetus occipitalis_Long-crested Eagle
@@ -3271,9 +3270,9 @@ Lophoceros fasciatus_Congo Pied Hornbill
 Lophoceros hemprichii_Hemprich's Hornbill
 Lophoceros nasutus_African Gray Hornbill
 Lophochroa leadbeateri_Pink Cockatoo
-Lophodytes cucullatus_Î£Ï„ÎµÏ†Î±Î½Î¿Ï€ÏÎ¯ÏƒÏ„Î·Ï‚
+Lophodytes cucullatus_Στεφανοπρίστης
 Lophonetta specularioides_Crested Duck
-Lophophanes cristatus_Î›Î¿Ï†Î¹Î¿Ï€Î±Ï€Î±Î´Î¯Ï„ÏƒÎ±
+Lophophanes cristatus_Λοφιοπαπαδίτσα
 Lophophanes dichrous_Gray-crested Tit
 Lophophorus impejanus_Himalayan Monal
 Lophorina superba_Greater Lophorina
@@ -3292,32 +3291,32 @@ Loriotus cristatus_Flame-crested Tanager
 Loriotus luctuosus_White-shouldered Tanager
 Lorius chlorocercus_Yellow-bibbed Lory
 Lorius lory_Black-capped Lory
-Loxia curvirostra_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î£Ï„Î±Ï…ÏÎ¿Î¼ÏÏ„Î·Ï‚
-Loxia leucoptera_Î›ÎµÏ…ÎºÏŒÏ†Ï„ÎµÏÎ¿Ï‚ Î£Ï„Î±Ï…ÏÎ¿Î¼ÏÏ„Î·Ï‚
-Loxia pytyopsittacus_Î ÎµÏ…ÎºÎ¿ÏƒÏ„Î±Ï…ÏÎ¿Î¼ÏÏ„Î·Ï‚
-Loxia scotica_Î£ÎºÏ‰Ï„ÏƒÎ­Î¶Î¹ÎºÎ¿Ï‚ Î£Ï„Î±Ï…ÏÎ¿Î¼ÏÏ„Î·Ï‚
+Loxia curvirostra_(Κοινός) Σταυρομύτης
+Loxia leucoptera_Λευκόφτερος Σταυρομύτης
+Loxia pytyopsittacus_Πευκοσταυρομύτης
+Loxia scotica_Σκωτσέζικος Σταυρομύτης
 Loxia sinesciuris_Cassia Crossbill
 Loxigilla noctis_Lesser Antillean Bullfinch
 Loxioides bailleui_Palila
 Loxops caeruleirostris_Akekee
 Loxops coccineus_Hawaii Akepa
 Loxops mana_Hawaii Creeper
-Lullula arborea_Î”ÎµÎ½Ï„ÏÎ¿ÏƒÏ„Î±ÏÎ®Î¸ÏÎ±
+Lullula arborea_Δεντροσταρήθρα
 Lurocalis rufiventris_Rufous-bellied Nighthawk
 Lurocalis semitorquatus_Short-tailed Nighthawk
-Luscinia luscinia_Î¤ÏƒÎ¹Ï‡Î»Î±Î·Î´ÏŒÎ½Î¹
-Luscinia megarhynchos_(ÎšÎ¿Î¹Î½ÏŒ) Î‘Î·Î´ÏŒÎ½Î¹
+Luscinia luscinia_Τσιχλαηδόνι
+Luscinia megarhynchos_(Κοινό) Αηδόνι
 Luscinia phaenicuroides_White-bellied Redstart
-Luscinia svecica_Î“Î±Î»Î±Î¶Î¿Î»Î±Î¯Î¼Î·Ï‚
+Luscinia svecica_Γαλαζολαίμης
 Lybius bidentatus_Double-toothed Barbet
 Lybius guifsobalito_Black-billed Barbet
 Lybius torquatus_Black-collared Barbet
 Lybius vieilloti_Vieillot's Barbet
 Lycocorax pyrrhopterus_Halmahera Paradise-crow
-Lymnocryptes minimus_ÎœÎ¹ÎºÏÎ¿Î¼Ï€ÎµÎºÎ¬Ï„ÏƒÎ¹Î½Î¿
+Lymnocryptes minimus_Μικρομπεκάτσινο
 Lyncornis macrotis_Great Eared-Nightjar
 Lyncornis temminckii_Malaysian Eared-Nightjar
-Lyrurus tetrix_Î›Ï…ÏÎ¿Ï€ÎµÏ„ÎµÎ¹Î½ÏŒÏ‚
+Lyrurus tetrix_Λυροπετεινός
 Machaerirhynchus flaviventer_Yellow-breasted Boatbill
 Machaerirhynchus nigripectus_Black-breasted Boatbill
 Machaeropterus deliciosus_Club-winged Manakin
@@ -3339,7 +3338,7 @@ Macronus ptilosus_Fluffy-backed Tit-Babbler
 Macronus striaticeps_Brown Tit-Babbler
 Macronyx capensis_Orange-throated Longclaw
 Macronyx croceus_Yellow-throated Longclaw
-Macronyx fuelleborni_FÃ¼lleborn's Longclaw
+Macronyx fuelleborni_Fülleborn's Longclaw
 Macropygia amboinensis_Amboyna Cuckoo-Dove
 Macropygia doreya_Sultan's Cuckoo-Dove
 Macropygia mackinlayi_Mackinlay's Cuckoo-Dove
@@ -3387,11 +3386,11 @@ Manacus vitellinus_Golden-collared Manakin
 Manorina flavigula_Yellow-throated Miner
 Manorina melanocephala_Noisy Miner
 Manorina melanophrys_Bell Miner
-Mareca americana_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ Î£Ï†Ï…ÏÎ¹Ï‡Ï„Î¬ÏÎ¹
-Mareca falcata_Î”ÏÎµÏ€Î±Î½ÏŒÏ€Î±Ï€Î¹Î±
-Mareca penelope_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒ) Î£Ï†Ï…ÏÎ¹Ï‡Ï„Î¬ÏÎ¹
-Mareca sibilatrix_Î§Î¹Î»Î¹Î±Î½ÏŒ Î£Ï†Ï…ÏÎ¹Ï‡Ï„Î¬ÏÎ¹
-Mareca strepera_ÎšÎ±Ï€Î±ÎºÎ»Î®Ï‚
+Mareca americana_Αμερικανικό Σφυριχτάρι
+Mareca falcata_Δρεπανόπαπια
+Mareca penelope_(Ευρωπαϊκό) Σφυριχτάρι
+Mareca sibilatrix_Χιλιανό Σφυριχτάρι
+Mareca strepera_Καπακλής
 Margarops fuscatus_Pearly-eyed Thrasher
 Margarornis rubiginosus_Ruddy Treerunner
 Margarornis squamiger_Pearled Treerunner
@@ -3402,7 +3401,7 @@ Mecocerculus leucophrys_White-throated Tyrannulet
 Mecocerculus minor_Sulphur-bellied Tyrannulet
 Mecocerculus poecilocercus_White-tailed Tyrannulet
 Mecocerculus stictopterus_White-banded Tyrannulet
-Megaceryle alcyon_ÎœÎµÎ³Î±ÎºÎ®ÏÏ…Î»Î¿Ï‚
+Megaceryle alcyon_Μεγακήρυλος
 Megaceryle lugubris_Crested Kingfisher
 Megaceryle maxima_Giant Kingfisher
 Megaceryle torquata_Ringed Kingfisher
@@ -3470,19 +3469,19 @@ Melaniparus leucomelas_White-winged Black-Tit
 Melaniparus niger_Southern Black-Tit
 Melaniparus rufiventris_Rufous-bellied Tit
 Melaniparus thruppi_Somali Tit
-Melanitta americana_ÎœÎ±Ï…ÏÏŒÏ€Î±Ï€Î¹Î± Ï„Î·Ï‚ Î‘Î»Î¬ÏƒÎºÎ±Ï‚
-Melanitta fusca_Î’ÎµÎ»Î¿Ï…Î´ÏŒÏ€Î±Ï€Î¹Î±
-Melanitta nigra_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÎ®) ÎœÎ±Ï…ÏÏŒÏ€Î±Ï€Î¹Î±
-Melanitta perspicillata_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® ÎœÎ±Ï…ÏÏŒÏ€Î±Ï€Î¹Î±
+Melanitta americana_Μαυρόπαπια της Αλάσκας
+Melanitta fusca_Βελουδόπαπια
+Melanitta nigra_(Ευρωπαϊκή) Μαυρόπαπια
+Melanitta perspicillata_Αμερικανική Μαυρόπαπια
 Melanochlora sultanea_Sultan Tit
-Melanocorypha calandra_Î“Î±Î»Î¹Î¬Î½Ï„ÏÎ±
+Melanocorypha calandra_Γαλιάντρα
 Melanocorypha maxima_Tibetan Lark
 Melanodera melanodera_White-bridled Finch
 Melanodera xanthogramma_Yellow-bridled Finch
 Melanodryas cucullata_Hooded Robin
 Melanodryas vittata_Dusky Robin
 Melanopareia elegans_Elegant Crescentchest
-Melanopareia maranonica_MaraÃ±on Crescentchest
+Melanopareia maranonica_Marañon Crescentchest
 Melanopareia maximiliani_Olive-crowned Crescentchest
 Melanopareia torquata_Collared Crescentchest
 Melanoptila glabrirostris_Black Catbird
@@ -3490,7 +3489,7 @@ Melanorectes nigrescens_Black Pitohui
 Melanospiza bicolor_Black-faced Grassquit
 Melanotis caerulescens_Blue Mockingbird
 Melanotis hypoleucus_Blue-and-white Mockingbird
-Meleagris gallopavo_Î“Î±Î»Î¿Ï€Î¿ÏÎ»Î±
+Meleagris gallopavo_Γαλοπούλα
 Meleagris ocellata_Ocellated Turkey
 Meliarchus sclateri_Makira Honeyeater
 Melidectes belfordi_Belford's Melidectes
@@ -3508,12 +3507,12 @@ Melithreptus validirostris_Strong-billed Honeyeater
 Mellisuga helenae_Bee Hummingbird
 Mellisuga minima_Vervain Hummingbird
 Melocichla mentalis_Moustached Grass-Warbler
-Melopsittacus undulatus_ÎœÎµÎ»Î¿ÏˆÎ¹Ï„Ï„Î±ÎºÏŒÏ‚
+Melopsittacus undulatus_Μελοψιττακός
 Melopyrrha portoricensis_Puerto Rican Bullfinch
 Melopyrrha violacea_Greater Antillean Bullfinch
 Melospiza georgiana_Swamp Sparrow
 Melospiza lincolnii_Lincoln's Sparrow
-Melospiza melodia_ÎœÎµÎ»Ï‰Î´Î¹ÎºÏŒ Î£Ï€Î¿Ï…ÏÎ³Î¹Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Melospiza melodia_Μελωδικό Σπουργιτοτσίχλονο
 Melozone aberti_Abert's Towhee
 Melozone albicollis_White-throated Towhee
 Melozone biarcuata_White-faced Ground-Sparrow
@@ -3524,19 +3523,19 @@ Melozone kieneri_Rusty-crowned Ground-Sparrow
 Melozone leucotis_White-eared Ground-Sparrow
 Menura alberti_Albert's Lyrebird
 Menura novaehollandiae_Superb Lyrebird
-Mergellus albellus_ÎÎ±Î½Î¿Ï€ÏÎ¯ÏƒÏ„Î·Ï‚
-Mergus merganser_Î§Î·Î½Î¿Ï€ÏÎ¯ÏƒÏ„Î·Ï‚
-Mergus serrator_Î˜Î±Î»Î±ÏƒÏƒÎ¿Ï€ÏÎ¯ÏƒÏ„Î·Ï‚
+Mergellus albellus_Νανοπρίστης
+Mergus merganser_Χηνοπρίστης
+Mergus serrator_Θαλασσοπρίστης
 Merops albicollis_White-throated Bee-eater
-Merops apiaster_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) ÎœÎµÎ»Î¹ÏƒÏƒÎ¿Ï†Î¬Î³Î¿Ï‚
+Merops apiaster_(Ευρωπαϊκός) Μελισσοφάγος
 Merops bullockoides_White-fronted Bee-eater
 Merops bulocki_Red-throated Bee-eater
 Merops hirundineus_Swallow-tailed Bee-eater
 Merops leschenaulti_Chestnut-headed Bee-eater
 Merops oreobates_Cinnamon-chested Bee-eater
-Merops orientalis_Î‘ÏƒÎ¹Î±Ï„Î¹ÎºÏŒÏ‚ ÎÎ±Î½Î¿Î¼ÎµÎ»Î¹ÏƒÏƒÎ¿Ï†Î¬Î³Î¿Ï‚
+Merops orientalis_Ασιατικός Νανομελισσοφάγος
 Merops ornatus_Rainbow Bee-eater
-Merops persicus_Î ÏÎ¬ÏƒÎ¹Î½Î¿Ï‚ ÎœÎµÎ»Î¹ÏƒÏƒÎ¿Ï†Î¬Î³Î¿Ï‚
+Merops persicus_Πράσινος Μελισσοφάγος
 Merops philippinus_Blue-tailed Bee-eater
 Merops pusillus_Little Bee-eater
 Merops superciliosus_Madagascar Bee-eater
@@ -3583,14 +3582,14 @@ Microspingus torquatus_Ringed Warbling Finch
 Microxenops milleri_Rufous-tailed Xenops
 Milvago chimachima_Yellow-headed Caracara
 Milvago chimango_Chimango Caracara
-Milvus migrans_Î¤ÏƒÎ¯Ï†Ï„Î·Ï‚
-Milvus milvus_Î¨Î±Î»Î¹Î´Î¹Î¬ÏÎ·Ï‚
+Milvus migrans_Τσίφτης
+Milvus milvus_Ψαλιδιάρης
 Mimus dorsalis_Brown-backed Mockingbird
 Mimus gilvus_Tropical Mockingbird
 Mimus gundlachii_Bahama Mockingbird
 Mimus longicaudatus_Long-tailed Mockingbird
 Mimus patagonicus_Patagonian Mockingbird
-Mimus polyglottos_ÎœÎ¯Î¼Î¿Ï‚ Ï„Î¿Ï… Î’Î¿ÏÏÎ¬
+Mimus polyglottos_Μίμος του Βορρά
 Mimus saturninus_Chalk-browed Mockingbird
 Mimus thenca_Chilean Mockingbird
 Mimus triurus_White-banded Mockingbird
@@ -3625,13 +3624,13 @@ Mixornis bornensis_Bold-striped Tit-Babbler
 Mixornis flavicollis_Gray-cheeked Tit-Babbler
 Mixornis gularis_Pin-striped Tit-Babbler
 Mixornis kelleyi_Gray-faced Tit-Babbler
-Mniotilta varia_Î Î±ÏÎ´Î±Î»Î¿Ï€Î¬ÏÎ¿Ï…Î»Î±
+Mniotilta varia_Παρδαλοπάρουλα
 Modulatrix stictigula_Spot-throat
 Mohoua albicilla_Whitehead
 Mohoua novaeseelandiae_Pipipi
 Mohoua ochrocephala_Yellowhead
 Molothrus aeneus_Bronzed Cowbird
-Molothrus ater_ÎšÎ¿Î¹Î½ÏŒ Î“ÎµÎ»Î±Î´Î¿Ï€Î¿ÏÎ»Î¹
+Molothrus ater_Κοινό Γελαδοπούλι
 Molothrus bonariensis_Shiny Cowbird
 Molothrus oryzivorus_Giant Cowbird
 Molothrus rufoaxillaris_Screaming Cowbird
@@ -3654,37 +3653,37 @@ Monticola cinclorhyncha_Blue-capped Rock-Thrush
 Monticola gularis_White-throated Rock-Thrush
 Monticola rufiventris_Chestnut-bellied Rock-Thrush
 Monticola rupestris_Cape Rock-Thrush
-Monticola saxatilis_Î Ï…ÏÏÎ¿ÎºÏŒÏ„ÏƒÏ…Ï†Î±Ï‚
+Monticola saxatilis_Πυρροκότσυφας
 Monticola sharpei_Forest Rock-Thrush
-Monticola solitarius_Î“Î±Î»Î±Î¶Î¿ÎºÏŒÏ„ÏƒÏ…Ï†Î±Ï‚
+Monticola solitarius_Γαλαζοκότσυφας
 Montifringilla blanfordi_Blanford's Snowfinch
-Montifringilla nivalis_Î§Î¹Î¿Î½ÏŒÏƒÏ„ÏÎ¿Ï…Î¸Î¿Ï‚
+Montifringilla nivalis_Χιονόστρουθος
 Montifringilla taczanowskii_White-rumped Snowfinch
 Morococcyx erythropygus_Lesser Ground-Cuckoo
 Morphnarchus princeps_Barred Hawk
 Morphnus guianensis_Crested Eagle
-Morus bassanus_Î£Î¿ÏÎ»Î± (Ï„Î¿Ï… Î’Î¿ÏÏÎ¬)
-Motacilla aguimp_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î›ÎµÏ…ÎºÎ¿ÏƒÎ¿Ï…ÏƒÎ¿Ï…ÏÎ¬Î´Î±
-Motacilla alba_Î›ÎµÏ…ÎºÎ¿ÏƒÎ¿Ï…ÏƒÎ¿Ï…ÏÎ¬Î´Î±
+Morus bassanus_Σούλα (του Βορρά)
+Motacilla aguimp_Αφρικανική Λευκοσουσουράδα
+Motacilla alba_Λευκοσουσουράδα
 Motacilla capensis_Cape Wagtail
-Motacilla cinerea_Î£Ï„Î±Ï‡Ï„Î¿ÏƒÎ¿Ï…ÏƒÎ¿Ï…ÏÎ¬Î´Î±
-Motacilla citreola_ÎšÎ¹Ï„ÏÎ¿ÏƒÎ¿Ï…ÏƒÎ¿Ï…ÏÎ¬Î´Î±
+Motacilla cinerea_Σταχτοσουσουράδα
+Motacilla citreola_Κιτροσουσουράδα
 Motacilla clara_Mountain Wagtail
-Motacilla flava_ÎšÎ¹Ï„ÏÎ¹Î½Î¿ÏƒÎ¿Ï…ÏƒÎ¿Ï…ÏÎ¬Î´Î±
+Motacilla flava_Κιτρινοσουσουράδα
 Motacilla flaviventris_Madagascar Wagtail
 Motacilla grandis_Japanese Wagtail
 Motacilla maderaspatensis_White-browed Wagtail
-Motacilla tschutschensis_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÎ® ÎšÎ¹Ï„ÏÎ¹Î½Î¿ÏƒÎ¿Ï…ÏƒÎ¿Ï…ÏÎ¬Î´Î±
+Motacilla tschutschensis_Ανατολική Κιτρινοσουσουράδα
 Mulleripicus fulvus_Ashy Woodpecker
 Mulleripicus pulverulentus_Great Slaty Woodpecker
 Muscicapa adusta_African Dusky Flycatcher
 Muscicapa aquatica_Swamp Flycatcher
-Muscicapa dauurica_ÎšÎ±ÏƒÏ„Î±Î½Î¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚
+Muscicapa dauurica_Καστανομυγοχάφτης
 Muscicapa ferruginea_Ferruginous Flycatcher
 Muscicapa griseisticta_Gray-streaked Flycatcher
 Muscicapa muttui_Brown-breasted Flycatcher
 Muscicapa sibirica_Dark-sided Flycatcher
-Muscicapa striata_Î£Ï„Î±Ï‡Ï„Î¿Î¼Ï…Î³Î¿Ï‡Î¬Ï†Ï„Î·Ï‚
+Muscicapa striata_Σταχτομυγοχάφτης
 Muscicapa williamsoni_Brown-streaked Flycatcher
 Muscigralla brevicauda_Short-tailed Field Tyrant
 Muscipipra vetula_Shear-tailed Gray Tyrant
@@ -3763,7 +3762,7 @@ Myiophobus cryptoxanthus_Olive-chested Flycatcher
 Myiophobus fasciatus_Bran-colored Flycatcher
 Myiophobus flavicans_Flavescent Flycatcher
 Myiophobus phoenicomitra_Orange-crested Flycatcher
-Myiopsitta monachus_ÎœÏ…Î¿ÏˆÎ¹Ï„Ï„Î±ÎºÏŒÏ‚
+Myiopsitta monachus_Μυοψιττακός
 Myiornis albiventris_White-bellied Pygmy-Tyrant
 Myiornis atricapillus_Black-capped Pygmy-Tyrant
 Myiornis auricularis_Eared Pygmy-Tyrant
@@ -3856,7 +3855,7 @@ Myzomela rosenbergii_Red-collared Myzomela
 Myzomela rubratra_Micronesian Myzomela
 Myzomela sanguinolenta_Scarlet Myzomela
 Nannopsittaca panychlora_Tepui Parrotlet
-Nannopterum auritum_Î‘Î¼ÎµÏÎ¹ÎºÎ¬Î½Î¹ÎºÎ¿Ï‚ ÎšÎ¿ÏÎ¼Î¿ÏÎ¬Î½Î¿Ï‚
+Nannopterum auritum_Αμερικάνικος Κορμοράνος
 Nannopterum brasilianum_Neotropic Cormorant
 Napothera danjoui_Short-tailed Scimitar-Babbler
 Napothera epilepidota_Eyebrowed Wren-Babbler
@@ -3899,8 +3898,8 @@ Nesoptilotis flavicollis_Yellow-throated Honeyeater
 Nesoptilotis leucotis_White-eared Honeyeater
 Nesospingus speculiferus_Puerto Rican Tanager
 Nestor meridionalis_New Zealand Kaka
-Netta rufina_Î¦ÎµÏÎµÎ½Ï„Î¯Î½Î¹
-Nettapus coromandelianus_Î‘ÏƒÎ¹Î±Ï„Î¹ÎºÎ® Î Ï…Î³Î¼Î±Î¯Î± Î§Î®Î½Î±
+Netta rufina_Φερεντίνι
+Nettapus coromandelianus_Ασιατική Πυγμαία Χήνα
 Newtonia amphichroa_Dark Newtonia
 Newtonia archboldi_Archbold's Newtonia
 Newtonia brunneicauda_Common Newtonia
@@ -3951,15 +3950,15 @@ Nothura darwinii_Darwin's Nothura
 Nothura maculosa_Spotted Nothura
 Notiomystis cincta_Stitchbird
 Notopholia corusca_Black-bellied Starling
-Nucifraga caryocatactes_ÎšÎ±ÏÏ…Î¿Î¸ÏÎ±ÏÏƒÏ„Î·Ï‚
+Nucifraga caryocatactes_Καρυοθραύστης
 Nucifraga columbiana_Clark's Nutcracker
 Numenius americanus_Long-billed Curlew
-Numenius arquata_(Î•Ï…ÏÎ±ÏƒÎ¹Î±Ï„Î¹ÎºÎ®) Î¤Î¿Ï…ÏÎ»Î¯Î´Î±
+Numenius arquata_(Ευρασιατική) Τουρλίδα
 Numenius madagascariensis_Far Eastern Curlew
-Numenius minutus_ÎœÎ¹ÎºÏÎ¿Ï„Î¿Ï…ÏÎ»Î¯Î´Î±
-Numenius phaeopus_Î£Î¹Î³Î»Î¯Î³Î¿Ï…ÏÎ¿Ï‚
+Numenius minutus_Μικροτουρλίδα
+Numenius phaeopus_Σιγλίγουρος
 Numenius tahitiensis_Bristle-thighed Curlew
-Numida meleagris_Î¦ÏÎ±Î³ÎºÏŒÎºÎ¿Ï„Î±
+Numida meleagris_Φραγκόκοτα
 Nyctanassa violacea_Yellow-crowned Night Heron
 Nyctibius aethereus_Long-tailed Potoo
 Nyctibius bracteatus_Rufous Potoo
@@ -3967,7 +3966,7 @@ Nyctibius grandis_Great Potoo
 Nyctibius griseus_Common Potoo
 Nyctibius jamaicensis_Northern Potoo
 Nyctibius leucopterus_White-winged Potoo
-Nycticorax nycticorax_ÎÏ…Ï‡Ï„Î¿ÎºÏŒÏÎ±ÎºÎ±Ï‚
+Nycticorax nycticorax_Νυχτοκόρακας
 Nyctidromus albicollis_Common Pauraque
 Nyctidromus anthonyi_Scrub Nightjar
 Nyctiphrynus mcleodii_Eared Poorwill
@@ -3978,7 +3977,7 @@ Nyctipolus nigrescens_Blackish Nightjar
 Nyctiprogne leucopyga_Band-tailed Nighthawk
 Nyctyornis amictus_Red-bearded Bee-eater
 Nyctyornis athertoni_Blue-bearded Bee-eater
-Nymphicus hollandicus_ÎšÎ¿ÎºÎ±Ï„Î¯Î»
+Nymphicus hollandicus_Κοκατίλ
 Nystalus chacuru_White-eared Puffbird
 Nystalus maculatus_Spot-backed Puffbird
 Nystalus obamai_Western Striolated-Puffbird
@@ -4027,19 +4026,19 @@ Oecanthus nigricornis_Blackhorned Tree Cricket
 Oecanthus niveus_Narrow-winged Tree Cricket
 Oecanthus pini_Pine Tree Cricket
 Oecanthus quadripunctatus_Four-spotted Tree Cricket
-Oena capensis_ÎœÎ¹ÎºÏÎ¿Ï€ÎµÏÎ¯ÏƒÏ„ÎµÏÎ¿
-Oenanthe deserti_Î•ÏÎ·Î¼Î¿Ï€ÎµÏ„ÏÏŒÎºÎ»Î·Ï‚
+Oena capensis_Μικροπερίστερο
+Oenanthe deserti_Ερημοπετρόκλης
 Oenanthe familiaris_Familiar Chat
 Oenanthe fusca_Brown Rock Chat
-Oenanthe hispanica_Î”Ï…Ï„Î¹ÎºÎ® Î‘ÏƒÏ€ÏÎ¿ÎºÏ‰Î»Î¯Î½Î±
-Oenanthe isabellina_Î‘Î¼Î¼Î¿Ï€ÎµÏ„ÏÏŒÎºÎ»Î·Ï‚
-Oenanthe leucopyga_Î›ÎµÏ…ÎºÏŒÏ€Ï…Î³Î¿Ï‚ Î ÎµÏ„ÏÏŒÎºÎ»Î·Ï‚
-Oenanthe leucura_ÎœÎ±Ï…ÏÎ¿Ï€ÎµÏ„ÏÏŒÎºÎ»Î·Ï‚
-Oenanthe melanoleuca_(Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÎ®) Î‘ÏƒÏ€ÏÎ¿ÎºÏ‰Î»Î¯Î½Î±
-Oenanthe melanura_ÎœÎ±Ï…ÏÎ¿Î½Î¿ÏÏÎ·Ï‚
-Oenanthe oenanthe_Î£Ï„Î±Ï‡Ï„Î¿Ï€ÎµÏ„ÏÏŒÎºÎ»Î·Ï‚
+Oenanthe hispanica_Δυτική Ασπροκωλίνα
+Oenanthe isabellina_Αμμοπετρόκλης
+Oenanthe leucopyga_Λευκόπυγος Πετρόκλης
+Oenanthe leucura_Μαυροπετρόκλης
+Oenanthe melanoleuca_(Ανατολική) Ασπροκωλίνα
+Oenanthe melanura_Μαυρονούρης
+Oenanthe oenanthe_Σταχτοπετρόκλης
 Oenanthe pileata_Capped Wheatear
-Oenanthe pleschanka_Î Î±ÏÎ´Î±Î»Î¿Ï€ÎµÏ„ÏÏŒÎºÎ»Î·Ï‚
+Oenanthe pleschanka_Παρδαλοπετρόκλης
 Oenanthe scotocerca_Brown-tailed Chat
 Ognorhynchus icterotis_Yellow-eared Parrot
 Oncostoma cinereigulare_Northern Bentbill
@@ -4049,15 +4048,15 @@ Oneillornis salvini_White-throated Antbird
 Onychognathus morio_Red-winged Starling
 Onychognathus nabouroup_Pale-winged Starling
 Onychognathus tenuirostris_Slender-billed Starling
-Onychognathus tristramii_Î•ÏÎ·Î¼Î¿ÏˆÎ¬ÏÎ¿Î½Î¿
+Onychognathus tristramii_Ερημοψάρονο
 Onychognathus walleri_Waller's Starling
-Onychoprion aleuticus_Î“Î»Î±ÏÏŒÎ½Î¹ Ï„Ï‰Î½ Î‘Î»ÎµÎ¿ÏÏ„Î¹Ï‰Î½
-Onychoprion anaethetus_Î£Ï„Î±Ï‡Ï„Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
-Onychoprion fuscatus_Î ÎµÎ»Î±Î³Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
+Onychoprion aleuticus_Γλαρόνι των Αλεούτιων
+Onychoprion anaethetus_Σταχτογλάρονο
+Onychoprion fuscatus_Πελαγογλάρονο
 Onychoprion lunatus_Gray-backed Tern
 Onychorhynchus coronatus_Tropical Royal Flycatcher
 Opisthocomus hoazin_Hoatzin
-Oporornis agilis_Î Î¬ÏÎ¿Ï…Î»Î± Ï„Î¿Ï… ÎšÎ¿Î½Î­ÎºÏ„Î¹ÎºÎ±Ï„
+Oporornis agilis_Πάρουλα του Κονέκτικατ
 Orchelimum agile_Agile Meadow Katydid
 Orchelimum concinnum_Stripe-faced Meadow Katydid
 Orchelimum pulchellum_Handsome Meadow Katydid
@@ -4085,11 +4084,11 @@ Oriolus chinensis_Black-naped Oriole
 Oriolus chlorocephalus_Green-headed Oriole
 Oriolus cruentus_Javan Oriole
 Oriolus flavocinctus_Green Oriole
-Oriolus kundoo_Î™Î½Î´Î¹ÎºÏŒÏ‚ Î£Ï…ÎºÎ¿Ï†Î¬Î³Î¿Ï‚
+Oriolus kundoo_Ινδικός Συκοφάγος
 Oriolus larvatus_African Black-headed Oriole
 Oriolus monacha_Ethiopian Black-headed Oriole
 Oriolus nigripennis_Black-winged Oriole
-Oriolus oriolus_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) Î£Ï…ÎºÎ¿Ï†Î¬Î³Î¿Ï‚
+Oriolus oriolus_(Ευρωπαϊκός) Συκοφάγος
 Oriolus percivali_Black-tailed Oriole
 Oriolus phaeochromus_Halmahera Oriole
 Oriolus sagittatus_Olive-backed Oriole
@@ -4141,7 +4140,7 @@ Ortygospiza atricollis_Quailfinch
 Otidiphaps nobilis_Pheasant Pigeon
 Otocichla mupinensis_Chinese Thrush
 Otus bakkamoena_Indian Scops-Owl
-Otus cyprius_ÎšÏ…Ï€ÏÎ¹Î±ÎºÏŒÏ‚ Î“ÎºÎ¹ÏŽÎ½Î·Ï‚
+Otus cyprius_Κυπριακός Γκιώνης
 Otus elegans_Ryukyu Scops-Owl
 Otus lempiji_Sunda Scops-Owl
 Otus lettia_Collared Scops-Owl
@@ -4153,7 +4152,7 @@ Otus pamelae_Arabian Scops-Owl
 Otus rufescens_Reddish Scops-Owl
 Otus rutilus_Madagascar Scops-Owl
 Otus sagittatus_White-fronted Scops-Owl
-Otus scops_Î“ÎºÎ¹ÏŽÎ½Î·Ï‚
+Otus scops_Γκιώνης
 Otus semitorques_Japanese Scops-Owl
 Otus senegalensis_African Scops-Owl
 Otus spilocephalus_Mountain Scops-Owl
@@ -4161,7 +4160,7 @@ Otus sunia_Oriental Scops-Owl
 Oxylabes madagascariensis_White-throated Oxylabes
 Oxyruncus cristatus_Sharpbill
 Oxyura ferruginea_Andean Duck
-Oxyura jamaicensis_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ ÎšÎµÏ†Î±Î»Î¿ÏÎ´Î¹
+Oxyura jamaicensis_Αμερικανικό Κεφαλούδι
 Pachycare flavogriseum_Goldenface
 Pachycephala chlorura_Vanuatu Whistler
 Pachycephala cinerea_Mangrove Whistler
@@ -4210,9 +4209,9 @@ Pachysylvia semibrunnea_Rufous-naped Greenlet
 Padda oryzivora_Java Sparrow
 Palmeria dolei_Akohekohe
 Pampa curvipennis_Wedge-tailed Sabrewing
-Pandion haliaetus_Î¨Î±ÏÎ±ÎµÏ„ÏŒÏ‚
+Pandion haliaetus_Ψαραετός
 Panterpe insignis_Fiery-throated Hummingbird
-Panurus biarmicus_ÎœÎ¿Ï…ÏƒÏ„Î±ÎºÎ±Î»Î®Ï‚
+Panurus biarmicus_Μουστακαλής
 Panyptila sanctihieronymi_Great Swallow-tailed Swift
 Parabuteo leucorrhous_White-rumped Hawk
 Parabuteo unicinctus_Harris's Hawk
@@ -4228,15 +4227,15 @@ Pardirallus maculatus_Spotted Rail
 Pardirallus nigricans_Blackish Rail
 Pardirallus sanguinolentus_Plumbeous Rail
 Parkerthraustes humeralis_Yellow-shouldered Grosbeak
-Parkesia motacilla_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÎ® ÎÎµÏÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
-Parkesia noveboracensis_Î›ÎµÏ…ÎºÏŒÏ†ÏÏ…Î´Î· ÎÎµÏÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Parkesia motacilla_Ανατολική Νερότσιχλα
+Parkesia noveboracensis_Λευκόφρυδη Νερότσιχλα
 Paroaria capitata_Yellow-billed Cardinal
 Paroaria coronata_Red-crested Cardinal
 Paroaria dominicana_Red-cowled Cardinal
 Paroaria gularis_Red-capped Cardinal
 Paroreomyza montana_Maui Alauahio
 Parus cinereus_Cinereous Tit
-Parus major_ÎšÎ±Î»ÏŒÎ³ÎµÏÎ¿Ï‚
+Parus major_Καλόγερος
 Parus minor_Japanese Tit
 Parus monticolus_Green-backed Tit
 Parvipsitta porphyrocephala_Purple-crowned Lorikeet
@@ -4244,28 +4243,28 @@ Parvipsitta pusilla_Little Lorikeet
 Passer ammodendri_Saxaul Sparrow
 Passer cinnamomeus_Russet Sparrow
 Passer diffusus_Southern Gray-headed Sparrow
-Passer domesticus_Î£Ï€Î¹Ï„Î¿ÏƒÏ€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
+Passer domesticus_Σπιτοσπουργίτης
 Passer flaveolus_Plain-backed Sparrow
 Passer griseus_Northern Gray-headed Sparrow
-Passer hispaniolensis_Î§Ï‰ÏÎ±Ï†Î¿ÏƒÏ€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
-Passer italiae_Î™Ï„Î±Î»Î¹ÎºÏŒÏ‚ Î£Ï€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
+Passer hispaniolensis_Χωραφοσπουργίτης
+Passer italiae_Ιταλικός Σπουργίτης
 Passer melanurus_Cape Sparrow
-Passer moabiticus_ÎœÎµÏƒÎ±Î½Î±Ï„Î¿Î»Î¹ÎºÏŒÏ‚ Î£Ï€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
-Passer montanus_Î”ÎµÎ½Ï„ÏÎ¿ÏƒÏ€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
+Passer moabiticus_Μεσανατολικός Σπουργίτης
+Passer montanus_Δεντροσπουργίτης
 Passer pyrrhonotus_Sind Sparrow
 Passer rufocinctus_Kenya Rufous Sparrow
-Passer simplex_Î•ÏÎ·Î¼Î¿ÏƒÏ€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
+Passer simplex_Ερημοσπουργίτης
 Passer swainsonii_Swainson's Sparrow
-Passerculus sandwichensis_ÎšÎ¿Î¹Î½ÏŒ Î£Ï€Î¿Ï…ÏÎ³Î¹Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
-Passerella iliaca_ÎšÏŒÎºÎºÎ¹Î½Î¿ Î£Ï€Î¿Ï…ÏÎ³Î¹Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Passerculus sandwichensis_Κοινό Σπουργιτοτσίχλονο
+Passerella iliaca_Κόκκινο Σπουργιτοτσίχλονο
 Passerina amoena_Lazuli Bunting
-Passerina caerulea_Î“Î±Î»Î¬Î¶Î¹Î¿Ï‚ Î§Î¿Î½Ï„ÏÎ¿Î¼ÏÏ„Î·Ï‚
+Passerina caerulea_Γαλάζιος Χοντρομύτης
 Passerina ciris_Painted Bunting
-Passerina cyanea_Î“Î±Î»Î±Î¶Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Passerina cyanea_Γαλαζοτσίχλονο
 Passerina leclancherii_Orange-breasted Bunting
 Passerina rositae_Rose-bellied Bunting
 Passerina versicolor_Varied Bunting
-Pastor roseus_Î‘Î³Î¹Î¿Ï€Î¿ÏÎ»Î¹
+Pastor roseus_Αγιοπούλι
 Patagioenas araucana_Chilean Pigeon
 Patagioenas cayennensis_Pale-vented Pigeon
 Patagioenas corensis_Bare-eyed Pigeon
@@ -4282,7 +4281,7 @@ Patagioenas squamosa_Scaly-naped Pigeon
 Patagioenas subvinacea_Ruddy Pigeon
 Patagona gigas_Giant Hummingbird
 Pauxi pauxi_Helmeted Curassow
-Pavo cristatus_Î Î±Î³ÏŽÎ½Î¹
+Pavo cristatus_Παγώνι
 Pelargopsis amauroptera_Brown-winged Kingfisher
 Pelargopsis capensis_Stork-billed Kingfisher
 Pelecanus conspicillatus_Australian Pelican
@@ -4320,7 +4319,7 @@ Percnostola rufifrons_Black-headed Antbird
 Perdicula argoondah_Rock Bush-Quail
 Perdicula asiatica_Jungle Bush-Quail
 Perdicula erythrorhyncha_Painted Bush-Quail
-Perdix perdix_ÎšÎ±Î¼Ï€Î¯ÏƒÎ¹Î± Î Î­ÏÎ´Î¹ÎºÎ±
+Perdix perdix_Καμπίσια Πέρδικα
 Pericrocotus cantonensis_Brown-rumped Minivet
 Pericrocotus cinnamomeus_Small Minivet
 Pericrocotus divaricatus_Ashy Minivet
@@ -4330,22 +4329,22 @@ Pericrocotus flammeus_Orange Minivet
 Pericrocotus solaris_Gray-chinned Minivet
 Pericrocotus speciosus_Scarlet Minivet
 Pericrocotus tegimae_Ryukyu Minivet
-Periparus ater_Î•Î»Î±Ï„Î¿Ï€Î±Ï€Î±Î´Î¯Ï„ÏƒÎ±
+Periparus ater_Ελατοπαπαδίτσα
 Periparus elegans_Elegant Tit
 Periparus rubidiventris_Rufous-vented Tit
 Periparus rufonuchalis_Rufous-naped Tit
 Periparus venustulus_Yellow-bellied Tit
 Periporphyrus erythromelas_Red-and-black Grosbeak
 Perisoreus canadensis_Canada Jay
-Perisoreus infaustus_ÎšÎ¯ÏƒÏƒÎ± Ï„Î·Ï‚ Î£Î¹Î²Î·ÏÎ¯Î±Ï‚
+Perisoreus infaustus_Κίσσα της Σιβηρίας
 Perissocephalus tricolor_Capuchinbird
-Pernis apivorus_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) Î£Ï†Î·ÎºÎ¹Î¬ÏÎ·Ï‚
-Pernis ptilorhynchus_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÏŒÏ‚ Î£Ï†Î·ÎºÎ¹Î¬ÏÎ·Ï‚
+Pernis apivorus_(Ευρωπαϊκός) Σφηκιάρης
+Pernis ptilorhynchus_Ανατολικός Σφηκιάρης
 Petrochelidon ariel_Fairy Martin
 Petrochelidon fluvicola_Streak-throated Swallow
 Petrochelidon fulva_Cave Swallow
 Petrochelidon nigricans_Tree Martin
-Petrochelidon pyrrhonota_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ Î“ÎºÏÎµÎ¼Î¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
+Petrochelidon pyrrhonota_Αμερικανικό Γκρεμοχελίδονο
 Petrochelidon spilodera_South African Swallow
 Petroica australis_South Island Robin
 Petroica boodang_Scarlet Robin
@@ -4356,7 +4355,7 @@ Petroica phoenicea_Flame Robin
 Petroica pusilla_Pacific Robin
 Petroica rodinogaster_Pink Robin
 Petroica rosea_Rose Robin
-Petronia petronia_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î ÎµÏ„ÏÎ¿ÏƒÏ€Î¿Ï…ÏÎ³Î¯Ï„Î·Ï‚
+Petronia petronia_(Κοινός) Πετροσπουργίτης
 Peucaea aestivalis_Bachman's Sparrow
 Peucaea botterii_Botteri's Sparrow
 Peucaea carpalis_Rufous-winged Sparrow
@@ -4384,8 +4383,8 @@ Phaenicophilus palmarum_Black-crowned Palm-Tanager
 Phaenostictus mcleannani_Ocellated Antbird
 Phaeochroa cuvierii_Scaly-breasted Hummingbird
 Phaeomyias murina_Mouse-colored Tyrannulet
-Phaethon aethereus_Î•ÏÏ…Î¸ÏÏŒÏÎ±Î¼Ï†Î¿Ï‚ Î¦Î±Î­Î¸Ï‰Î½
-Phaethon lepturus_Î›ÎµÏÎºÎ¿Ï…ÏÎ¿Ï‚ Î¦Î±Î­Î¸Ï‰Î½
+Phaethon aethereus_Ερυθρόραμφος Φαέθων
+Phaethon lepturus_Λεύκουρος Φαέθων
 Phaethon rubricauda_Red-tailed Tropicbird
 Phaethornis atrimentalis_Black-throated Hermit
 Phaethornis bourcieri_Straight-billed Hermit
@@ -4407,11 +4406,11 @@ Phaethornis syrmatophorus_Tawny-bellied Hermit
 Phaethornis yaruqui_White-whiskered Hermit
 Phaetusa simplex_Large-billed Tern
 Phainopepla nitens_Phainopepla
-Phalacrocorax carbo_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) ÎšÎ¿ÏÎ¼Î¿ÏÎ¬Î½Î¿Ï‚
+Phalacrocorax carbo_(Ευρωπαϊκός) Κορμοράνος
 Phalaenoptilus nuttallii_Common Poorwill
-Phalaropus fulicarius_ÎšÏŒÎºÎºÎ¹Î½Î¿Ï‚ Î¦Î±Î»Î±ÏÏŒÏ€Î¿Î´Î±Ï‚
-Phalaropus lobatus_Î•ÏÏ…Î¸ÏÏŒÎ»Î±Î¹Î¼Î¿Ï‚ Î¦Î±Î»Î±ÏÏŒÏ€Î¿Î´Î±Ï‚
-Phalaropus tricolor_Î¤ÏÎ¯Ï‡ÏÏ‰Î¼Î¿Ï‚ Î¦Î±Î»Î±ÏÏŒÏ€Î¿Î´Î±Ï‚
+Phalaropus fulicarius_Κόκκινος Φαλαρόποδας
+Phalaropus lobatus_Ερυθρόλαιμος Φαλαρόποδας
+Phalaropus tricolor_Τρίχρωμος Φαλαρόποδας
 Phapitreron amethystinus_Amethyst Brown-Dove
 Phapitreron leucotis_White-eared Brown-Dove
 Phaps chalcoptera_Common Bronzewing
@@ -4421,14 +4420,14 @@ Pharomachrus auriceps_Golden-headed Quetzal
 Pharomachrus fulgidus_White-tipped Quetzal
 Pharomachrus mocinno_Resplendent Quetzal
 Pharomachrus pavoninus_Pavonine Quetzal
-Phasianus colchicus_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î¦Î±ÏƒÎ¹Î±Î½ÏŒÏ‚
+Phasianus colchicus_(Κοινός) Φασιανός
 Phedina borbonica_Mascarene Martin
 Phegornis mitchellii_Diademed Sandpiper-Plover
 Phelpsia inornata_White-bearded Flycatcher
 Pheucticus aureoventris_Black-backed Grosbeak
 Pheucticus chrysogaster_Golden Grosbeak
 Pheucticus chrysopeplus_Yellow Grosbeak
-Pheucticus ludovicianus_Î¡Î¿Î´ÏŒÏƒÏ„Î·Î¸Î¿Ï‚ Î§Î¿Î½Ï„ÏÎ¿Î¼ÏÏ„Î·Ï‚
+Pheucticus ludovicianus_Ροδόστηθος Χοντρομύτης
 Pheucticus melanocephalus_Black-headed Grosbeak
 Pheucticus tibialis_Black-thighed Grosbeak
 Pheugopedius atrogularis_Black-throated Wren
@@ -4467,12 +4466,12 @@ Phoebastria immutabilis_Laysan Albatross
 Phoebastria nigripes_Black-footed Albatross
 Phoenicircus carnifex_Guianan Red-Cotinga
 Phoenicircus nigricollis_Black-necked Red-Cotinga
-Phoeniconaias minor_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ Î¦Î¿Î¹Î½Î¹ÎºÏŒÏ€Ï„ÎµÏÎ¿
+Phoeniconaias minor_Αφρικανικό Φοινικόπτερο
 Phoenicoparrus andinus_Andean Flamingo
 Phoenicoparrus jamesi_James's Flamingo
-Phoenicopterus chilensis_Î¦Î¿Î¹Î½Î¹ÎºÏŒÏ€Ï„ÎµÏÎ¿ Ï„Î·Ï‚ Î§Î¹Î»Î®Ï‚
-Phoenicopterus roseus_Î¦Î¿Î¹Î½Î¹ÎºÏŒÏ€Ï„ÎµÏÎ¿
-Phoenicopterus ruber_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ Î¦Î¿Î¹Î½Î¹ÎºÏŒÏ€Ï„ÎµÏÎ¿
+Phoenicopterus chilensis_Φοινικόπτερο της Χιλής
+Phoenicopterus roseus_Φοινικόπτερο
+Phoenicopterus ruber_Αμερικανικό Φοινικόπτερο
 Phoeniculus bollei_White-headed Woodhoopoe
 Phoeniculus purpureus_Green Woodhoopoe
 Phoenicurus auroreus_Daurian Redstart
@@ -4480,9 +4479,9 @@ Phoenicurus frontalis_Blue-fronted Redstart
 Phoenicurus fuliginosus_Plumbeous Redstart
 Phoenicurus hodgsoni_Hodgson's Redstart
 Phoenicurus leucocephalus_White-capped Redstart
-Phoenicurus moussieri_Î¦Î¿Î¹Î½Î¯ÎºÎ¿Ï…ÏÎ¿Ï‚ Ï„Î¿Ï… Î†Ï„Î»Î±Î½Ï„Î±
-Phoenicurus ochruros_ÎšÎ±ÏÎ²Î¿Ï…Î½Î¹Î¬ÏÎ·Ï‚
-Phoenicurus phoenicurus_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î¦Î¿Î¹Î½Î¯ÎºÎ¿Ï…ÏÎ¿Ï‚
+Phoenicurus moussieri_Φοινίκουρος του Άτλαντα
+Phoenicurus ochruros_Καρβουνιάρης
+Phoenicurus phoenicurus_(Κοινός) Φοινίκουρος
 Pholia sharpii_Sharpe's Starling
 Phonygammus keraudrenii_Trumpet Manucode
 Phragmacia substriata_Namaqua Warbler
@@ -4530,8 +4529,8 @@ Phylloscartes ventralis_Mottle-cheeked Tyrannulet
 Phylloscartes virescens_Olive-green Tyrannulet
 Phylloscopus affinis_Tickell's Leaf Warbler
 Phylloscopus armandii_Yellow-streaked Warbler
-Phylloscopus bonelli_Î”Ï…Ï„Î¹ÎºÏŒÏ‚ Î’Î¿Ï…Î½Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
-Phylloscopus borealis_Î§Î¹Î¿Î½Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus bonelli_Δυτικός Βουνοφυλλοσκόπος
+Phylloscopus borealis_Χιονοφυλλοσκόπος
 Phylloscopus borealoides_Sakhalin Leaf Warbler
 Phylloscopus budongoensis_Uganda Woodland-Warbler
 Phylloscopus burkii_Green-crowned Warbler
@@ -4540,53 +4539,53 @@ Phylloscopus cantator_Yellow-vented Warbler
 Phylloscopus castaniceps_Chestnut-crowned Warbler
 Phylloscopus chloronotus_Lemon-rumped Warbler
 Phylloscopus claudiae_Claudia's Leaf Warbler
-Phylloscopus collybita_Î”ÎµÎ½Ï„ÏÎ¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
-Phylloscopus coronatus_Î£ÎºÎ¿Ï…Ï†Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus collybita_Δεντροφυλλοσκόπος
+Phylloscopus coronatus_Σκουφοφυλλοσκόπος
 Phylloscopus emeiensis_Emei Leaf Warbler
 Phylloscopus examinandus_Kamchatka Leaf Warbler
 Phylloscopus forresti_Sichuan Leaf Warbler
 Phylloscopus fuligiventer_Smoky Warbler
-Phylloscopus fuscatus_ÎšÎ±ÏƒÏ„Î±Î½Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus fuscatus_Καστανοφυλλοσκόπος
 Phylloscopus goodsoni_Hartert's Leaf Warbler
 Phylloscopus grammiceps_Sunda Warbler
 Phylloscopus griseolus_Sulphur-bellied Warbler
-Phylloscopus humei_Î“ÎºÏÎ¹Î¶Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
-Phylloscopus ibericus_Î™Î²Î·ÏÎ¹ÎºÏŒÏ‚ Î”ÎµÎ½Ï„ÏÎ¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus humei_Γκριζοφυλλοσκόπος
+Phylloscopus ibericus_Ιβηρικός Δεντροφυλλοσκόπος
 Phylloscopus ijimae_Ijima's Leaf Warbler
-Phylloscopus inornatus_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÏ†ÏÏ…Î´Î¿Ï‚ Î¦Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus inornatus_Κιτρινόφρυδος Φυλλοσκόπος
 Phylloscopus intensior_Davison's Leaf Warbler
 Phylloscopus intermedius_White-spectacled Warbler
 Phylloscopus kansuensis_Gansu Leaf Warbler
 Phylloscopus maculipennis_Ashy-throated Warbler
 Phylloscopus magnirostris_Large-billed Leaf Warbler
 Phylloscopus montis_Yellow-breasted Warbler
-Phylloscopus neglectus_Î ÎµÏÏƒÎ¹ÎºÏŒÏ‚ Î¦Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
-Phylloscopus nitidus_ÎšÎµÎ´ÏÎ¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus neglectus_Περσικός Φυλλοσκόπος
+Phylloscopus nitidus_Κεδροφυλλοσκόπος
 Phylloscopus occipitalis_Western Crowned Warbler
 Phylloscopus occisinensis_Alpine Leaf Warbler
 Phylloscopus ogilviegranti_Kloss's Leaf Warbler
 Phylloscopus olivaceus_Philippine Leaf Warbler
 Phylloscopus omeiensis_Martens's Warbler
-Phylloscopus orientalis_(Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÏŒÏ‚) Î’Î¿Ï…Î½Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus orientalis_(Ανατολικός) Βουνοφυλλοσκόπος
 Phylloscopus plumbeitarsus_Two-barred Warbler
 Phylloscopus poliocephalus_Island Leaf Warbler
 Phylloscopus poliogenys_Gray-cheeked Warbler
-Phylloscopus proregulus_ÎÎ±Î½Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus proregulus_Νανοφυλλοσκόπος
 Phylloscopus pulcher_Buff-barred Warbler
 Phylloscopus reguloides_Blyth's Leaf Warbler
 Phylloscopus ruficapilla_Yellow-throated Woodland-Warbler
 Phylloscopus sarasinorum_Lompobattang Leaf Warbler
-Phylloscopus schwarzi_Î©Ï‡ÏÎ¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
-Phylloscopus sibilatrix_Î”Î±ÏƒÎ¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
-Phylloscopus sindianus_Î”ÎµÎ½Ï„ÏÎ¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚ Ï„Ï‰Î½ Î™Î¼Î±Î»Î±ÎÏ‰Î½
-Phylloscopus soror_AlstrÃ¶m's Warbler
+Phylloscopus schwarzi_Ωχροφυλλοσκόπος
+Phylloscopus sibilatrix_Δασοφυλλοσκόπος
+Phylloscopus sindianus_Δεντροφυλλοσκόπος των Ιμαλαΐων
+Phylloscopus soror_Alström's Warbler
 Phylloscopus subaffinis_Buff-throated Warbler
 Phylloscopus subviridis_Brooks's Leaf Warbler
 Phylloscopus tenellipes_Pale-legged Leaf Warbler
 Phylloscopus tephrocephalus_Gray-crowned Warbler
 Phylloscopus trivirgatus_Mountain Leaf Warbler
-Phylloscopus trochiloides_Î ÏÎ±ÏƒÎ¹Î½Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
-Phylloscopus trochilus_Î˜Î±Î¼Î½Î¿Ï†Ï…Î»Î»Î¿ÏƒÎºÏŒÏ€Î¿Ï‚
+Phylloscopus trochiloides_Πρασινοφυλλοσκόπος
+Phylloscopus trochilus_Θαμνοφυλλοσκόπος
 Phylloscopus tytleri_Tytler's Leaf Warbler
 Phylloscopus umbrovirens_Brown Woodland-Warbler
 Phylloscopus valentini_Bianchi's Warbler
@@ -4602,11 +4601,11 @@ Piaya melanogaster_Black-bellied Cuckoo
 Pica bottanensis_Black-rumped Magpie
 Pica hudsonia_Black-billed Magpie
 Pica nuttalli_Yellow-billed Magpie
-Pica pica_ÎšÎ±ÏÎ±ÎºÎ¬Î¾Î±
-Pica serica_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÎ® ÎšÎ±ÏÎ±ÎºÎ¬Î¾Î±
+Pica pica_Καρακάξα
+Pica serica_Ανατολική Καρακάξα
 Picoides arcticus_Black-backed Woodpecker
 Picoides dorsalis_American Three-toed Woodpecker
-Picoides tridactylus_Î¤ÏÎ¹Î´Î¬Ï‡Ï„Ï…Î»Î¿Ï‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Picoides tridactylus_Τριδάχτυλος Δρυοκολάπτης
 Piculus aurulentus_White-browed Woodpecker
 Piculus callopterus_Stripe-cheeked Woodpecker
 Piculus chrysochloros_Golden-green Woodpecker
@@ -4631,17 +4630,17 @@ Picumnus spilogaster_White-bellied Piculet
 Picumnus squamulatus_Scaled Piculet
 Picumnus temminckii_Ochre-collared Piculet
 Picus awokera_Japanese Woodpecker
-Picus canus_Î£Ï„Î±Ï‡Ï„Î®Ï‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Picus canus_Σταχτής Δρυοκολάπτης
 Picus chlorolophus_Lesser Yellownape
 Picus erythropygius_Black-headed Woodpecker
 Picus puniceus_Crimson-winged Woodpecker
-Picus sharpei_Î™Î²Î·ÏÎ¹ÎºÏŒÏ‚ Î ÏÎ¬ÏƒÎ¹Î½Î¿Ï‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Picus sharpei_Ιβηρικός Πράσινος Δρυοκολάπτης
 Picus squamatus_Scaly-bellied Woodpecker
-Picus vaillantii_Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚ Ï„Î¿Ï… Î†Ï„Î»Î±Î½Ï„Î±
-Picus viridis_Î ÏÎ¬ÏƒÎ¹Î½Î¿Ï‚ Î”ÏÏ…Î¿ÎºÎ¿Î»Î¬Ï€Ï„Î·Ï‚
+Picus vaillantii_Δρυοκολάπτης του Άτλαντα
+Picus viridis_Πράσινος Δρυοκολάπτης
 Picus vittatus_Laced Woodpecker
 Picus xanthopygaeus_Streak-throated Woodpecker
-Pinicola enucleator_Î ÎµÏ…ÎºÎ¿Ï‡Î¿Î½Î´ÏÎ¿Î¼ÏÏ„Î·Ï‚
+Pinicola enucleator_Πευκοχονδρομύτης
 Pionites leucogaster_White-bellied Parrot
 Pionites melanocephalus_Black-headed Parrot
 Pionopsitta pileata_Pileated Parrot
@@ -4655,7 +4654,7 @@ Pionus tumultuosus_Speckle-faced Parrot
 Pipile cujubi_Red-throated Piping-Guan
 Pipile cumanensis_Blue-throated Piping-Guan
 Pipilo chlorurus_Green-tailed Towhee
-Pipilo erythrophthalmus_Î•ÏÏ…Î¸ÏÏŒÏ†Î¸Î±Î»Î¼Î¿ Î¤ÏƒÎ¹Ï‡Î»ÏŒÎ½Î¹
+Pipilo erythrophthalmus_Ερυθρόφθαλμο Τσιχλόνι
 Pipilo maculatus_Spotted Towhee
 Pipilo ocai_Collared Towhee
 Pipra aureola_Crimson-hooded Manakin
@@ -4679,9 +4678,9 @@ Piranga erythrocephala_Red-headed Tanager
 Piranga flava_Hepatic Tanager
 Piranga leucoptera_White-winged Tanager
 Piranga ludoviciana_Western Tanager
-Piranga olivacea_ÎœÎ±Ï…ÏÏŒÏ†Ï„ÎµÏÎ· Î¤Î±Î½Î³Î¬ÏÎ±
+Piranga olivacea_Μαυρόφτερη Τανγάρα
 Piranga roseogularis_Rose-throated Tanager
-Piranga rubra_ÎšÏŒÎºÎºÎ¹Î½Î· Î¤Î±Î½Î³Î¬ÏÎ±
+Piranga rubra_Κόκκινη Τανγάρα
 Piranga rubriceps_Red-hooded Tanager
 Pitangus lictor_Lesser Kiskadee
 Pitangus sulphuratus_Great Kiskadee
@@ -4701,11 +4700,11 @@ Pittasoma michleri_Black-crowned Antpitta
 Pittasoma rufopileatum_Rufous-crowned Antpitta
 Pityriasis gymnocephala_Bornean Bristlehead
 Platalea ajaja_Roseate Spoonbill
-Platalea leucorodia_Î§Î¿Ï…Î»Î¹Î±ÏÎ¿Î¼ÏÏ„Î±
+Platalea leucorodia_Χουλιαρομύτα
 Platycercus adscitus_Pale-headed Rosella
 Platycercus caledonicus_Green Rosella
 Platycercus elegans_Crimson Rosella
-Platycercus eximius_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÎ® Î¡Î¿Î¶Î­Î»Î±
+Platycercus eximius_Ανατολική Ροζέλα
 Platylophus galericulatus_Crested Jayshrike
 Platyrinchus cancrominus_Stub-tailed Spadebill
 Platyrinchus coronatus_Golden-crowned Spadebill
@@ -4722,9 +4721,9 @@ Platysteira cyanea_Brown-throated Wattle-eye
 Platysteira peltata_Black-throated Wattle-eye
 Plectorhyncha lanceolata_Striped Honeyeater
 Plectrophenax hyperboreus_McKay's Bunting
-Plectrophenax nivalis_Î§Î¹Î¿Î½Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Plectrophenax nivalis_Χιονοτσίχλονο
 Plegadis chihi_White-faced Ibis
-Plegadis falcinellus_Î§Î±Î»ÎºÏŒÎºÎ¿Ï„Î±
+Plegadis falcinellus_Χαλκόκοτα
 Plegadis ridgwayi_Puna Ibis
 Plocepasser mahali_White-browed Sparrow-Weaver
 Plocepasser superciliosus_Chestnut-crowned Sparrow-Weaver
@@ -4732,13 +4731,13 @@ Ploceus baglafecht_Baglafecht Weaver
 Ploceus bicolor_Forest Weaver
 Ploceus capensis_Cape Weaver
 Ploceus cucullatus_Village Weaver
-Ploceus galbula_RÃ¼ppell's Weaver
+Ploceus galbula_Rüppell's Weaver
 Ploceus hypoxanthus_Asian Golden Weaver
 Ploceus intermedius_Lesser Masked-Weaver
 Ploceus jacksoni_Golden-backed Weaver
 Ploceus luteolus_Little Weaver
-Ploceus manyar_Î¡Î±Î²Î´Ï‰Ï„ÏŒÏ‚ Î¥Ï†Î±Î½Ï„Î®Ï‚
-Ploceus melanocephalus_ÎœÎ±Ï…ÏÎ¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î¥Ï†Î±Î½Ï„Î®Ï‚
+Ploceus manyar_Ραβδωτός Υφαντής
+Ploceus melanocephalus_Μαυροκέφαλος Υφαντής
 Ploceus nelicourvi_Nelicourvi Weaver
 Ploceus nigerrimus_Vieillot's Black Weaver
 Ploceus nigricollis_Black-necked Weaver
@@ -4751,33 +4750,33 @@ Ploceus velatus_Southern Masked-Weaver
 Ploceus vitellinus_Vitelline Masked-Weaver
 Ploceus xanthops_Holub's Golden-Weaver
 Ploceus xanthopterus_Southern Brown-throated Weaver
-Pluvialis apricaria_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒ) Î’ÏÎ¿Ï‡Î¿Ï€Î¿ÏÎ»Î¹
-Pluvialis dominica_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ Î’ÏÎ¿Ï‡Î¿Ï€Î¿ÏÎ»Î¹
-Pluvialis fulva_Î’ÏÎ¿Ï‡Î¿Ï€Î¿ÏÎ»Î¹ Ï„Î¿Ï… Î•Î¹ÏÎ·Î½Î¹ÎºÎ¿Ï
-Pluvialis squatarola_Î‘ÏÎ³Ï…ÏÎ¿Ï€Î¿ÏÎ»Î¹
+Pluvialis apricaria_(Ευρωπαϊκό) Βροχοπούλι
+Pluvialis dominica_Αμερικανικό Βροχοπούλι
+Pluvialis fulva_Βροχοπούλι του Ειρηνικού
+Pluvialis squatarola_Αργυροπούλι
 Pnoepyga albiventer_Scaly-breasted Cupwing
 Pnoepyga formosana_Taiwan Cupwing
 Pnoepyga immaculata_Immaculate Cupwing
 Pnoepyga pusilla_Pygmy Cupwing
 Podargus ocellatus_Marbled Frogmouth
 Podargus strigoides_Tawny Frogmouth
-Podiceps auritus_Î§ÎµÎ¹Î¼Ï‰Î½Î¿Î²Î¿Ï…Ï„Î·Ï‡Ï„Î¬ÏÎ¹
-Podiceps cristatus_Î£ÎºÎ¿Ï…Ï†Î¿Î²Î¿Ï…Ï„Î·Ï‡Ï„Î¬ÏÎ¹
+Podiceps auritus_Χειμωνοβουτηχτάρι
+Podiceps cristatus_Σκουφοβουτηχτάρι
 Podiceps gallardoi_Hooded Grebe
-Podiceps grisegena_ÎšÎ¿ÎºÎºÎ¹Î½Î¿Î²Î¿Ï…Ï„Î·Ï‡Ï„Î¬ÏÎ¹
+Podiceps grisegena_Κοκκινοβουτηχτάρι
 Podiceps major_Great Grebe
-Podiceps nigricollis_ÎœÎ±Ï…ÏÎ¿Î²Î¿Ï…Ï„Î·Ï‡Ï„Î¬ÏÎ¹
+Podiceps nigricollis_Μαυροβουτηχτάρι
 Podiceps occipitalis_Silvery Grebe
-Podilymbus podiceps_Î Î±ÏÎ´Î±Î»ÏŒÏÎ±Î¼Ï†Î¿ Î’Î¿Ï…Ï„Î·Ï‡Ï„Î¬ÏÎ¹
+Podilymbus podiceps_Παρδαλόραμφο Βουτηχτάρι
 Podoces hendersoni_Mongolian Ground-Jay
 Poecile atricapillus_Black-capped Chickadee
 Poecile carolinensis_Carolina Chickadee
-Poecile cinctus_Î£Î¹Î²Î·ÏÎ¹ÎºÎ® Î Î±Ï€Î±Î´Î¯Ï„ÏƒÎ±
+Poecile cinctus_Σιβηρική Παπαδίτσα
 Poecile gambeli_Mountain Chickadee
 Poecile hudsonicus_Boreal Chickadee
-Poecile lugubris_ÎšÎ»ÎµÎ¹Î´Ï‰Î½Î¬Ï‚
-Poecile montanus_Î’Î¿Ï…Î½Î¿Ï€Î±Ï€Î±Î´Î¯Ï„ÏƒÎ±
-Poecile palustris_ÎšÎ±ÏƒÏ„Î±Î½Î¿Ï€Î±Ï€Î±Î´Î¯Ï„ÏƒÎ±
+Poecile lugubris_Κλειδωνάς
+Poecile montanus_Βουνοπαπαδίτσα
+Poecile palustris_Καστανοπαπαδίτσα
 Poecile rufescens_Chestnut-backed Chickadee
 Poecile sclateri_Mexican Chickadee
 Poecile weigoldicus_Sichuan Tit
@@ -4808,7 +4807,7 @@ Poicephalus fuscicollis_Brown-necked Parrot
 Poicephalus meyeri_Meyer's Parrot
 Poicephalus robustus_Cape Parrot
 Poicephalus rufiventris_Red-bellied Parrot
-Poicephalus senegalus_Î¦Î±Î¹Î¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Ï„Î·Ï‚ Î£ÎµÎ½ÎµÎ³Î¬Î»Î·Ï‚
+Poicephalus senegalus_Φαιοκέφαλος της Σενεγάλης
 Poliocrania exsul_Chestnut-backed Antbird
 Poliolimnas cinereus_White-browed Crake
 Polioptila albiloris_White-lored Gnatcatcher
@@ -4853,13 +4852,13 @@ Pooecetes gramineus_Vesper Sparrow
 Poospiza nigrorufa_Black-and-rufous Warbling Finch
 Porphyrio flavirostris_Azure Gallinule
 Porphyrio madagascariensis_African Swamphen
-Porphyrio martinica_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î Î¿ÏÏ†Ï…ÏÎ¿Ï€Î¿Ï…Î»Î¬Î´Î±
+Porphyrio martinica_Αμερικανική Πορφυροπουλάδα
 Porphyrio melanotus_Australasian Swamphen
 Porphyrio poliocephalus_Gray-headed Swamphen
-Porphyrio porphyrio_Î£Î¿Ï…Î»Ï„Î±Î½Î¿Ï€Î¿Ï…Î»Î¬Î´Î±
+Porphyrio porphyrio_Σουλτανοπουλάδα
 Porphyriops melanops_Spot-flanked Gallinule
-Porzana carolina_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® ÎÎµÏÎ¿Ï€Î¿Ï…Î»Î¬Î´Î±
-Porzana porzana_Î£Ï„Î¹ÎºÏ„Î¿Ï€Î¿Ï…Î»Î¬Î´Î±
+Porzana carolina_Αμερικανική Νεροπουλάδα
+Porzana porzana_Στικτοπουλάδα
 Porzana spiloptera_Dot-winged Crake
 Power tools_Power tools
 Premnoplex brunnescens_Spotted Barbtail
@@ -4875,7 +4874,7 @@ Prinia erythroptera_Red-winged Prinia
 Prinia familiaris_Bar-winged Prinia
 Prinia flavicans_Black-chested Prinia
 Prinia flaviventris_Yellow-bellied Prinia
-Prinia gracilis_(ÎšÎ¿Î¼ÏˆÎ®) Î ÏÎ¹Î½Î¯Î±
+Prinia gracilis_(Κομψή) Πρινία
 Prinia hodgsonii_Gray-breasted Prinia
 Prinia hypoxantha_Drakensberg Prinia
 Prinia inornata_Plain Prinia
@@ -4904,18 +4903,18 @@ Procnias nudicollis_Bare-throated Bellbird
 Procnias tricarunculatus_Three-wattled Bellbird
 Progne chalybea_Gray-breasted Martin
 Progne elegans_Southern Martin
-Progne subis_Î Î¿ÏÏ†Ï…ÏÎ¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
+Progne subis_Πορφυροχελίδονο
 Progne tapera_Brown-chested Martin
 Promerops cafer_Cape Sugarbird
 Prosopeia personata_Masked Shining-Parrot
 Prosopeia tabuensis_Red Shining-Parrot
 Prosthemadera novaeseelandiae_Tui
 Protonotaria citrea_Prothonotary Warbler
-Prunella collaris_Î§Î¹Î¿Î½Î¿ÏˆÎ¬Î»Ï„Î·Ï‚
+Prunella collaris_Χιονοψάλτης
 Prunella fulvescens_Brown Accentor
-Prunella modularis_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î˜Î±Î¼Î½Î¿ÏˆÎ¬Î»Ï„Î·Ï‚
-Prunella montanella_Î˜Î±Î¼Î½Î¿ÏˆÎ¬Î»Ï„Î·Ï‚ Ï„Î·Ï‚ Î£Î¹Î²Î·ÏÎ¯Î±Ï‚
-Prunella ocularis_Î˜Î±Î¼Î½Î¿ÏˆÎ¬Î»Ï„Î·Ï‚ Ï„Î¿Ï… ÎšÎ±Ï…ÎºÎ¬ÏƒÎ¿Ï…
+Prunella modularis_(Κοινός) Θαμνοψάλτης
+Prunella montanella_Θαμνοψάλτης της Σιβηρίας
+Prunella ocularis_Θαμνοψάλτης του Καυκάσου
 Prunella rubeculoides_Robin Accentor
 Prunella strophiata_Rufous-breasted Accentor
 Psalidoprocne pristoptera_Black Sawwing
@@ -5012,10 +5011,10 @@ Psittacula calthrapae_Layard's Parakeet
 Psittacula columboides_Malabar Parakeet
 Psittacula cyanocephala_Plum-headed Parakeet
 Psittacula eques_Echo Parakeet
-Psittacula eupatria_Î‘Î»ÎµÎ¾Î±Î½Î´ÏÎ¹Î½ÏŒÏ‚ Î¨Î¹Ï„Ï„Î±ÎºÎ¯ÏƒÎºÎ¿Ï‚
+Psittacula eupatria_Αλεξανδρινός Ψιττακίσκος
 Psittacula finschii_Gray-headed Parakeet
 Psittacula himalayana_Slaty-headed Parakeet
-Psittacula krameri_Î ÏÎ¬ÏƒÎ¹Î½Î¿Ï‚ Î Î±Ï€Î±Î³Î¬Î»Î¿Ï‚
+Psittacula krameri_Πράσινος Παπαγάλος
 Psittacula longicauda_Long-tailed Parakeet
 Psittacus erithacus_Gray Parrot
 Psittinus cyanurus_Blue-rumped Parrot
@@ -5034,23 +5033,23 @@ Pternistis afer_Red-necked Spurfowl
 Pternistis ahantensis_Ahanta Spurfowl
 Pternistis bicalcaratus_Double-spurred Spurfowl
 Pternistis capensis_Cape Spurfowl
-Pternistis erckelii_Î¦ÏÎ±Î³ÎºÎ¿Î»Î¯Î½Î¿Ï‚ Ï„Î·Ï‚ Î•ÏÏ…Î¸ÏÎ±Î¯Î±Ï‚
+Pternistis erckelii_Φραγκολίνος της Ερυθραίας
 Pternistis hildebrandti_Hildebrandt's Spurfowl
 Pternistis leucoscepus_Yellow-necked Spurfowl
 Pternistis natalensis_Natal Spurfowl
 Pternistis squamatus_Scaly Spurfowl
 Pternistis swainsonii_Swainson's Spurfowl
-Pterocles alchata_Î’ÎµÎ»Î¿Î½ÏŒÎ¿Ï…ÏÎ· Î ÎµÏÎ¹ÏƒÏ„ÎµÏÏŒÎºÎ¿Ï„Î±
-Pterocles exustus_ÎšÎ±ÏƒÏ„Î±Î½ÏŒÎ³Î±ÏƒÏ„ÏÎ· Î ÎµÏÎ¹ÏƒÏ„ÎµÏÏŒÎºÎ¿Ï„Î±
+Pterocles alchata_Βελονόουρη Περιστερόκοτα
+Pterocles exustus_Καστανόγαστρη Περιστερόκοτα
 Pterocles namaqua_Namaqua Sandgrouse
-Pterocles orientalis_ÎœÎ±Ï…ÏÎ¿Ï€ÎµÏÎ¹ÏƒÏ„ÎµÏÏŒÎºÎ¿Ï„Î±
-Pterocles senegallus_Î£Ï„Î¹ÎºÏ„Î® Î ÎµÏÎ¹ÏƒÏ„ÎµÏÏŒÎºÎ¿Ï„Î±
+Pterocles orientalis_Μαυροπεριστερόκοτα
+Pterocles senegallus_Στικτή Περιστερόκοτα
 Pterodroma cervicalis_White-necked Petrel
 Pterodroma cookii_Cook's Petrel
 Pterodroma externa_Juan Fernandez Petrel
 Pterodroma hypoleuca_Bonin Petrel
 Pterodroma inexpectata_Mottled Petrel
-Pterodroma madeira_Î Ï„ÎµÏÎ¿Î´ÏÏŒÎ¼Î¿Ï‚ Ï„Î·Ï‚ ÎœÎ±Î´Î­ÏÎ±Ï‚
+Pterodroma madeira_Πτεροδρόμος της Μαδέρας
 Pterodroma neglecta_Kermadec Petrel
 Pterodroma nigripennis_Black-winged Petrel
 Pterodroma phaeopygia_Galapagos Petrel
@@ -5120,20 +5119,20 @@ Ptilotula ornata_Yellow-plumed Honeyeater
 Ptilotula penicillata_White-plumed Honeyeater
 Ptiloxena atroviolacea_Cuban Blackbird
 Ptyonoprogne concolor_Dusky Crag-Martin
-Ptyonoprogne fuligula_Î•ÏÎ·Î¼Î¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
-Ptyonoprogne rupestris_Î’ÏÎ±Ï‡Î¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
+Ptyonoprogne fuligula_Ερημοχελίδονο
+Ptyonoprogne rupestris_Βραχοχελίδονο
 Pucrasia macrolopha_Koklass Pheasant
 Puffinus bailloni_Tropical Shearwater
 Puffinus nativitatis_Christmas Shearwater
 Puffinus newelli_Newell's Shearwater
-Puffinus puffinus_ÎœÏÏ‡Î¿Ï‚ Ï„Î¿Ï… Î‘Ï„Î»Î±Î½Ï„Î¹ÎºÎ¿Ï
+Puffinus puffinus_Μύχος του Ατλαντικού
 Pulsatrix koeniswaldiana_Tawny-browed Owl
 Pulsatrix melanota_Band-bellied Owl
 Pulsatrix perspicillata_Spectacled Owl
 Purnella albifrons_White-fronted Honeyeater
 Purpureicephalus spurius_Red-capped Parrot
 Pycnonotus aurigaster_Sooty-headed Bulbul
-Pycnonotus barbatus_ÎšÎ¿Î¹Î½ÏŒÏ‚ Î Ï…ÎºÎ½ÏŒÎ½Ï‰Ï„Î¿Ï‚
+Pycnonotus barbatus_Κοινός Πυκνόνωτος
 Pycnonotus brunneus_Red-eyed Bulbul
 Pycnonotus cafer_Red-vented Bulbul
 Pycnonotus capensis_Cape Bulbul
@@ -5143,7 +5142,7 @@ Pycnonotus flavescens_Flavescent Bulbul
 Pycnonotus goiavier_Yellow-vented Bulbul
 Pycnonotus jocosus_Red-whiskered Bulbul
 Pycnonotus leucogenys_Himalayan Bulbul
-Pycnonotus leucotis_Î Ï…ÎºÎ½Î¿Î½ÏŽÏ„Î¿Ï‚ Ï„Ï‰Î½ Î™Î¼Î±Î»Î±ÎÏ‰Î½
+Pycnonotus leucotis_Πυκνονώτος των Ιμαλαΐων
 Pycnonotus luteolus_White-browed Bulbul
 Pycnonotus nigricans_Black-fronted Bulbul
 Pycnonotus plumosus_Olive-winged Bulbul
@@ -5152,7 +5151,7 @@ Pycnonotus sinensis_Light-vented Bulbul
 Pycnonotus striatus_Striated Bulbul
 Pycnonotus taivanus_Styan's Bulbul
 Pycnonotus xantholaemus_Yellow-throated Bulbul
-Pycnonotus xanthopygos_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÏ€Ï…Î³Î¿Ï‚ Î Ï…ÎºÎ½Î¿Î½ÏŽÏ„Î¿Ï‚
+Pycnonotus xanthopygos_Κιτρινόπυγος Πυκνονώτος
 Pycnonotus xanthorrhous_Brown-breasted Bulbul
 Pycnonotus zeylanicus_Straw-headed Bulbul
 Pycnoptilus floccosus_Pilotbird
@@ -5174,14 +5173,14 @@ Pyrilia pyrilia_Saffron-headed Parrot
 Pyrocephalus rubinus_Vermilion Flycatcher
 Pyroderus scutatus_Red-ruffed Fruitcrow
 Pyrope pyrope_Fire-eyed Diucon
-Pyrrhocorax graculus_ÎšÎ¹Ï„ÏÎ¹Î½Î¿ÎºÎ±Î»Î¹Î±ÎºÎ¿ÏÎ´Î±
-Pyrrhocorax pyrrhocorax_ÎšÎ¿ÎºÎºÎ¹Î½Î¿ÎºÎ±Î»Î¹Î±ÎºÎ¿ÏÎ´Î±
+Pyrrhocorax graculus_Κιτρινοκαλιακούδα
+Pyrrhocorax pyrrhocorax_Κοκκινοκαλιακούδα
 Pyrrholaemus brunneus_Redthroat
 Pyrrholaemus sagittatus_Speckled Warbler
 Pyrrhomyias cinnamomeus_Cinnamon Flycatcher
 Pyrrhula erythaca_Gray-headed Bullfinch
 Pyrrhula nipalensis_Brown Bullfinch
-Pyrrhula pyrrhula_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î ÏÏÏÎ¿Ï…Î»Î±Ï‚
+Pyrrhula pyrrhula_(Κοινός) Πύρρουλας
 Pyrrhura albipectus_White-necked Parakeet
 Pyrrhura amazonum_Santarem Parakeet
 Pyrrhura calliptera_Brown-breasted Parakeet
@@ -5213,7 +5212,7 @@ Rallina eurizonoides_Slaty-legged Crake
 Rallina fasciata_Red-legged Crake
 Rallina tricolor_Red-necked Crake
 Rallus antarcticus_Austral Rail
-Rallus aquaticus_ÎÎµÏÎ¿ÎºÎ¿Ï„ÏƒÎ­Î»Î±
+Rallus aquaticus_Νεροκοτσέλα
 Rallus caerulescens_African Rail
 Rallus crepitans_Clapper Rail
 Rallus elegans_King Rail
@@ -5248,23 +5247,23 @@ Ramphotrigon megacephalum_Large-headed Flatbill
 Ramphotrigon ruficauda_Rufous-tailed Flatbill
 Ramsayornis modestus_Brown-backed Honeyeater
 Rauenia bonariensis_Blue-and-yellow Tanager
-Recurvirostra americana_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î‘Î²Î¿ÎºÎ­Ï„Î±
+Recurvirostra americana_Αμερικανική Αβοκέτα
 Recurvirostra andina_Andean Avocet
-Recurvirostra avosetta_Î‘Î²Î¿ÎºÎ­Ï„Î±
+Recurvirostra avosetta_Αβοκέτα
 Regulus goodfellowi_Flamecrest
-Regulus ignicapilla_Î Ï…ÏÏÎ¿Î²Î±ÏƒÎ¹Î»Î¯ÏƒÎºÎ¿Ï‚
-Regulus madeirensis_Î Ï…ÏÏÎ¿Î²Î±ÏƒÎ¹Î»Î¯ÏƒÎºÎ¿Ï‚ Ï„Î·Ï‚ ÎœÎ±Î´Î­ÏÎ±Ï‚
-Regulus regulus_Î§ÏÏ…ÏƒÎ¿Î²Î±ÏƒÎ¹Î»Î¯ÏƒÎºÎ¿Ï‚
+Regulus ignicapilla_Πυρροβασιλίσκος
+Regulus madeirensis_Πυρροβασιλίσκος της Μαδέρας
+Regulus regulus_Χρυσοβασιλίσκος
 Regulus satrapa_Golden-crowned Kinglet
 Reinwardtipicus validus_Orange-backed Woodpecker
 Reinwardtoena reinwardti_Great Cuckoo-Dove
 Remiz consobrinus_Chinese Penduline-Tit
 Remiz coronatus_White-crowned Penduline-Tit
-Remiz pendulinus_Î¥Ï†Î¬Î½Ï„ÏÎ±
+Remiz pendulinus_Υφάντρα
 Rhabdotorrhinus corrugatus_Wrinkled Hornbill
 Rhabdotorrhinus exarhatus_Sulawesi Hornbill
 Rhaphidura leucopygialis_Silver-rumped Spinetail
-Rhea americana_Î¡Î­Î±
+Rhea americana_Ρέα
 Rhegmatorhina cristata_Chestnut-crested Antbird
 Rhegmatorhina gymnops_Bare-eyed Antbird
 Rhegmatorhina hoffmannsi_White-breasted Antbird
@@ -5296,8 +5295,8 @@ Rhipidura verreauxi_New Caledonian Streaked Fantail
 Rhodinocichla rosea_Rosy Thrush-Tanager
 Rhodophoneus cruentus_Rosy-patched Bushshrike
 Rhodospingus cruentus_Crimson-breasted Finch
-Rhodospiza obsoleta_Î•ÏÎ·Î¼ÏŒÏƒÏ€Î¹Î¶Î±
-Rhodostethia rosea_Î¡Î¿Î´ÏŒÎ³Î»Î±ÏÎ¿Ï‚
+Rhodospiza obsoleta_Ερημόσπιζα
+Rhodostethia rosea_Ροδόγλαρος
 Rhodothraupis celaeno_Crimson-collared Grosbeak
 Rhopias gularis_Star-throated Antwren
 Rhopophilus pekinensis_Beijing Babbler
@@ -5323,12 +5322,12 @@ Rhytipterna immunda_Pale-bellied Mourner
 Rhytipterna simplex_Grayish Mourner
 Riparia chinensis_Gray-throated Martin
 Riparia diluta_Pale Martin
-Riparia paludicola_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ ÎŸÏ‡Î¸Î¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
-Riparia riparia_ÎŸÏ‡Î¸Î¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
-Rissa tridactyla_Î¤ÏÎ¹Î´Î¬ÎºÏ„Ï…Î»Î¿Ï‚ Î“Î»Î¬ÏÎ¿Ï‚
+Riparia paludicola_Αφρικανικό Οχθοχελίδονο
+Riparia riparia_Οχθοχελίδονο
+Rissa tridactyla_Τριδάκτυλος Γλάρος
 Rollulus rouloul_Crested Partridge
 Roraimia adusta_Roraiman Barbtail
-Rostratula benghalensis_Î–Ï‰Î³ÏÎ±Ï†Î¹ÏƒÏ„ÏŒ ÎœÏ€ÎµÎºÎ±Ï„ÏƒÎ¯Î½Î¹
+Rostratula benghalensis_Ζωγραφιστό Μπεκατσίνι
 Rostrhamus sociabilis_Snail Kite
 Rubigula erythropthalmos_Spectacled Bulbul
 Rubigula flaviventris_Black-crested Bulbul
@@ -5373,15 +5372,15 @@ Saucerottia beryllina_Berylline Hummingbird
 Saucerottia cyanocephala_Azure-crowned Hummingbird
 Saucerottia tobaci_Copper-rumped Hummingbird
 Saundersilarus saundersi_Saunders's Gull
-Saxicola caprata_ÎÎ¿Ï„Î¹Î¿Î±ÏƒÎ¹Î±Ï„Î¹ÎºÏŒÏ‚ ÎœÎ±Ï…ÏÎ¿Î»Î±Î¯Î¼Î·Ï‚
+Saxicola caprata_Νοτιοασιατικός Μαυρολαίμης
 Saxicola ferreus_Gray Bushchat
-Saxicola maurus_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÏŒÏ‚ ÎœÎ±Ï…ÏÎ¿Î»Î±Î¯Î¼Î·Ï‚
-Saxicola rubetra_ÎšÎ±ÏƒÏ„Î±Î½Î¿Î»Î±Î¯Î¼Î·Ï‚
-Saxicola rubicola_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒÏ‚) ÎœÎ±Ï…ÏÎ¿Î»Î±Î¯Î¼Î·Ï‚
+Saxicola maurus_Ανατολικός Μαυρολαίμης
+Saxicola rubetra_Καστανολαίμης
+Saxicola rubicola_(Ευρωπαϊκός) Μαυρολαίμης
 Saxicola stejnegeri_Amur Stonechat
-Saxicola torquatus_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ ÎœÎ±Ï…ÏÎ¿Î»Î±Î¯Î¼Î·Ï‚
+Saxicola torquatus_Αφρικανικός Μαυρολαίμης
 Sayornis nigricans_Black Phoebe
-Sayornis phoebe_Î¦Î¿Î¯Î²Î¿Ï‚ Ï„Î·Ï‚ Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÎ®Ï‚ Î‘ÎºÏ„Î®Ï‚
+Sayornis phoebe_Φοίβος της Ανατολικής Ακτής
 Sayornis saya_Say's Phoebe
 Scaphiopus couchii_Couch's Spadefoot
 Scelorchilus albicollis_White-throated Tapaculo
@@ -5422,10 +5421,10 @@ Sclerurus obscurior_South American Leaftosser
 Sclerurus rufigularis_Short-billed Leaftosser
 Sclerurus scansor_Rufous-breasted Leaftosser
 Scolopax bukidnonensis_Bukidnon Woodcock
-Scolopax minor_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® ÎœÏ€ÎµÎºÎ¬Ï„ÏƒÎ±
-Scolopax rusticola_ÎœÏ€ÎµÎºÎ¬Ï„ÏƒÎ±
+Scolopax minor_Αμερικανική Μπεκάτσα
+Scolopax rusticola_Μπεκάτσα
 Scopus umbretta_Hamerkop
-Scotocerca inquieta_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÏŒÏ‚ Î•ÏÎ·Î¼Î¿ÏˆÎ¬Î»Ï„Î·Ï‚
+Scotocerca inquieta_Ανατολικός Ερημοψάλτης
 Scudderia curvicauda_Curve-tailed Bush Katydid
 Scudderia furcata_Fork-tailed Bush Katydid
 Scudderia texensis_Texas Bush Katydid
@@ -5471,10 +5470,10 @@ Scytalopus stilesi_Stiles's Tapaculo
 Scytalopus superciliaris_White-browed Tapaculo
 Scytalopus unicolor_Unicolored Tapaculo
 Scytalopus urubambae_Vilcabamba Tapaculo
-Scytalopus vicinior_NariÃ±o Tapaculo
+Scytalopus vicinior_Nariño Tapaculo
 Scytalopus zimmeri_Zimmer's Tapaculo
 Scythrops novaehollandiae_Channel-billed Cuckoo
-Seiurus aurocapilla_Î§ÏÏ…ÏƒÎ¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î¦Î¿Ï…ÏÎ½Î¬ÏÎ¹Î¿Ï‚
+Seiurus aurocapilla_Χρυσοκέφαλος Φουρνάριος
 Selasphorus calliope_Calliope Hummingbird
 Selasphorus ellioti_Wine-throated Hummingbird
 Selasphorus heloisa_Bumblebee Hummingbird
@@ -5499,11 +5498,11 @@ Sericornis papuensis_Papuan Scrubwren
 Sericossypha albocristata_White-capped Tanager
 Serilophus lunatus_Silver-breasted Broadbill
 Serinus alario_Black-headed Canary
-Serinus canaria_(Î†Î³ÏÎ¹Î¿) ÎšÎ±Î½Î±ÏÎ¯Î½Î¹
+Serinus canaria_(Άγριο) Καναρίνι
 Serinus canicollis_Cape Canary
 Serinus flavivertex_Yellow-crowned Canary
-Serinus pusillus_ÎœÎ±ÏÏÎ¿ Î£ÎºÎ±ÏÎ¸Î¬ÎºÎ¹
-Serinus serinus_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒ) Î£ÎºÎ±ÏÎ¸Î¬ÎºÎ¹
+Serinus pusillus_Μαύρο Σκαρθάκι
+Serinus serinus_(Ευρωπαϊκό) Σκαρθάκι
 Serpophaga cinerea_Torrent Tyrannulet
 Serpophaga griseicapilla_Straneck's Tyrannulet
 Serpophaga hypoleuca_River Tyrannulet
@@ -5512,32 +5511,32 @@ Serpophaga nigricans_Sooty Tyrannulet
 Serpophaga subcristata_White-crested Tyrannulet
 Setopagis parvula_Little Nightjar
 Setophaga adelaidae_Adelaide's Warbler
-Setophaga americana_ÎšÎ¿Î¹Î½Î® Î Î¬ÏÎ¿Ï…Î»Î±
-Setophaga caerulescens_ÎœÎ±Ï…ÏÏŒÎ»Î±Î¹Î¼Î· Î Î¬ÏÎ¿Ï…Î»Î±
-Setophaga castanea_ÎšÎ±ÏƒÏ„Î±Î½ÏŒÎ»Î±Î¹Î¼Î· Î Î¬ÏÎ¿Ï…Î»Î±
-Setophaga cerulea_Î“Î±Î»Î¬Î¶Î¹Î± Î Î¬ÏÎ¿Ï…Î»Î±
+Setophaga americana_Κοινή Πάρουλα
+Setophaga caerulescens_Μαυρόλαιμη Πάρουλα
+Setophaga castanea_Καστανόλαιμη Πάρουλα
+Setophaga cerulea_Γαλάζια Πάρουλα
 Setophaga chrysoparia_Golden-cheeked Warbler
-Setophaga citrina_ÎœÎ±Ï…ÏÎ¿ÎºÎ­Ï†Î±Î»Î· Î Î¬ÏÎ¿Ï…Î»Î±
-Setophaga coronata_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÏ€Ï…Î³Î· Î Î¬ÏÎ¿Ï…Î»Î±
+Setophaga citrina_Μαυροκέφαλη Πάρουλα
+Setophaga coronata_Κιτρινόπυγη Πάρουλα
 Setophaga discolor_Prairie Warbler
-Setophaga dominica_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÎ»Î±Î¹Î¼Î· Î Î¬ÏÎ¿Ï…Î»Î±
-Setophaga fusca_Î Î¿ÏÏ„Î¿ÎºÎ±Î»ÏŒÎ¼Î±Ï…ÏÎ· Î Î¬ÏÎ¿Ï…Î»Î±
+Setophaga dominica_Κιτρινόλαιμη Πάρουλα
+Setophaga fusca_Πορτοκαλόμαυρη Πάρουλα
 Setophaga graciae_Grace's Warbler
 Setophaga kirtlandii_Kirtland's Warbler
-Setophaga magnolia_Î¡Î±Î²Î´Ï‰Ï„Î® Î Î¬ÏÎ¿Ï…Î»Î±
+Setophaga magnolia_Ραβδωτή Πάρουλα
 Setophaga nigrescens_Black-throated Gray Warbler
 Setophaga occidentalis_Hermit Warbler
-Setophaga palmarum_Î¦Î¿Î¹Î½Î¹ÎºÎ¿Ï€Î¬ÏÎ¿Ï…Î»Î±
-Setophaga pensylvanica_ÎšÎ±ÏƒÏ„Î±Î½ÏŒÏ€Î»ÎµÏ…ÏÎ· Î Î¬ÏÎ¿Ï…Î»Î±
-Setophaga petechia_ÎšÎ¯Ï„ÏÎ¹Î½Î· Î Î¬ÏÎ¿Ï…Î»Î±
+Setophaga palmarum_Φοινικοπάρουλα
+Setophaga pensylvanica_Καστανόπλευρη Πάρουλα
+Setophaga petechia_Κίτρινη Πάρουλα
 Setophaga pinus_Pine Warbler
 Setophaga pitiayumi_Tropical Parula
 Setophaga pityophila_Olive-capped Warbler
-Setophaga ruticilla_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î¦Î¿Î¹Î½Î¯ÎºÎ¿Ï…ÏÎ¿Ï‚
-Setophaga striata_ÎœÎµÎ»Î±Î½Î¿Ï€Î¬ÏÎ¿Ï…Î»Î±
-Setophaga tigrina_Î•Î»Î±Ï„Î¿Ï€Î¬ÏÎ¿Ï…Î»Î±
+Setophaga ruticilla_Αμερικανικός Φοινίκουρος
+Setophaga striata_Μελανοπάρουλα
+Setophaga tigrina_Ελατοπάρουλα
 Setophaga townsendi_Townsend's Warbler
-Setophaga virens_Î ÏÎ¬ÏƒÎ¹Î½Î· Î Î¬ÏÎ¿Ï…Î»Î±
+Setophaga virens_Πράσινη Πάρουλα
 Sheppardia gunningi_East Coast Akalat
 Sheppardia sharpei_Sharpe's Akalat
 Sholicola albiventris_White-bellied Sholakili
@@ -5563,21 +5562,21 @@ Siren_Siren
 Sirystes albocinereus_White-rumped Sirystes
 Sirystes albogriseus_Choco Sirystes
 Sirystes sibilator_Sibilant Sirystes
-Sitta canadensis_ÎšÎ±Î½Î±Î´Î­Î¶Î¹ÎºÎ¿Ï‚ Î¤ÏƒÎ¿Ï€Î±Î½Î¬ÎºÎ¿Ï‚
+Sitta canadensis_Καναδέζικος Τσοπανάκος
 Sitta carolinensis_White-breasted Nuthatch
 Sitta cinnamoventris_Chestnut-bellied Nuthatch
-Sitta europaea_Î”ÎµÎ½Ï„ÏÎ¿Ï„ÏƒÎ¿Ï€Î±Î½Î¬ÎºÎ¿Ï‚
+Sitta europaea_Δεντροτσοπανάκος
 Sitta frontalis_Velvet-fronted Nuthatch
 Sitta himalayensis_White-tailed Nuthatch
-Sitta krueperi_Î ÎµÏ…ÎºÎ¿Ï„ÏƒÎ¿Ï€Î±Î½Î¬ÎºÎ¿Ï‚
+Sitta krueperi_Πευκοτσοπανάκος
 Sitta magna_Giant Nuthatch
 Sitta nagaensis_Chestnut-vented Nuthatch
-Sitta neumayer_(Î”Ï…Ï„Î¹ÎºÏŒÏ‚) Î’ÏÎ±Ï‡Î¿Ï„ÏƒÎ¿Ï€Î±Î½Î¬ÎºÎ¿Ï‚
+Sitta neumayer_(Δυτικός) Βραχοτσοπανάκος
 Sitta pusilla_Brown-headed Nuthatch
 Sitta pygmaea_Pygmy Nuthatch
-Sitta tephronota_Î‘Î½Î±Ï„Î¿Î»Î¹ÎºÏŒÏ‚ Î’ÏÎ±Ï‡Î¿Ï„ÏƒÎ¿Ï€Î±Î½Î¬ÎºÎ¿Ï‚
+Sitta tephronota_Ανατολικός Βραχοτσοπανάκος
 Sitta villosa_Snowy-browed Nuthatch
-Sitta whiteheadi_Î¤ÏƒÎ¿Ï€Î±Î½Î¬ÎºÎ¿Ï‚ Ï„Î·Ï‚ ÎšÎ¿ÏÏƒÎ¹ÎºÎ®Ï‚
+Sitta whiteheadi_Τσοπανάκος της Κορσικής
 Sitta yunnanensis_Yunnan Nuthatch
 Sittasomus griseicapillus_Olivaceous Woodcreeper
 Sittiparus castaneoventris_Chestnut-bellied Tit
@@ -5587,15 +5586,15 @@ Smicrornis brevirostris_Weebill
 Smithornis capensis_African Broadbill
 Smithornis rufolateralis_Rufous-sided Broadbill
 Snowornis subalaris_Gray-tailed Piha
-Somateria mollissima_(ÎšÎ¿Î¹Î½Î®) Î Î¿Ï…Ï€Î¿Ï…Î»ÏŒÏ€Î±Ï€Î¹Î±
-Somateria spectabilis_Î’Î±ÏƒÎ¹Î»Î¹ÎºÎ® Î Î¿Ï…Ï€Î¿Ï…Î»ÏŒÏ€Î±Ï€Î¹Î±
+Somateria mollissima_(Κοινή) Πουπουλόπαπια
+Somateria spectabilis_Βασιλική Πουπουλόπαπια
 Spartonoica maluroides_Bay-capped Wren-Spinetail
-Spatula clypeata_Î§Î¿Ï…Î»Î¹Î±ÏÏŒÏ€Î±Ï€Î¹Î±
-Spatula cyanoptera_Î“Î±Î»Î±Î¶ÏŒÏ†Ï„ÎµÏÎ· Î£Î±ÏÏƒÎ­Î»Î±
-Spatula discors_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î£Î±ÏÏƒÎ­Î»Î±
+Spatula clypeata_Χουλιαρόπαπια
+Spatula cyanoptera_Γαλαζόφτερη Σαρσέλα
+Spatula discors_Αμερικανική Σαρσέλα
 Spatula platalea_Red Shoveler
 Spatula puna_Puna Teal
-Spatula querquedula_Î£Î±ÏÏƒÎ­Î»Î±
+Spatula querquedula_Σαρσέλα
 Spea bombifrons_Plains Spadefoot
 Spelaeornis caudatus_Rufous-throated Wren-Babbler
 Spelaeornis oatesi_Chin Hills Wren-Babbler
@@ -5611,7 +5610,7 @@ Sphenopsis melanotis_Black-eared Hemispingus
 Sphyrapicus nuchalis_Red-naped Sapsucker
 Sphyrapicus ruber_Red-breasted Sapsucker
 Sphyrapicus thyroideus_Williamson's Sapsucker
-Sphyrapicus varius_ÎšÎ¯Ï„ÏÎ¹Î½Î¿Ï‚ Î§Ï…Î¼Î¿Ï€ÏŒÏ„Î·Ï‚
+Sphyrapicus varius_Κίτρινος Χυμοπότης
 Spiloptila clamans_Cricket Longtail
 Spilornis cheela_Crested Serpent-Eagle
 Spilornis holospilus_Philippine Serpent-Eagle
@@ -5627,10 +5626,10 @@ Spinus olivaceus_Olivaceous Siskin
 Spinus pinus_Pine Siskin
 Spinus psaltria_Lesser Goldfinch
 Spinus spinescens_Andean Siskin
-Spinus spinus_Î›Î¿ÏÎ³Î±ÏÎ¿
+Spinus spinus_Λούγαρο
 Spinus tristis_American Goldfinch
 Spinus xanthogastrus_Yellow-bellied Siskin
-Spiza americana_ÎšÎ¹Ï„ÏÎ¹Î½Ï‰Ï€ÏŒ Î£Ï€Î¿Ï…ÏÎ³Î¹Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Spiza americana_Κιτρινωπό Σπουργιτοτσίχλονο
 Spizaetus isidori_Black-and-chestnut Eagle
 Spizaetus melanoleucus_Black-and-white Hawk-Eagle
 Spizaetus ornatus_Ornate Hawk-Eagle
@@ -5706,23 +5705,23 @@ Stephanophorus diadematus_Diademed Tanager
 Stephanoxis lalandi_Green-crowned Plovercrest
 Stephanoxis loddigesii_Purple-crowned Plovercrest
 Stercorarius antarcticus_Brown Skua
-Stercorarius longicaudus_Î’ÎµÎ»Î¿Î½Î¿Î»Î·ÏƒÏ„ÏŒÎ³Î»Î±ÏÎ¿Ï‚
-Stercorarius maccormicki_Î›Î·ÏƒÏ„ÏŒÎ³Î»Î±ÏÎ¿Ï‚ Ï„Î¿Ï… ÎÏŒÏ„Î¿Ï… Î ÏŒÎ»Î¿Ï…
-Stercorarius parasiticus_Î“ÎµÏÎ±ÎºÎ¿Î»Î·ÏƒÏ„ÏŒÎ³Î»Î±ÏÎ¿Ï‚
-Stercorarius pomarinus_Î£Ï€Î±Î¸Î¿Î»Î·ÏƒÏ„ÏŒÎ³Î»Î±ÏÎ¿Ï‚
-Stercorarius skua_Î‘ÎµÏ„Î¿Î»Î·ÏƒÏ„ÏŒÎ³Î»Î±ÏÎ¿Ï‚
+Stercorarius longicaudus_Βελονοληστόγλαρος
+Stercorarius maccormicki_Ληστόγλαρος του Νότου Πόλου
+Stercorarius parasiticus_Γερακοληστόγλαρος
+Stercorarius pomarinus_Σπαθοληστόγλαρος
+Stercorarius skua_Αετοληστόγλαρος
 Sterna aurantia_River Tern
-Sterna dougallii_Î¡Î¿Î´Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
-Sterna forsteri_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒ Î Î¿Ï„Î±Î¼Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
+Sterna dougallii_Ροδογλάρονο
+Sterna forsteri_Αμερικανικό Ποταμογλάρονο
 Sterna hirundinacea_South American Tern
-Sterna hirundo_Î Î¿Ï„Î±Î¼Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
-Sterna paradisaea_Î§Î¹Î¿Î½Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
-Sterna repressa_Î“Î»Î±ÏÏŒÎ½Î¹ Ï„Î·Ï‚ Î‘ÏÎ±Î²Î¯Î±Ï‚
+Sterna hirundo_Ποταμογλάρονο
+Sterna paradisaea_Χιονογλάρονο
+Sterna repressa_Γλαρόνι της Αραβίας
 Sterna striata_White-fronted Tern
 Sterna sumatrana_Black-naped Tern
 Sterna trudeaui_Snowy-crowned Tern
 Sterna vittata_Antarctic Tern
-Sternula albifrons_ÎÎ±Î½Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
+Sternula albifrons_Νανογλάρονο
 Sternula antillarum_Least Tern
 Sternula saundersi_Saunders's Tern
 Sternula superciliaris_Yellow-billed Tern
@@ -5746,32 +5745,32 @@ Strepera graculina_Pied Currawong
 Strepera versicolor_Gray Currawong
 Streptopelia capicola_Ring-necked Dove
 Streptopelia chinensis_Spotted Dove
-Streptopelia decaocto_Î”ÎµÎºÎ±Î¿Ï‡Ï„Î¿ÏÏÎ±
+Streptopelia decaocto_Δεκαοχτούρα
 Streptopelia decipiens_Mourning Collared-Dove
 Streptopelia lugens_Dusky Turtle-Dove
-Streptopelia orientalis_Î•Î»Î±Ï„Î¿Ï„ÏÏÎ³Î¿Î½Î¿
-Streptopelia roseogrisea_Î‘Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î”ÎµÎºÎ±Î¿Ï‡Ï„Î¿ÏÏÎ±
+Streptopelia orientalis_Ελατοτρύγονο
+Streptopelia roseogrisea_Αφρικανική Δεκαοχτούρα
 Streptopelia semitorquata_Red-eyed Dove
 Streptopelia senegalensis_Laughing Dove
 Streptopelia tranquebarica_Red Collared-Dove
-Streptopelia turtur_Î¤ÏÏ…Î³ÏŒÎ½Î¹
+Streptopelia turtur_Τρυγόνι
 Streptopelia vinacea_Vinaceous Dove
 Streptoprocne biscutata_Biscutate Swift
 Streptoprocne rutila_Chestnut-collared Swift
 Streptoprocne zonaris_White-collared Swift
-Strix aluco_(ÎšÎ¿Î¹Î½ÏŒÏ‚) Î§Î¿Ï…Ï‡Î¿Ï…ÏÎ¹ÏƒÏ„Î®Ï‚
+Strix aluco_(Κοινός) Χουχουριστής
 Strix chacoensis_Chaco Owl
 Strix fulvescens_Fulvous Owl
 Strix hadorami_Desert Owl
 Strix hylophila_Rusty-barred Owl
 Strix leptogrammica_Brown Wood-Owl
-Strix nebulosa_Î“Î¹Î³Î¬Î½Ï„Î¹Î¿Ï‚ Î§Î¿Ï…Ï‡Î¿Ï…ÏÎ¹ÏƒÏ„Î®Ï‚
+Strix nebulosa_Γιγάντιος Χουχουριστής
 Strix nivicolum_Himalayan Owl
 Strix occidentalis_Spotted Owl
 Strix ocellata_Mottled Wood-Owl
 Strix rufipes_Rufous-legged Owl
 Strix seloputo_Spotted Wood-Owl
-Strix uralensis_Î§Î¿Ï…Ï‡Î¿Ï…ÏÎ¹ÏƒÏ„Î®Ï‚ Ï„Ï‰Î½ ÎŸÏ…ÏÎ±Î»Î¯Ï‰Î½
+Strix uralensis_Χουχουριστής των Ουραλίων
 Strix varia_Barred Owl
 Strix woodfordii_African Wood-Owl
 Struthidea cinerea_Apostlebird
@@ -5781,18 +5780,18 @@ Sturnia blythii_Malabar Starling
 Sturnia malabarica_Chestnut-tailed Starling
 Sturnia pagodarum_Brahminy Starling
 Sturnia sinensis_White-shouldered Starling
-Sturnus unicolor_ÎœÎ±Ï…ÏÎ¿ÏˆÎ¬ÏÎ¿Î½Î¿
-Sturnus vulgaris_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÏŒ) Î¨Î±ÏÏŒÎ½Î¹
+Sturnus unicolor_Μαυροψάρονο
+Sturnus vulgaris_(Ευρωπαϊκό) Ψαρόνι
 Sublegatus arenarum_Northern Scrub-Flycatcher
 Sublegatus modestus_Southern Scrub-Flycatcher
 Sublegatus obscurior_Amazonian Scrub-Flycatcher
 Sugomel nigrum_Black Honeyeater
 Suiriri suiriri_Suiriri Flycatcher
-Sula dactylatra_ÎœÎ±ÏƒÎºÎ¿Ï†ÏŒÏÎ± Î£Î¿ÏÎ»Î±
-Sula leucogaster_Î›ÎµÏ…ÎºÏŒÎ³Î±ÏƒÏ„ÏÎ· Î£Î¿ÏÎ»Î±
+Sula dactylatra_Μασκοφόρα Σούλα
+Sula leucogaster_Λευκόγαστρη Σούλα
 Sula nebouxii_Blue-footed Booby
 Sula sula_Red-footed Booby
-Surnia ulula_Î“ÎµÏÎ±ÎºÏŒÎ³Î»Î±Ï…ÎºÎ±
+Surnia ulula_Γερακόγλαυκα
 Surniculus dicruroides_Fork-tailed Drongo-Cuckoo
 Surniculus lugubris_Square-tailed Drongo-Cuckoo
 Surniculus velutinus_Philippine Drongo-Cuckoo
@@ -5800,9 +5799,9 @@ Suthora nipalensis_Black-throated Parrotbill
 Suthora verreauxi_Golden Parrotbill
 Swynnertonia swynnertoni_Swynnerton's Robin
 Sylvia abyssinica_African Hill Babbler
-Sylvia atricapilla_ÎœÎ±Ï…ÏÎ¿ÏƒÎºÎ¿ÏÏ†Î·Ï‚
+Sylvia atricapilla_Μαυροσκούφης
 Sylvia atriceps_Rwenzori Hill Babbler
-Sylvia borin_ÎšÎ·Ï€Î¿Ï„ÏƒÎ¹ÏÎ¿Î²Î¬ÎºÎ¿Ï‚
+Sylvia borin_Κηποτσιροβάκος
 Sylvia nigricapillus_Bush Blackcap
 Sylvietta brachyura_Northern Crombec
 Sylvietta rufescens_Cape Crombec
@@ -5837,7 +5836,7 @@ Synallaxis hypospodia_Cinereous-breasted Spinetail
 Synallaxis infuscata_Pinto's Spinetail
 Synallaxis kollari_Hoary-throated Spinetail
 Synallaxis macconnelli_McConnell's Spinetail
-Synallaxis maranonica_MaraÃ±on Spinetail
+Synallaxis maranonica_Marañon Spinetail
 Synallaxis moesta_Dusky Spinetail
 Synallaxis ruficapilla_Rufous-capped Spinetail
 Synallaxis rutilans_Ruddy Spinetail
@@ -5857,7 +5856,7 @@ Syndactyla ucayalae_Peruvian Recurvebill
 Synoicus chinensis_Blue-breasted Quail
 Synoicus ypsilophorus_Brown Quail
 Syrigma sibilatrix_Whistling Heron
-Syrrhaptes paradoxus_Î ÎµÏÎ¹ÏƒÏ„ÎµÏÏŒÎºÎ¿Ï„Î± Ï„Î·Ï‚ Î£Ï„Î­Ï€Î±Ï‚
+Syrrhaptes paradoxus_Περιστερόκοτα της Στέπας
 Systellura decussata_Tschudi's Nightjar
 Systellura longirostris_Band-winged Nightjar
 Taccocua leschenaultii_Sirkeer Malkoha
@@ -5866,10 +5865,10 @@ Tachornis squamata_Fork-tailed Palm Swift
 Tachuris rubrigastra_Many-colored Rush Tyrant
 Tachybaptus dominicus_Least Grebe
 Tachybaptus novaehollandiae_Australasian Grebe
-Tachybaptus ruficollis_ÎÎ±Î½Î¿Î²Î¿Ï…Ï„Î·Ï‡Ï„Î¬ÏÎ¹
+Tachybaptus ruficollis_Νανοβουτηχτάρι
 Tachycineta albilinea_Mangrove Swallow
 Tachycineta albiventer_White-winged Swallow
-Tachycineta bicolor_ÎšÎ¿Î¹Î½ÏŒ Î”ÎµÎ½Ï„ÏÎ¿Ï‡ÎµÎ»Î¯Î´Î¿Î½Î¿
+Tachycineta bicolor_Κοινό Δεντροχελίδονο
 Tachycineta euchrysea_Golden Swallow
 Tachycineta leucopyga_Chilean Swallow
 Tachycineta leucorrhoa_White-rumped Swallow
@@ -5880,10 +5879,10 @@ Tachyphonus delatrii_Tawny-crested Tanager
 Tachyphonus phoenicius_Red-shouldered Tanager
 Tachyphonus rufus_White-lined Tanager
 Tachyphonus surinamus_Fulvous-crested Tanager
-Tadorna cana_ÎÎ¿Ï„Î¹Î¿Î±Ï†ÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® ÎšÎ±ÏƒÏ„Î±Î½ÏŒÏ€Î±Ï€Î¹Î±
-Tadorna ferruginea_ÎšÎ±ÏƒÏ„Î±Î½ÏŒÏ€Î±Ï€Î¹Î±
-Tadorna tadorna_Î’Î±ÏÎ²Î¬ÏÎ±
-Tadorna tadornoides_Î‘Ï…ÏƒÏ„ÏÎ±Î»Î¹Î±Î½Î® ÎšÎ±ÏƒÏ„Î±Î½ÏŒÏ€Î±Ï€Î¹Î±
+Tadorna cana_Νοτιοαφρικανική Καστανόπαπια
+Tadorna ferruginea_Καστανόπαπια
+Tadorna tadorna_Βαρβάρα
+Tadorna tadornoides_Αυστραλιανή Καστανόπαπια
 Tadorna variegata_Paradise Shelduck
 Taenioptynx brodiei_Collared Owlet
 Taeniopygia guttata_Zebra Finch
@@ -5921,7 +5920,7 @@ Taraba major_Great Antshrike
 Tarphonomus certhioides_Chaco Earthcreeper
 Tarphonomus harterti_Bolivian Earthcreeper
 Tarsiger chrysaeus_Golden Bush-Robin
-Tarsiger cyanurus_ÎšÏ…Î¬Î½Î¿Ï…ÏÎ¿Ï‚
+Tarsiger cyanurus_Κυάνουρος
 Tarsiger indicus_White-browed Bush-Robin
 Tarsiger johnstoniae_Collared Bush-Robin
 Tarsiger rufilatus_Himalayan Bluetail
@@ -5935,7 +5934,7 @@ Tauraco persa_Guinea Turaco
 Tauraco porphyreolophus_Purple-crested Turaco
 Tauraco schalowi_Schalow's Turaco
 Tchagra australis_Brown-crowned Tchagra
-Tchagra senegalus_Î¤ÏƒÎ¬Î³ÎºÏÎ± Ï„Î·Ï‚ Î£ÎµÎ½ÎµÎ³Î¬Î»Î·Ï‚
+Tchagra senegalus_Τσάγκρα της Σενεγάλης
 Tchagra tchagra_Southern Tchagra
 Teledromas fuscus_Sandy Gallito
 Telespiza ultima_Nihoa Finch
@@ -5969,17 +5968,17 @@ Tesia cyaniventer_Gray-bellied Tesia
 Tesia everetti_Russet-capped Tesia
 Tesia olivea_Slaty-bellied Tesia
 Tesia superciliaris_Javan Tesia
-Tetrao urogallus_(Î”Ï…Ï„Î¹ÎºÏŒÏ‚) Î‘Î³ÏÎ¹ÏŒÎºÎ¿Ï…ÏÎºÎ¿Ï‚
-Tetraogallus caucasicus_Î§Î¹Î¿Î½Î¿Ï€ÎµÏ„ÎµÎ¹Î½ÏŒÏ‚ Ï„Î¿Ï… ÎšÎ±Ï…ÎºÎ¬ÏƒÎ¿Ï…
+Tetrao urogallus_(Δυτικός) Αγριόκουρκος
+Tetraogallus caucasicus_Χιονοπετεινός του Καυκάσου
 Tetraogallus tibetanus_Tibetan Snowcock
-Tetrastes bonasia_Î”Î±ÏƒÏŒÎºÎ¿Ï„Î±
-Tetrax tetrax_Î§Î±Î¼Ï‰Ï„Î¯Î´Î±
-Thalassarche melanophris_ÎœÎµÎ»Î±Î½ÏŒÏ†ÏÏ…Î´Î¿ Î†Î»Î¼Ï€Î±Ï„ÏÎ¿Ï‚
-Thalasseus bengalensis_Î Î¿ÏÏ„Î¿ÎºÎ±Î»ÏŒÏÎ±Î¼Ï†Î¿ Î“Î»Î±ÏÏŒÎ½Î¹
-Thalasseus bergii_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÏÎ±Î¼Ï†Î¿ Î“Î»Î±ÏÏŒÎ½Î¹
-Thalasseus elegans_Î›ÎµÏ€Ï„ÏŒÏÎ±Î¼Ï†Î¿ Î“Î»Î±ÏÏŒÎ½Î¹
-Thalasseus maximus_Î”Î¹Ï€Î»Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
-Thalasseus sandvicensis_Î§ÎµÎ¹Î¼Ï‰Î½Î¿Î³Î»Î¬ÏÎ¿Î½Î¿
+Tetrastes bonasia_Δασόκοτα
+Tetrax tetrax_Χαμωτίδα
+Thalassarche melanophris_Μελανόφρυδο Άλμπατρος
+Thalasseus bengalensis_Πορτοκαλόραμφο Γλαρόνι
+Thalasseus bergii_Κιτρινόραμφο Γλαρόνι
+Thalasseus elegans_Λεπτόραμφο Γλαρόνι
+Thalasseus maximus_Διπλογλάρονο
+Thalasseus sandvicensis_Χειμωνογλάρονο
 Thalurania colombica_Crowned Woodnymph
 Thalurania furcata_Fork-tailed Woodnymph
 Thalurania glaucopis_Violet-capped Woodnymph
@@ -6016,7 +6015,7 @@ Thamnophilus tenuepunctatus_Lined Antshrike
 Thamnophilus torquatus_Rufous-winged Antshrike
 Thamnophilus unicolor_Uniform Antshrike
 Thamnophilus zarumae_Chapman's Antshrike
-Thectocercus acuticaudatus_Î“Î±Î»Î±Î¶Î¿ÎºÎ­Ï†Î±Î»Î¿Ï‚ Î¨Î¹Ï„Ï„Î±ÎºÎ¯ÏƒÎºÎ¿Ï‚
+Thectocercus acuticaudatus_Γαλαζοκέφαλος Ψιττακίσκος
 Theristicus caerulescens_Plumbeous Ibis
 Theristicus caudatus_Buff-necked Ibis
 Theristicus melanopis_Black-faced Ibis
@@ -6055,7 +6054,7 @@ Thryophilus sernai_Antioquia Wren
 Thryophilus sinaloa_Sinaloa Wren
 Thryothorus ludovicianus_Carolina Wren
 Tiaris olivaceus_Yellow-faced Grassquit
-Tichodroma muraria_Î¤Î¿Î¹Ï‡Î¿Î´ÏÏŒÎ¼Î¿Ï‚
+Tichodroma muraria_Τοιχοδρόμος
 Tickellia hodgsoni_Broad-billed Warbler
 Tigrisoma lineatum_Rufescent Tiger-Heron
 Tigrisoma mexicanum_Bare-throated Tiger-Heron
@@ -6117,7 +6116,7 @@ Toxostoma lecontei_LeConte's Thrasher
 Toxostoma longirostre_Long-billed Thrasher
 Toxostoma ocellatum_Ocellated Thrasher
 Toxostoma redivivum_California Thrasher
-Toxostoma rufum_ÎšÎ±ÏƒÏ„Î±Î½ÏŒÏ‚ Î¤Î¿Î¾ÏŒÏƒÏ„Î¿Î¼Î¿Ï‚
+Toxostoma rufum_Καστανός Τοξόστομος
 Trachyphonus darnaudii_D'Arnaud's Barbet
 Trachyphonus erythrocephalus_Red-and-yellow Barbet
 Trachyphonus purpuratus_Yellow-billed Barbet
@@ -6149,19 +6148,19 @@ Tricholaema melanocephala_Black-throated Barbet
 Tricholestes criniger_Hairy-backed Bulbul
 Trichothraupis melanops_Black-goggled Tanager
 Triclaria malachitacea_Blue-bellied Parrot
-Tringa brevipes_Î“ÎºÏÎ¯Î¶Î¿Ï‚ Î˜Î±Î»Î±ÏƒÏƒÏŒÏ„ÏÏ…Î³Î³Î±Ï‚
-Tringa erythropus_ÎœÎ±Ï…ÏÏŒÏ„ÏÏ…Î³Î³Î±Ï‚
-Tringa flavipes_ÎœÎ¹ÎºÏÏŒÏ‚ ÎšÎ¹Ï„ÏÎ¹Î½Î¿ÏƒÎºÎ­Î»Î·Ï‚
-Tringa glareola_Î›Î±ÏƒÏ€ÏŒÏ„ÏÏ…Î³Î³Î±Ï‚
+Tringa brevipes_Γκρίζος Θαλασσότρυγγας
+Tringa erythropus_Μαυρότρυγγας
+Tringa flavipes_Μικρός Κιτρινοσκέλης
+Tringa glareola_Λασπότρυγγας
 Tringa guttifer_Nordmann's Greenshank
 Tringa incana_Wandering Tattler
-Tringa melanoleuca_ÎšÎ¹Ï„ÏÎ¹Î½Î¿ÏƒÎºÎ­Î»Î·Ï‚
-Tringa nebularia_Î ÏÎ±ÏƒÎ¹Î½Î¿ÏƒÎºÎ­Î»Î·Ï‚
-Tringa ochropus_Î”Î±ÏƒÏŒÏ„ÏÏ…Î³Î³Î±Ï‚
-Tringa semipalmata_ÎšÎ±Ï„Î¿Ï€Ï„ÏÎ¿Ï†ÏŒÏÎ¿Ï‚ Î¤ÏÏÎ³Î³Î±Ï‚
-Tringa solitaria_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÏŒÏ‚ Î”Î±ÏƒÏŒÏ„ÏÏ…Î³Î³Î±Ï‚
-Tringa stagnatilis_Î’Î±Î»Ï„ÏŒÏ„ÏÏ…Î³Î³Î±Ï‚
-Tringa totanus_ÎšÎ¿ÎºÎºÎ¹Î½Î¿ÏƒÎºÎ­Î»Î·Ï‚
+Tringa melanoleuca_Κιτρινοσκέλης
+Tringa nebularia_Πρασινοσκέλης
+Tringa ochropus_Δασότρυγγας
+Tringa semipalmata_Κατοπτροφόρος Τρύγγας
+Tringa solitaria_Αμερικανικός Δασότρυγγας
+Tringa stagnatilis_Βαλτότρυγγας
+Tringa totanus_Κοκκινοσκέλης
 Trochalopteron affine_Black-faced Laughingthrush
 Trochalopteron chrysopterum_Assam Laughingthrush
 Trochalopteron elliotii_Elliot's Laughingthrush
@@ -6185,7 +6184,7 @@ Troglodytes ochraceus_Ochraceous Wren
 Troglodytes pacificus_Pacific Wren
 Troglodytes rufociliatus_Rufous-browed Wren
 Troglodytes solstitialis_Mountain Wren
-Troglodytes troglodytes_Î¤ÏÏ…Ï€Î¿Ï†ÏÎ¬Ï‡Ï„Î·Ï‚
+Troglodytes troglodytes_Τρυποφράχτης
 Trogon bairdii_Baird's Trogon
 Trogon caligatus_Gartered Trogon
 Trogon chionurus_White-tailed Trogon
@@ -6223,7 +6222,7 @@ Turdus albicollis_White-necked Thrush
 Turdus albocinctus_White-collared Blackbird
 Turdus amaurochalinus_Creamy-bellied Thrush
 Turdus assimilis_White-throated Thrush
-Turdus atrogularis_ÎœÎ±Ï…ÏÏŒÎ»Î±Î¹Î¼Î· Î¤ÏƒÎ¯Ï‡Î»Î±
+Turdus atrogularis_Μαυρόλαιμη Τσίχλα
 Turdus aurantius_White-chinned Thrush
 Turdus boulboul_Gray-winged Blackbird
 Turdus cardis_Japanese Thrush
@@ -6242,7 +6241,7 @@ Turdus grayi_Clay-colored Thrush
 Turdus hauxwelli_Hauxwell's Thrush
 Turdus hortulorum_Gray-backed Thrush
 Turdus ignobilis_Black-billed Thrush
-Turdus iliacus_ÎšÎ¿ÎºÎºÎ¹Î½ÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Turdus iliacus_Κοκκινότσιχλα
 Turdus infuscatus_Black Thrush
 Turdus lawrencii_Lawrence's Thrush
 Turdus leucomelas_Pale-breasted Thrush
@@ -6250,28 +6249,28 @@ Turdus leucops_Pale-eyed Thrush
 Turdus libonyana_Kurrichane Thrush
 Turdus maculirostris_Ecuadorian Thrush
 Turdus mandarinus_Chinese Blackbird
-Turdus maranonicus_MaraÃ±on Thrush
+Turdus maranonicus_Marañon Thrush
 Turdus menachensis_Yemen Thrush
-Turdus merula_(ÎšÎ¿Î¹Î½ÏŒÏ‚) ÎšÏŒÏ„ÏƒÏ…Ï†Î±Ï‚
-Turdus migratorius_Î‘Î¼ÎµÏÎ¹ÎºÎ±Î½Î¹ÎºÎ® Î¤ÏƒÎ¯Ï‡Î»Î±
-Turdus naumanni_Î•ÏÏ…Î¸ÏÏŒÏƒÏ„Î¹ÎºÏ„Î· Î¤ÏƒÎ¯Ï‡Î»Î±
+Turdus merula_(Κοινός) Κότσυφας
+Turdus migratorius_Αμερικανική Τσίχλα
+Turdus naumanni_Ερυθρόστικτη Τσίχλα
 Turdus nigrescens_Sooty Thrush
 Turdus nigriceps_Andean Slaty Thrush
 Turdus nudigenis_Spectacled Thrush
-Turdus obscurus_Î›ÎµÏ…ÎºÏŒÏ†ÏÏ…Î´Î· Î¤ÏƒÎ¯Ï‡Î»Î±
+Turdus obscurus_Λευκόφρυδη Τσίχλα
 Turdus obsoletus_Pale-vented Thrush
 Turdus olivaceus_Olive Thrush
 Turdus olivater_Black-hooded Thrush
 Turdus pallidus_Pale Thrush
 Turdus pelios_African Thrush
-Turdus philomelos_(ÎšÎ¿Î¹Î½Î®) Î¤ÏƒÎ¯Ï‡Î»Î±
-Turdus pilaris_ÎšÎµÎ´ÏÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
+Turdus philomelos_(Κοινή) Τσίχλα
+Turdus pilaris_Κεδρότσιχλα
 Turdus plebejus_Mountain Thrush
 Turdus plumbeus_Red-legged Thrush
 Turdus poliocephalus_Island Thrush
 Turdus reevei_Plumbeous-backed Thrush
 Turdus rubrocanus_Chestnut Thrush
-Turdus ruficollis_Î•ÏÏ…Î¸ÏÏŒÎ»Î±Î¹Î¼Î· Î¤ÏƒÎ¯Ï‡Î»Î±
+Turdus ruficollis_Ερυθρόλαιμη Τσίχλα
 Turdus rufitorques_Rufous-collared Robin
 Turdus rufiventris_Rufous-bellied Thrush
 Turdus rufopalliatus_Rufous-backed Robin
@@ -6282,13 +6281,13 @@ Turdus smithi_Karoo Thrush
 Turdus subalaris_Blacksmith Thrush
 Turdus swalesi_La Selle Thrush
 Turdus tephronotus_African Bare-eyed Thrush
-Turdus torquatus_Î§Î¹Î¿Î½Î¿ÎºÏŒÏ„ÏƒÏ…Ï†Î±Ï‚
-Turdus unicolor_Î£Ï„Î±Ï‡Ï„ÏŒÏ„ÏƒÎ¹Ï‡Î»Î±
-Turdus viscivorus_Î¤ÏƒÎ±ÏÏ„ÏƒÎ¬ÏÎ±
+Turdus torquatus_Χιονοκότσυφας
+Turdus unicolor_Σταχτότσιχλα
+Turdus viscivorus_Τσαρτσάρα
 Turnix maculosus_Red-backed Buttonquail
 Turnix suscitator_Barred Buttonquail
-Turnix sylvaticus_Î¨ÎµÏ…Ï„ÏŒÏÏ„Ï…Î³Î±Ï‚
-Turnix varius_Î–Ï‰Î³ÏÎ±Ï†Î¹ÏƒÏ„ÏŒÏ‚ Î¨ÎµÏ…Ï„ÏŒÏÏ„Ï…Î³Î±Ï‚
+Turnix sylvaticus_Ψευτόρτυγας
+Turnix varius_Ζωγραφιστός Ψευτόρτυγας
 Turtur abyssinicus_Black-billed Wood-Dove
 Turtur afer_Blue-spotted Wood-Dove
 Turtur brehmeri_Blue-headed Wood-Dove
@@ -6314,19 +6313,19 @@ Tyrannus savana_Fork-tailed Flycatcher
 Tyrannus tyrannus_Eastern Kingbird
 Tyrannus verticalis_Western Kingbird
 Tyrannus vociferans_Cassin's Kingbird
-Tyto alba_Î¤Ï…Ï„ÏŽ
+Tyto alba_Τυτώ
 Tyto novaehollandiae_Australian Masked-Owl
 Tyto tenebricosa_Sooty Owl
 Upucerthia dumetaria_Scale-throated Earthcreeper
 Upucerthia saturatior_Patagonian Forest Earthcreeper
 Upucerthia validirostris_Buff-breasted Earthcreeper
-Upupa epops_Î¤ÏƒÎ±Î»Î±Ï€ÎµÏ„ÎµÎ¹Î½ÏŒÏ‚
+Upupa epops_Τσαλαπετεινός
 Upupa marginata_Madagascar Hoopoe
 Uraeginthus angolensis_Southern Cordonbleu
 Uraeginthus bengalus_Red-cheeked Cordonbleu
 Uranomitra franciae_Andean Emerald
-Uria aalge_Î›ÎµÏ€Ï„ÏŒÏÎ±Î¼Ï†Î¿Ï‚ ÎšÎ­Ï€Ï†Î¿Ï‚
-Uria lomvia_Î Î±Î³ÏŒÎºÎµÏ€Ï†Î¿Ï‚
+Uria aalge_Λεπτόραμφος Κέπφος
+Uria lomvia_Παγόκεπφος
 Urocissa caerulea_Taiwan Blue-Magpie
 Urocissa erythroryncha_Red-billed Blue-Magpie
 Urocissa flavirostris_Yellow-billed Blue-Magpie
@@ -6349,24 +6348,24 @@ Urotriorchis macrourus_Long-tailed Hawk
 Vanellus armatus_Blacksmith Lapwing
 Vanellus cayanus_Pied Lapwing
 Vanellus chilensis_Southern Lapwing
-Vanellus cinereus_Î“ÎºÏÎ¹Î¶Î¿ÎºÎ­Ï†Î±Î»Î· ÎšÎ±Î»Î·Î¼Î¬Î½Î±
+Vanellus cinereus_Γκριζοκέφαλη Καλημάνα
 Vanellus coronatus_Crowned Lapwing
 Vanellus duvaucelii_River Lapwing
-Vanellus indicus_Î™Î½Î´Î¹ÎºÎ® ÎšÎ±Î»Î·Î¼Î¬Î½Î±
-Vanellus leucurus_Î›ÎµÏÎºÎ¿Ï…ÏÎ· ÎšÎ±Î»Î·Î¼Î¬Î½Î±
+Vanellus indicus_Ινδική Καλημάνα
+Vanellus leucurus_Λεύκουρη Καλημάνα
 Vanellus malabaricus_Yellow-wattled Lapwing
 Vanellus melanocephalus_Spot-breasted Lapwing
 Vanellus melanopterus_Black-winged Lapwing
 Vanellus miles_Masked Lapwing
 Vanellus resplendens_Andean Lapwing
 Vanellus senegallus_Wattled Lapwing
-Vanellus spinosus_Î‘Î³ÎºÎ±Î¸Î¿ÎºÎ±Î»Î·Î¼Î¬Î½Î±
-Vanellus tectus_ÎœÎ±Ï…ÏÎ¿ÎºÎ­Ï†Î±Î»Î· ÎšÎ±Î»Î·Î¼Î¬Î½Î±
+Vanellus spinosus_Αγκαθοκαλημάνα
+Vanellus tectus_Μαυροκέφαλη Καλημάνα
 Vanellus tricolor_Banded Lapwing
-Vanellus vanellus_(Î•Ï…ÏÏ‰Ï€Î±ÏŠÎºÎ®) ÎšÎ±Î»Î·Î¼Î¬Î½Î±
+Vanellus vanellus_(Ευρωπαϊκή) Καλημάνα
 Vanga curvirostris_Hook-billed Vanga
-Vermivora chrysoptera_Î§ÏÏ…ÏƒÏŒÏ†Ï„ÎµÏÎ· Î Î¬ÏÎ¿Ï…Î»Î±
-Vermivora cyanoptera_Î“Î±Î»Î±Î¶ÏŒÏ†Ï„ÎµÏÎ· Î Î¬ÏÎ¿Ï…Î»Î±
+Vermivora chrysoptera_Χρυσόφτερη Πάρουλα
+Vermivora cyanoptera_Γαλαζόφτερη Πάρουλα
 Vidua chalybeata_Village Indigobird
 Vidua fischeri_Straw-tailed Whydah
 Vidua funerea_Variable Indigobird
@@ -6380,7 +6379,7 @@ Vireo carmioli_Yellow-winged Vireo
 Vireo cassinii_Cassin's Vireo
 Vireo chivi_Chivi Vireo
 Vireo crassirostris_Thick-billed Vireo
-Vireo flavifrons_ÎšÎ¹Ï„ÏÎ¹Î½ÏŒÏƒÏ„Î·Î¸Î¿ Î’Î¯ÏÎµÎ¿
+Vireo flavifrons_Κιτρινόστηθο Βίρεο
 Vireo flavoviridis_Yellow-green Vireo
 Vireo gilvus_Warbling Vireo
 Vireo gracilirostris_Noronha Vireo
@@ -6394,9 +6393,9 @@ Vireo magister_Yucatan Vireo
 Vireo masteri_Choco Vireo
 Vireo modestus_Jamaican Vireo
 Vireo nelsoni_Dwarf Vireo
-Vireo olivaceus_Î•ÏÏ…Î¸ÏÏŒÏ†Î¸Î±Î»Î¼Î¿ Î’Î¯ÏÎµÎ¿
+Vireo olivaceus_Ερυθρόφθαλμο Βίρεο
 Vireo pallens_Mangrove Vireo
-Vireo philadelphicus_Î’Î¯ÏÎµÎ¿ Ï„Î·Ï‚ Î¦Î¹Î»Î±Î´Î­Î»Ï†ÎµÎ¹Î±Ï‚
+Vireo philadelphicus_Βίρεο της Φιλαδέλφειας
 Vireo plumbeus_Plumbeous Vireo
 Vireo sclateri_Tepui Vireo
 Vireo solitarius_Blue-headed Vireo
@@ -6409,11 +6408,11 @@ Volatinia jacarina_Blue-black Grassquit
 Wetmorethraupis sterrhopteron_Orange-throated Tanager
 Willisornis poecilinotus_Common Scale-backed Antbird
 Willisornis vidua_Xingu Scale-backed Antbird
-Xanthocephalus xanthocephalus_ÎžÎ±Î½Î¸Î¿ÎºÎ­Ï†Î±Î»Î¿ ÎœÎ±Ï…ÏÎ¿Ï€Î¿ÏÎ»Î¹
+Xanthocephalus xanthocephalus_Ξανθοκέφαλο Μαυροπούλι
 Xanthomixis zosterops_Spectacled Tetraka
 Xanthopsar flavus_Saffron-cowled Blackbird
 Xanthotis macleayanus_Macleay's Honeyeater
-Xema sabini_Î§ÎµÎ»Î¹Î´Î¿Î½ÏŒÎ³Î»Î±ÏÎ¿Ï‚
+Xema sabini_Χελιδονόγλαρος
 Xenerpestes singularis_Equatorial Graytail
 Xenodacnis parina_Tit-like Dacnis
 Xenoglaux loweryi_Long-whiskered Owlet
@@ -6427,7 +6426,7 @@ Xenopsaris albinucha_White-naped Xenopsaris
 Xenospiza baileyi_Sierra Madre Sparrow
 Xenotriccus callizonus_Belted Flycatcher
 Xenotriccus mexicanus_Pileated Flycatcher
-Xenus cinereus_Î¡Ï‰ÏƒÏŒÏ„ÏÏ…Î³Î³Î±Ï‚
+Xenus cinereus_Ρωσότρυγγας
 Xiphidiopicus percussus_Cuban Green Woodpecker
 Xiphocolaptes albicollis_White-throated Woodcreeper
 Xiphocolaptes major_Great Rufous Woodcreeper
@@ -6458,9 +6457,9 @@ Yungipicus nanus_Brown-capped Pygmy Woodpecker
 Zapornia bicolor_Black-tailed Crake
 Zapornia flavirostra_Black Crake
 Zapornia fusca_Ruddy-breasted Crake
-Zapornia parva_ÎœÎ¹ÎºÏÎ¿Ï€Î¿Ï…Î»Î¬Î´Î±
+Zapornia parva_Μικροπουλάδα
 Zapornia paykullii_Band-bellied Crake
-Zapornia pusilla_ÎÎ±Î½Î¿Ï€Î¿Ï…Î»Î¬Î´Î±
+Zapornia pusilla_Νανοπουλάδα
 Zapornia tabuensis_Spotless Crake
 Zavattariornis stresemanni_Stresemann's Bush-Crow
 Zebrilus undulatus_Zigzag Heron
@@ -6468,7 +6467,7 @@ Zeledonia coronata_Wrenthrush
 Zenaida asiatica_White-winged Dove
 Zenaida auriculata_Eared Dove
 Zenaida aurita_Zenaida Dove
-Zenaida macroura_Î£Ï†Î®Î½Î¿Ï…ÏÎ¿ Î ÎµÏÎ¹ÏƒÏ„Î­ÏÎ¹
+Zenaida macroura_Σφήνουρο Περιστέρι
 Zenaida meloda_West Peruvian Dove
 Zentrygon albifacies_White-faced Quail-Dove
 Zentrygon carrikeri_Tuxtla Quail-Dove
@@ -6486,10 +6485,10 @@ Zimmerius parvus_Mistletoe Tyrannulet
 Zimmerius vilissimus_Guatemalan Tyrannulet
 Zimmerius villarejoi_Mishana Tyrannulet
 Zimmerius viridiflavus_Peruvian Tyrannulet
-Zonotrichia albicollis_Î›ÎµÏ…ÎºÏŒÎ»Î±Î¹Î¼Î¿ Î£Ï€Î¿Ï…ÏÎ³Î¹Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Zonotrichia albicollis_Λευκόλαιμο Σπουργιτοτσίχλονο
 Zonotrichia atricapilla_Golden-crowned Sparrow
 Zonotrichia capensis_Rufous-collared Sparrow
-Zonotrichia leucophrys_Î›ÎµÏ…ÎºÏŒÎ³ÏÎ±Î¼Î¼Î¿ Î£Ï€Î¿Ï…ÏÎ³Î¹Ï„Î¿Ï„ÏƒÎ¯Ï‡Î»Î¿Î½Î¿
+Zonotrichia leucophrys_Λευκόγραμμο Σπουργιτοτσίχλονο
 Zonotrichia querula_Harris's Sparrow
 Zoothera aurea_White's Thrush
 Zoothera heinei_Russet-tailed Thrush

@@ -30,7 +30,7 @@ const (
 var modelV24 = struct {
 	expectedLines int
 }{
-	expectedLines: 6523,
+	expectedLines: 6522,
 }
 
 // GetExpectedLinesV24 returns the expected number of lines for V2.4 label files

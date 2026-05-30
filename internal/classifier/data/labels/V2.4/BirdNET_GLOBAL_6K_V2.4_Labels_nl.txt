@@ -194,7 +194,7 @@ Amaurospiza moesta_Zwart-blauw Dikbekje
 Amazilia luciae_Hondurese Amazilia
 Amazilia rutila_Kaneelkleurige Amazilia
 Amazilia tzacatl_Roodstaartamazilia
-Amazilia yucatanensis_YucatÃ¡namazilia
+Amazilia yucatanensis_Yucatánamazilia
 Amazilis amazilia_Lessons Amazilia
 Amazona aestiva_Blauwvoorhoofdamazone
 Amazona agilis_Jamaica-amazone
@@ -213,7 +213,7 @@ Amazona mercenarius_Schubnekamazone
 Amazona ochrocephala_Geelvoorhoofdamazone
 Amazona oratrix_Geelkopamazone
 Amazona rhodocorytha_Roodkruinamazone
-Amazona tucumana_TucumÃ¡namazone
+Amazona tucumana_Tucumánamazone
 Amazona ventralis_Hispaniola-amazone
 Amazona vinacea_Wijnborstamazone
 Amazona viridigenalis_Groenwangamazone
@@ -336,7 +336,7 @@ Anthreptes orientalis_Zwaluwhoningzuiger
 Anthropoides paradiseus_Stanleys Kraanvogel
 Anthropoides virgo_Jufferkraanvogel
 Anthus berthelotii_Berthelots Pieper
-Anthus bogotensis_PÃ¡ramopieper
+Anthus bogotensis_Páramopieper
 Anthus campestris_Duinpieper
 Anthus cervinus_Roodkeelpieper
 Anthus chacoensis_Chacopieper
@@ -359,7 +359,7 @@ Anthus pratensis_Graspieper
 Anthus richardi_Grote Pieper
 Anthus roseatus_Wijnborstpieper
 Anthus rubescens_Pacifische Waterpieper
-Anthus rufulus_OriÃ«ntaalse Pieper
+Anthus rufulus_Oriëntaalse Pieper
 Anthus similis_Langsnavelpieper
 Anthus spinoletta_Waterpieper
 Anthus spragueii_Prairiepieper
@@ -372,7 +372,7 @@ Antigone vipio_Witnekkraanvogel
 Antilophia bokermanni_Araripemanakin
 Antilophia galeata_Helmmanakin
 Antrostomus arizonae_Mexicaanse Whippoorwill
-Antrostomus badius_YucatÃ¡nnachtzwaluw
+Antrostomus badius_Yucatánnachtzwaluw
 Antrostomus carolinensis_Chuck Will's Widow
 Antrostomus noctitherus_Puertoricaanse Whippoorwill
 Antrostomus ridgwayi_Ridgways Whippoorwill
@@ -418,7 +418,7 @@ Aplonis opaca_Micronesische Purperspreeuw
 Aplonis panayensis_Maleise Purperspreeuw
 Aplonis tabuensis_Polynesische Purperspreeuw
 Aprosmictus erythropterus_Roodvleugelparkiet
-Aptenodytes patagonicus_KoningspinguÃ¯n
+Aptenodytes patagonicus_Koningspinguïn
 Apteryx mantelli_Noordelijke Bruine Kiwi
 Apus affinis_Huisgierzwaluw
 Apus apus_Gierzwaluw
@@ -505,10 +505,10 @@ Arremon castaneiceps_Olijfgroene Struikgors
 Arremon costaricensis_Costaricaanse Struikgors
 Arremon crassirostris_Dikbekstruikgors
 Arremon flavirostris_Saffron-billed Sparrow
-Arremon franciscanus_SÃ£o-Franciscogors
-Arremon perijanus_PerijÃ¡struikgors
+Arremon franciscanus_São-Franciscogors
+Arremon perijanus_Perijástruikgors
 Arremon schlegeli_Goudvleugelgors
-Arremon semitorquatus_SÃ£o-Paulostruikgors
+Arremon semitorquatus_São-Paulostruikgors
 Arremon taciturnus_Olijfruggors
 Arremon torquatus_Streepkopstruikgors
 Arremon virenticeps_Groenkapstruikgors
@@ -554,12 +554,12 @@ Asthenes modesta_Andescanastero
 Asthenes moreirae_Itatiaiastekelstaart
 Asthenes ottonis_Gartepps Canastero
 Asthenes palpebralis_Oogringdistelstaart
-Asthenes perijana_PerijÃ¡distelstaart
+Asthenes perijana_Perijádistelstaart
 Asthenes pudibunda_Canyoncanastero
 Asthenes pyrrholeuca_Kleine Canastero
 Asthenes sclateri_Cordobacanastero
 Asthenes urubambensis_Urubambacanastero
-Asthenes virgata_JunÃ­ncanastero
+Asthenes virgata_Juníncanastero
 Asthenes wyatti_Streeprugcanastero
 Atalotriccus pilaris_Bleekoogdwergtiran
 Atelornis crossleyi_Crossleys Grondscharrelaar
@@ -619,7 +619,7 @@ Automolus infuscatus_Olijfrugbladspeurder
 Automolus leucophthalmus_Witoogbladspeurder
 Automolus melanopezus_Bruinstuitbladspeurder
 Automolus ochrolaemus_Bruinkeelbladspeurder
-Automolus paraensis_ParÃ¡bladspeurder
+Automolus paraensis_Parábladspeurder
 Automolus rufipileatus_Roodkruinbladspeurder
 Automolus subulatus_Bosbladspeurder
 Aviceda jerdoni_Jerdons Koekoekswouw
@@ -734,7 +734,7 @@ Brotogeris chrysoptera_Oranjevleugelparkiet
 Brotogeris cyanoptera_Kobaltvleugelparkiet
 Brotogeris jugularis_Toviparkiet
 Brotogeris pyrrhoptera_Vuurvleugelparkiet
-Brotogeris sanctithomae_TuÃ­parkiet
+Brotogeris sanctithomae_Tuíparkiet
 Brotogeris tirica_Tiricaparkiet
 Brotogeris versicolurus_Witvleugelparkiet
 Bubalornis albirostris_Witsnavelbuffelwever
@@ -909,7 +909,7 @@ Campephaga quiscalina_Purperrupsvogel
 Campephilus gayaquilensis_Guayaquilspecht
 Campephilus guatemalensis_Koningsspecht
 Campephilus haematogaster_Grote Roodbuikspecht
-Campephilus leucopogon_CrÃ¨merugspecht
+Campephilus leucopogon_Crèmerugspecht
 Campephilus magellanicus_Magelhaenspecht
 Campephilus melanoleucos_Zwartkeelspecht
 Campephilus pollens_Bruingebandeerde Specht
@@ -939,7 +939,7 @@ Campylorhynchus megalopterus_Grijsbandwinterkoning
 Campylorhynchus nuchalis_Streeprugwinterkoning
 Campylorhynchus rufinucha_Roodnek-winterkoning
 Campylorhynchus turdinus_Lijsterwinterkoning
-Campylorhynchus yucatanicus_YucatÃ¡nwinterkoning
+Campylorhynchus yucatanicus_Yucatánwinterkoning
 Campylorhynchus zonatus_Tijgerwinterkoning
 Canachites canadensis_Bossneeuwhoen
 Canis latrans_Coyote
@@ -1005,7 +1005,7 @@ Carpodacus rodochroa_Wenkbrauwroodmus
 Carpodacus rubicilla_Grote Roodmus
 Carpodacus rubicilloides_Reuzenroodmus
 Carpodacus sibiricus_Langstaartroodmus
-Carpodacus synoicus_SinaÃ¯roodmus
+Carpodacus synoicus_Sinaïroodmus
 Carpodacus thura_Himalayawitbrauwroodmus
 Carpornis cucullata_Zwart-gele Besseneter
 Carpornis melanocephala_Zwart-groene Besseneter
@@ -1020,7 +1020,7 @@ Cassiculus melanicterus_Geelvleugelbuidelspreeuw
 Casuarius casuarius_Helmkasuaris
 Catamblyrhynchus diadema_Fluweelkaptangare
 Catamenia analis_Witstaartcatamenia
-Catamenia homochroa_PÃ¡ramocatamenia
+Catamenia homochroa_Páramocatamenia
 Catamenia inornata_Bruingrijze Catamenia
 Cathartes aura_Roodkopgier
 Catharus aurantiirostris_Geelbekdwerglijster
@@ -1318,7 +1318,7 @@ Ciconia nigra_Zwarte Ooievaar
 Cinclidium frontale_Blauwvoorhoofdcallene
 Cinclocerthia gutturalis_Grijze Sidderspotlijster
 Cinclodes albidiventris_Kastanjevleugelwipstaart
-Cinclodes albiventris_CrÃ¨mevleugelwipstaart
+Cinclodes albiventris_Crèmevleugelwipstaart
 Cinclodes excelsior_Grootsnavelwipstaart
 Cinclodes fuscus_Bandvleugelwipstaart
 Cinclodes nigrofumosus_Strandwipstaart
@@ -1354,10 +1354,10 @@ Cinnyris habessinicus_Glanshoningzuiger
 Cinnyris jugularis_Staalborsthoningzuiger
 Cinnyris lotenius_Lotens Honingzuiger
 Cinnyris mariquensis_Maricohoningzuiger
-Cinnyris mediocris_FÃ¼lleborn-honingzuiger (mediocris)
+Cinnyris mediocris_Fülleborn-honingzuiger (mediocris)
 Cinnyris nectarinioides_Menieborsthoningzuiger
 Cinnyris osea_Palestijnse Honingzuiger
-Cinnyris pulchellus_FeeÃ«nhoningzuiger
+Cinnyris pulchellus_Feeënhoningzuiger
 Cinnyris regius_Koningshoningzuiger
 Cinnyris reichenowi_Preuss' Honingzuiger
 Cinnyris solaris_Zonnehoningzuiger
@@ -1626,7 +1626,7 @@ Cossypha humeralis_Witkeellawaaimaker
 Cossypha natalensis_Roodkoplawaaimaker
 Cossypha niveicapilla_Witkruinlawaaimaker
 Cossypha polioptera_Gray-winged Robin-Chat
-Cossypha semirufa_RÃ¼ppells Lawaaimaker
+Cossypha semirufa_Rüppells Lawaaimaker
 Coturnicops noveboracensis_Gele Ral
 Coturnix coromandelica_Regenkwartel
 Coturnix coturnix_Kwartel
@@ -1737,7 +1737,7 @@ Curruca iberiae_Western Subalpine Warbler
 Curruca melanocephala_Kleine Zwartkop
 Curruca nisoria_Sperwergrasmus
 Curruca subcoerulea_Kaapse Meeszanger
-Curruca undata_ProvenÃ§aalse Grasmus
+Curruca undata_Provençaalse Grasmus
 Cutia legalleni_Vietnamese Cutia
 Cutia nipalensis_Himalayacutia
 Cyanerpes caeruleus_Purpersuikervogel
@@ -1763,7 +1763,7 @@ Cyanocorax mystacalis_Witstaartgaai
 Cyanocorax sanblasianus_Acapulcogaai
 Cyanocorax violaceus_Violetgaai
 Cyanocorax yncas_Groene Gaai
-Cyanocorax yucatanicus_YucatÃ¡ngaai
+Cyanocorax yucatanicus_Yucatángaai
 Cyanoderma ambiguum_Haringtons Boomtimalia
 Cyanoderma chrysaeum_Gouden Boomtimalia
 Cyanoderma erythropterum_Roodvleugelboomtimalia
@@ -2205,11 +2205,11 @@ Euchrepomis spodioptila_Grijsvleugelmiersluiper
 Eucometis penicillata_Amazonetangare
 Eudocimus albus_Witte Ibis
 Eudromia elegans_Kuiftinamoe
-Eudynamys melanorhynchus_SulawesikoÃ«l
-Eudynamys orientalis_Australische KoÃ«l
-Eudynamys scolopaceus_Indische KoÃ«l
-Eudyptes chrysocome_Zuidelijke RotspinguÃ¯n
-Eudyptula minor_DwergpinguÃ¯n
+Eudynamys melanorhynchus_Sulawesikoël
+Eudynamys orientalis_Australische Koël
+Eudynamys scolopaceus_Indische Koël
+Eudyptes chrysocome_Zuidelijke Rotspinguïn
+Eudyptula minor_Dwergpinguïn
 Eugenes fulgens_Rivoli's Kolibrie
 Eugenes spectabilis_Talamanca Hummingbird
 Eugralla paradoxa_Okerflanktapaculo
@@ -2267,13 +2267,13 @@ Eupsittula aurea_Goudvoorhoofdparkiet
 Eupsittula cactorum_Cactusparkiet
 Eupsittula canicularis_Ivooraratinga
 Eupsittula nana_Olijfkeelaratinga
-Eupsittula pertinax_MaÃ¯sparkiet
+Eupsittula pertinax_Maïsparkiet
 Euptilotis neoxenus_Geoorde Trogon
 Eurillas ansorgei_Ansorges Buulbuul
 Eurillas curvirostris_Alexanders Buulbuul
 Eurillas latirostris_Geelbaardbuulbuul
 Eurillas virens_Groene Buulbuul
-Eurocephalus ruppelli_RÃ¼ppells Witkruinklauwier
+Eurocephalus ruppelli_Rüppells Witkruinklauwier
 Eurostopodus argus_Argusnachtzwaluw
 Eurostopodus mystacalis_Baardnachtzwaluw
 Eurylaimus javanicus_Javaanse Hapvogel
@@ -2304,7 +2304,7 @@ Falcunculus frontatus_Harlekijndikkop (frontatus)
 Ferminia cerverai_Zapatawinterkoning
 Ficedula albicilla_Taigavliegenvanger
 Ficedula albicollis_Withalsvliegenvanger
-Ficedula basilanica_BÃ¡silanvliegenvanger
+Ficedula basilanica_Básilanvliegenvanger
 Ficedula dumetoria_Oranjeborstvliegenvanger
 Ficedula elisae_Groenrugvliegenvanger
 Ficedula erithacus_Hodgsons Vliegenvanger
@@ -2335,9 +2335,9 @@ Formicarius moniliger_Mayan Antthrush
 Formicarius nigricapillus_Zwartkopmierlijster
 Formicarius rufifrons_Roodvoorhoofdmierlijster
 Formicarius rufipectus_Roodborstmierlijster
-Formicivora acutirostris_ParanÃ¡miervogel
+Formicivora acutirostris_Paranámiervogel
 Formicivora erythronotos_Roodrugmiersluiper
-Formicivora grantsaui_SincorÃ¡miersluiper
+Formicivora grantsaui_Sincorámiersluiper
 Formicivora grisea_Witband-miersluiper
 Formicivora iheringi_Dunsnavelmiersluiper
 Formicivora melanogaster_Zwartbuikmiersluiper
@@ -2414,7 +2414,7 @@ Gallinago jamesoni_Andessnip
 Gallinago magellanica_Magellanic Snipe
 Gallinago media_Poelsnip
 Gallinago megala_Siberische Snip
-Gallinago nobilis_PÃ¡ramosnip
+Gallinago nobilis_Páramosnip
 Gallinago paraguaiae_Paraguayan Snipe
 Gallinago stenura_Stekelstaartsnip
 Gallinago undulata_Reuzensnip
@@ -2703,7 +2703,7 @@ Heliodoxa rubinoides_Bruinborstbriljantkolibrie
 Heliomaster constantii_Vonkkeelkolibrie
 Heliomaster longirostris_Langsnavelsterkeelkolibrie
 Heliornis fulica_Kleine Fuutkoet
-Heliothryx auritus_ZwartoorfeeÃ«nkolibrie
+Heliothryx auritus_Zwartoorfeeënkolibrie
 Hellmayrea gularis_Witbrauwstekelstaart
 Helmitheros vermivorum_Streepkopzanger
 Helopsaltes certhiola_Siberische Sprinkhaanzanger
@@ -2902,7 +2902,7 @@ Ichthyaetus audouinii_Audouins Meeuw
 Ichthyaetus melanocephalus_Zwartkopmeeuw
 Icteria virens_Geelborstzanger
 Icterus abeillei_Zwartstuittroepiaal
-Icterus auratus_YucatÃ¡ntroepiaal
+Icterus auratus_Yucatántroepiaal
 Icterus auricapillus_Oranjekaptroepiaal
 Icterus bullockii_Bullocks Troepiaal
 Icterus cayanensis_Roodboegtroepiaal
@@ -3050,9 +3050,9 @@ Laniarius barbarus_Goudkapfiskaal
 Laniarius bicolor_Moerasfiskaal
 Laniarius erythrogaster_Zwartkopfiskaal
 Laniarius ferrugineus_Waterfiskaal
-Laniarius fuelleborni_FÃ¼lleborns Fiskaal
+Laniarius fuelleborni_Fülleborns Fiskaal
 Laniarius funebris_Leikleurige Fiskaal
-Laniarius luehderi_LÃ¼hders Fiskaal
+Laniarius luehderi_Lühders Fiskaal
 Laniarius major_Tropische Fiskaal
 Laniarius mufumbiri_Papyrusfiskaal
 Laniarius poensis_Western Boubou
@@ -3134,7 +3134,6 @@ Leiothlypis ruficapilla_Nashvillezanger
 Leiothlypis virginiae_Virginiazanger
 Leiothrix argentauris_Zilveroortimalia
 Leiothrix lutea_Japanse Nachtegaal
-Leipoa ocellata_Malleefowl
 Leistes bellicosus_Peruaanse Weidespreeuw
 Leistes loyca_Grote Weidespreeuw
 Leistes militaris_Zwartkopsoldatenspreeuw
@@ -3163,7 +3162,7 @@ Leptasthenura pileata_Roestkruinmeesstekelstaart
 Leptasthenura platensis_La-Platameesstekelstaart
 Leptasthenura setaria_Araucariameesstekelstaart
 Leptasthenura striata_Gestreepte Meesstekelstaart
-Leptasthenura striolata_ParanÃ¡meesstekelstaart
+Leptasthenura striolata_Paranámeesstekelstaart
 Leptasthenura xenothorax_Witbrauwmeesstekelstaart
 Leptocoma aspasia_Fluweelhoningzuiger
 Leptocoma brasiliana_Van Hasselts Honingzuiger
@@ -3339,7 +3338,7 @@ Macronus ptilosus_Stekelrugtimalia
 Macronus striaticeps_Streepkoptimalia
 Macronyx capensis_Kaapse Langklauw
 Macronyx croceus_Geelkeellangklauw
-Macronyx fuelleborni_FÃ¼lleborns Langklauw
+Macronyx fuelleborni_Fülleborns Langklauw
 Macropygia amboinensis_Tortelkoekoeksduif
 Macropygia doreya_Sultan's Cuckoo-Dove
 Macropygia mackinlayi_Mackinlays Koekoeksduif
@@ -3426,7 +3425,7 @@ Megascops ingens_Andesschreeuwuil
 Megascops kennicottii_Westelijke Schreeuwuil
 Megascops koepckeae_Maria Koepckes Schreeuwuil
 Megascops petersoni_Kaneelkleurige Schreeuwuil
-Megascops roboratus_MaraÃ±Ã³nonschreeuwuil
+Megascops roboratus_Marañónonschreeuwuil
 Megascops roraimae_Foothill Screech-Owl
 Megascops sanctaecatarinae_Langoorschreeuwuil
 Megascops seductus_Balsasschreeuwuil
@@ -3456,7 +3455,7 @@ Melanerpes hypopolius_Grijskeelspecht
 Melanerpes lewis_Lewis' Specht
 Melanerpes portoricensis_Puerto-Ricospecht
 Melanerpes pucherani_Zwartwangspecht
-Melanerpes pygmaeus_YucatÃ¡nspecht
+Melanerpes pygmaeus_Yucatánspecht
 Melanerpes radiolatus_Jamaicaspecht
 Melanerpes rubricapillus_Roodkruinspecht
 Melanerpes striatus_Hispaniolaspecht
@@ -3466,7 +3465,7 @@ Melaniparus afer_Kaapse Mees
 Melaniparus albiventris_Witbuikmees
 Melaniparus cinerascens_Acaciamees
 Melaniparus funereus_Gabonmees
-Melaniparus leucomelas_RÃ¼ppells Mees
+Melaniparus leucomelas_Rüppells Mees
 Melaniparus niger_Roetmees
 Melaniparus rufiventris_Roestbuikmees
 Melaniparus thruppi_Somalische Mees
@@ -3482,7 +3481,7 @@ Melanodera xanthogramma_Geelteugelgors
 Melanodryas cucullata_Zwartkopvliegenvanger
 Melanodryas vittata_Tasmaanse Vliegenvanger
 Melanopareia elegans_Bonte Maansluiper
-Melanopareia maranonica_MaraÃ±Ã³nmaansluiper
+Melanopareia maranonica_Marañónmaansluiper
 Melanopareia maximiliani_Olijfkruinmaansluiper
 Melanopareia torquata_Diadeemmaansluiper
 Melanoptila glabrirostris_Zwarte Katvogel
@@ -3734,7 +3733,7 @@ Myiarchus swainsoni_Swainsons Tiran
 Myiarchus tuberculifer_Monnikskaptiran
 Myiarchus tyrannulus_Cayennetiran
 Myiarchus venezuelensis_Venezuelatiran
-Myiarchus yucatanensis_YucatÃ¡ntiran
+Myiarchus yucatanensis_Yucatántiran
 Myiobius atricaudus_Zwartstaarttiran
 Myiobius barbatus_Geelstuittiran
 Myiobius sulphureipygius_Zwavelstuittiran
@@ -3779,7 +3778,7 @@ Myiothlypis cinereicollis_Grijskeelzanger
 Myiothlypis conspicillata_Witteugelzanger
 Myiothlypis coronata_Goudkruinzanger
 Myiothlypis flaveola_Amazonezanger
-Myiothlypis fraseri_FeeÃ«nzanger
+Myiothlypis fraseri_Feeënzanger
 Myiothlypis fulvicauda_Zeemstuitzanger
 Myiothlypis leucoblephara_Witbrauwzanger
 Myiothlypis leucophrys_Goudflankzanger
@@ -3803,7 +3802,7 @@ Myrmecocichla arnotti_Arnotts Miertapuit
 Myrmecocichla formicivora_Kaapse Miertapuit
 Myrmecocichla monticola_Bergtapuit
 Myrmecocichla nigra_Zwarte Miertapuit
-Myrmelastes humaythae_HumaitÃ¡miervogel
+Myrmelastes humaythae_Humaitámiervogel
 Myrmelastes hyperythrus_Chamicurusmiervogel
 Myrmelastes leucostigma_Vlekvleugelmiervogel
 Myrmelastes rufifacies_Roodwangmiervogel
@@ -3972,8 +3971,8 @@ Nyctidromus albicollis_Pauraque
 Nyctidromus anthonyi_Ecuadornachtzwaluw
 Nyctiphrynus mcleodii_Mexicaanse Poorwill
 Nyctiphrynus ocellatus_Gevlekte Poorwill
-Nyctiphrynus rosenbergi_ChocÃ³poorwill
-Nyctiphrynus yucatanicus_YucatÃ¡npoorwill
+Nyctiphrynus rosenbergi_Chocópoorwill
+Nyctiphrynus yucatanicus_Yucatánpoorwill
 Nyctipolus nigrescens_Roetnachtzwaluw
 Nyctiprogne leucopyga_Staartbandnachtzwaluw
 Nyctyornis amictus_Roodbaardbijeneter
@@ -4441,7 +4440,7 @@ Pheugopedius genibarbis_Knevelwinterkoning
 Pheugopedius maculipectus_Vlekborstwinterkoning
 Pheugopedius mystacalis_Andeswinterkoning
 Pheugopedius rutilus_Roodborstwinterkoning
-Pheugopedius sclateri_MaraÃ±Ã³nwinterkoning
+Pheugopedius sclateri_Marañónwinterkoning
 Pheugopedius spadix_Roetkopwinterkoning
 Philemon buceroides_Timorese Helmlederkop
 Philemon citreogularis_Kleine Lederkop
@@ -4588,7 +4587,7 @@ Phylloscopus trivirgatus_Bergboszanger
 Phylloscopus trochiloides_Grauwe Fitis
 Phylloscopus trochilus_Fitis
 Phylloscopus tytleri_Dunsnavelfitis
-Phylloscopus umbrovirens_RÃ¼ppells Boszanger
+Phylloscopus umbrovirens_Rüppells Boszanger
 Phylloscopus valentini_Harterts Goudoogboszanger
 Phylloscopus whistleri_Ticehursts Goudoogboszanger
 Phylloscopus xanthodryas_Japanse Boszanger
@@ -4732,7 +4731,7 @@ Ploceus baglafecht_Baglafechtwever
 Ploceus bicolor_Woudwever
 Ploceus capensis_Kaapse Wever
 Ploceus cucullatus_Grote Textorwever
-Ploceus galbula_RÃ¼ppells Wever
+Ploceus galbula_Rüppells Wever
 Ploceus hypoxanthus_Geelbuikbayawever
 Ploceus intermedius_Kleine Textorwever
 Ploceus jacksoni_Jacksons Wever
@@ -4816,7 +4815,7 @@ Polioptila bilineata_White-browed Gnatcatcher
 Polioptila caerulea_Blauwgrijze Muggenvanger
 Polioptila californica_Californische Muggenvanger
 Polioptila dumicola_Maskermuggenvanger
-Polioptila lactea_CrÃ¨mebuikmuggenvanger
+Polioptila lactea_Crèmebuikmuggenvanger
 Polioptila lembeyei_Cubaanse Muggenvanger
 Polioptila melanura_Zwartstaart-muggenvanger
 Polioptila nigriceps_Zwartkapmuggenvanger
@@ -4923,7 +4922,7 @@ Psaltriparus minimus_Struikmees
 Psarisomus dalhousiae_Papegaaibreedbek
 Psarocolius angustifrons_Roestrugoropendola
 Psarocolius atrovirens_Groensnaveloropendola
-Psarocolius bifasciatus_ParÃ¡oropendola
+Psarocolius bifasciatus_Paráoropendola
 Psarocolius decumanus_Kuiforopendola
 Psarocolius montezuma_Montezumaoropendola
 Psarocolius viridis_Groene Oropendola
@@ -5053,7 +5052,7 @@ Pterodroma inexpectata_Regenstormvogel
 Pterodroma madeira_Freira
 Pterodroma neglecta_Kermadecstormvogel
 Pterodroma nigripennis_Zwartvleugelstormvogel
-Pterodroma phaeopygia_GalÃ¡pagosstormvogel
+Pterodroma phaeopygia_Galápagosstormvogel
 Pterodroma sandwichensis_Hawaiistormvogel
 Pteroglossus aracari_Zwartnekarassari
 Pteroglossus azara_Roodkeel-arassari
@@ -5159,9 +5158,9 @@ Pycnoptilus floccosus_Loodsvogel
 Pygarrhichas albogularis_Witkeelboomjager
 Pygiptila stellaris_Vlekvleugelmierklauwier
 Pygochelidon cyanoleuca_Blauw-witte Zwaluw
-Pygoscelis adeliae_AdÃ©liepinguÃ¯n
-Pygoscelis antarcticus_StormbandpinguÃ¯n
-Pygoscelis papua_EzelspinguÃ¯n
+Pygoscelis adeliae_Adéliepinguïn
+Pygoscelis antarcticus_Stormbandpinguïn
+Pygoscelis papua_Ezelspinguïn
 Pyriglena atra_Swainsons Vuuroog
 Pyriglena leuconota_East Amazonian Fire-eye
 Pyriglena leucoptera_Witschoudervuuroog
@@ -5221,10 +5220,10 @@ Rallus indicus_Bruinwangral
 Rallus limicola_Virginiaral
 Rallus longirostris_Grijze Ral
 Rallus obsoletus_Californische Ral
-Rallus semiplumbeus_BogotÃ¡waterral
+Rallus semiplumbeus_Bogotáwaterral
 Rallus tenuirostris_Mexicaanse Ral
 Ramphastos ambiguus_Zwartsnaveltoekan
-Ramphastos brevis_ChocÃ³toekan
+Ramphastos brevis_Chocótoekan
 Ramphastos dicolorus_Roodborsttoekan
 Ramphastos sulfuratus_Zwavelborsttoekan
 Ramphastos toco_Reuzentoekan
@@ -5439,7 +5438,7 @@ Scytalopus atratus_Noordelijke Witkruintapaculo
 Scytalopus bolivianus_Zuidelijke Witkruintapaculo
 Scytalopus canus_Paramillotapaculo
 Scytalopus caracae_Caracastapaculo
-Scytalopus chocoensis_ChocÃ³tapaculo
+Scytalopus chocoensis_Chocótapaculo
 Scytalopus diamantinensis_Diamantinatapaculo
 Scytalopus femoralis_Roodbuiktapaculo
 Scytalopus frankeae_Jalca Tapaculo
@@ -5451,10 +5450,10 @@ Scytalopus latebricola_Bruinstuittapaculo
 Scytalopus latrans_Zwarte Tapaculo
 Scytalopus macropus_Grootpoottapaculo
 Scytalopus magellanicus_Magelhaentapaculo
-Scytalopus meridanus_MÃ©ridatapaculo
+Scytalopus meridanus_Méridatapaculo
 Scytalopus micropterus_Langstaarttapaculo
 Scytalopus novacapitalis_Brasiliatapaculo
-Scytalopus opacus_PÃ¡ramotapaculo
+Scytalopus opacus_Páramotapaculo
 Scytalopus pachecoi_Planaltotapaculo
 Scytalopus parkeri_Parkers Tapaculo
 Scytalopus parvirostris_Zwartgrijze Tapaculo
@@ -5471,7 +5470,7 @@ Scytalopus stilesi_Stiles' Tapaculo
 Scytalopus superciliaris_Witbrauwtapaculo
 Scytalopus unicolor_Salvins Tapaculo
 Scytalopus urubambae_Cuzcotapaculo
-Scytalopus vicinior_NariÃ±otapaculo
+Scytalopus vicinior_Nariñotapaculo
 Scytalopus zimmeri_Zimmers Tapaculo
 Scythrops novaehollandiae_Reuzenkoekoek
 Seiurus aurocapilla_Ovenvogel
@@ -5554,7 +5553,7 @@ Sicalis luteola_Graslandsaffraangors
 Sicalis olivascens_Groengele Saffraangors
 Sicalis uropygialis_Grijsrugsaffraangors
 Sinosuthora webbiana_Bruinkopdiksnavelmees
-Siphonorhis brewsteri_HaÃ¯tipauraque
+Siphonorhis brewsteri_Haïtipauraque
 Sipia berlepschi_Kortstaartmiervogel
 Sipia laemosticta_Grijskruinmiervogel
 Sipia nigricauda_Esmeralda's Miervogel
@@ -5603,8 +5602,8 @@ Spelaeornis troglodytoides_Gebandeerde Sluiptimalia
 Spermestes cucullata_Gewoon Ekstertje
 Spermophaga haematina_Roodborstblauwsnavel
 Sphecotheres vieilloti_Grijskraagvijgvogel
-Spheniscus demersus_ZwartvoetpinguÃ¯n
-Spheniscus magellanicus_MagelhaenpinguÃ¯n
+Spheniscus demersus_Zwartvoetpinguïn
+Spheniscus magellanicus_Magelhaenpinguïn
 Sphenoeacus afer_Kaapse Grasvogel
 Sphenopsis frontalis_Olijfrughemispingus
 Sphenopsis melanotis_Zwartoor-hemispingus
@@ -5672,7 +5671,7 @@ Sporophila lineola_Witsterdikbekje
 Sporophila luctuosa_Zwart-wit Dikbekje
 Sporophila minuta_Dwergdikbekje
 Sporophila morelleti_Morelet's Seedeater
-Sporophila murallae_CaquetÃ¡dikbekje
+Sporophila murallae_Caquetádikbekje
 Sporophila nigricollis_Geelbuikdikbekje
 Sporophila nuttingi_Nicaraguaanse Zaadkraker
 Sporophila palustris_Moerasdikbekje
@@ -5734,7 +5733,7 @@ Stilpnia cyanoptera_Zwartkoptangare
 Stilpnia heinei_Heines Tangare
 Stilpnia larvata_Purpermaskertangare
 Stilpnia nigrocincta_Zwartborsttangare
-Stilpnia peruviana_ParanÃ¡tangare
+Stilpnia peruviana_Paranátangare
 Stilpnia preciosa_Kastanjerugtangare
 Stilpnia vitriolina_Roodkruintangare
 Stiphrornis erythrothorax_Orange-breasted Forest Robin
@@ -5826,7 +5825,7 @@ Synallaxis cherriei_Bruinkeelstekelstaart
 Synallaxis cinerascens_Grijsbuikstekelstaart
 Synallaxis cinerea_Bahiastekelstaart
 Synallaxis cinnamomea_Kaneelstekelstaart
-Synallaxis courseni_ApurÃ­macstekelstaart
+Synallaxis courseni_Apurímacstekelstaart
 Synallaxis erythrothorax_Roodborststekelstaart
 Synallaxis frontalis_Roetkruinstekelstaart
 Synallaxis fuscorufa_Santa-Martastekelstaart
@@ -5837,7 +5836,7 @@ Synallaxis hypospodia_Grijsborststekelstaart
 Synallaxis infuscata_Pinto's Stekelstaart
 Synallaxis kollari_Roodoorstekelstaart
 Synallaxis macconnelli_McConnells Stekelstaart
-Synallaxis maranonica_MaraÃ±Ã³nstekelstaart
+Synallaxis maranonica_Marañónstekelstaart
 Synallaxis moesta_Rouwstekelstaart
 Synallaxis ruficapilla_Roodkapstekelstaart
 Synallaxis rutilans_Rode Stekelstaart
@@ -5913,7 +5912,7 @@ Tangara seledon_Prachttangare
 Tangara vassorii_Blauw-zwarte Tangare
 Tangara velia_Opaalstuittangare
 Tangara xanthocephala_Geelkoptangare
-Tanygnathus sumatranus_MÃ¼llers Papegaai
+Tanygnathus sumatranus_Müllers Papegaai
 Tanysiptera galatea_Vlagstaartijsvogel
 Tanysiptera sylvia_Australische Vlagstaartijsvogel (sylvia/salvadoriana)
 Tapera naevia_Gestreepte Koekoek
@@ -6203,7 +6202,7 @@ Trogon mexicanus_Mexicaanse Trogon
 Trogon personatus_Maskertrogon
 Trogon ramonianus_Amazonetrogon
 Trogon rufus_Zwartkeeltrogon
-Trogon surrucura_SurucuÃ¡trogon
+Trogon surrucura_Surucuátrogon
 Trogon violaceus_Guyanatrogon
 Trogon viridis_Groenrugtrogon
 Tropicoperdix chloropus_Groenpootbospatrijs
@@ -6221,7 +6220,7 @@ Turdoides sharpei_Taborababbelaar
 Turdus abyssinicus_Afrikaanse Berglijster
 Turdus albicollis_Witneklijster
 Turdus albocinctus_Witkraaglijster
-Turdus amaurochalinus_CrÃ¨mebuiklijster
+Turdus amaurochalinus_Crèmebuiklijster
 Turdus assimilis_Mexicaanse Witneklijster
 Turdus atrogularis_Zwartkeellijster
 Turdus aurantius_Witkinlijster
@@ -6250,7 +6249,7 @@ Turdus leucops_Taczanowski's Lijster
 Turdus libonyana_Kurrichanelijster
 Turdus maculirostris_Ecuadorlijster
 Turdus mandarinus_Turdus mandarinus
-Turdus maranonicus_MaraÃ±Ã³nlijster
+Turdus maranonicus_Marañónlijster
 Turdus menachensis_Jemenlijster
 Turdus merula_Merel
 Turdus migratorius_Roodborstlijster
@@ -6280,7 +6279,7 @@ Turdus serranus_Fluweellijster
 Turdus simillimus_Indische Merel
 Turdus smithi_Karoolijster
 Turdus subalaris_Blacksmith Thrush
-Turdus swalesi_HaÃ¯tilijster
+Turdus swalesi_Haïtilijster
 Turdus tephronotus_Brillijster
 Turdus torquatus_Beflijster
 Turdus unicolor_Tickells Lijster
@@ -6334,7 +6333,7 @@ Urocissa ornata_Blauwe Kitta
 Urocolius indicus_Roodwangmuisvogel
 Urocolius macrourus_Blauwnekmuisvogel
 Urocynchramus pylzowi_Przewalski's Roodmus
-Urodynamis taitensis_LangstaartkoÃ«l
+Urodynamis taitensis_Langstaartkoël
 Uromyias agilis_Langstaartmeestiran
 Uromyias agraphia_Witbuikmeestiran
 Uropsalis lyra_Lierstaartnachtzwaluw
@@ -6390,8 +6389,8 @@ Vireo huttoni_Huttons Vireo
 Vireo hypochryseus_Goudbuikvireo
 Vireo latimeri_Puertoricaanse Vireo
 Vireo leucophrys_Witbrauwvireo
-Vireo magister_YucatÃ¡nvireo
-Vireo masteri_ChocÃ³vireo
+Vireo magister_Yucatánvireo
+Vireo masteri_Chocóvireo
 Vireo modestus_Jamaicaanse Vireo
 Vireo nelsoni_Dwergvireo
 Vireo olivaceus_Roodoogvireo
@@ -6477,7 +6476,7 @@ Zentrygon goldmani_Goldmans Kwartelduif
 Zentrygon lawrencii_Lawrence' Kwartelduif
 Zentrygon linearis_Bruine Kwartelduif
 Zimmerius acer_Guyanavliegenpikker
-Zimmerius albigularis_ChocÃ³vliegenpikker
+Zimmerius albigularis_Chocóvliegenpikker
 Zimmerius bolivianus_Boliviaanse Vliegenpikker
 Zimmerius chrysops_Goudwangvliegenpikker
 Zimmerius cinereicapilla_Roodsnavelvliegenpikker

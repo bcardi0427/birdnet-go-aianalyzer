@@ -57,18 +57,18 @@ Can be implemented with simple localization updates, direct UI fixes, or minor G
 
 | Issue | Title | Scope |
 | :--- | :--- | :--- |
-| [#3161](https://github.com/tphakala/birdnet-go/issues/3161) | feat: separate secrets from config.yaml into dedicated secret store | Secret separation enhancement |
+| `[DONE]` ~~[#3161](https://github.com/tphakala/birdnet-go/issues/3161)~~ | ~~feat: separate secrets from config.yaml into dedicated secret store~~ | Secret separation enhancement |
 | `[DONE]` ~~[#3103](https://github.com/tphakala/birdnet-go/issues/3103)~~ | ~~bug: After entering weather provider's api, the api is lost even after saving~~ | Go Weather settings trigger |
-| [#2847](https://github.com/tphakala/birdnet-go/issues/2847) | feat: request wakelock on live audio tab | Minor Bug / Enhancement |
-| [#2698](https://github.com/tphakala/birdnet-go/issues/2698) | Playback controls in search results table are missing for screen width >= 768 px | Minor Bug / Enhancement |
-| [#2682](https://github.com/tphakala/birdnet-go/issues/2682) | Minor feature request: Sum of daily species seen | Minor Bug / Enhancement |
+| `[DONE]` ~~[#2847](https://github.com/tphakala/birdnet-go/issues/2847)~~ | ~~feat: request wakelock on live audio tab~~ | Minor Bug / Enhancement |
+| `[DONE]` ~~[#2698](https://github.com/tphakala/birdnet-go/issues/2698)~~ | ~~Playback controls in search results table are missing for screen width >= 768 px~~ | Minor Bug / Enhancement |
+| `[DONE]` ~~[#2682](https://github.com/tphakala/birdnet-go/issues/2682)~~ | ~~Minor feature request: Sum of daily species seen~~ | Minor Bug / Enhancement |
 | `[DONE]` ~~[#2599](https://github.com/tphakala/birdnet-go/issues/2599)~~ | ~~Title: printSystemDetails nil pointer dereference on macOS ARM64 under launchd~~ | Go Panic recovery in `startup.go` |
 | `[DONE]` ~~[#2237](https://github.com/tphakala/birdnet-go/issues/2237)~~ | ~~Allow the name in the sidebar to reflect the node name~~ | Frontend Svelte change (Sidebar node name) |
-| [#1986](https://github.com/tphakala/birdnet-go/issues/1986) | Feature Request: Ability to exclude specific species from saved Clip Recordings while still tracking detections | Minor Bug / Enhancement |
-| [#1948](https://github.com/tphakala/birdnet-go/issues/1948) | 15 Hungarian translation | Minor Bug / Enhancement |
-| [#1672](https://github.com/tphakala/birdnet-go/issues/1672) | "latest" docker tag not being maintained | Minor Bug / Enhancement |
-| [#1254](https://github.com/tphakala/birdnet-go/issues/1254) | Feature Request - Link to Educational Sites for Detected Species | Minor Bug / Enhancement |
-| [#1214](https://github.com/tphakala/birdnet-go/issues/1214) | Requesting to Add the Species: Malleefowl | Minor Bug / Enhancement |
+| `[DONE]` ~~[#1986](https://github.com/tphakala/birdnet-go/issues/1986)~~ | ~~Feature Request: Ability to exclude specific species from saved Clip Recordings while still tracking detections~~ | Minor Bug / Enhancement |
+| `[DONE]` ~~[#1948](https://github.com/tphakala/birdnet-go/issues/1948)~~ | ~~15 Hungarian translation~~ | Minor Bug / Enhancement |
+| `[DONE]` ~~[#1672](https://github.com/tphakala/birdnet-go/issues/1672)~~ | ~~"latest" docker tag not being maintained~~ | Minor Bug / Enhancement |
+| `[DONE]` ~~[#1254](https://github.com/tphakala/birdnet-go/issues/1254)~~ | ~~Feature Request - Link to Educational Sites for Detected Species~~ | Minor Bug / Enhancement |
+| `[REJECTED]` ~~[#1214](https://github.com/tphakala/birdnet-go/issues/1214)~~ | ~~Requesting to Add the Species: Malleefowl~~ (Not feasible on pre-trained model) | Minor Bug / Enhancement |
 
 ### B. Medium Feasibility
 Requires moderate updates to Go logic, new database queries, API endpoints, or more extensive frontend components, but still within our current architectural boundary.

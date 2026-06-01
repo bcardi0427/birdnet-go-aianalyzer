@@ -152,6 +152,8 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         id: latest_release
         run: |
+          # Fetch tags explicitly to ensure git describe works
+          git fetch --tags --force
           # Get the latest release tag
           LATEST_TAG=$(git describe --tags --abbrev=0)
           echo "LATEST_TAG=${LATEST_TAG}" >> ${GITHUB_ENV}
@@ -181,6 +183,8 @@ jobs:
       - name: Get version
         id: get_version
         run: |
+          # Fetch tags explicitly to ensure git describe works
+          git fetch --tags --force
           VERSION=$(git describe --tags --always)
           echo "VERSION=${VERSION}" >> ${GITHUB_ENV}
           echo "version=${VERSION}" >> $GITHUB_OUTPUT

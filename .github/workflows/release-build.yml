@@ -153,9 +153,9 @@ jobs:
         id: latest_release
         run: |
           # Fetch tags explicitly to ensure git describe works
-          git fetch --tags --force
-          # Get the latest release tag
-          LATEST_TAG=$(git describe --tags --abbrev=0)
+          git fetch --tags --force || true
+          # Get the latest release tag, fallback to version.txt if description fails
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || cat version.txt | awk '{print $NF}' || echo "latest")
           echo "LATEST_TAG=${LATEST_TAG}" >> ${GITHUB_ENV}
           echo "latest_tag=${LATEST_TAG}" >> $GITHUB_OUTPUT
       
@@ -184,8 +184,8 @@ jobs:
         id: get_version
         run: |
           # Fetch tags explicitly to ensure git describe works
-          git fetch --tags --force
-          VERSION=$(git describe --tags --always)
+          git fetch --tags --force || true
+          VERSION=$(git describe --tags --always 2>/dev/null || cat version.txt | awk '{print $NF}' || echo "latest")
           echo "VERSION=${VERSION}" >> ${GITHUB_ENV}
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 

@@ -80,16 +80,16 @@ jobs:
           BUILD_VERSION: ${{ github.ref_name }}
 
       - name: Setup Node.js for Sentry CLI
-        if: matrix.goos == 'linux' && matrix.goarch == 'amd64'
+        if: matrix.goos == 'linux' && matrix.goarch == 'amd64' && secrets.SENTRY_AUTH_TOKEN != ''
         uses: actions/setup-node@v6
         with:
           node-version: '24'
 
       - name: Upload source maps to Sentry
-        if: matrix.goos == 'linux' && matrix.goarch == 'amd64'
+        if: matrix.goos == 'linux' && matrix.goarch == 'amd64' && secrets.SENTRY_AUTH_TOKEN != ''
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: tphakala
+          SENTRY_ORG: gerald-haygood
           SENTRY_PROJECT: birdnet-go
         run: |
           npx @sentry/cli sourcemaps upload \

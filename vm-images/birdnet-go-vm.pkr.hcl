@@ -40,8 +40,8 @@ locals {
   }
   
   base_checksums = {
-    amd64 = "sha256:8446856f1903fd305a17cfb610bbb6c01e8e2230cdf41d44fc9e3d824f747ff4"
-    arm64 = "sha256:99b858f01e238c74eb263ab8b83ea543f2576cee166e9ed8210c75035526679b"
+    amd64 = "sha256:69f31d3208895e5f646e345fbc95190e5e311ecd1359a4d6ee2c0b6483ceca03"
+    arm64 = "sha256:3d1d134d66318f982d32f02aec00fe879bfeb0338147b4038a25d1f9cddb527f"
   }
   
   qemu_machines = {

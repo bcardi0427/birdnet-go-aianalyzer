@@ -128,21 +128,25 @@ jobs:
             fi
           elif [ "${{ matrix.goos }}" = "windows" ]; then
             cp /usr/x86_64-w64-mingw32/lib/tensorflowlite_c.dll artifacts/
-            cp /tmp/onnxruntime/lib/*.dll artifacts/
+            cp ${{ github.workspace }}/onnxruntime-bin/lib/*.dll artifacts/
           elif [ "${{ matrix.goos }}" = "darwin" ]; then
             cp /opt/homebrew/lib/libtensorflowlite_c.dylib artifacts/
-            cp /tmp/onnxruntime/lib/libonnxruntime.dylib artifacts/
+            cp ${{ github.workspace }}/onnxruntime-bin/lib/libonnxruntime.dylib artifacts/
           fi
+          
+          # Sanitize ref_name to prevent directory nesting errors when run on branches
+          SAFE_REF=$(echo "${{ github.ref_name }}" | sed 's/\//-/g')
+          echo "SAFE_REF=$SAFE_REF" >> $GITHUB_ENV
           
           # Create tarball
           cd artifacts
-          tar czf ../birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}-${{ github.ref_name }}.tar.gz *
+          tar czf ../birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}-${SAFE_REF}.tar.gz *
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v7
         with:
           name: birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}
-          path: birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}-${{ github.ref_name }}.tar.gz
+          path: birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}-${{ env.SAFE_REF }}.tar.gz
 
       - name: Get latest release tag
         if: github.event_name == 'workflow_dispatch'
@@ -156,7 +160,7 @@ jobs:
       - name: Add Artifacts to GitHub Release
         uses: softprops/action-gh-release@v3
         with:
-          files: birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}-${{ github.ref_name }}.tar.gz
+          files: birdnet-go-${{ matrix.goos }}-${{ matrix.goarch }}-${{ env.SAFE_REF }}.tar.gz
           # For release events, use the triggering release
           # For workflow_dispatch, use the latest release tag
           tag_name: ${{ github.event_name == 'workflow_dispatch' && env.LATEST_TAG || '' }}

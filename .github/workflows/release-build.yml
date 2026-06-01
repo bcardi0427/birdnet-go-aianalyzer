@@ -93,8 +93,10 @@ jobs:
           SENTRY_PROJECT: birdnet-go
         run: |
           if [ -n "$SENTRY_AUTH_TOKEN" ]; then
+            # Sentry does not allow slashes in release names, replace with dashes
+            SAFE_REF=$(echo "${{ github.ref_name }}" | sed 's/\//-/g')
             npx @sentry/cli sourcemaps upload \
-              --release "birdnet-go@${{ github.ref_name }}" \
+              --release "birdnet-go@$SAFE_REF" \
               --url-prefix '~/ui/assets/' \
               frontend/dist/
           else

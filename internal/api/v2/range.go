@@ -60,6 +60,9 @@ func calculateWeek(date time.Time) float32 {
 	day := date.Day()
 	weeksFromMonths := (month - 1) * weeksPerMonth
 	weekInMonth := (day-1)/daysPerWeek + 1
+	if weekInMonth > weeksPerMonth {
+		weekInMonth = weeksPerMonth
+	}
 	return float32(weeksFromMonths + weekInMonth)
 }
 

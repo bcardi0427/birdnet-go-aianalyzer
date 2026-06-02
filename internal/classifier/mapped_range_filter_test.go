@@ -2,6 +2,7 @@ package classifier
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -295,4 +296,30 @@ func TestComputeGeomodelCoverage_EmptyInputs(t *testing.T) {
 	)
 	assert.Zero(t, withRange)
 	assert.Equal(t, 1, withoutRange)
+}
+
+func TestGetWeekForFilter(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name     string
+		dateStr  string
+		expected float32
+	}{
+		{"Start of year", "2026-01-01", 1.0},
+		{"Jan 28", "2026-01-28", 4.0},
+		{"Jan 29 (should clamp to week 4)", "2026-01-29", 4.0},
+		{"Jan 31 (should clamp to week 4)", "2026-01-31", 4.0},
+		{"Feb 01", "2026-02-01", 5.0},
+		{"End of year Dec 31 (should clamp to week 48)", "2026-12-31", 48.0},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+			d, err := time.Parse(time.DateOnly, tt.dateStr)
+			require.NoError(t, err)
+			assert.InDelta(t, tt.expected, getWeekForFilter(d), 0.001)
+		})
+	}
 }

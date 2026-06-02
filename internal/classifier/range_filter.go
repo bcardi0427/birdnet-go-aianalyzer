@@ -446,9 +446,12 @@ func getWeekForFilter(date time.Time) float32 {
 	month = int(date.Month())
 	day = date.Day()
 
-	// Calculate the week number
+	// Calculate the week number (max 48 weeks, 4 weeks per month)
 	weeksFromMonths := (month - 1) * 4
 	weekInMonth := (day-1)/7 + 1
+	if weekInMonth > 4 {
+		weekInMonth = 4
+	}
 
 	return float32(weeksFromMonths + weekInMonth)
 }

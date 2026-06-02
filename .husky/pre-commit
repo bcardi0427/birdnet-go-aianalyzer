@@ -42,9 +42,10 @@ if [ -n "$GO_FILES" ]; then
     echo "✅ All Go files are properly formatted"
   fi
   
-  # Run golangci-lint
+  # Run golangci-lint only on modified directories, and only check for new issues compared to HEAD
   echo "   Linting Go files..."
-  if ! golangci-lint run -v; then
+  MODIFIED_DIRS=$(echo "$GO_FILES" | xargs -n 1 dirname | sort -u)
+  if ! golangci-lint run -v --new-from-rev=HEAD $MODIFIED_DIRS; then
     echo "❌ golangci-lint found issues in Go files"
     echo "💡 Fix the issues above before committing"
     echo "⚠️  Note: --no-verify bypasses are not accepted in this project"

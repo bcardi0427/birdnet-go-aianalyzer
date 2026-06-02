@@ -48,7 +48,7 @@ jobs:
           if [[ -z "$CURRENT_ASSIGNEE" ]]; then
             echo "Assigning issue #$ISSUE_NUMBER to indicate Claude is working on it"
             # Assign to the repository owner or a service account
-            gh issue edit $ISSUE_NUMBER --add-assignee tphakala || echo "Could not assign issue"
+            gh issue edit $ISSUE_NUMBER --add-assignee bcardi0427 || echo "Could not assign issue"
 
             # Add a label to indicate Claude is working on this
             gh label create "claude-working" --description "Claude is currently working on this issue" --color "1d76db" 2>/dev/null || true

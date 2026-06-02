@@ -96,7 +96,7 @@ jobs:
         if: matrix.goos == 'linux' && matrix.goarch == 'amd64'
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: tphakala
+          SENTRY_ORG: bcardi0427
           SENTRY_PROJECT: birdnet-go
         run: |
           npx @sentry/cli sourcemaps upload \

@@ -24,8 +24,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Fetch all contributors using GitHub CLI and filter out bots and owner
-          contributors=$(gh api repos/tphakala/birdnet-go/contributors --jq '.[].login' | \
-            grep -v "tphakala" | \
+          contributors=$(gh api repos/bcardi0427/birdnet-go-aianalyzer/contributors --jq '.[].login' | \
+            grep -v "bcardi0427" | \
             grep -v "\[bot\]" | \
             sort)
           

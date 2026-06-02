@@ -8,10 +8,10 @@ on:
 
 jobs:
   provide-support:
-    # Skip if issue is created by tphakala or if it's a bot comment
+    # Skip if issue is created by bcardi0427 or if it's a bot comment
     if: |
-      (github.event_name == 'issues' && github.event.issue.user.login != 'tphakala' && !contains(github.event.issue.user.type, 'Bot')) ||
-      (github.event_name == 'issue_comment' && github.event.comment.user.login != 'tphakala' && !contains(github.event.comment.user.type, 'Bot') && !contains(github.event.comment.body, '🤖 Automated Support'))
+      (github.event_name == 'issues' && github.event.issue.user.login != 'bcardi0427' && !contains(github.event.issue.user.type, 'Bot')) ||
+      (github.event_name == 'issue_comment' && github.event.comment.user.login != 'bcardi0427' && !contains(github.event.comment.user.type, 'Bot') && !contains(github.event.comment.body, '🤖 Automated Support'))
     runs-on: ubuntu-latest
     permissions:
       contents: read

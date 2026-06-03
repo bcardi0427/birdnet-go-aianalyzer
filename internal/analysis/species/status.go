@@ -104,9 +104,9 @@ func (t *SpeciesTracker) applyLifetimeStatus(status *SpeciesStatus, firstSeen ti
 		status.DaysSinceFirst = calculateDaysSince(currentTime, firstSeen)
 		status.IsNew = status.DaysSinceFirst <= t.windowDays
 	} else {
-		status.FirstSeenTime = currentTime
-		status.IsNew = true
-		status.DaysSinceFirst = 0
+		status.FirstSeenTime = time.Time{}
+		status.IsNew = false
+		status.DaysSinceFirst = -1
 	}
 }
 
@@ -119,8 +119,13 @@ func (t *SpeciesTracker) applyYearlyStatus(status *SpeciesStatus, firstThisYear 
 		status.DaysThisYear = calculateDaysSince(currentTime, *firstThisYear)
 		status.IsNewThisYear = status.DaysThisYear <= t.yearlyWindowDays
 	} else {
-		status.IsNewThisYear = true
-		status.DaysThisYear = 0
+		if status.FirstSeenTime.IsZero() {
+			status.IsNewThisYear = false
+			status.DaysThisYear = -1
+		} else {
+			status.IsNewThisYear = true
+			status.DaysThisYear = 0
+		}
 	}
 }
 
@@ -133,8 +138,13 @@ func (t *SpeciesTracker) applySeasonalStatus(status *SpeciesStatus, firstThisSea
 		status.DaysThisSeason = calculateDaysSince(currentTime, *firstThisSeason)
 		status.IsNewThisSeason = status.DaysThisSeason <= t.seasonalWindowDays
 	} else {
-		status.IsNewThisSeason = true
-		status.DaysThisSeason = 0
+		if status.FirstSeenTime.IsZero() {
+			status.IsNewThisSeason = false
+			status.DaysThisSeason = -1
+		} else {
+			status.IsNewThisSeason = true
+			status.DaysThisSeason = 0
+		}
 	}
 }
 

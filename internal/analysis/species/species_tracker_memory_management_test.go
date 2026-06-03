@@ -319,7 +319,7 @@ func TestBuildSpeciesStatusWithBuffer_CriticalReliability(t *testing.T) {
 			time.Date(2024, 6, 15, 12, 0, 0, 0, time.UTC),
 			nil, nil, nil,
 			14,
-			true, 0, true, true,
+			false, -1, false, false,
 			"Completely new species should be marked new in all periods",
 		},
 		{
@@ -469,8 +469,8 @@ func TestBuildSpeciesStatusWithBuffer_CriticalReliability(t *testing.T) {
 				"LastUpdatedTime should be populated")
 			assert.Equal(t, currentSeason, status.CurrentSeason,
 				"CurrentSeason should be set correctly")
-			assert.GreaterOrEqual(t, status.DaysSinceFirst, 0,
-				"DaysSinceFirst should never be negative")
+			assert.GreaterOrEqual(t, status.DaysSinceFirst, -1,
+				"DaysSinceFirst should never be less than -1")
 
 			t.Logf("✓ Status built correctly: IsNew=%v, Days=%d, NewYear=%v, NewSeason=%v",
 				status.IsNew, status.DaysSinceFirst, status.IsNewThisYear, status.IsNewThisSeason)
@@ -528,8 +528,8 @@ func TestConcurrentCacheOperations_CriticalReliability(t *testing.T) {
 				case 1: // Read from cache
 					speciesName := fmt.Sprintf("Concurrent_Species_%d_%d", id, op-1)
 					status := tracker.GetSpeciesStatus(speciesName, currentTime)
-					if status.DaysSinceFirst < 0 {
-						errors <- fmt.Errorf("negative days for species %s", speciesName)
+					if status.DaysSinceFirst < -1 {
+						errors <- fmt.Errorf("negative days (less than -1) for species %s", speciesName)
 					}
 
 				case 2: // Force cleanup - need to hold lock since this is an internal function

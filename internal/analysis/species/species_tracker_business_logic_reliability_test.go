@@ -41,8 +41,8 @@ func TestBuildSpeciesStatusLocked_CriticalReliability(t *testing.T) {
 			[]datastore.NewSpeciesData{}, // Not in lifetime
 			[]datastore.NewSpeciesData{}, // Not in yearly
 			[]datastore.NewSpeciesData{}, // Not in seasonal
-			true, 0,
-			"Completely new species should be marked as new with 0 days in all periods",
+			false, -1,
+			"Completely new species should be marked as false and -1 days when untracked",
 		},
 		{
 			"existing_lifetime_new_year_season",
@@ -201,12 +201,19 @@ func TestBuildSpeciesStatusLocked_CriticalReliability(t *testing.T) {
 				tt.name, tt.expectedDays, status.DaysSinceFirst)
 
 			// Verify status fields are consistent
-			assert.False(t, status.FirstSeenTime.IsZero(),
-				"FirstSeenTime should be populated")
 			assert.False(t, status.LastUpdatedTime.IsZero(),
 				"LastUpdatedTime should be populated")
-			assert.GreaterOrEqual(t, status.DaysSinceFirst, 0,
-				"DaysSinceFirst should never be negative")
+			if tt.expectedDays >= 0 {
+				assert.False(t, status.FirstSeenTime.IsZero(),
+					"FirstSeenTime should be populated")
+				assert.GreaterOrEqual(t, status.DaysSinceFirst, 0,
+					"DaysSinceFirst should never be negative")
+			} else {
+				assert.True(t, status.FirstSeenTime.IsZero(),
+					"FirstSeenTime should be zero for untracked species")
+				assert.Equal(t, -1, status.DaysSinceFirst,
+					"DaysSinceFirst should be -1 for untracked species")
+			}
 
 			t.Logf("✓ Business logic correct: IsNew=%v, Days=%d", status.IsNew, status.DaysSinceFirst)
 

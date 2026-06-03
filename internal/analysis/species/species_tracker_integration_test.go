@@ -147,8 +147,8 @@ func TestFullWorkflow_YearlyTracking(t *testing.T) {
 	// - Lifetime: IsNew = true (never seen before in lifetime)
 	// - Yearly: IsNewThisYear = false (seen earlier this year, beyond 7-day window)
 	status := tracker.GetSpeciesStatus("Species_2024", time.Date(2024, 6, 15, 0, 0, 0, 0, time.UTC))
-	// The main IsNew flag represents lifetime tracking, so it should be true
-	assert.True(t, status.IsNew, "Species never seen in lifetime should be new")
+	// The main IsNew flag represents lifetime tracking, so it should be false (untracked in lifetime)
+	assert.False(t, status.IsNew, "Species never seen in lifetime should not be new")
 	assert.False(t, status.IsNewThisYear, "Species from earlier in year should not be new this year")
 
 	// Add a new species in 2024
@@ -159,9 +159,9 @@ func TestFullWorkflow_YearlyTracking(t *testing.T) {
 	tracker.SetCurrentYearForTesting(2025)
 	tracker.checkAndResetPeriods(time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC))
 
-	// Previous year's species should now be new
+	// Previous year's species should not be new lifetime-wise if not tracked
 	status = tracker.GetSpeciesStatus("Species_2024", time.Date(2025, 2, 1, 0, 0, 0, 0, time.UTC))
-	assert.True(t, status.IsNew, "Previous year's species should be new after reset")
+	assert.False(t, status.IsNew, "Previous year's species should not be new lifetime-wise")
 
 	t.Log("✓ Yearly tracking workflow completed successfully")
 }
@@ -212,8 +212,8 @@ func TestFullWorkflow_SeasonalTracking(t *testing.T) {
 	// but NOT into lifetime tracking (empty from GetNewSpeciesDetections)
 	// Checking on 2024-04-20 (5 days later) with 7-day window:
 	status := tracker.GetSpeciesStatus("Spring_Bird", time.Date(2024, 4, 20, 0, 0, 0, 0, time.UTC))
-	// The main IsNew flag represents lifetime tracking - should be true (never seen in lifetime)
-	assert.True(t, status.IsNew, "Spring bird never seen in lifetime should be new")
+	// The main IsNew flag represents lifetime tracking - should be false (never seen in lifetime)
+	assert.False(t, status.IsNew, "Spring bird never seen in lifetime should not be new")
 	// Check seasonal status - should be true since within 7-day window
 	assert.True(t, status.IsNewThisSeason, "Spring bird within window should be new this season")
 	assert.Equal(t, 5, status.DaysThisSeason, "Should be 5 days since first seen this season")
@@ -226,9 +226,9 @@ func TestFullWorkflow_SeasonalTracking(t *testing.T) {
 	summerTime := time.Date(2024, 6, 21, 0, 0, 0, 0, time.UTC) // Summer solstice
 	tracker.checkAndResetPeriods(summerTime)
 
-	// Spring bird should be new in summer
+	// Spring bird should not be new in summer lifetime-wise
 	status = tracker.GetSpeciesStatus("Spring_Bird", summerTime)
-	assert.True(t, status.IsNew, "Spring bird should be new in summer")
+	assert.False(t, status.IsNew, "Spring bird should not be new in summer lifetime-wise")
 
 	t.Log("✓ Seasonal tracking workflow completed successfully")
 }

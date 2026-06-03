@@ -221,6 +221,41 @@ func TestEnrichFromEventProps_DetectionNotification(t *testing.T) {
 	assert.Equal(t, "detection", enriched.Component)
 }
 
+func TestEnrichFromEventProps_TypeAgnostic(t *testing.T) {
+	t.Parallel()
+	props := map[string]any{
+		PropertySpeciesName:        "Eurasian Blue Tit",
+		PropertyScientificName:     "Cyanistes caeruleus",
+		PropertyConfidence:         "0.97", // confidence as string
+		PropertyLocation:           "backyard",
+		PropertyIsNewSpecies:       true,
+		PropertyDaysSinceFirstSeen: float64(12), // days as float64 (from JSON)
+		PropertyEventTimestamp:     time.Date(2026, 3, 21, 10, 30, 0, 0, time.UTC),
+		PropertyEventMetadata: map[string]any{
+			"note_id":    float64(42),      // note_id as float64 (from JSON)
+			"latitude":   "60.1699",        // lat as string
+			"longitude":  float32(24.9384), // lon as float32
+			"image_url":  "https://example.com/bird.jpg",
+			"begin_time": time.Date(2026, 3, 21, 10, 30, 0, 0, time.UTC),
+		},
+	}
+
+	notif := notification.NewNotification(notification.TypeDetection, notification.PriorityHigh, "Title", "Message")
+	enriched := enrichFromEventProps(notif, notification.TypeDetection, props)
+
+	// Verify top-level metadata
+	assert.Equal(t, "Eurasian Blue Tit", enriched.Metadata["species"])
+	assert.Equal(t, "Cyanistes caeruleus", enriched.Metadata["scientific_name"])
+	assert.Equal(t, 12, enriched.Metadata["days_since_first_seen"])
+
+	// Verify bg_* template data fields
+	assert.Equal(t, "97", enriched.Metadata["bg_confidence_percent"])
+	assert.InDelta(t, 60.1699, enriched.Metadata["bg_latitude"], 1e-9)
+	assert.InDelta(t, 24.9384, enriched.Metadata["bg_longitude"], 1e-4)
+	assert.Equal(t, "42", enriched.Metadata["bg_detection_id"])
+	assert.Contains(t, enriched.Metadata["bg_detection_url"], "/ui/detections/42")
+}
+
 func TestEnrichFromEventProps_NonDetectionUnchanged(t *testing.T) {
 	t.Parallel()
 	props := map[string]any{

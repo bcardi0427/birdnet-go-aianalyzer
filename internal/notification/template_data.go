@@ -51,11 +51,29 @@ func NewTemplateData(event events.DetectionEvent, baseURL string, timeAs24h bool
 
 	// Get lat/lon from metadata
 	var latitude, longitude float64
-	if lat, ok := metadata["latitude"].(float64); ok {
-		latitude = lat
+	if latVal, ok := metadata["latitude"]; ok {
+		switch v := latVal.(type) {
+		case float64:
+			latitude = v
+		case float32:
+			latitude = float64(v)
+		case int:
+			latitude = float64(v)
+		case int64:
+			latitude = float64(v)
+		}
 	}
-	if lon, ok := metadata["longitude"].(float64); ok {
-		longitude = lon
+	if lonVal, ok := metadata["longitude"]; ok {
+		switch v := lonVal.(type) {
+		case float64:
+			longitude = v
+		case float32:
+			longitude = float64(v)
+		case int:
+			longitude = float64(v)
+		case int64:
+			longitude = float64(v)
+		}
 	}
 
 	// Use the event's location string (e.g., "backyard-camera", "RTSP URL", etc.)
@@ -63,8 +81,21 @@ func NewTemplateData(event events.DetectionEvent, baseURL string, timeAs24h bool
 
 	// Get note ID from metadata for detection URL
 	var noteID string
-	if id, ok := metadata["note_id"].(uint); ok {
-		noteID = fmt.Sprintf("%d", id)
+	if idVal, ok := metadata["note_id"]; ok {
+		switch v := idVal.(type) {
+		case uint:
+			noteID = fmt.Sprintf("%d", v)
+		case uint64:
+			noteID = fmt.Sprintf("%d", v)
+		case int:
+			noteID = fmt.Sprintf("%d", v)
+		case int64:
+			noteID = fmt.Sprintf("%d", v)
+		case float64:
+			noteID = fmt.Sprintf("%.0f", v)
+		case string:
+			noteID = v
+		}
 	}
 
 	var detectionPath string

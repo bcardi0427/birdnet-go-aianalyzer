@@ -1,4 +1,3 @@
-//nolint:gocognit,dupl // Table-driven tests have expected complexity and similar structures
 package notification
 
 import (
@@ -6,6 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/tphakala/birdnet-go/internal/events"
 )
 
 // Expected value for redacted credentials in scrubContextMap output
@@ -294,4 +294,31 @@ func TestEnrichWithTemplateData(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestNewTemplateData_TypeAgnostic(t *testing.T) {
+	t.Parallel()
+
+	event, err := events.NewDetectionEvent(
+		"Eurasian Blue Tit",
+		"Cyanistes caeruleus",
+		0.95,
+		"backyard",
+		true,
+		0,
+	)
+	require.NoError(t, err)
+
+	metadata := event.GetMetadata()
+	metadata["note_id"] = float64(123)
+	metadata["latitude"] = float64(42.3601)
+	metadata["longitude"] = float32(-71.0589)
+
+	td := NewTemplateData(event, "http://localhost", true)
+
+	assert.Equal(t, "123", td.DetectionID)
+	assert.Equal(t, "/ui/detections/123", td.DetectionPath)
+	assert.Equal(t, "http://localhost/ui/detections/123", td.DetectionURL)
+	assert.InDelta(t, 42.3601, td.Latitude, 1e-9)
+	assert.InDelta(t, -71.0589, td.Longitude, 1e-4)
 }

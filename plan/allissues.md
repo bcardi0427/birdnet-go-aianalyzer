@@ -16,10 +16,10 @@ These are bugs, crashes, or regressions that affect core functionality, correctn
 
 | Issue | Title | Labels | Key Analysis / Code Location |
 | :--- | :--- | :--- | :--- |
-| [#3250](https://github.com/tphakala/birdnet-go/issues/3250) | bug: Species range filter not working | *bug, confirmed* | `internal/analysis/range_filter.go` |
+| `[DONE]` ~~[#3250](https://github.com/tphakala/birdnet-go/issues/3250)~~ | ~~bug: Species range filter not working~~ | *bug, confirmed* | `internal/analysis/range_filter.go` |
 | [#3243](https://github.com/tphakala/birdnet-go/issues/3243) | bug: After update to nightly-20260523 "New Species" star shows on all detections | *bug, pkg:api* | General |
 | [#3225](https://github.com/tphakala/birdnet-go/issues/3225) | bug: weak detection results | *bug, pkg:birdnet, has-dump* | `internal/classifier/` (model inference) |
-| [#3221](https://github.com/tphakala/birdnet-go/issues/3221) | Webhook push provider receives empty/missing detection metadata for rules-engine (alert) notifications | *bug, pkg:notification* | General |
+| `[DONE]` ~~[#3221](https://github.com/tphakala/birdnet-go/issues/3221)~~ | ~~Webhook push provider receives empty/missing detection metadata for rules-engine (alert) notifications~~ | *bug, pkg:notification* | General |
 | [#3126](https://github.com/tphakala/birdnet-go/issues/3126) | bug: perch v2 checkbox disappeared from audio interface | *bug, pkg:api* | `frontend/src/lib/...` |
 | [#3121](https://github.com/tphakala/birdnet-go/issues/3121) | bug: Perch detection considered new species but same species already exists | *bug, pkg:analysis, translation, has-dump* | General |
 | `[DONE]` ~~[#3103](https://github.com/tphakala/birdnet-go/issues/3103)~~ | ~~bug: After entering weather provider's api, the api is lost even after saving~~ | *bug, pkg:weather* | `internal/api/v2/settings.go` |
@@ -75,12 +75,12 @@ Requires moderate updates to Go logic, new database queries, API endpoints, or m
 
 | Issue | Title | Scope |
 | :--- | :--- | :--- |
-| [#3250](https://github.com/tphakala/birdnet-go/issues/3250) | bug: Species range filter not working | Subsystem Update |
+| `[DONE]` ~~[#3250](https://github.com/tphakala/birdnet-go/issues/3250)~~ | ~~bug: Species range filter not working~~ | Subsystem Update |
 | [#3243](https://github.com/tphakala/birdnet-go/issues/3243) | bug: After update to nightly-20260523 "New Species" star shows on all detections | Subsystem Update |
 | [#3225](https://github.com/tphakala/birdnet-go/issues/3225) | bug: weak detection results | Subsystem Update |
-| [#3221](https://github.com/tphakala/birdnet-go/issues/3221) | Webhook push provider receives empty/missing detection metadata for rules-engine (alert) notifications | Subsystem Update |
+| `[DONE]` ~~[#3221](https://github.com/tphakala/birdnet-go/issues/3221)~~ | ~~Webhook push provider receives empty/missing detection metadata for rules-engine (alert) notifications~~ | Subsystem Update |
 | [#3151](https://github.com/tphakala/birdnet-go/issues/3151) | bug: Species filter drops to 0 and possibilities don't correspond to location | Subsystem Update |
-| [#3126](https://github.com/tphakala/birdnet-go/issues/3126) | bug: perch v2 checkbox disappeared from audio interface | Subsystem Update |
+|`[DONE]` ~~ [#3126](https://github.com/tphakala/birdnet-go/issues/3126) | bug: perch v2 checkbox disappeared from audio interface | Subsystem Update |
 | [#3121](https://github.com/tphakala/birdnet-go/issues/3121) | bug: Perch detection considered new species but same species already exists | Subsystem Update |
 | [#3092](https://github.com/tphakala/birdnet-go/issues/3092) | feat: Migration Explorer - interactive species distribution heatmap | Subsystem Update |
 | [#3000](https://github.com/tphakala/birdnet-go/issues/3000) | bug: Let's Encrypt (autotls) configuration not working | Subsystem Update |

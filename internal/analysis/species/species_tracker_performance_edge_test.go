@@ -268,7 +268,7 @@ func TestCacheEvictionUnderPressure(t *testing.T) {
 
 		// Access species to populate cache
 		status := tracker.GetSpeciesStatus(speciesName, currentTime)
-		assert.GreaterOrEqual(t, status.DaysSinceFirst, 0)
+		assert.GreaterOrEqual(t, status.DaysSinceFirst, -1)
 
 		// Every 100 species, check memory didn't grow unboundedly
 		if i%100 == 0 && i > 0 {

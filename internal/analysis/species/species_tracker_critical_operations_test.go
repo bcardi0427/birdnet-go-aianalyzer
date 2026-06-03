@@ -552,8 +552,8 @@ func TestGetBatchSpeciesStatus_CriticalReliability(t *testing.T) {
 			for _, species := range tt.speciesList {
 				status, exists := results[species]
 				assert.True(t, exists, "Species %s should be in results", species)
-				assert.GreaterOrEqual(t, status.DaysSinceFirst, 0,
-					"Days should never be negative")
+				assert.GreaterOrEqual(t, status.DaysSinceFirst, -1,
+					"Days should be -1 or greater")
 
 				// Verify status consistency
 				switch species {

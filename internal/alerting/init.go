@@ -100,8 +100,10 @@ func enrichFromEventProps(notif *notification.Notification, notifType notificati
 	if isNew, ok := props[PropertyIsNewSpecies].(bool); ok {
 		notif = notif.WithMetadata("is_new_species", isNew)
 	}
-	if days, ok := props[PropertyDaysSinceFirstSeen].(int); ok {
-		notif = notif.WithMetadata("days_since_first_seen", days)
+	if daysVal, ok := props[PropertyDaysSinceFirstSeen]; ok {
+		if f, err := toFloat64(daysVal); err == nil {
+			notif = notif.WithMetadata("days_since_first_seen", int(f))
+		}
 	}
 
 	// Build TemplateData for bg_* metadata fields
@@ -177,11 +179,15 @@ func buildTemplateDataFromProps(props map[string]any) *notification.TemplateData
 	// Location data from raw metadata
 	var latitude, longitude float64
 	if rawMeta != nil {
-		if lat, ok := rawMeta["latitude"].(float64); ok {
-			latitude = lat
+		if lat, ok := rawMeta["latitude"]; ok {
+			if f, err := toFloat64(lat); err == nil {
+				latitude = f
+			}
 		}
-		if lon, ok := rawMeta["longitude"].(float64); ok {
-			longitude = lon
+		if lon, ok := rawMeta["longitude"]; ok {
+			if f, err := toFloat64(lon); err == nil {
+				longitude = f
+			}
 		}
 	}
 
@@ -190,8 +196,21 @@ func buildTemplateDataFromProps(props map[string]any) *notification.TemplateData
 	// Note ID for detection URL
 	var noteID string
 	if rawMeta != nil {
-		if id, ok := rawMeta["note_id"].(uint); ok {
-			noteID = fmt.Sprintf("%d", id)
+		if idVal, ok := rawMeta["note_id"]; ok {
+			switch v := idVal.(type) {
+			case uint:
+				noteID = fmt.Sprintf("%d", v)
+			case uint64:
+				noteID = fmt.Sprintf("%d", v)
+			case int:
+				noteID = fmt.Sprintf("%d", v)
+			case int64:
+				noteID = fmt.Sprintf("%d", v)
+			case float64:
+				noteID = fmt.Sprintf("%.0f", v)
+			case string:
+				noteID = v
+			}
 		}
 	}
 
@@ -215,7 +234,12 @@ func buildTemplateDataFromProps(props map[string]any) *notification.TemplateData
 	}
 
 	commonName, _ := props[PropertySpeciesName].(string)
-	daysSinceFirstSeen, _ := props[PropertyDaysSinceFirstSeen].(int)
+	var daysSinceFirstSeen int
+	if daysVal, ok := props[PropertyDaysSinceFirstSeen]; ok {
+		if f, err := toFloat64(daysVal); err == nil {
+			daysSinceFirstSeen = int(f)
+		}
+	}
 
 	return &notification.TemplateData{
 		CommonName:         commonName,

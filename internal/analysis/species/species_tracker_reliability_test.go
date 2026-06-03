@@ -175,7 +175,7 @@ func performRandomOperation(tracker *SpeciesTracker, species []string,
 
 	case 1: // GetSpeciesStatus
 		status := tracker.GetSpeciesStatus(speciesName, detectionTime)
-		if status.DaysSinceFirst >= 0 {
+		if status.DaysSinceFirst >= -1 {
 			atomic.AddInt64(successCount, 1)
 		} else {
 			atomic.AddInt64(errorCount, 1)

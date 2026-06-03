@@ -802,7 +802,7 @@ func TestSeasonMapInitializationOnTransition(t *testing.T) {
 	// This should not panic even if summer map doesn't exist
 	status := tracker.GetSpeciesStatus("New Species", summerTime)
 	assert.Equal(t, "summer", status.CurrentSeason, "Should correctly identify summer season")
-	assert.True(t, status.IsNewThisSeason, "Should be new this season (no prior detection)")
+	assert.False(t, status.IsNewThisSeason, "Should not be new this season (completely untracked)")
 	assert.Nil(t, status.FirstThisSeason, "FirstThisSeason should be nil for undetected species")
 
 	// Verify that getting status doesn't accidentally initialize the map

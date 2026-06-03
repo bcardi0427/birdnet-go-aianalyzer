@@ -140,21 +140,6 @@ func TestDetectionNotificationConsumer(t *testing.T) {
 func TestDetectionNotificationConsumer_PreSanitizedLocations(t *testing.T) {
 	t.Parallel()
 
-	// Create notification service
-	config := &ServiceConfig{
-		MaxNotifications:   100,
-		CleanupInterval:    5 * time.Minute,
-		RateLimitWindow:    1 * time.Minute,
-		RateLimitMaxEvents: 100,
-	}
-	service := NewService(config)
-	require.NotNil(t, service)
-	defer service.Stop()
-
-	// Create detection consumer
-	consumer := NewDetectionNotificationConsumer(service)
-	require.NotNil(t, consumer)
-
 	// Test cases for pre-sanitized locations from audio source registry
 	// In the new architecture, detection events already contain sanitized display names
 	testCases := []struct {
@@ -191,6 +176,21 @@ func TestDetectionNotificationConsumer_PreSanitizedLocations(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			// Create notification service
+			config := &ServiceConfig{
+				MaxNotifications:   100,
+				CleanupInterval:    5 * time.Minute,
+				RateLimitWindow:    1 * time.Minute,
+				RateLimitMaxEvents: 100,
+			}
+			service := NewService(config)
+			require.NotNil(t, service)
+			defer service.Stop()
+
+			// Create detection consumer
+			consumer := NewDetectionNotificationConsumer(service)
+			require.NotNil(t, consumer)
+
 			// Create a new species detection event with pre-sanitized location
 			// This simulates how the real system works: detection events contain
 			// already-sanitized display names from the audio source registry

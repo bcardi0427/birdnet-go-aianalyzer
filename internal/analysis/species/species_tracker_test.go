@@ -68,8 +68,8 @@ func TestSpeciesTracker_NewSpecies(t *testing.T) {
 
 	t.Run("new species not in database", func(t *testing.T) {
 		status := tracker.GetSpeciesStatus("Cyanistes caeruleus", currentTime)
-		assert.True(t, status.IsNew, "Expected Cyanistes caeruleus to be a new species")
-		assert.Equal(t, 0, status.DaysSinceFirst, "Expected DaysSinceFirst to be 0 for new species")
+		assert.False(t, status.IsNew, "Cyanistes caeruleus should not be considered new (not yet detected/untracked)")
+		assert.Equal(t, -1, status.DaysSinceFirst, "Expected DaysSinceFirst to be -1 for untracked species")
 	})
 
 	t.Run("old species outside window", func(t *testing.T) {
@@ -254,8 +254,8 @@ func TestSpeciesTracker_EdgeCases(t *testing.T) {
 
 		// Test empty species name
 		status := tracker.GetSpeciesStatus("", currentTime)
-		assert.True(t, status.IsNew, "Empty species name should be considered new (not in database)")
-		assert.Equal(t, 0, status.DaysSinceFirst, "Expected DaysSinceFirst to be 0 for empty species name")
+		assert.False(t, status.IsNew, "Empty species name should not be considered new when untracked")
+		assert.Equal(t, -1, status.DaysSinceFirst, "Expected DaysSinceFirst to be -1 for empty species name")
 	})
 }
 

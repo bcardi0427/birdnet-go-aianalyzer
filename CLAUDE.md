@@ -8,7 +8,7 @@ BirdNET-Go: Go implementation of BirdNET for real-time bird sound identification
 
 To build or run tests on Windows, CGO is required. The compiler and library paths are:
 
-- **MSYS2 UCRT64 GCC compiler**: `C:\msys64\ucrt64\bin` (must be added to `PATH`)
+- **MSYS2 UCRT64 GCC compiler**: `F:\msys64\ucrt64\bin` (must be added to `PATH`)
 - **TensorFlow Lite C Headers**: Path containing headers, e.g. `%TENSORFLOW_PATH%` (passed via `CGO_CFLAGS="-I%TENSORFLOW_PATH%"`)
 - **TensorFlow Lite C DLL**: Path containing `tensorflowlite_c.dll`, e.g. `%TENSORFLOW_PATH%` (must be added to `PATH` to run the binary/tests)
 - **CGO Enabled**: `CGO_ENABLED="1"`

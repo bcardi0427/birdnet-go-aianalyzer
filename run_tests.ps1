@@ -12,7 +12,7 @@ if (-not (Test-Path -Path $env:TENSORFLOW_PATH)) {
     exit 1
 }
 
-$env:PATH = "C:\msys64\ucrt64\bin;$scriptDir;" + $env:PATH
+$env:PATH = "F:\msys64\ucrt64\bin;$scriptDir;" + $env:PATH
 $env:CGO_ENABLED = "1"
 $env:CGO_CFLAGS = "-I$env:TENSORFLOW_PATH"
 

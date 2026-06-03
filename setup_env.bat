@@ -12,7 +12,7 @@ if not exist "%TENSORFLOW_PATH%" (
     exit /b 1
 )
 
-set "PATH=C:\msys64\ucrt64\bin;%~dp0;%PATH%"
+set "PATH=F:\msys64\ucrt64\bin;%~dp0;%PATH%"
 set "CGO_ENABLED=1"
 set "CGO_CFLAGS=-I%TENSORFLOW_PATH%"
 echo Environment configured for MSYS2 UCRT64 GCC and TensorFlow Lite headers.

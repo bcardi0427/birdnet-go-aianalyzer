@@ -4,7 +4,7 @@ setlocal
 REM Start BirdNET-Go from this repository directory.
 REM Adds MSYS2 UCRT64 to PATH so required native DLL dependencies can be found.
 set "APP_DIR=%~dp0"
-set "PATH=C:\msys64\ucrt64\bin;%APP_DIR%;%PATH%"
+set "PATH=F:\msys64\ucrt64\bin;%APP_DIR%;%PATH%"
 
 REM Attempt to auto-detect FFmpeg on Windows and expose it to the BirdNET-Go process
 for /f "tokens=*" %%p in ('where ffmpeg 2^>nul') do (

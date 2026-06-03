@@ -94,6 +94,7 @@ export interface RangeFilterSettings {
   passUnmappedSpecies: boolean;
   speciesCount: number | null;
   species: string[];
+  modelPath?: string;
 }
 
 /** Species entry returned by the range filter test endpoint */
@@ -559,6 +560,7 @@ export interface Dashboard {
   logoStyle?: string; // Logo display style: "gradient" or "solid"
   layout?: DashboardLayout; // Configurable dashboard element layout
   defaultAudioGain?: number; // Default playback gain in dB (0-24)
+  basePath?: string;
 }
 
 // Dashboard layout configuration
@@ -848,6 +850,7 @@ function createEmptySettings(): SettingsFormData {
         passUnmappedSpecies: false,
         speciesCount: null,
         species: [],
+        modelPath: '',
       },
     },
     bat: {
@@ -995,6 +998,7 @@ function createEmptySettings(): SettingsFormData {
           ],
         },
         defaultAudioGain: 0,
+        basePath: '',
       },
     },
     webServer: {},

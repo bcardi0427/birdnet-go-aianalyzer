@@ -384,6 +384,11 @@ func (s *AudioSettings) applyFfmpegFormatFallback() {
 
 // validateAudioSettings validates the audio settings and sets ffmpeg and sox paths
 func validateAudioSettings(settings *AudioSettings) error {
+	// If export path is empty or whitespace, fall back to "clips/"
+	if strings.TrimSpace(settings.Export.Path) == "" {
+		settings.Export.Path = "clips/"
+	}
+
 	// Validate and determine the effective FFmpeg path
 	validatedFfmpegPath, ffmpegErr := ValidateToolPath(settings.FfmpegPath, GetFfmpegBinaryName())
 	if ffmpegErr != nil {

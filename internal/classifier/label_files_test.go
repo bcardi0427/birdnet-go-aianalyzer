@@ -16,7 +16,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"path/filepath"
+	"path"
 	"strings"
 	"testing"
 	"unicode"
@@ -60,7 +60,7 @@ func TestLoadAllV24LabelFiles(t *testing.T) {
 			filename, err := conf.GetLabelFilename(modelVersion, localeCode)
 			require.NoError(t, err, "Failed to get filename for locale %s", localeCode)
 
-			expectedPattern := filepath.Join("V2.4", "BirdNET_GLOBAL_6K_V2.4_Labels_"+fileLocale+".txt")
+			expectedPattern := path.Join("V2.4", "BirdNET_GLOBAL_6K_V2.4_Labels_"+fileLocale+".txt")
 			assert.Equal(t, expectedPattern, filename, "Unexpected filename for locale %s", localeCode)
 		})
 	}
@@ -215,13 +215,13 @@ func TestGetLabelFilename(t *testing.T) {
 		{
 			modelVersion: BirdNET_V2_4,
 			localeCode:   "en-us",
-			expected:     filepath.Join("V2.4", "BirdNET_GLOBAL_6K_V2.4_Labels_en_us.txt"),
+			expected:     path.Join("V2.4", "BirdNET_GLOBAL_6K_V2.4_Labels_en_us.txt"),
 			expectError:  false,
 		},
 		{
 			modelVersion: BirdNET_V2_4,
 			localeCode:   "de",
-			expected:     filepath.Join("V2.4", "BirdNET_GLOBAL_6K_V2.4_Labels_de.txt"),
+			expected:     path.Join("V2.4", "BirdNET_GLOBAL_6K_V2.4_Labels_de.txt"),
 			expectError:  false,
 		},
 		{

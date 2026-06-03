@@ -8,6 +8,7 @@
 import { CANDIDATE_SAMPLE_RATES } from '$lib/utils/audio/sampleRate';
 import type {
   BirdNetSettings,
+  RangeFilterSettings,
   AudioSettings,
   SecuritySettings,
   SpeciesSettings,
@@ -238,6 +239,15 @@ export function coerceBirdNetSettings(settings: PartialBirdNetSettings): Partial
     coerced.threads = coerceNumber(settings.threads, 0, 32, 0);
   }
 
+  // Range filter settings
+  if (settings.rangeFilter && typeof settings.rangeFilter === 'object') {
+    const rf = settings.rangeFilter as unknown as UnknownSettings;
+    coerced.rangeFilter = {
+      ...rf,
+      modelPath: coerceString(rf.modelPath, ''),
+    } as unknown as RangeFilterSettings;
+  }
+
   // Dynamic threshold nested settings
   if (settings.dynamicThreshold && typeof settings.dynamicThreshold === 'object') {
     const dt = settings.dynamicThreshold as UnknownSettings;
@@ -361,6 +371,18 @@ export function coerceAudioSettings(settings: PartialAudioSettings): PartialAudi
 
     // Always coerce enabled to boolean to ensure stable type
     coercedExport.enabled = coerceBoolean(exp.enabled, false);
+
+    // If export.path is omitted or empty/whitespace, default it to "clips/"
+    const rawPath = exp.path;
+    if (
+      rawPath === undefined ||
+      rawPath === null ||
+      (typeof rawPath === 'string' && rawPath.trim() === '')
+    ) {
+      coercedExport.path = 'clips/';
+    } else {
+      coercedExport.path = coerceString(rawPath, 'clips/');
+    }
 
     // Clamp capture length between 10 and 60 seconds (backend validation)
     if ('length' in exp) {
@@ -806,6 +828,14 @@ export function coerceSettings(section: string, data: UnknownSettings): UnknownS
         coercedRealtime.falsePositiveFilter = coerceFalsePositiveFilterSettings(
           data.falsePositiveFilter as PartialFalsePositiveFilterSettings
         );
+      }
+
+      if (Object.prototype.hasOwnProperty.call(data, 'dashboard')) {
+        const db = data.dashboard as Record<string, unknown>;
+        coercedRealtime.dashboard = {
+          ...db,
+          basePath: coerceString(db.basePath, ''),
+        };
       }
 
       // Backfill extendedCapture defaults for legacy configs

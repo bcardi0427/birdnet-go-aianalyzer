@@ -4,6 +4,21 @@ This document describes how to write consistent, maintainable tests for BirdNET-
 
 ## Critical Rules
 
+### Windows TensorFlow & CGO Test Setup
+
+For packages that depend on TensorFlow Lite (such as `internal/classifier/...`), running tests on Windows requires CGO and the correct pathing setup. 
+
+- **Environment Variable**: `TENSORFLOW_PATH` must be set to `F:\AntiGravity Sources\tensorflow\tensorflow`.
+- **MSYS2 Compiler**: The GCC compiler path `C:\msys64\ucrt64\bin` must be in the `PATH`.
+- **Test Runner Script**: Always run tests using the `.\run_tests.ps1` script. It automatically enables CGO (`CGO_ENABLED="1"`) and configures `CGO_CFLAGS` with your `TENSORFLOW_PATH`.
+
+#### Running Tests:
+```powershell
+# In PowerShell:
+$env:TENSORFLOW_PATH="F:\AntiGravity Sources\tensorflow\tensorflow"
+.\run_tests.ps1 ./internal/classifier/...
+```
+
 ### Absolute Requirements
 
 1. **All tests MUST use testify** - Use `assert` and `require` from `github.com/stretchr/testify`

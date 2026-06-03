@@ -508,7 +508,7 @@ func TestApplySigmoidToPredictions(t *testing.T) {
 				t.Helper()
 				// Higher sensitivity should give higher confidence
 				sigmoid1 := 1.0 / (1.0 + math.Exp(-1.0))
-				sigmoid2 := 1.0 / (1.0 + math.Exp(-2.0))
+				sigmoid2 := 1.0 / (1.0 + math.Exp(-(1.0 + (2.0-1.0)*10.0)))
 				assert.Greater(t, results[0], float32(sigmoid1), "Higher sensitivity should increase confidence")
 				assert.InDelta(t, sigmoid2, results[0], 0.0001)
 			},

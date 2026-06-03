@@ -40,7 +40,7 @@ func TestPersistMigration_EncryptsSecrets(t *testing.T) {
 	assert.Equal(t, "super-secret-openai-api-key", s.AI.APIKey)
 	assert.Equal(t, "plaintext-session-secret", s.Security.SessionSecret)
 
-	// Read the config file from disk and unmarshal into a raw map to verify encryption
+	// Read the config file from disk and unmarshal into a raw map to verify they are cleared/empty in config.yaml
 	data, err := os.ReadFile(configFile)
 	require.NoError(t, err)
 
@@ -48,18 +48,34 @@ func TestPersistMigration_EncryptsSecrets(t *testing.T) {
 	err = yaml.Unmarshal(data, &raw)
 	require.NoError(t, err)
 
-	// Verify that AI.APIKey and Security.SessionSecret are encrypted (prefixed with enc:v1:)
 	aiSection, ok := raw["ai"].(map[string]any)
 	require.True(t, ok)
 	apiKeyVal, ok := aiSection["apikey"].(string)
 	require.True(t, ok)
-	assert.True(t, strings.HasPrefix(apiKeyVal, configEncryptionPrefix), "API key should be encrypted, got: %s", apiKeyVal)
+	assert.Empty(t, apiKeyVal, "API key should be cleared in config.yaml, got: %s", apiKeyVal)
 
 	securitySection, ok := raw["security"].(map[string]any)
 	require.True(t, ok)
 	sessionSecretVal, ok := securitySection["sessionsecret"].(string)
 	require.True(t, ok)
-	assert.True(t, strings.HasPrefix(sessionSecretVal, configEncryptionPrefix), "Session secret should be encrypted, got: %s", sessionSecretVal)
+	assert.Empty(t, sessionSecretVal, "Session secret should be cleared in config.yaml, got: %s", sessionSecretVal)
+
+	// Verify they are encrypted in secrets.yaml
+	secretsFile := filepath.Join(filepath.Dir(configFile), "secrets.yaml")
+	secretsData, err := os.ReadFile(secretsFile)
+	require.NoError(t, err)
+
+	var store SecretStore
+	err = yaml.Unmarshal(secretsData, &store)
+	require.NoError(t, err)
+
+	encAPIKey, ok := store.Secrets["ai.api_key"]
+	require.True(t, ok)
+	assert.True(t, strings.HasPrefix(encAPIKey, configEncryptionPrefix), "API key in secrets.yaml should be encrypted, got: %s", encAPIKey)
+
+	encSessionSecret, ok := store.Secrets["security.session_secret"]
+	require.True(t, ok)
+	assert.True(t, strings.HasPrefix(encSessionSecret, configEncryptionPrefix), "Session secret in secrets.yaml should be encrypted, got: %s", encSessionSecret)
 }
 
 func TestEnsureSessionSecret_EncryptsSecrets(t *testing.T) {
@@ -91,7 +107,7 @@ func TestEnsureSessionSecret_EncryptsSecrets(t *testing.T) {
 	assert.False(t, strings.HasPrefix(s.Security.SessionSecret, configEncryptionPrefix))
 	assert.Equal(t, "another-secret-api-key", s.AI.APIKey)
 
-	// Read the config file from disk and unmarshal into a raw map to verify encryption
+	// Read the config file from disk and unmarshal into a raw map to verify they are cleared/empty in config.yaml
 	data, err := os.ReadFile(configFile)
 	require.NoError(t, err)
 
@@ -99,16 +115,32 @@ func TestEnsureSessionSecret_EncryptsSecrets(t *testing.T) {
 	err = yaml.Unmarshal(data, &raw)
 	require.NoError(t, err)
 
-	// Verify that AI.APIKey and Security.SessionSecret are encrypted (prefixed with enc:v1:)
 	aiSection, ok := raw["ai"].(map[string]any)
 	require.True(t, ok)
 	apiKeyVal, ok := aiSection["apikey"].(string)
 	require.True(t, ok)
-	assert.True(t, strings.HasPrefix(apiKeyVal, configEncryptionPrefix), "API key should be encrypted, got: %s", apiKeyVal)
+	assert.Empty(t, apiKeyVal, "API key should be cleared in config.yaml, got: %s", apiKeyVal)
 
 	securitySection, ok := raw["security"].(map[string]any)
 	require.True(t, ok)
 	sessionSecretVal, ok := securitySection["sessionsecret"].(string)
 	require.True(t, ok)
-	assert.True(t, strings.HasPrefix(sessionSecretVal, configEncryptionPrefix), "Session secret should be encrypted, got: %s", sessionSecretVal)
+	assert.Empty(t, sessionSecretVal, "Session secret should be cleared in config.yaml, got: %s", sessionSecretVal)
+
+	// Verify they are encrypted in secrets.yaml
+	secretsFile := filepath.Join(filepath.Dir(configFile), "secrets.yaml")
+	secretsData, err := os.ReadFile(secretsFile)
+	require.NoError(t, err)
+
+	var store SecretStore
+	err = yaml.Unmarshal(secretsData, &store)
+	require.NoError(t, err)
+
+	encAPIKey, ok := store.Secrets["ai.api_key"]
+	require.True(t, ok)
+	assert.True(t, strings.HasPrefix(encAPIKey, configEncryptionPrefix), "API key in secrets.yaml should be encrypted, got: %s", encAPIKey)
+
+	encSessionSecret, ok := store.Secrets["security.session_secret"]
+	require.True(t, ok)
+	assert.True(t, strings.HasPrefix(encSessionSecret, configEncryptionPrefix), "Session secret in secrets.yaml should be encrypted, got: %s", encSessionSecret)
 }

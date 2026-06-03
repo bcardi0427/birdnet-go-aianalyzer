@@ -133,7 +133,17 @@ func (bn *BirdNET) Predict(ctx context.Context, sample [][]float32) ([]datastore
 
 // customSigmoid applies a sigmoid function with sensitivity adjustment to a value.
 func customSigmoid(x, sensitivity float64) float64 {
-	return 1.0 / (1.0 + math.Exp(-sensitivity*x))
+	transformedBias := (sensitivity - 1.0) * 10.0
+	val := x + transformedBias
+
+	// Apply clipping for numerical stability
+	if val < -20.0 {
+		val = -20.0
+	} else if val > 20.0 {
+		val = 20.0
+	}
+
+	return 1.0 / (1.0 + math.Exp(-val))
 }
 
 // sortResults sorts a slice of Result by their confidence in descending order.

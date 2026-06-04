@@ -1799,7 +1799,7 @@ check_existing_installation_owner() {
 TELEMETRY_ENABLED=false
 TELEMETRY_INSTALL_ID=""
 TELEMETRY_CONFIGURED="false"
-SENTRY_DSN="https://b9269b6c0f8fae154df65be5a97e0435@o4509553065525248.ingest.de.sentry.io/4509553112186960"
+SENTRY_DSN=""
 
 # Function to generate anonymous install ID
 generate_install_id() {
@@ -2034,7 +2034,7 @@ EOF
 # Function to send telemetry event
 send_telemetry_event() {
     # Check if telemetry is enabled
-    if [ "$TELEMETRY_ENABLED" != "true" ]; then
+    if [ "$TELEMETRY_ENABLED" != "true" ] || [ -z "$SENTRY_DSN" ]; then
         return 0
     fi
 

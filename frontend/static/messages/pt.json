@@ -2066,12 +2066,12 @@
         },
         "githubRequired": {
           "title": "Obrigatório: Issue do GitHub para envios de suporte",
-          "description": "<strong>Envios de suporte requerem um número de issue do GitHub.</strong> Por favor <a href=\"https://github.com/tphakala/birdnet-go/issues/new\" target=\"_blank\" class=\"underline font-semibold\">crie um issue no GitHub</a> descrevendo seu problema <strong>antes</strong> de gerar um relatório de suporte. Sem um issue vinculado, os desenvolvedores não podem agir sobre seus dados de suporte."
+          "description": "<strong>Envios de suporte requerem um número de issue do GitHub.</strong> Por favor <a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues/new\" target=\"_blank\" class=\"underline font-semibold\">crie um issue no GitHub</a> descrevendo seu problema <strong>antes</strong> de gerar um relatório de suporte. Sem um issue vinculado, os desenvolvedores não podem agir sobre seus dados de suporte."
         },
         "githubIssue": {
           "label": "Número do issue do GitHub",
           "placeholder": "#123",
-          "helper": "<a href=\"https://github.com/tphakala/birdnet-go/issues\" target=\"_blank\" class=\"link link-primary\">Ver issues existentes</a> ou <a href=\"https://github.com/tphakala/birdnet-go/issues/new\" target=\"_blank\" class=\"link link-primary\">criar um novo issue</a> primeiro"
+          "helper": "<a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues\" target=\"_blank\" class=\"link link-primary\">Ver issues existentes</a> ou <a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues/new\" target=\"_blank\" class=\"link link-primary\">criar um novo issue</a> primeiro"
         },
         "whatsIncluded": {
           "title": "O que está incluído no relatório:",

@@ -127,7 +127,7 @@ func enrichEventWithUptime(event *sentry.Event) {
 
 // sentryDSN is the Sentry DSN for the BirdNET-Go project
 // Defined at package level to avoid duplication across initialization functions
-const sentryDSN = "https://b9269b6c0f8fae154df65be5a97e0435@o4509553065525248.ingest.de.sentry.io/4509553112186960"
+const sentryDSN = ""
 
 // sentryFrontendDSN is the Sentry DSN for the BirdNET-Go frontend.
 // Currently points to the same project as the backend. To separate,

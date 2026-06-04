@@ -2102,12 +2102,12 @@
         },
         "githubRequired": {
           "title": "Krav: GitHub-ärende för supportuppladdningar",
-          "description": "<strong>Supportuppladdningar kräver ett GitHub-ärendenummer.</strong> Vänligen <a href=\"https://github.com/tphakala/birdnet-go/issues/new\" target=\"_blank\" class=\"underline font-semibold\">skapa ett GitHub-ärende</a> som beskriver ditt problem <strong>innan</strong> du genererar en supportrapport. Utan ett länkat ärende kan utvecklare inte agera på din supportdata."
+          "description": "<strong>Supportuppladdningar kräver ett GitHub-ärendenummer.</strong> Vänligen <a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues/new\" target=\"_blank\" class=\"underline font-semibold\">skapa ett GitHub-ärende</a> som beskriver ditt problem <strong>innan</strong> du genererar en supportrapport. Utan ett länkat ärende kan utvecklare inte agera på din supportdata."
         },
         "githubIssue": {
           "label": "GitHub-ärendenummer",
           "placeholder": "t.ex. 123 eller #123",
-          "helper": "<a href=\"https://github.com/tphakala/birdnet-go/issues\" target=\"_blank\" class=\"link link-primary\">Visa befintliga ärenden</a> eller <a href=\"https://github.com/tphakala/birdnet-go/issues/new\" target=\"_blank\" class=\"link link-primary\">skapa ett nytt ärende</a> först"
+          "helper": "<a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues\" target=\"_blank\" class=\"link link-primary\">Visa befintliga ärenden</a> eller <a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues/new\" target=\"_blank\" class=\"link link-primary\">skapa ett nytt ärende</a> först"
         },
         "whatsIncluded": {
           "title": "Vad som ingår i rapporten:",

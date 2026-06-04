@@ -965,7 +965,7 @@ CONFIGURED_TZ=""
 # Note: Reusing same telemetry system as Docker version for consistency
 TELEMETRY_ENABLED=false
 TELEMETRY_INSTALL_ID=""
-SENTRY_DSN="https://b9269b6c0f8fae154df65be5a97e0435@o4509553065525248.ingest.de.sentry.io/4509553112186960"
+SENTRY_DSN=""
 
 # Function to generate anonymous install ID
 generate_install_id() {
@@ -994,7 +994,7 @@ load_telemetry_config() {
 # Function to send telemetry event (reusing same telemetry system)
 send_telemetry_event() {
     # Check if telemetry is enabled
-    if [ "$TELEMETRY_ENABLED" != "true" ]; then
+    if [ "$TELEMETRY_ENABLED" != "true" ] || [ -z "$SENTRY_DSN" ]; then
         return 0
     fi
     

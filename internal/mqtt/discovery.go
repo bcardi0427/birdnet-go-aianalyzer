@@ -371,7 +371,7 @@ func (p *Publisher) defaultOrigin() *DiscoveryOrigin {
 	return &DiscoveryOrigin{
 		Name:       "BirdNET-Go",
 		SWVersion:  p.config.Version,
-		SupportURL: "https://github.com/tphakala/birdnet-go",
+		SupportURL: "https://github.com/bcardi0427/birdnet-go-aianalyzer",
 	}
 }
 

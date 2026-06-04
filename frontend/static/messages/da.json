@@ -2102,12 +2102,12 @@
         },
         "githubRequired": {
           "title": "Påkrævet: GitHub-issue til supportuploads",
-          "description": "<strong>Supportuploads kræver et GitHub-issuenummer.</strong> <a href=\"https://github.com/tphakala/birdnet-go/issues/new\" target=\"_blank\" class=\"underline font-semibold\">Opret venligst et GitHub-issue</a>, der beskriver dit problem, <strong>før</strong> du genererer en supportrapport. Uden et tilknyttet issue kan udviklere ikke handle på dine supportdata."
+          "description": "<strong>Supportuploads kræver et GitHub-issuenummer.</strong> <a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues/new\" target=\"_blank\" class=\"underline font-semibold\">Opret venligst et GitHub-issue</a>, der beskriver dit problem, <strong>før</strong> du genererer en supportrapport. Uden et tilknyttet issue kan udviklere ikke handle på dine supportdata."
         },
         "githubIssue": {
           "label": "GitHub-issuenummer",
           "placeholder": "f.eks. 123 eller #123",
-          "helper": "<a href=\"https://github.com/tphakala/birdnet-go/issues\" target=\"_blank\" class=\"link link-primary\">Se eksisterende issues</a> eller <a href=\"https://github.com/tphakala/birdnet-go/issues/new\" target=\"_blank\" class=\"link link-primary\">opret et nyt issue</a> først"
+          "helper": "<a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues\" target=\"_blank\" class=\"link link-primary\">Se eksisterende issues</a> eller <a href=\"https://github.com/bcardi0427/birdnet-go-aianalyzer/issues/new\" target=\"_blank\" class=\"link link-primary\">opret et nyt issue</a> først"
         },
         "whatsIncluded": {
           "title": "Hvad er inkluderet i rapporten:",

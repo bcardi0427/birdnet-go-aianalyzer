@@ -50,4 +50,5 @@ rollout-*.json
 birdnet-go.zip
 /*.html
 /*.pdf
-/*.dll
+/*.dll
+AGENTS.md

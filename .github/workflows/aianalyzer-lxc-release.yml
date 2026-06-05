@@ -17,6 +17,7 @@ on:
 
 permissions:
   contents: write
+  packages: write
 
 jobs:
   build:
@@ -176,3 +177,34 @@ jobs:
           overwrite_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  get-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+      - name: Get version
+        id: get_version
+        run: |
+          git fetch --tags --force || true
+          VERSION=$(git describe --tags --always 2>/dev/null || cat version.txt | awk '{print $NF}' || echo "latest")
+          echo "VERSION=${VERSION}" >> ${GITHUB_ENV}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+  docker:
+    needs: get-version
+    uses: ./.github/workflows/docker-build-push.yml
+    with:
+      tag-strategy: "release"
+      version: ${{ needs.get-version.outputs.version }}
+      create-latest-tag: true
+      platforms: '["linux/amd64", "linux/arm64"]'
+      push-to-ghcr: true
+      push-to-dockerhub: true
+      cleanup-old-images: false
+      keep-images-count: 14
+    secrets: inherit

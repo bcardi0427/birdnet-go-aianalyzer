@@ -51,4 +51,6 @@ birdnet-go.zip
 /*.html
 /*.pdf
 /*.dll
-AGENTS.md
+AGENTS.md
+.cursor/
+.devcontainer/

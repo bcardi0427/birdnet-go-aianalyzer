@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 	"time"
 
@@ -17,6 +18,8 @@ import (
 
 // Shared context for tests in this file
 var ctx = context.Background()
+
+const osWindows = "windows"
 
 // TestTokenPersistence tests saving and loading of access tokens
 func TestTokenPersistence(t *testing.T) {
@@ -75,9 +78,11 @@ func TestTokenPersistence(t *testing.T) {
 	require.NoError(t, err, "Failed to parse tokens file")
 
 	// Verify file permissions
-	info, err := os.Stat(filepath.Join(tempDir, "tokens.json"))
-	require.NoError(t, err, "Failed to stat tokens file")
-	assert.Equal(t, os.FileMode(0o600), info.Mode().Perm(), "Tokens file should have 0600 permissions")
+	if runtime.GOOS != osWindows {
+		info, err := os.Stat(filepath.Join(tempDir, "tokens.json"))
+		require.NoError(t, err, "Failed to stat tokens file")
+		assert.Equal(t, os.FileMode(0o600), info.Mode().Perm(), "Tokens file should have 0600 permissions")
+	}
 }
 
 // TestFilesystemStore tests that the FilesystemStore is initialized correctly
@@ -117,7 +122,9 @@ func TestFilesystemStore(t *testing.T) {
 	info, err := os.Stat(sessionsDir)
 	require.NoError(t, err, "Failed to stat sessions directory")
 	assert.True(t, info.IsDir(), "Sessions path should be a directory")
-	assert.Equal(t, os.FileMode(DirPermissions), info.Mode().Perm(), "Sessions directory should have secure permissions")
+	if runtime.GOOS != osWindows {
+		assert.Equal(t, os.FileMode(DirPermissions), info.Mode().Perm(), "Sessions directory should have secure permissions")
+	}
 }
 
 // TestLocalNetworkCookieStore tests configuring cookie store for local network access
@@ -234,7 +241,7 @@ func TestLoadCorruptedTokensFile(t *testing.T) {
 // Let's also add a test for unwritable directories
 func TestUnwritableTokensDirectory(t *testing.T) {
 	// Skip on Windows as permission handling differs
-	if os.Getenv("GOOS") == "windows" {
+	if runtime.GOOS == osWindows {
 		t.Skip("Skipping on Windows as permission handling is different")
 	}
 

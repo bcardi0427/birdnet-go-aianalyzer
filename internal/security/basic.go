@@ -89,8 +89,8 @@ func (s *OAuth2Server) configureLocalNetworkCookieStore() {
 		// Calculate MaxAge in seconds from the configured session duration
 		// If not configured, default to 7 days
 		maxAge := DefaultSessionMaxAgeSeconds
-		if s.Settings.Security.SessionDuration > 0 {
-			maxAge = int(s.Settings.Security.SessionDuration.Seconds())
+		if s.CurrentSettings().Security.SessionDuration > 0 {
+			maxAge = int(s.CurrentSettings().Security.SessionDuration.Seconds())
 		}
 		store.Options = buildSessionOptions(false, maxAge)
 	default:
@@ -106,8 +106,8 @@ func (s *OAuth2Server) HandleBasicAuthorize(c echo.Context) error {
 	secLog := GetLogger().With(logger.String("client_id", clientID), logger.String("redirect_uri", redirectURI))
 	secLog.Info("Handling basic authorization request")
 
-	if clientID != s.Settings.Security.BasicAuth.ClientID {
-		secLog.Warn("Invalid client_id provided", logger.String("expected", s.Settings.Security.BasicAuth.ClientID))
+	if clientID != s.CurrentSettings().Security.BasicAuth.ClientID {
+		secLog.Warn("Invalid client_id provided", logger.String("expected", s.CurrentSettings().Security.BasicAuth.ClientID))
 		return c.String(http.StatusBadRequest, "Invalid client_id")
 	}
 
@@ -147,8 +147,8 @@ func (s *OAuth2Server) HandleBasicAuthToken(c echo.Context) error {
 	// Use constant-time comparison to prevent timing attacks on credentials.
 	// Both comparisons are performed and combined with bitwise AND to prevent
 	// short-circuit evaluation from leaking timing information about valid IDs.
-	clientIDMatch := subtle.ConstantTimeCompare([]byte(clientID), []byte(s.Settings.Security.BasicAuth.ClientID))
-	clientSecretMatch := subtle.ConstantTimeCompare([]byte(clientSecret), []byte(s.Settings.Security.BasicAuth.ClientSecret))
+	clientIDMatch := subtle.ConstantTimeCompare([]byte(clientID), []byte(s.CurrentSettings().Security.BasicAuth.ClientID))
+	clientSecretMatch := subtle.ConstantTimeCompare([]byte(clientSecret), []byte(s.CurrentSettings().Security.BasicAuth.ClientSecret))
 	if (clientIDMatch & clientSecretMatch) != 1 {
 		secLog.Warn("Invalid client credentials provided")
 		return c.JSON(http.StatusUnauthorized, map[string]string{"error": "Invalid client id or secret"})
@@ -156,7 +156,7 @@ func (s *OAuth2Server) HandleBasicAuthToken(c echo.Context) error {
 
 	// Check if client is in local subnet and configure cookie store accordingly
 	// Only relax cookie security when subnet bypass is explicitly enabled
-	if s.Settings.Security.AllowSubnetBypass.Enabled {
+	if s.CurrentSettings().Security.AllowSubnetBypass.Enabled {
 		if clientIP := parseIPWithZone(c.RealIP()); IsInLocalSubnet(clientIP) {
 			// For clients in the local subnet, allow non-HTTPS cookies
 			secLog.Info("Client is in local subnet, configuring cookie store for non-HTTPS")
@@ -219,7 +219,7 @@ func (s *OAuth2Server) HandleBasicAuthToken(c echo.Context) error {
 	c.Response().Header().Set("Content-Type", "application/json")
 
 	// Return the access token in the response body
-	expiresInSeconds := int(s.Settings.Security.BasicAuth.AccessTokenExp.Seconds())
+	expiresInSeconds := int(s.CurrentSettings().Security.BasicAuth.AccessTokenExp.Seconds())
 	resp := map[string]any{ // Use interface{} for mixed types
 		"access_token": accessToken, // This is sent to the client, unavoidable
 		"token_type":   "Bearer",

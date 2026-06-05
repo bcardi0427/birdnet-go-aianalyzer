@@ -171,8 +171,8 @@ func (a *SecurityAdapter) AuthenticateBasic(c echo.Context, username, password s
 		return "", err
 	}
 
-	storedPassword := a.OAuth2Server.Settings.Security.BasicAuth.Password
-	storedClientID := a.OAuth2Server.Settings.Security.BasicAuth.ClientID
+	storedPassword := a.OAuth2Server.CurrentSettings().Security.BasicAuth.Password
+	storedClientID := a.OAuth2Server.CurrentSettings().Security.BasicAuth.ClientID
 
 	a.logDebugAuthConfig(username, storedClientID)
 
@@ -188,7 +188,7 @@ func (a *SecurityAdapter) AuthenticateBasic(c echo.Context, username, password s
 
 // validateBasicAuthEnabled checks if basic auth is enabled.
 func (a *SecurityAdapter) validateBasicAuthEnabled(username string) error {
-	if !a.OAuth2Server.Settings.Security.BasicAuth.Enabled {
+	if !a.OAuth2Server.CurrentSettings().Security.BasicAuth.Enabled {
 		a.log().Warn("Basic authentication failed: Basic auth not enabled",
 			logger.Username(username))
 		return ErrBasicAuthDisabled
@@ -304,7 +304,7 @@ func (a *SecurityAdapter) getProviderLogoutURLDirect(c echo.Context, postLogoutR
 // This handles sessions created before the auth_provider key was introduced.
 func (a *SecurityAdapter) getProviderLogoutURLFallback(c echo.Context, postLogoutRedirectURI string, log logger.Logger) string {
 	for configProvider, gothProviderName := range security.ConfigToGothProvider {
-		provider := a.OAuth2Server.Settings.GetOAuthProvider(configProvider)
+		provider := a.OAuth2Server.CurrentSettings().GetOAuthProvider(configProvider)
 		if provider == nil || !provider.Enabled {
 			continue
 		}

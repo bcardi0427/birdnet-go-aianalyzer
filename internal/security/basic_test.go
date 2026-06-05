@@ -43,15 +43,23 @@ func setupOAuth2ServerTest(t *testing.T, requestClientID, requestRedirectURI, ex
 
 	parsedExpectedURI := parseURLOrFail(t, expectedRedirectURI)
 
-	server := &OAuth2Server{
-		Settings: &conf.Settings{
-			Security: conf.Security{
-				BasicAuth: conf.BasicAuth{
-					ClientID:    expectedClientID,
-					RedirectURI: expectedRedirectURI,
-				},
+	settings := &conf.Settings{
+		Security: conf.Security{
+			BasicAuth: conf.BasicAuth{
+				ClientID:    expectedClientID,
+				RedirectURI: expectedRedirectURI,
 			},
 		},
+	}
+
+	prevSettings := conf.CurrentOrFallback(nil)
+	conf.StoreSettings(settings)
+	t.Cleanup(func() {
+		conf.StoreSettings(prevSettings)
+	})
+
+	server := &OAuth2Server{
+		Settings:                 settings,
 		authCodes:                make(map[string]AuthCode),
 		accessTokens:             make(map[string]AccessToken),
 		ExpectedBasicRedirectURI: parsedExpectedURI,
@@ -133,17 +141,24 @@ func TestHandleBasicAuthTokenSuccess(t *testing.T) {
 
 	parsedExpectedCallbackURI := parseURLOrFail(t, "http://example.com/callback")
 
-	s := &OAuth2Server{
-		Settings: &conf.Settings{
-			Security: conf.Security{
-				BasicAuth: conf.BasicAuth{
-					ClientID:       "validClientID",
-					ClientSecret:   "validClientSecret",
-					AccessTokenExp: time.Hour,
-				},
-				Host: "example.com",
+	settings := &conf.Settings{
+		Security: conf.Security{
+			BasicAuth: conf.BasicAuth{
+				ClientID:       "validClientID",
+				ClientSecret:   "validClientSecret",
+				AccessTokenExp: time.Hour,
 			},
+			Host: "example.com",
 		},
+	}
+	prevSettings := conf.CurrentOrFallback(nil)
+	conf.StoreSettings(settings)
+	t.Cleanup(func() {
+		conf.StoreSettings(prevSettings)
+	})
+
+	s := &OAuth2Server{
+		Settings:                 settings,
 		authCodes:                make(map[string]AuthCode),
 		accessTokens:             make(map[string]AccessToken),
 		ExpectedBasicRedirectURI: parsedExpectedCallbackURI,
@@ -175,15 +190,22 @@ func TestHandleBasicAuthTokenMissingFields(t *testing.T) {
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	s := &OAuth2Server{
-		Settings: &conf.Settings{
-			Security: conf.Security{
-				BasicAuth: conf.BasicAuth{
-					ClientID:     "validClientID",
-					ClientSecret: "validClientSecret",
-				},
+	settings := &conf.Settings{
+		Security: conf.Security{
+			BasicAuth: conf.BasicAuth{
+				ClientID:     "validClientID",
+				ClientSecret: "validClientSecret",
 			},
 		},
+	}
+	prevSettings := conf.CurrentOrFallback(nil)
+	conf.StoreSettings(settings)
+	t.Cleanup(func() {
+		conf.StoreSettings(prevSettings)
+	})
+
+	s := &OAuth2Server{
+		Settings:     settings,
 		authCodes:    make(map[string]AuthCode),
 		accessTokens: make(map[string]AccessToken),
 	}
@@ -396,15 +418,22 @@ func TestHandleBasicAuthCallback(t *testing.T) {
 			rec := httptest.NewRecorder()
 			c := e.NewContext(req, rec)
 
-			server := &OAuth2Server{
-				Settings: &conf.Settings{
-					Security: conf.Security{
-						BasicAuth: conf.BasicAuth{
-							Enabled:        true,
-							AccessTokenExp: time.Hour,
-						},
+			settings := &conf.Settings{
+				Security: conf.Security{
+					BasicAuth: conf.BasicAuth{
+						Enabled:        true,
+						AccessTokenExp: time.Hour,
 					},
 				},
+			}
+			prevSettings := conf.CurrentOrFallback(nil)
+			conf.StoreSettings(settings)
+			t.Cleanup(func() {
+				conf.StoreSettings(prevSettings)
+			})
+
+			server := &OAuth2Server{
+				Settings:     settings,
 				authCodes:    make(map[string]AuthCode),
 				accessTokens: make(map[string]AccessToken),
 			}
@@ -439,15 +468,22 @@ func TestHandleBasicAuthCallbackSessionRegeneration(t *testing.T) {
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	server := &OAuth2Server{
-		Settings: &conf.Settings{
-			Security: conf.Security{
-				BasicAuth: conf.BasicAuth{
-					Enabled:        true,
-					AccessTokenExp: time.Hour,
-				},
+	settings := &conf.Settings{
+		Security: conf.Security{
+			BasicAuth: conf.BasicAuth{
+				Enabled:        true,
+				AccessTokenExp: time.Hour,
 			},
 		},
+	}
+	prevSettings := conf.CurrentOrFallback(nil)
+	conf.StoreSettings(settings)
+	t.Cleanup(func() {
+		conf.StoreSettings(prevSettings)
+	})
+
+	server := &OAuth2Server{
+		Settings:     settings,
 		authCodes:    make(map[string]AuthCode),
 		accessTokens: make(map[string]AccessToken),
 	}
@@ -629,14 +665,21 @@ func TestExchangeCodeWithTimeout(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			server := &OAuth2Server{
-				Settings: &conf.Settings{
-					Security: conf.Security{
-						BasicAuth: conf.BasicAuth{
-							AccessTokenExp: time.Hour,
-						},
+			settings := &conf.Settings{
+				Security: conf.Security{
+					BasicAuth: conf.BasicAuth{
+						AccessTokenExp: time.Hour,
 					},
 				},
+			}
+			prevSettings := conf.CurrentOrFallback(nil)
+			conf.StoreSettings(settings)
+			t.Cleanup(func() {
+				conf.StoreSettings(prevSettings)
+			})
+
+			server := &OAuth2Server{
+				Settings:     settings,
 				authCodes:    make(map[string]AuthCode),
 				accessTokens: make(map[string]AccessToken),
 			}
@@ -752,14 +795,21 @@ func TestRegenerateAndStoreToken(t *testing.T) {
 
 // TestExchangeCodeWithTimeoutContextCancellation tests context cancellation
 func TestExchangeCodeWithTimeoutContextCancellation(t *testing.T) {
-	server := &OAuth2Server{
-		Settings: &conf.Settings{
-			Security: conf.Security{
-				BasicAuth: conf.BasicAuth{
-					AccessTokenExp: time.Hour,
-				},
+	settings := &conf.Settings{
+		Security: conf.Security{
+			BasicAuth: conf.BasicAuth{
+				AccessTokenExp: time.Hour,
 			},
 		},
+	}
+	prevSettings := conf.CurrentOrFallback(nil)
+	conf.StoreSettings(settings)
+	t.Cleanup(func() {
+		conf.StoreSettings(prevSettings)
+	})
+
+	server := &OAuth2Server{
+		Settings: settings,
 		authCodes: map[string]AuthCode{
 			"valid_code": {
 				Code:      "valid_code",

@@ -902,13 +902,13 @@ func (p *Processor) parseAndValidateSpecies(settings *conf.Settings, result data
 // returns DefaultModelInfo with Name="BirdNET" for unrecognized IDs).
 // Perch: filtered only when the v3.0 geomodel is active (it covers Perch species).
 // Bat/BSG: never filtered (independent species sets, no geomodel coverage).
-func shouldApplyRangeFilter(modelID string, settings *conf.Settings) bool {
+func shouldApplyRangeFilter(modelID string, settings *conf.Settings, isV3Active bool) bool {
 	mInfo := classifier.DetectionModelInfoForID(modelID)
 	if mInfo.Name == detection.DefaultModelName {
 		return true
 	}
 	if mInfo.Name == classifier.DetectionNamePerch {
-		return settings.BirdNET.RangeFilter.Model == "v3"
+		return isV3Active
 	}
 	return false
 }
@@ -961,7 +961,15 @@ func (p *Processor) shouldFilterDetection(settings *conf.Settings, result datast
 		return true, confidenceThreshold
 	}
 
-	if shouldApplyRangeFilter(modelID, settings) && !settings.IsSpeciesIncluded(result.Species) {
+	isV3Active := settings.BirdNET.RangeFilter.Model == "v3"
+	if !isV3Active && p.Bn != nil {
+		status := p.Bn.RangeFilterStatus()
+		if status.Geomodel != nil && status.Geomodel.Version == "v3" {
+			isV3Active = true
+		}
+	}
+
+	if shouldApplyRangeFilter(modelID, settings, isV3Active) && !settings.IsSpeciesIncluded(result.Species) {
 		if settings.Debug {
 			GetLogger().Debug("species not on included list",
 				logger.String("species", result.Species),

@@ -91,7 +91,7 @@ func TestShouldApplyRangeFilter(t *testing.T) {
 			settings := &conf.Settings{}
 			settings.BirdNET.RangeFilter.Model = tt.rangeFilterModel
 
-			result := shouldApplyRangeFilter(tt.modelID, settings)
+			result := shouldApplyRangeFilter(tt.modelID, settings, tt.rangeFilterModel == "v3")
 			assert.Equal(t, tt.expected, result)
 		})
 	}

@@ -3,7 +3,7 @@
 This repository is a comprehensive reprogramming of BirdNET-Go, featuring the **AI Analyzer** and other custom enhancements. Originally based on `tphakala/birdnet-go`.
 
 <p align="center">
-  <img src="docs/assets/BirdNET-Go-AI-Analyzer-logo.png" width="450" />
+  <img src="docs/assets/54f1c213-c4fc-444c-aef5-24ec1c22cd21.png" width="450" />
 </p>
 
 ## AI Analyzer

@@ -47,10 +47,11 @@ func TestShouldAutoSelectV3Geomodel(t *testing.T) {
 	require.NoError(t, os.MkdirAll(filepath.Join(emptyModelsDir, "shared"), 0o755))
 
 	tests := []struct {
-		name      string
-		modelID   string
-		modelsDir string
-		want      bool
+		name          string
+		modelID       string
+		enabledModels []string
+		modelsDir     string
+		want          bool
 	}{
 		{
 			name:      "PerchV2 with files present",
@@ -65,10 +66,24 @@ func TestShouldAutoSelectV3Geomodel(t *testing.T) {
 			want:      true,
 		},
 		{
-			name:      "BirdNET V2.4 is not eligible",
+			name:      "BirdNET V2.4 is not eligible by default",
 			modelID:   "BirdNET_V2.4",
 			modelsDir: modelsDir,
 			want:      false,
+		},
+		{
+			name:          "BirdNET V2.4 is eligible when perch-v2 is in Models.Enabled",
+			modelID:       "BirdNET_V2.4",
+			enabledModels: []string{"perch-v2"},
+			modelsDir:     modelsDir,
+			want:          true,
+		},
+		{
+			name:          "BirdNET V2.4 is eligible when birdnet_v3 is in Models.Enabled",
+			modelID:       "BirdNET_V2.4",
+			enabledModels: []string{"birdnet_v3"},
+			modelsDir:     modelsDir,
+			want:          true,
 		},
 		{
 			name:      "Bat is not eligible",
@@ -99,7 +114,9 @@ func TestShouldAutoSelectV3Geomodel(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
-			got := shouldAutoSelectV3Geomodel(tt.modelID, tt.modelsDir)
+			settings := &conf.Settings{}
+			settings.Models.Enabled = tt.enabledModels
+			got := shouldAutoSelectV3Geomodel(tt.modelID, settings, tt.modelsDir)
 			assert.Equal(t, tt.want, got)
 		})
 	}

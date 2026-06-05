@@ -372,7 +372,7 @@ func (bn *BirdNET) initializeMetaModel() error {
 	// Auto-select v3 geomodel for compatible classifiers when files exist on disk.
 	// Only applies locally for routing; does NOT publish settings to avoid
 	// inconsistency if the backend fails to initialize.
-	if bn.modelsDir != "" && shouldAutoSelectV3Geomodel(bn.ModelInfo.ID, bn.modelsDir) {
+	if bn.modelsDir != "" && shouldAutoSelectV3Geomodel(bn.ModelInfo.ID, settings, bn.modelsDir) {
 		localSettings := conf.CloneSettings(settings)
 		applyAutoSelectedGeomodelPaths(localSettings, bn.modelsDir)
 		rf = localSettings.BirdNET.RangeFilter
@@ -1328,16 +1328,25 @@ func (bn *BirdNET) SetModelsDir(dir string) {
 
 // shouldAutoSelectV3Geomodel reports whether the v3 geomodel should be
 // auto-selected for the given classifier. Returns true when the classifier
-// is PerchV2 or BirdNET V3.0 and both geomodel files exist under
-// {modelsDir}/shared/.
-func shouldAutoSelectV3Geomodel(modelID, modelsDir string) bool {
+// is PerchV2 or BirdNET V3.0, or either model is enabled in settings,
+// and both geomodel files exist under {modelsDir}/shared/.
+func shouldAutoSelectV3Geomodel(modelID string, settings *conf.Settings, modelsDir string) bool {
 	if modelsDir == "" {
 		return false
 	}
-	switch modelID {
-	case RegistryIDPerchV2, RegistryIDBirdNETV3:
-		// eligible classifier; check files below
-	default:
+	eligible := false
+	if modelID == RegistryIDPerchV2 || modelID == RegistryIDBirdNETV3 {
+		eligible = true
+	} else if settings != nil {
+		for _, m := range settings.Models.Enabled {
+			alias := strings.ToLower(m)
+			if alias == "perch_v2" || alias == "perch-v2" || alias == "birdnet_v3" || alias == "birdnet-v3" {
+				eligible = true
+				break
+			}
+		}
+	}
+	if !eligible {
 		return false
 	}
 	sharedDir := filepath.Join(modelsDir, "shared")

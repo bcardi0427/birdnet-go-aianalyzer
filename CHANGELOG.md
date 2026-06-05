@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.6] - 2026-06-05
+
+### 🚀 Features
+
+- _(birdnet)_ Implemented range filter auto-selection support for Perch v2 and BirdNET v3 models when enabled alongside BirdNET v2.4.
+
+### 🐛 Bug Fixes
+
+- _(birdnet)_ Fix range filter settings auto-selection bypass where startup configuration selections were ignored by subsequent ONNX initialization routines, defaulting back to legacy TFLite checklist and returning 6,522 species.
+- _(birdnet)_ Automatically persist successfully initialized auto-selected range filter settings to `config.yaml` to prevent stale fallback.
+- _(security)_ Resolved guest access authentication issue for AI endpoints by verifying access tokens manually inside `optionalAuthMiddleware` rather than calling auth middleware directly.
+- _(weather)_ Enhanced weather report summaries by implementing a 5-minute server-side cache expiry to auto-refresh weather data.
+
 ## [0.5.5] - 2024-06-09
 
 ### 🚀 Features

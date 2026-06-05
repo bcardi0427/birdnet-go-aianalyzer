@@ -277,9 +277,7 @@ func (bn *BirdNET) initializeTFLiteModel() error {
 }
 
 // getMetaModelData returns the appropriate meta model data based on the settings.
-func (bn *BirdNET) getMetaModelData() ([]byte, error) {
-	settings := bn.currentSettings()
-	rf := settings.BirdNET.RangeFilter
+func (bn *BirdNET) getMetaModelData(rf conf.RangeFilterSettings) ([]byte, error) {
 
 	// Check if external model path is specified
 	if rf.ModelPath != "" {
@@ -361,6 +359,18 @@ func (bn *BirdNET) initializeMetaModel() error {
 	log := GetLogger()
 	settings := bn.currentSettings()
 	rf := settings.BirdNET.RangeFilter
+	autoSelected := false
+
+	// Auto-select v3 geomodel for compatible classifiers when files exist on disk.
+	if bn.modelsDir != "" && shouldAutoSelectV3Geomodel(bn.ModelInfo.ID, settings, bn.modelsDir) {
+		localSettings := conf.CloneSettings(settings)
+		applyAutoSelectedGeomodelPaths(localSettings, bn.modelsDir)
+		rf = localSettings.BirdNET.RangeFilter
+		autoSelected = true
+		log.Info("Auto-selected v3.0 geomodel for compatible classifier",
+			logger.String("classifier", bn.ModelInfo.ID),
+			logger.String("models_dir", bn.modelsDir))
+	}
 
 	log.Info("Initializing range filter",
 		logger.String("model", rf.Model),
@@ -369,42 +379,46 @@ func (bn *BirdNET) initializeMetaModel() error {
 		logger.String("classifier", bn.ModelInfo.ID),
 		logger.String("models_dir", bn.modelsDir))
 
-	// Auto-select v3 geomodel for compatible classifiers when files exist on disk.
-	// Only applies locally for routing; does NOT publish settings to avoid
-	// inconsistency if the backend fails to initialize.
-	if bn.modelsDir != "" && shouldAutoSelectV3Geomodel(bn.ModelInfo.ID, settings, bn.modelsDir) {
-		localSettings := conf.CloneSettings(settings)
-		applyAutoSelectedGeomodelPaths(localSettings, bn.modelsDir)
-		rf = localSettings.BirdNET.RangeFilter
-		log.Info("Auto-selected v3.0 geomodel for compatible classifier",
-			logger.String("classifier", bn.ModelInfo.ID),
-			logger.String("models_dir", bn.modelsDir))
-	}
-
+	var err error
 	// V3 geomodel is always ONNX; route to ONNX backend even if ModelPath is empty
 	// (initializeV3GeoModel will return a clear error about missing paths).
 	if rf.Model == "v3" {
 		log.Debug("Routing to ONNX v3 geomodel backend")
-		return bn.initializeONNXMetaModel()
-	}
-
-	// If range filter model path ends with .onnx, use the ONNX backend
-	if isONNXModel(rf.ModelPath) {
+		err = bn.initializeONNXMetaModel(rf)
+	} else if isONNXModel(rf.ModelPath) {
 		log.Debug("Routing to ONNX range filter backend",
 			logger.String("model_path", rf.ModelPath))
-		return bn.initializeONNXMetaModel()
+		err = bn.initializeONNXMetaModel(rf)
+	} else {
+		log.Debug("Routing to TFLite range filter backend")
+		err = bn.initializeTFLiteMetaModel(rf)
 	}
 
-	log.Debug("Routing to TFLite range filter backend")
-	return bn.initializeTFLiteMetaModel()
+	if err != nil {
+		return err
+	}
+
+	// If successfully initialized and was auto-selected, persist the settings
+	if autoSelected {
+		updated := conf.CloneSettings(settings)
+		updated.BirdNET.RangeFilter = rf
+		conf.StoreSettings(updated)
+		if err := conf.SaveSettings(); err != nil {
+			log.Warn("Failed to persist auto-selected range filter settings", logger.Error(err))
+		} else {
+			log.Info("Persisted auto-selected range filter settings to config")
+		}
+	}
+
+	return nil
 }
 
 // initializeTFLiteMetaModel loads and initializes a TFLite range filter model.
-func (bn *BirdNET) initializeTFLiteMetaModel() error {
+func (bn *BirdNET) initializeTFLiteMetaModel(rf conf.RangeFilterSettings) error {
 	start := time.Now()
 	log := GetLogger()
 
-	metaModelData, err := bn.getMetaModelData()
+	metaModelData, err := bn.getMetaModelData(rf)
 	if err != nil {
 		return err
 	}
@@ -416,7 +430,7 @@ func (bn *BirdNET) initializeTFLiteMetaModel() error {
 		return errors.New(err).
 			Category(errors.CategoryModelInit).
 			Context("model_type", "range_filter").
-			Context("range_filter_model", bn.Settings.BirdNET.RangeFilter.Model).
+			Context("range_filter_model", rf.Model).
 			Timing("meta-model-init", time.Since(start)).
 			Build()
 	}

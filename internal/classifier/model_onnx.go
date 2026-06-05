@@ -50,10 +50,10 @@ func (bn *BirdNET) initializeONNXModel() error {
 // initializeONNXMetaModel loads and initializes an ONNX range filter meta model.
 // For v3 geomodel, delegates to initializeV3GeoModel which loads the geomodel
 // with its own 12K labels and wraps it in a mappedRangeFilter.
-func (bn *BirdNET) initializeONNXMetaModel() error {
+func (bn *BirdNET) initializeONNXMetaModel(rf conf.RangeFilterSettings) error {
 	settings := bn.currentSettings()
-	if settings.BirdNET.RangeFilter.Model == "v3" {
-		return bn.initializeV3GeoModel()
+	if rf.Model == "v3" {
+		return bn.initializeV3GeoModel(rf)
 	}
 
 	start := time.Now()
@@ -68,7 +68,7 @@ func (bn *BirdNET) initializeONNXMetaModel() error {
 	}
 
 	rangeFilter, err := inference.NewONNXRangeFilter(
-		settings.BirdNET.RangeFilter.ModelPath,
+		rf.ModelPath,
 		inference.ONNXRangeFilterOptions{
 			Labels: settings.BirdNET.Labels,
 		},
@@ -77,7 +77,7 @@ func (bn *BirdNET) initializeONNXMetaModel() error {
 		return errors.New(err).
 			Category(errors.CategoryModelInit).
 			Context("model_type", "range_filter").
-			Context("range_filter_model", settings.BirdNET.RangeFilter.ModelPath).
+			Context("range_filter_model", rf.ModelPath).
 			Timing("onnx-meta-model-init", time.Since(start)).
 			Build()
 	}
@@ -90,11 +90,10 @@ func (bn *BirdNET) initializeONNXMetaModel() error {
 // then wraps the raw ONNX range filter in a mappedRangeFilter that remaps
 // geomodel output scores to the classifier's label order by matching scientific
 // names. This enables the 12K-species geomodel to work with any classifier.
-func (bn *BirdNET) initializeV3GeoModel() error {
+func (bn *BirdNET) initializeV3GeoModel(rfSettings conf.RangeFilterSettings) error {
 	start := time.Now()
 	log := GetLogger()
 	settings := bn.currentSettings()
-	rfSettings := settings.BirdNET.RangeFilter
 
 	log.Info("V3 geomodel: starting initialization",
 		logger.String("model_path", rfSettings.ModelPath),

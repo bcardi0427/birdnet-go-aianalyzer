@@ -3,6 +3,7 @@ package telemetry
 
 import (
 	"fmt"
+	"os"
 	"runtime"
 	"strings"
 	"sync"
@@ -73,6 +74,17 @@ var (
 
 func init() {
 	initAppStartTime()
+	initSentryDSN()
+}
+
+// initSentryDSN initializes the Sentry DSN configurations from environment variables.
+func initSentryDSN() {
+	if dsn := os.Getenv("BIRDNET_SENTRY_DSN"); dsn != "" {
+		sentryDSN = dsn
+	} else if dsn := os.Getenv("SENTRY_DSN"); dsn != "" {
+		sentryDSN = dsn
+	}
+	sentryFrontendDSN = sentryDSN
 }
 
 // initAppStartTime records the process start time. It is idempotent: repeated
@@ -127,12 +139,12 @@ func enrichEventWithUptime(event *sentry.Event) {
 
 // sentryDSN is the Sentry DSN for the BirdNET-Go project
 // Defined at package level to avoid duplication across initialization functions
-const sentryDSN = ""
+var sentryDSN = ""
 
 // sentryFrontendDSN is the Sentry DSN for the BirdNET-Go frontend.
 // Currently points to the same project as the backend. To separate,
-// create a new Sentry project and update this constant.
-const sentryFrontendDSN = sentryDSN
+// create a new Sentry project and update this variable.
+var sentryFrontendDSN = ""
 
 // GetFrontendDSN returns the Sentry DSN for frontend error tracking.
 func GetFrontendDSN() string {

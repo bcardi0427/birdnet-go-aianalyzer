@@ -251,7 +251,7 @@ func (s *ReportService) loadValidCache() (*reportCacheFile, bool) {
 		return nil, false
 	}
 
-	if time.Since(time.Unix(c.GeneratedAt, 0)) > time.Duration(cacheHours)*time.Hour {
+	if time.Since(time.Unix(c.GeneratedAt, 0)) > 5*time.Minute {
 		return nil, false
 	}
 

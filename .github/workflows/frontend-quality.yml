@@ -2,7 +2,7 @@ name: Frontend Quality
 
 on:
   push:
-    branches: [main]
+    branches: [main, aianalyzer/main]
     paths:
       - 'frontend/**'
       - '.github/workflows/frontend-quality.yml'

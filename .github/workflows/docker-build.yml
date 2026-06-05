@@ -15,8 +15,8 @@ on:
       - ".github/workflows/**"
       - "**.md"
     branches:
-      # Only run on push to main branch
       - main
+      - aianalyzer/main
 
 permissions:
   contents: read
@@ -25,7 +25,7 @@ permissions:
 jobs:
   # Lint is handled by golangci-test.yml workflow - no need to duplicate here
   build-and-push-docker-image:
-    if: github.event_name == 'push' && github.ref_name == 'main'
+    if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'aianalyzer/main')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout GitHub Action

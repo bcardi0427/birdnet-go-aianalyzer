@@ -2,7 +2,7 @@ name: Frontend Browser Integration Tests
 
 on:
   push:
-    branches: [main]
+    branches: [main, aianalyzer/main]
     paths:
       - 'frontend/**'
       - 'internal/api/**'

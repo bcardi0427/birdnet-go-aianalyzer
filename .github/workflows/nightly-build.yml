@@ -177,7 +177,7 @@ jobs:
             --title "Nightly Build $TAG" \
             --notes "Nightly build $TAG" \
             --prerelease \
-            --target main 2>/dev/null; then
+            --target ${{ github.ref_name }} 2>/dev/null; then
             TAG="${TAG}-${{ github.run_number }}"
             gh release create "$TAG" \
               artifacts/**/*.tar.gz \
@@ -185,7 +185,7 @@ jobs:
               --title "Nightly Build $TAG" \
               --notes "Nightly build $TAG" \
               --prerelease \
-              --target main
+              --target ${{ github.ref_name }}
           fi
           echo "Created release: $TAG"
         env:

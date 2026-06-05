@@ -39,10 +39,13 @@ func (c *Controller) initAIRoutes() {
 
 	// Report reads are public so visitors can view the cached AI summary.
 	// Cache bypass remains protected inside GetAIReport because it can spend AI tokens.
+	// The optional auth middleware annotates the context with auth info when credentials
+	// are valid but never blocks unauthenticated visitors — this lets isExplicitlyAuthenticated
+	// correctly return true for logged-in users so bypass_cache works for them.
 	aiGroup := c.Group.Group("/ai")
 
 	// GET /api/v2/ai/report - Generates or retrieves the daily AI report
-	aiGroup.GET("/report", c.GetAIReport)
+	aiGroup.GET("/report", c.GetAIReport, c.optionalAuthMiddleware)
 
 	protectedAIGroup := c.Group.Group("/ai", c.authMiddleware)
 	// GET /api/v2/ai/settings - Retrieves AI integration settings
@@ -53,6 +56,29 @@ func (c *Controller) initAIRoutes() {
 	protectedAIGroup.GET("/models", c.GetAIModels)
 
 	c.logInfoIfEnabled("AI routes initialized successfully")
+}
+
+// optionalAuthMiddleware runs the auth check but never blocks unauthenticated requests.
+// If the request carries valid credentials (session cookie, Bearer token, etc.) the echo
+// context is annotated with the auth method exactly as the normal authMiddleware would do,
+// allowing isExplicitlyAuthenticated() to return true for logged-in users. Visitors
+// without credentials pass through silently so the public cached report stays accessible.
+func (c *Controller) optionalAuthMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(ctx echo.Context) error {
+		if c.authMiddleware != nil {
+			// Wrap next so the real middleware cannot block: if it would return
+			// an error (unauthenticated), we silently continue instead.
+			var authErr error
+			guardedNext := func(c echo.Context) error {
+				// Inner next — reached only when auth succeeded.
+				return nil // Context is now annotated; actual handler runs below.
+			}
+			authErr = c.authMiddleware(guardedNext)(ctx)
+			// Ignore auth errors (unauthenticated visitors are fine here).
+			_ = authErr
+		}
+		return next(ctx)
+	}
 }
 
 // GetAISettings retrieves the current AI settings with API keys redacted.
@@ -343,12 +369,24 @@ func restoreLegacyAISettings(update, current *conf.AISettings, providerChanged b
 
 	update.MigrateAndSync(false)
 
-	if incomingProvider != "gemini" { update.Gemini = current.Gemini }
-	if incomingProvider != "openai" { update.OpenAI = current.OpenAI }
-	if incomingProvider != "openrouter" { update.OpenRouter = current.OpenRouter }
-	if incomingProvider != "openai-compatible" { update.OpenAICompatible = current.OpenAICompatible }
-	if incomingProvider != "ollama" { update.Ollama = current.Ollama }
-	if incomingProvider != "anthropic" { update.Anthropic = current.Anthropic }
+	if incomingProvider != "gemini" {
+		update.Gemini = current.Gemini
+	}
+	if incomingProvider != "openai" {
+		update.OpenAI = current.OpenAI
+	}
+	if incomingProvider != "openrouter" {
+		update.OpenRouter = current.OpenRouter
+	}
+	if incomingProvider != "openai-compatible" {
+		update.OpenAICompatible = current.OpenAICompatible
+	}
+	if incomingProvider != "ollama" {
+		update.Ollama = current.Ollama
+	}
+	if incomingProvider != "anthropic" {
+		update.Anthropic = current.Anthropic
+	}
 
 	return keyAction
 }
@@ -378,12 +416,24 @@ func restoreNewAISettings(update, current *conf.AISettings) {
 	isEmpty := func(p conf.AIProviderSettings) bool {
 		return p.APIKey == "" && p.APIKeyFile == "" && p.BaseURL == "" && p.Model == ""
 	}
-	if isEmpty(update.Gemini) { update.Gemini = current.Gemini }
-	if isEmpty(update.OpenAI) { update.OpenAI = current.OpenAI }
-	if isEmpty(update.OpenRouter) { update.OpenRouter = current.OpenRouter }
-	if isEmpty(update.OpenAICompatible) { update.OpenAICompatible = current.OpenAICompatible }
-	if isEmpty(update.Ollama) { update.Ollama = current.Ollama }
-	if isEmpty(update.Anthropic) { update.Anthropic = current.Anthropic }
+	if isEmpty(update.Gemini) {
+		update.Gemini = current.Gemini
+	}
+	if isEmpty(update.OpenAI) {
+		update.OpenAI = current.OpenAI
+	}
+	if isEmpty(update.OpenRouter) {
+		update.OpenRouter = current.OpenRouter
+	}
+	if isEmpty(update.OpenAICompatible) {
+		update.OpenAICompatible = current.OpenAICompatible
+	}
+	if isEmpty(update.Ollama) {
+		update.Ollama = current.Ollama
+	}
+	if isEmpty(update.Anthropic) {
+		update.Anthropic = current.Anthropic
+	}
 
 	update.MigrateAndSync(false)
 }

@@ -7,6 +7,7 @@
   import { t } from '$lib/i18n';
   import { navigation } from '$lib/stores/navigation.svelte';
   import { isAuthenticated } from '$lib/utils/auth';
+  import { appState } from '$lib/stores/appState.svelte';
   import { settingsAPI } from '$lib/utils/settingsApi';
 
   let report = $state('');
@@ -82,6 +83,11 @@
   });
 
   async function loadReportDays() {
+    // Only fetch AI settings if the user is authenticated — the /api/v2/ai/settings
+    // endpoint is auth-protected and calling it as a guest triggers a 401 redirect.
+    const authenticated =
+      !appState.security.enabled || appState.security.accessAllowed;
+    if (!authenticated) return;
     try {
       const aiSettings = await settingsAPI.ai.getSettings();
       const days = Number(aiSettings?.reportDays ?? 1);
@@ -191,19 +197,21 @@
           {/if}
           {t('aiAnalysis.actions.refresh')}
         </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-outline"
-          onclick={() => loadReport(true)}
-          disabled={loading || loadingFresh}
-        >
-          {#if loadingFresh}
-            <LoadingSpinner size="sm" />
-          {:else}
-            <RefreshCw class="size-4" />
-          {/if}
-          Refresh (Bypass Cache)
-        </button>
+        {#if $isAuthenticated}
+          <button
+            type="button"
+            class="btn btn-sm btn-outline"
+            onclick={() => loadReport(true)}
+            disabled={loading || loadingFresh}
+          >
+            {#if loadingFresh}
+              <LoadingSpinner size="sm" />
+            {:else}
+              <RefreshCw class="size-4" />
+            {/if}
+            Refresh (Bypass Cache)
+          </button>
+        {/if}
       </div>
     </div>
 

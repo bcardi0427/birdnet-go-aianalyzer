@@ -95,6 +95,7 @@ type reportCacheFile struct {
 	AIEnabled         bool   `json:"aiEnabled"`
 	WeatherEnabled    bool   `json:"weatherEnabled"`
 	EBirdEnabled      bool   `json:"ebirdEnabled"`
+	TemperatureUnit   string `json:"temperatureUnit"`   // bust cache when user switches °C↔°F
 	GeneratedUnixHour int64  `json:"generatedUnixHour"`
 }
 
@@ -245,7 +246,8 @@ func (s *ReportService) loadValidCache() (*reportCacheFile, bool) {
 		c.CacheHours != cacheHours ||
 		c.AIEnabled != settings.AI.Enabled ||
 		c.WeatherEnabled != (settings.Realtime.Weather.Provider != "none") ||
-		c.EBirdEnabled != settings.Realtime.EBird.Enabled {
+		c.EBirdEnabled != settings.Realtime.EBird.Enabled ||
+		c.TemperatureUnit != settings.Realtime.Dashboard.TemperatureUnit {
 		return nil, false
 	}
 
@@ -275,6 +277,7 @@ func (s *ReportService) saveCache(report string, generatedAt time.Time) {
 		AIEnabled:         settings.AI.Enabled,
 		WeatherEnabled:    settings.Realtime.Weather.Provider != "none",
 		EBirdEnabled:      settings.Realtime.EBird.Enabled,
+		TemperatureUnit:   settings.Realtime.Dashboard.TemperatureUnit,
 		GeneratedUnixHour: generatedAt.Unix() / 3600,
 	}
 

@@ -65,17 +65,36 @@ func (c *Controller) initAIRoutes() {
 // without credentials pass through silently so the public cached report stays accessible.
 func (c *Controller) optionalAuthMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(ctx echo.Context) error {
-		if c.authMiddleware != nil {
-			// Wrap next so the real middleware cannot block: if it would return
-			// an error (unauthenticated), we silently continue instead.
-			var authErr error
-			guardedNext := func(c echo.Context) error {
-				// Inner next — reached only when auth succeeded.
-				return nil // Context is now annotated; actual handler runs below.
+		if c.authService != nil {
+			// Check if authentication is bypassed/not required
+			if !c.authService.IsAuthRequired(ctx) {
+				ctx.Set(auth.CtxKeyIsAuthenticated, true)
+				ctx.Set(auth.CtxKeyAuthMethod, auth.AuthMethodNone)
+				return next(ctx)
 			}
-			authErr = c.authMiddleware(guardedNext)(ctx)
-			// Ignore auth errors (unauthenticated visitors are fine here).
-			_ = authErr
+
+			// Try token auth (Authorization: Bearer <token>)
+			authHeader := ctx.Request().Header.Get("Authorization")
+			if authHeader != "" {
+				parts := strings.SplitN(authHeader, " ", 2)
+				if len(parts) == 2 && strings.EqualFold(parts[0], "bearer") {
+					token := strings.TrimSpace(parts[1])
+					if err := c.authService.ValidateToken(token); err == nil {
+						ctx.Set(auth.CtxKeyIsAuthenticated, true)
+						ctx.Set(auth.CtxKeyUsername, "")
+						ctx.Set(auth.CtxKeyAuthMethod, auth.AuthMethodToken)
+						return next(ctx)
+					}
+				}
+			}
+
+			// Try session auth
+			if err := c.authService.CheckAccess(ctx); err == nil {
+				ctx.Set(auth.CtxKeyIsAuthenticated, true)
+				ctx.Set(auth.CtxKeyAuthMethod, c.authService.GetAuthMethod(ctx))
+				ctx.Set(auth.CtxKeyUsername, c.authService.GetUsername(ctx))
+				return next(ctx)
+			}
 		}
 		return next(ctx)
 	}

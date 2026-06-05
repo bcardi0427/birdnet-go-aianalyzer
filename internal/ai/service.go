@@ -525,23 +525,41 @@ func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStat
 		"weatherAvailable":     stats.Weather.Available,
 		"ebirdContextIncluded": stats.EBirdContextIncluded,
 	}
+	isFahrenheit := settings.Realtime.Dashboard.TemperatureUnit == conf.TemperatureUnitFahrenheit
 	if stats.Weather.Available {
-		facts["weather"] = map[string]any{
-			"tempMinC":      fmt.Sprintf("%.1f", stats.Weather.TempMin),
-			"tempMaxC":      fmt.Sprintf("%.1f", stats.Weather.TempMax),
-			"tempAvgC":      fmt.Sprintf("%.1f", stats.Weather.TempAvg),
-			"pressureHpa":   fmt.Sprintf("%.1f", stats.Weather.Pressure),
-			"humidityPct":   fmt.Sprintf("%.1f", stats.Weather.Humidity),
-			"windAvgMS":     fmt.Sprintf("%.1f", stats.Weather.WindAvg),
-			"windGustMaxMS": fmt.Sprintf("%.1f", stats.Weather.WindMax),
-			"condition":     orUnknown(stats.Weather.Condition),
+		if isFahrenheit {
+			facts["weather"] = map[string]any{
+				"tempMinF":       fmt.Sprintf("%.1f", stats.Weather.TempMin*1.8+32),
+				"tempMaxF":       fmt.Sprintf("%.1f", stats.Weather.TempMax*1.8+32),
+				"tempAvgF":       fmt.Sprintf("%.1f", stats.Weather.TempAvg*1.8+32),
+				"pressureHpa":    fmt.Sprintf("%.1f", stats.Weather.Pressure),
+				"humidityPct":    fmt.Sprintf("%.1f", stats.Weather.Humidity),
+				"windAvgMph":     fmt.Sprintf("%.1f", stats.Weather.WindAvg*2.23694),
+				"windGustMaxMph": fmt.Sprintf("%.1f", stats.Weather.WindMax*2.23694),
+				"condition":      orUnknown(stats.Weather.Condition),
+			}
+			facts["temperatureUnitPreference"] = "Fahrenheit (°F)"
+			facts["windSpeedUnitPreference"] = "miles per hour (mph)"
+		} else {
+			facts["weather"] = map[string]any{
+				"tempMinC":      fmt.Sprintf("%.1f", stats.Weather.TempMin),
+				"tempMaxC":      fmt.Sprintf("%.1f", stats.Weather.TempMax),
+				"tempAvgC":      fmt.Sprintf("%.1f", stats.Weather.TempAvg),
+				"pressureHpa":   fmt.Sprintf("%.1f", stats.Weather.Pressure),
+				"humidityPct":   fmt.Sprintf("%.1f", stats.Weather.Humidity),
+				"windAvgMS":     fmt.Sprintf("%.1f", stats.Weather.WindAvg),
+				"windGustMaxMS": fmt.Sprintf("%.1f", stats.Weather.WindMax),
+				"condition":     orUnknown(stats.Weather.Condition),
+			}
+			facts["temperatureUnitPreference"] = "Celsius (°C)"
+			facts["windSpeedUnitPreference"] = "meters per second (m/s)"
 		}
 	}
 
 	factsJSON, _ := json.MarshalIndent(facts, "", "  ")
 
 	// Safety note appended after facts — does not override output format instructions.
-	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links."
+	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts."
 
 	var prompt string
 	if strings.TrimSpace(settings.AI.SystemPrompt) != "" {
@@ -681,11 +699,28 @@ func (s *ReportService) renderWeatherSummary(stats *reportStats) string {
 	if !stats.Weather.Available {
 		return "<h2>Weather Summary</h2>\n\n<p>Weather data unavailable for this report window.</p>"
 	}
+	settings := s.settingsSnapshot()
+	isFahrenheit := settings.Realtime.Dashboard.TemperatureUnit == conf.TemperatureUnitFahrenheit
+
+	var tempStr, windStr string
+	if isFahrenheit {
+		tempMinF := stats.Weather.TempMin*1.8 + 32
+		tempMaxF := stats.Weather.TempMax*1.8 + 32
+		tempAvgF := stats.Weather.TempAvg*1.8 + 32
+		windAvgMph := stats.Weather.WindAvg * 2.23694
+		windMaxMph := stats.Weather.WindMax * 2.23694
+		tempStr = fmt.Sprintf("min %.1f°F / max %.1f°F / avg %.1f°F", tempMinF, tempMaxF, tempAvgF)
+		windStr = fmt.Sprintf("avg %.1f mph / max %.1f mph", windAvgMph, windMaxMph)
+	} else {
+		tempStr = fmt.Sprintf("min %.1f°C / max %.1f°C / avg %.1f°C", stats.Weather.TempMin, stats.Weather.TempMax, stats.Weather.TempAvg)
+		windStr = fmt.Sprintf("avg %.1f m/s / max %.1f m/s", stats.Weather.WindAvg, stats.Weather.WindMax)
+	}
+
 	return strings.Join([]string{
 		"<h2>Weather Summary</h2>",
 		`<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>`,
-		fmt.Sprintf("<tr><td>Temperature</td><td>min %.1f°C / max %.1f°C / avg %.1f°C</td></tr>", stats.Weather.TempMin, stats.Weather.TempMax, stats.Weather.TempAvg),
-		fmt.Sprintf("<tr><td>Wind</td><td>avg %.1f m/s / max %.1f m/s</td></tr>", stats.Weather.WindAvg, stats.Weather.WindMax),
+		fmt.Sprintf("<tr><td>Temperature</td><td>%s</td></tr>", tempStr),
+		fmt.Sprintf("<tr><td>Wind</td><td>%s</td></tr>", windStr),
 		fmt.Sprintf("<tr><td>Humidity</td><td>%.1f%%</td></tr>", stats.Weather.Humidity),
 		fmt.Sprintf("<tr><td>Conditions</td><td>%s</td></tr>", esc(orUnknown(stats.Weather.Condition))),
 		"</tbody></table>",

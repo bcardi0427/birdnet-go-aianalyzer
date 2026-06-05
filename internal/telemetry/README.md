@@ -403,13 +403,14 @@ export LOG_LEVEL=debug
 
 ## Environment Variables
 
-| Variable             | Description           | Default      |
-| -------------------- | --------------------- | ------------ |
-| `SENTRY_DSN`         | Sentry DSN            | -            |
-| `SENTRY_ENVIRONMENT` | Environment name      | "production" |
-| `SENTRY_SAMPLE_RATE` | Sample rate (0.0-1.0) | 1.0          |
-| `SENTRY_DEBUG`       | Enable debug mode     | false        |
-| `LOG_LEVEL`          | Logging level         | "info"       |
+| Variable             | Description                                                   | Default      |
+| -------------------- | ------------------------------------------------------------- | ------------ |
+| `BIRDNET_SENTRY_DSN` | Sentry DSN key (takes precedence over `SENTRY_DSN`)            | -            |
+| `SENTRY_DSN`         | Fallback Sentry DSN key                                       | -            |
+| `SENTRY_ENVIRONMENT` | Environment name                                              | "production" |
+| `SENTRY_SAMPLE_RATE` | Sample rate (0.0-1.0)                                         | 1.0          |
+| `SENTRY_DEBUG`       | Enable debug mode                                             | false        |
+| `LOG_LEVEL`          | Logging level                                                 | "info"       |
 
 ## Dependencies and Integration
 

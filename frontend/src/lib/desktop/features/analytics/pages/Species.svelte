@@ -3,6 +3,8 @@
   import { getLocalDateString, parseLocalDateString } from '$lib/utils/date';
   import { loggers } from '$lib/utils/logger';
   import { buildAppUrl } from '$lib/utils/urlHelpers';
+  import { dashboardSettings } from '$lib/stores/settings';
+  import { getBirdSiteLink } from '$lib/utils/birdLinks';
   import { onMount } from 'svelte';
   import SpeciesFilterForm from '../components/forms/SpeciesFilterForm.svelte';
   import SpeciesDetailModal from '../components/modals/SpeciesDetailModal.svelte';
@@ -38,6 +40,7 @@
     first_heard: string;
     last_heard: string;
     thumbnail_url?: string;
+    species_code?: string;
   }
 
   type ViewMode = 'grid' | 'list';
@@ -390,6 +393,16 @@
     showDetailModal = false;
     selectedSpecies = null;
   }
+
+  function getSpeciesThumbnailLink(species: SpeciesData): string | null {
+    return getBirdSiteLink(
+      $dashboardSettings?.thumbnails?.clickLinkTo,
+      species.scientific_name,
+      species.common_name,
+      species.species_code,
+      $dashboardSettings?.thumbnails?.utmParameters
+    );
+  }
 </script>
 
 <div class="col-span-12 space-y-4" role="region" aria-label={t('analytics.species.title')}>
@@ -561,17 +574,42 @@
                           class:bg-[var(--color-base-300)]={!species.thumbnail_url}
                         >
                           {#if species.thumbnail_url}
-                            <img
-                              src={species.thumbnail_url}
-                              alt={species.common_name}
-                              onerror={e => {
-                                const img = e.target as HTMLImageElement;
-                                if (img) {
-                                  img.style.display = 'none';
-                                  img.parentElement?.classList.add('bg-[var(--color-base-300)]');
-                                }
-                              }}
-                            />
+                            {@const thumbnailLink = getSpeciesThumbnailLink(species)}
+                            {#if thumbnailLink}
+                              <a
+                                href={thumbnailLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="block h-full w-full"
+                                aria-label="Open bird information for {species.common_name}"
+                              >
+                                <img
+                                  src={species.thumbnail_url}
+                                  alt={species.common_name}
+                                  onerror={e => {
+                                    const img = e.target as HTMLImageElement;
+                                    if (img) {
+                                      img.style.display = 'none';
+                                      img.parentElement?.classList.add(
+                                        'bg-[var(--color-base-300)]'
+                                      );
+                                    }
+                                  }}
+                                />
+                              </a>
+                            {:else}
+                              <img
+                                src={species.thumbnail_url}
+                                alt={species.common_name}
+                                onerror={e => {
+                                  const img = e.target as HTMLImageElement;
+                                  if (img) {
+                                    img.style.display = 'none';
+                                    img.parentElement?.classList.add('bg-[var(--color-base-300)]');
+                                  }
+                                }}
+                              />
+                            {/if}
                           {/if}
                         </div>
                       </div>

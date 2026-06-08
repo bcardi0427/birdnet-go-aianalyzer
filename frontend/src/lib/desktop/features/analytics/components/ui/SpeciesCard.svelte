@@ -2,6 +2,8 @@
   import { cn } from '$lib/utils/cn';
   import { t } from '$lib/i18n';
   import { parseLocalDateString } from '$lib/utils/date';
+  import { dashboardSettings } from '$lib/stores/settings';
+  import { getBirdSiteLink } from '$lib/utils/birdLinks';
 
   interface SpeciesData {
     common_name: string;
@@ -12,6 +14,7 @@
     first_heard: string;
     last_heard: string;
     thumbnail_url?: string;
+    species_code?: string;
   }
 
   interface Props {
@@ -20,6 +23,15 @@
   }
 
   let { species, className = '' }: Props = $props();
+  let thumbnailLink = $derived(
+    getBirdSiteLink(
+      $dashboardSettings?.thumbnails?.clickLinkTo,
+      species.scientific_name,
+      species.common_name,
+      species.species_code,
+      $dashboardSettings?.thumbnails?.utmParameters
+    )
+  );
 
   function formatPercentage(value: number): string {
     return (value * 100).toFixed(1) + '%';
@@ -43,12 +55,29 @@
   <figure class="px-4 pt-4">
     <div class="rounded-xl w-full aspect-[4/3] overflow-hidden bg-[var(--color-base-300)]">
       {#if species.thumbnail_url && !imageLoadFailed}
-        <img
-          src={species.thumbnail_url}
-          alt={species.common_name}
-          class="h-full w-full object-cover"
-          onerror={handleImageError}
-        />
+        {#if thumbnailLink}
+          <a
+            href={thumbnailLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block h-full w-full"
+            aria-label="Open bird information for {species.common_name}"
+          >
+            <img
+              src={species.thumbnail_url}
+              alt={species.common_name}
+              class="h-full w-full object-cover"
+              onerror={handleImageError}
+            />
+          </a>
+        {:else}
+          <img
+            src={species.thumbnail_url}
+            alt={species.common_name}
+            class="h-full w-full object-cover"
+            onerror={handleImageError}
+          />
+        {/if}
       {/if}
     </div>
   </figure>

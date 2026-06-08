@@ -27,6 +27,8 @@
   import { formatLocalDateTime } from '$lib/utils/date';
   import { buildAppUrl } from '$lib/utils/urlHelpers';
   import { loggers } from '$lib/utils/logger';
+  import { dashboardSettings } from '$lib/stores/settings';
+  import { getBirdSiteLink } from '$lib/utils/birdLinks';
   import {
     Download,
     Camera,
@@ -110,6 +112,8 @@
   let isLoadingTaxonomy = $state(false);
   let detectionError = $state<string | null>(null);
   let imageAttribution = $state<ImageAttribution | null>(null);
+  let thumbnailClickDestination = $derived($dashboardSettings?.thumbnails?.clickLinkTo);
+  let thumbnailUtmParameters = $derived($dashboardSettings?.thumbnails?.utmParameters);
 
   // Derived state for subspecies with proper typing
   let subspeciesList = $derived<Subspecies[]>(
@@ -349,6 +353,16 @@
     }
   }
 
+  function getDetectionThumbnailLink(det: Detection): string | null {
+    return getBirdSiteLink(
+      thumbnailClickDestination,
+      det.scientificName,
+      det.commonName,
+      det.speciesCode,
+      thumbnailUtmParameters
+    );
+  }
+
   // Keyboard navigation handler for tab buttons
   function handleTabKeydown(e: KeyboardEvent) {
     const tabs: TabType[] = ['overview', 'history', 'notes'];
@@ -430,7 +444,7 @@
 
 <!-- Snippets for better organization -->
 
-{#snippet heroSection(det: Detection)}
+{#snippet heroSection(det: Detection, thumbnailLink: string | null)}
   <section class="detection-hero-grid" aria-labelledby="species-heading">
     <!-- Identity Card -->
     <div class="hero-card hero-identity-card">
@@ -438,15 +452,35 @@
       <div class="hero-identity-row">
         <!-- Species thumbnail with credit overlay -->
         <div class="hero-thumbnail">
-          <img
-            src={buildAppUrl(
-              `/api/v2/media/species-image?name=${encodeURIComponent(det.scientificName)}`
-            )}
-            alt={det.commonName}
-            class="w-full h-full object-contain"
-            onerror={handleBirdImageError}
-            loading="eager"
-          />
+          {#if thumbnailLink}
+            <a
+              href={thumbnailLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hero-thumbnail-link"
+              aria-label="Open bird information for {det.commonName}"
+            >
+              <img
+                src={buildAppUrl(
+                  `/api/v2/media/species-image?name=${encodeURIComponent(det.scientificName)}`
+                )}
+                alt={det.commonName}
+                class="w-full h-full object-contain"
+                onerror={handleBirdImageError}
+                loading="eager"
+              />
+            </a>
+          {:else}
+            <img
+              src={buildAppUrl(
+                `/api/v2/media/species-image?name=${encodeURIComponent(det.scientificName)}`
+              )}
+              alt={det.commonName}
+              class="w-full h-full object-contain"
+              onerror={handleBirdImageError}
+              loading="eager"
+            />
+          {/if}
           {#if imageAttribution?.authorName}
             <div class="thumbnail-credit" aria-label="Image credit: {imageAttribution.authorName}">
               <Camera size={10} class="credit-icon" />
@@ -781,7 +815,7 @@
     </div>
   {:else if detection}
     <!-- Hero Section -->
-    {@render heroSection(detection)}
+    {@render heroSection(detection, getDetectionThumbnailLink(detection))}
 
     <!-- Media Section -->
     <section class="surface-card" aria-labelledby="media-heading">
@@ -1085,6 +1119,12 @@
     background: linear-gradient(135deg, var(--color-base-200), var(--color-base-300));
     box-shadow: var(--shadow-md);
     flex-shrink: 0;
+  }
+
+  .hero-thumbnail-link {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   @media (min-width: 768px) {

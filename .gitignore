@@ -44,6 +44,7 @@ frontend/tests/.auth/
 frontend/coverage/
 frontend/playwright-report*.zip
 REFACTOR_CHANGELOG.md
+FIRESTORE_STATE_TRACKER_GUIDE.md
 .worktrees/
 .leann/
 rollout-*.json
@@ -53,4 +54,4 @@ birdnet-go.zip
 /*.dll
 AGENTS.md
 .cursor/
-.devcontainer/
+.devcontainer/

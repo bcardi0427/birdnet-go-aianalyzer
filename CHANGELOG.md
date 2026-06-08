@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [AI Analyzer 0.63] - 2026-06-08
+
+### 🚀 Features
+
+- _(ui)_ Added configurable bird thumbnail click destinations for detection details, eBird, Wikipedia, All About Birds, or no link, with separate thumbnail UTM parameters.
+- _(ui)_ Extended configured thumbnail links to Detection Details hero images and Species Analytics species images across grid cards, table list view, and mobile cards.
+
+### 🐛 Bug Fixes
+
+- _(ui)_ Route non-bird thumbnail links to Wikipedia when eBird or All About Birds is selected, covering `t-` taxonomy codes such as Green Treefrog and known non-avian classes such as Dog.
+- _(ui)_ Preserve existing internal detection detail links on thumbnails that already link to a detection instead of replacing them with external bird-site links.
+
+### 📚 Documentation
+
+- _(docs)_ Added wiki documentation files and updated the thumbnail link plan to document internal detection-link preservation.
+- _(docs)_ Added `FIRESTORE_STATE_TRACKER_GUIDE.md` to `.gitignore`.
+
 ## [0.5.6] - 2026-06-05
 
 ### 🚀 Features

@@ -142,6 +142,8 @@ type Thumbnails struct {
 	Recent         bool   `yaml:"recent" json:"recent"`                 // show thumbnails on recent table
 	ImageProvider  string `yaml:"imageprovider" json:"imageProvider"`   // preferred image provider: "auto", "wikimedia", "avicommons"
 	FallbackPolicy string `yaml:"fallbackpolicy" json:"fallbackPolicy"` // fallback policy: "none", "all" - try all available providers if preferred fails
+	ClickLinkTo    string `yaml:"clicklinkto" json:"clickLinkTo"`       // thumbnail click destination: "details", "ebird", "wikipedia", "allaboutbirds", "none"
+	UTMParameters  string `yaml:"utmparameters" json:"utmParameters"`   // UTM/tracking parameters to append to thumbnail outbound links
 }
 
 // Temperature unit constants for display preference

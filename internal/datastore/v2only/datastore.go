@@ -913,6 +913,7 @@ func (ds *Datastore) detectionToRecord(det *entities.Detection) datastore.Detect
 		Timestamp:      timestamp,
 		ScientificName: scientificName,
 		CommonName:     commonName,
+		SpeciesCode:    ds.speciesCodeMap[scientificName],
 		Confidence:     det.Confidence,
 		Latitude:       lat,
 		Longitude:      lon,

@@ -164,6 +164,8 @@ func setDefaultConfig() {
 	viper.SetDefault("realtime.dashboard.thumbnails.recent", true)
 	viper.SetDefault("realtime.dashboard.thumbnails.imageprovider", "avicommons")
 	viper.SetDefault("realtime.dashboard.thumbnails.fallbackpolicy", "none")
+	viper.SetDefault("realtime.dashboard.thumbnails.clicklinkto", "details")
+	viper.SetDefault("realtime.dashboard.thumbnails.utmparameters", "utm_source=birdnet-go&utm_medium=thumbnail&utm_campaign=bird_image_click")
 	viper.SetDefault("realtime.dashboard.summarylimit", 30)
 	viper.SetDefault("realtime.dashboard.locale", "en")               // Default UI locale
 	viper.SetDefault("realtime.dashboard.temperatureunit", "celsius") // Temperature display unit: "celsius" or "fahrenheit"

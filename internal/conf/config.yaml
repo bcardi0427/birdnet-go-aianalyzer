@@ -226,6 +226,8 @@ realtime:
       recent: true        # show thumbnails on recent table
       imageprovider: avicommons # preferred image provider: avicommons, wikimedia, auto
       fallbackpolicy: none # fallback policy: none (no fallback), all (try all available providers)
+      clicklinkto: details # thumbnail click destination: details, ebird, wikipedia, allaboutbirds, none
+      utmparameters: utm_source=birdnet-go&utm_medium=thumbnail&utm_campaign=bird_image_click # thumbnail outbound link UTM parameters
  
   dynamicthreshold:
     enabled: true         # true to enable dynamic confidence threshold

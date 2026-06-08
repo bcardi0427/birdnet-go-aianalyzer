@@ -160,6 +160,7 @@ type DetectionRecord struct {
 	Timestamp      time.Time `json:"timestamp"`
 	ScientificName string    `json:"scientificName,omitempty"`
 	CommonName     string    `json:"commonName,omitempty"`
+	SpeciesCode    string    `json:"speciesCode,omitempty"`
 	Confidence     float64   `json:"confidence,omitempty"`
 	Latitude       float64   `json:"latitude,omitempty"`
 	Longitude      float64   `json:"longitude,omitempty"`

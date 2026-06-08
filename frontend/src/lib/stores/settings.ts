@@ -623,6 +623,8 @@ export interface Thumbnails {
   recent: boolean;
   imageProvider: string;
   fallbackPolicy: string;
+  clickLinkTo?: 'details' | 'ebird' | 'wikipedia' | 'allaboutbirds' | 'none';
+  utmParameters?: string;
 }
 
 // Spectrogram size options
@@ -980,6 +982,8 @@ function createEmptySettings(): SettingsFormData {
           recent: true,
           imageProvider: 'avicommons',
           fallbackPolicy: 'none',
+          clickLinkTo: 'details',
+          utmParameters: 'utm_source=birdnet-go&utm_medium=thumbnail&utm_campaign=bird_image_click',
         },
         summaryLimit: 30,
         spectrogram: DEFAULT_SPECTROGRAM_SETTINGS,

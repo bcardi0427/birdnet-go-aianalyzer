@@ -11,6 +11,8 @@ This feature will introduce a new setting: **"Click link destination"** (or simi
 4. **All About Birds**: Opens the species guide on All About Birds in a new tab.
 5. **None**: Clicking does nothing (the image is static).
 
+Important link precedence: thumbnails that already have an explicit internal detection link, such as `https://birdnetgodev.bcardi.org/ui/detections/39242`, must keep that existing detection link. Those images should not be wrapped with, replaced by, or given additional links to eBird, Wikipedia, or All About Birds. The new external destination setting only applies to thumbnail elements that do not already carry a detection-detail URL.
+
 ---
 
 ## 2. Configuration Settings Changes
@@ -57,9 +59,9 @@ We need to update the frontend type definitions so they sync correctly with the 
 ## 3. UI Settings Page Changes
 We will expose the option in the **Visual Content** tab of the User Interface Settings page.
 
-1. **Add dropdown option** in [UserInterfaceSettingsPage.svelte](file:///F:/AntiGravity%20Sources/birdnet-go/frontend/src/lib/desktop/features/settings/pages/UserInterfaceSettingsPage.svelte) inside the **Bird Images** section:
+1. **Add dropdown option** in [UserInterfaceSettingsPage.svelte](file:///F:/AntiGravity%20Sources/birdnet-go/frontend/src/lib/desktop/features/settings/pages/UserInterfaceSettingsPage.svelte). Specifically, insert it inside the `visualContentTabContent` snippet, just below the grid containing the `imageProvider` and `fallbackPolicy` dropdowns:
    ```html
-   <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 mt-4">
      <SelectDropdown
        options={[
          { value: 'details', label: 'Detection Details' },
@@ -92,15 +94,17 @@ export function getBirdSiteLink(
   commonName: string, 
   speciesCode: string
 ): string | null {
+  const utmParams = "?utm_source=birdnet-go&utm_medium=web&utm_campaign=thumbnail_click";
+  
   if (destination === 'wikipedia') {
-    return `https://wikipedia.org/wiki/${encodeURIComponent(scientificName.replace(/ /g, '_'))}`;
+    return `https://wikipedia.org/wiki/${encodeURIComponent(scientificName.replace(/ /g, '_'))}${utmParams}`;
   }
   if (destination === 'allaboutbirds') {
     const cleanedCommon = commonName.replace(/'/g, '');
-    return `https://allaboutbirds.org/guide/${encodeURIComponent(cleanedCommon.replace(/ /g, '_'))}`;
+    return `https://allaboutbirds.org/guide/${encodeURIComponent(cleanedCommon.replace(/ /g, '_'))}${utmParams}`;
   }
   if (destination === 'ebird' && speciesCode) {
-    return `https://ebird.org/species/${encodeURIComponent(speciesCode)}`;
+    return `https://ebird.org/species/${encodeURIComponent(speciesCode)}${utmParams}`;
   }
   return null;
 }
@@ -111,18 +115,26 @@ export function getBirdSiteLink(
 ## 5. UI Rendering Changes
 We need to update the thumbnail elements in tables and lists to act as links or buttons according to the configuration.
 
+Before applying the configured destination, each component should first check whether the thumbnail already has an explicit detection-detail URL. If it does, render that existing link unchanged and skip external link resolution entirely. This avoids nested anchors and prevents detection-linked images from being redirected to eBird, Wikipedia, or All About Birds.
+
 ### A. Update `DetectionRow.svelte`
 In [DetectionRow.svelte](file:///F:/AntiGravity%20Sources/birdnet-go/frontend/src/lib/desktop/features/detections/components/DetectionRow.svelte):
 
 1. **Retrieve setting and link**:
    ```typescript
    let clickLinkTo = $derived($settingsStore.formData.realtime?.dashboard?.thumbnails?.clickLinkTo ?? 'details');
+   let existingDetectionLink = $derived(detection.detailUrl ?? detection.url ?? null);
    let externalLink = $derived(getBirdSiteLink(clickLinkTo, detection.scientificName, detection.commonName, detection.speciesCode));
    ```
 
 2. **Render wrapper conditional link/button**:
    ```html
-   {#if clickLinkTo === 'none'}
+   {#if existingDetectionLink}
+     <!-- Preserve existing detection-detail links; do not apply external destinations. -->
+     <a href={existingDetectionLink} class="sp-thumbnail-button">
+       <img ... />
+     </a>
+   {:else if clickLinkTo === 'none'}
      <!-- Static thumbnail -->
      <div class="sp-thumbnail-button cursor-default">
        <img ... />

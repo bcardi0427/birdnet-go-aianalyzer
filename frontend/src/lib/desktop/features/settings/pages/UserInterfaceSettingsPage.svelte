@@ -30,6 +30,7 @@
   import SettingsNote from '$lib/desktop/features/settings/components/SettingsNote.svelte';
   import ColorSchemePicker from '$lib/desktop/features/settings/components/ColorSchemePicker.svelte';
   import SelectDropdown from '$lib/desktop/components/forms/SelectDropdown.svelte';
+  import TextInput from '$lib/desktop/components/forms/TextInput.svelte';
   import type { SelectOption } from '$lib/desktop/components/forms/SelectDropdown.types';
   import InlineSlider from '$lib/desktop/components/forms/InlineSlider.svelte';
   import Checkbox from '$lib/desktop/components/forms/Checkbox.svelte';
@@ -150,6 +151,8 @@
           recent: true,
           imageProvider: 'avicommons',
           fallbackPolicy: 'none',
+          clickLinkTo: 'details',
+          utmParameters: 'utm_source=birdnet-go&utm_medium=thumbnail&utm_campaign=bird_image_click',
         },
         summaryLimit: 30,
       }),
@@ -499,6 +502,35 @@
                 onChange={value => updateThumbnailSetting('fallbackPolicy', value as string)}
               />
             {/if}
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+            <SelectDropdown
+              options={[
+                { value: 'details', label: 'Detection Details' },
+                { value: 'ebird', label: 'eBird' },
+                { value: 'wikipedia', label: 'Wikipedia' },
+                { value: 'allaboutbirds', label: 'All About Birds' },
+                { value: 'none', label: 'None (Static Image)' },
+              ]}
+              value={settings.dashboard.thumbnails.clickLinkTo || 'details'}
+              label="Thumbnail click destination"
+              helpText="Controls where bird thumbnails link for everyone viewing the dashboard and tables."
+              disabled={store.isLoading || store.isSaving}
+              variant="select"
+              groupBy={false}
+              menuSize="sm"
+              onChange={value => updateThumbnailSetting('clickLinkTo', value as string)}
+            />
+
+            <TextInput
+              label="Thumbnail UTM Parameters"
+              value={settings.dashboard.thumbnails.utmParameters ?? ''}
+              placeholder="utm_source=birdnet-go&utm_medium=thumbnail&utm_campaign=bird_image_click"
+              helpText="Optional UTM/tracking parameters to append to bird thumbnail external links. This is separate from the AI Analysis report UTM setting."
+              disabled={store.isLoading || store.isSaving}
+              onchange={value => updateThumbnailSetting('utmParameters', value)}
+            />
           </div>
         </div>
 

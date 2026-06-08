@@ -9,6 +9,7 @@
   import { dashboardSettings } from '$lib/stores/settings';
   import { toastActions } from '$lib/stores/toast';
   import { api, fetchWithCSRF } from '$lib/utils/api';
+  import { getBirdSiteLink, normalizeThumbnailClickDestination } from '$lib/utils/birdLinks';
   import { getLocalDateString, parseLocalDateString } from '$lib/utils/date';
   import type { TemperatureUnit } from '$lib/utils/formatters';
   import {
@@ -59,6 +60,7 @@
     timeOfDay: string;
     commonName: string;
     scientificName: string;
+    speciesCode?: string;
     confidence: number;
     verified: string;
     locked: boolean;
@@ -72,6 +74,10 @@
 
   let clipExtractionEnabled = $derived($isAuthenticated);
   let canReview = $derived($hasReviewPermission);
+  let thumbnailClickDestination = $derived(
+    normalizeThumbnailClickDestination($dashboardSettings?.thumbnails?.clickLinkTo)
+  );
+  let thumbnailUtmParameters = $derived($dashboardSettings?.thumbnails?.utmParameters);
 
   const logger = loggers.ui;
 
@@ -192,6 +198,33 @@
     selectedSpeciesName = result.commonName || '';
     selectedDetectionId = result.id;
     showMobilePlayer = true;
+  }
+
+  function getSpeciesImageUrl(scientificName: string) {
+    return buildAppUrl(`/api/v2/media/species-image?name=${encodeURIComponent(scientificName)}`);
+  }
+
+  function getSearchThumbnailExternalLink(result: SearchResult): string | null {
+    return getBirdSiteLink(
+      thumbnailClickDestination,
+      result.scientificName,
+      result.commonName,
+      result.speciesCode,
+      thumbnailUtmParameters
+    );
+  }
+
+  function handleSearchThumbnailClick(event: Event, result: SearchResult) {
+    if (thumbnailClickDestination === 'none') {
+      event.preventDefault();
+      return;
+    }
+
+    const externalLink = getSearchThumbnailExternalLink(result);
+    if (externalLink) return;
+
+    event.preventDefault();
+    navigation.navigate(`/ui/detections/${result.id}`);
   }
 
   function closeMobilePlayer() {
@@ -771,6 +804,7 @@
             <tbody>
               <!-- Loop through results -->
               {#each results as result, index (result.id)}
+                {@const thumbnailExternalLink = getSearchThumbnailExternalLink(result)}
                 <!-- Main row -->
                 <tr
                   class={index % 2 === 0
@@ -787,46 +821,71 @@
                   <td>
                     <div class="flex items-center gap-2">
                       <!-- Add bird image thumbnail -->
-                      <div
-                        class="w-12 h-9 rounded-md overflow-hidden bg-gray-100 shrink-0 cursor-pointer hover:ring-2 hover:ring-primary transition-all focus:outline-hidden focus:ring-2 focus:ring-[var(--color-primary)]"
-                        onclick={() => toggleExpand(result.id)}
-                        onkeydown={e => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            toggleExpand(result.id);
-                          }
-                        }}
-                        aria-label={isExpanded(result.id)
-                          ? t('search.detailsPanel.collapseDetails', {
-                              species: result.commonName || t('search.detailsPanel.unknownSpecies'),
-                            })
-                          : t('search.detailsPanel.expandDetails', {
-                              species: result.commonName || t('search.detailsPanel.unknownSpecies'),
-                            })}
-                        aria-expanded={isExpanded(result.id)}
-                        role="button"
-                        tabindex="0"
-                      >
-                        <!-- PERFORMANCE OPTIMIZATION: Enhanced image loading attributes -->
-                        <!-- loading="lazy": Defer loading until image enters viewport -->
-                        <!-- decoding="async": Decode image off-main-thread to prevent UI blocking -->
-                        <!-- fetchpriority="low": Lower network priority for species thumbnails -->
-                        <img
-                          src={buildAppUrl(
-                            `/api/v2/media/species-image?name=${encodeURIComponent(result.scientificName)}`
-                          )}
-                          alt={result.commonName || t('search.detailsPanel.unknownSpecies')}
-                          class="w-full h-full object-cover"
-                          onerror={e => {
-                            const target = e.currentTarget as HTMLImageElement;
-                            target.src = buildAppUrl('/ui/assets/bird-placeholder.svg');
-                            target.classList.add('p-2');
-                          }}
-                          loading="lazy"
-                          decoding="async"
-                          fetchpriority="low"
-                        />
-                      </div>
+                      {#if thumbnailClickDestination === 'none'}
+                        <div
+                          class="w-12 h-9 rounded-md overflow-hidden bg-gray-100 shrink-0 cursor-default"
+                        >
+                          <img
+                            src={getSpeciesImageUrl(result.scientificName)}
+                            alt={result.commonName || t('search.detailsPanel.unknownSpecies')}
+                            class="w-full h-full object-cover"
+                            onerror={e => {
+                              const target = e.currentTarget as HTMLImageElement;
+                              target.src = buildAppUrl('/ui/assets/bird-placeholder.svg');
+                              target.classList.add('p-2');
+                            }}
+                            loading="lazy"
+                            decoding="async"
+                            fetchpriority="low"
+                          />
+                        </div>
+                      {:else if thumbnailExternalLink}
+                        <a
+                          class="w-12 h-9 rounded-md overflow-hidden bg-gray-100 shrink-0 cursor-pointer hover:ring-2 hover:ring-primary transition-all focus:outline-hidden focus:ring-2 focus:ring-[var(--color-primary)]"
+                          href={thumbnailExternalLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={t('search.detailsPanel.viewDetails', {
+                            species: result.commonName || t('search.detailsPanel.unknownSpecies'),
+                          })}
+                        >
+                          <img
+                            src={getSpeciesImageUrl(result.scientificName)}
+                            alt={result.commonName || t('search.detailsPanel.unknownSpecies')}
+                            class="w-full h-full object-cover"
+                            onerror={e => {
+                              const target = e.currentTarget as HTMLImageElement;
+                              target.src = buildAppUrl('/ui/assets/bird-placeholder.svg');
+                              target.classList.add('p-2');
+                            }}
+                            loading="lazy"
+                            decoding="async"
+                            fetchpriority="low"
+                          />
+                        </a>
+                      {:else}
+                        <button
+                          class="w-12 h-9 rounded-md overflow-hidden bg-gray-100 shrink-0 cursor-pointer hover:ring-2 hover:ring-primary transition-all focus:outline-hidden focus:ring-2 focus:ring-[var(--color-primary)]"
+                          onclick={e => handleSearchThumbnailClick(e, result)}
+                          aria-label={t('search.detailsPanel.viewDetails', {
+                            species: result.commonName || t('search.detailsPanel.unknownSpecies'),
+                          })}
+                        >
+                          <img
+                            src={getSpeciesImageUrl(result.scientificName)}
+                            alt={result.commonName || t('search.detailsPanel.unknownSpecies')}
+                            class="w-full h-full object-cover"
+                            onerror={e => {
+                              const target = e.currentTarget as HTMLImageElement;
+                              target.src = buildAppUrl('/ui/assets/bird-placeholder.svg');
+                              target.classList.add('p-2');
+                            }}
+                            loading="lazy"
+                            decoding="async"
+                            fetchpriority="low"
+                          />
+                        </button>
+                      {/if}
                       <div>
                         <div class="font-bold">
                           {result.commonName || t('search.detailsPanel.unknownSpecies')}
@@ -1070,6 +1129,7 @@
         <!-- Mobile card list -->
         <div class="md:hidden mt-4 space-y-2" aria-labelledby="search-results-heading">
           {#each results as result (result.id)}
+            {@const mobileThumbnailExternalLink = getSearchThumbnailExternalLink(result)}
             <section class="bg-[var(--color-base-100)] rounded-lg p-3">
               <div class="flex items-start gap-3">
                 <!-- Time of Day + Date/Time -->
@@ -1086,21 +1146,59 @@
                 <!-- Thumbnail and names -->
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center gap-2">
-                    <div
-                      class="w-12 h-9 rounded-md overflow-hidden bg-[var(--color-base-200)] shrink-0"
-                    >
-                      <img
-                        src={buildAppUrl(
-                          `/api/v2/media/species-image?name=${encodeURIComponent(result.scientificName)}`
-                        )}
-                        alt={result.commonName || t('search.detailsPanel.unknownSpecies')}
-                        class="w-full h-full object-cover"
-                        onerror={handleBirdImageError}
-                        loading="lazy"
-                        decoding="async"
-                        fetchpriority="low"
-                      />
-                    </div>
+                    {#if thumbnailClickDestination === 'none'}
+                      <div
+                        class="w-12 h-9 rounded-md overflow-hidden bg-[var(--color-base-200)] shrink-0 cursor-default"
+                      >
+                        <img
+                          src={getSpeciesImageUrl(result.scientificName)}
+                          alt={result.commonName || t('search.detailsPanel.unknownSpecies')}
+                          class="w-full h-full object-cover"
+                          onerror={handleBirdImageError}
+                          loading="lazy"
+                          decoding="async"
+                          fetchpriority="low"
+                        />
+                      </div>
+                    {:else if mobileThumbnailExternalLink}
+                      <a
+                        class="w-12 h-9 rounded-md overflow-hidden bg-[var(--color-base-200)] shrink-0"
+                        href={mobileThumbnailExternalLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t('search.detailsPanel.viewDetails', {
+                          species: result.commonName || t('search.detailsPanel.unknownSpecies'),
+                        })}
+                      >
+                        <img
+                          src={getSpeciesImageUrl(result.scientificName)}
+                          alt={result.commonName || t('search.detailsPanel.unknownSpecies')}
+                          class="w-full h-full object-cover"
+                          onerror={handleBirdImageError}
+                          loading="lazy"
+                          decoding="async"
+                          fetchpriority="low"
+                        />
+                      </a>
+                    {:else}
+                      <button
+                        class="w-12 h-9 rounded-md overflow-hidden bg-[var(--color-base-200)] shrink-0"
+                        onclick={e => handleSearchThumbnailClick(e, result)}
+                        aria-label={t('search.detailsPanel.viewDetails', {
+                          species: result.commonName || t('search.detailsPanel.unknownSpecies'),
+                        })}
+                      >
+                        <img
+                          src={getSpeciesImageUrl(result.scientificName)}
+                          alt={result.commonName || t('search.detailsPanel.unknownSpecies')}
+                          class="w-full h-full object-cover"
+                          onerror={handleBirdImageError}
+                          loading="lazy"
+                          decoding="async"
+                          fetchpriority="low"
+                        />
+                      </button>
+                    {/if}
                     <div class="min-w-0">
                       <div class="font-semibold leading-tight truncate">
                         {result.commonName || t('search.detailsPanel.unknownSpecies')}

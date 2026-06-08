@@ -832,8 +832,20 @@ export function coerceSettings(section: string, data: UnknownSettings): UnknownS
 
       if (Object.prototype.hasOwnProperty.call(data, 'dashboard')) {
         const db = data.dashboard as Record<string, unknown>;
+        const rawThumbnails =
+          db.thumbnails && typeof db.thumbnails === 'object' && !Array.isArray(db.thumbnails)
+            ? (db.thumbnails as Record<string, unknown>)
+            : {};
         coercedRealtime.dashboard = {
           ...db,
+          thumbnails: {
+            ...rawThumbnails,
+            clickLinkTo: coerceString(rawThumbnails.clickLinkTo, 'details'),
+            utmParameters: coerceString(
+              rawThumbnails.utmParameters,
+              'utm_source=birdnet-go&utm_medium=thumbnail&utm_campaign=bird_image_click'
+            ),
+          },
           basePath: coerceString(db.basePath, ''),
         };
       }

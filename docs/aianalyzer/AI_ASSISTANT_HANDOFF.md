@@ -18,8 +18,8 @@ When making fork-specific changes:
 - Keep AI Analyzer changes narrowly scoped.
 - Avoid broad refactors.
 - Avoid touching upstream docs unless the change is specifically about pointing users to the fork docs.
-- Do not mix fork changelog entries into the root `CHANGELOG.md`.
-- Use `docs/aianalyzer/CHANGELOG.md` for fork-specific changelog notes.
+- Use the root `CHANGELOG.md` as the single changelog.
+- Put fork-specific changelog notes in AI Analyzer-prefixed sections, such as `AI Analyzer Unreleased` or `AI Analyzer 0.63`.
 
 ## Branches And Repository
 
@@ -59,7 +59,6 @@ Fork docs live here:
 
 ```text
 docs/aianalyzer/README.md
-docs/aianalyzer/CHANGELOG.md
 docs/aianalyzer/AI_ASSISTANT_HANDOFF.md
 ```
 
@@ -279,7 +278,7 @@ Before committing:
 - Do not stage unrelated local changes.
 - Keep root upstream files untouched unless absolutely necessary.
 - Put fork docs in `docs/aianalyzer/`.
-- Put fork changelog entries in `docs/aianalyzer/CHANGELOG.md`.
+- Put fork changelog entries in AI Analyzer-prefixed sections in the root `CHANGELOG.md`.
 - Run frontend typecheck for frontend changes.
 - Let GitHub Actions validate the Linux binary release.
 

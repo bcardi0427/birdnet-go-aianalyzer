@@ -4,6 +4,15 @@ All notable AI Analyzer fork changes will be documented in this file.
 
 This changelog covers the `bcardi0427/birdnet-go-aianalyzer` fork. For inherited upstream BirdNET-Go history and credit, see the upstream [BirdNET-Go changelog](https://github.com/tphakala/birdnet-go/blob/main/CHANGELOG.md).
 
+## [AI Analyzer 0.72] - 2026-11-03
+
+### 🚀 Features
+
+- _(ai)_ Added dedicated **Period Comparison** report section (`<h2>Period Comparison (vs. Preceding N Days)</h2>`) rendering side-by-side detection totals, species richness, temperature shifts, wind changes, pressure, humidity, new arrivals, departed species, surges, and declines.
+- _(ai)_ Added multi-day weather aggregation across the entire report window from local SQLite `hourly_weathers`, replacing single-day queries.
+- _(ai)_ Added historical daily weather breakdown (`Daily Weather History`) displaying per-day temperature ranges, averages, wind, humidity, and sky conditions.
+- _(ai)_ Enriched AI prompt facts with `weatherComparison` deltas and `dailyWeather` history so narratives can correlate microclimate shifts with migration movements.
+
 ## [AI Analyzer 0.68] - 2026-11-03
 
 ### 🚀 Features

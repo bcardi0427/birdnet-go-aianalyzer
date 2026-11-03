@@ -118,6 +118,8 @@ type reportStats struct {
 	TopSpecies           []speciesRow
 	NotableSpecies       []speciesRow
 	Weather              weatherSummary
+	PriorWeather         weatherSummary
+	DailyWeather         []dailyWeatherRow
 	EBirdContextIncluded bool
 	EBirdRecentBySpecies map[string]bool
 	CivilDawn            string
@@ -125,6 +127,18 @@ type reportStats struct {
 	Sunset               string
 	CivilDusk            string
 	PriorComparison      priorComparisonStats
+}
+
+type dailyWeatherRow struct {
+	Date      string  `json:"date"`
+	TempMin   float64 `json:"tempMin"`
+	TempMax   float64 `json:"tempMax"`
+	TempAvg   float64 `json:"tempAvg"`
+	Pressure  float64 `json:"pressure"`
+	WindAvg   float64 `json:"windAvg"`
+	WindMax   float64 `json:"windMax"`
+	Humidity  float64 `json:"humidity"`
+	Condition string  `json:"condition"`
 }
 
 type speciesDelta struct {
@@ -355,8 +369,10 @@ func (s *ReportService) generateReport(ctx context.Context, apiKey string) (stri
 	settings := s.settingsSnapshot()
 	now := time.Now()
 	lookback := time.Duration(effectiveReportDays(settings.AI.ReportDays)) * 24 * time.Hour
-	start := now.Add(-lookback).Unix()
-	end := now.Unix()
+	startTime := now.Add(-lookback)
+	endTime := now
+	start := startTime.Unix()
+	end := endTime.Unix()
 
 	dets, _, err := s.detection.GetByDateRange(ctx, start, end, 10000, 0)
 	if err != nil {
@@ -370,13 +386,15 @@ func (s *ReportService) generateReport(ctx context.Context, apiKey string) (stri
 		return fmt.Sprintf("<h1>AI Analysis</h1>\n\n<p>No detections were found in the last %d day(s).</p>", effectiveReportDays(settings.AI.ReportDays)), now, true, nil
 	}
 
-	prevStart := now.Add(-2 * lookback).Unix()
+	prevStartTime := now.Add(-2 * lookback)
+	prevEndTime := startTime
+	prevStart := prevStartTime.Unix()
 	prevDets, _, prevErr := s.detection.GetByDateRange(ctx, prevStart, start, 10000, 0)
 	if prevErr != nil {
 		s.log.Warn("failed to load prior-period detections for comparison", logger.Error(prevErr))
 	}
 
-	stats, err := s.computeStats(ctx, dets, prevDets)
+	stats, err := s.computeStats(ctx, dets, prevDets, startTime, endTime, prevStartTime, prevEndTime)
 	if err != nil {
 		return "", time.Time{}, false, err
 	}
@@ -390,20 +408,31 @@ func (s *ReportService) generateReport(ctx context.Context, apiKey string) (stri
 	}
 	narrative = sanitizeNarrative(narrative)
 
-	sections := []string{
+	rawSections := []string{
 		"<h1>AI Analysis</h1>",
 		narrative,
 		s.renderDailyTotals(stats),
+		s.renderPeriodComparison(stats),
 		s.renderTopSpecies(stats),
 		s.renderNotableSpecies(stats),
 		s.renderWeatherSummary(stats),
 		s.renderConfidenceBreakdown(stats),
 	}
+	var sections []string
+	for _, sec := range rawSections {
+		if strings.TrimSpace(sec) != "" {
+			sections = append(sections, sec)
+		}
+	}
 
 	return strings.Join(sections, "\n\n"), now, shouldCache, nil
 }
 
-func (s *ReportService) computeStats(ctx context.Context, dets, prevDets []*entities.Detection) (*reportStats, error) {
+func (s *ReportService) computeStats(
+	ctx context.Context,
+	dets, prevDets []*entities.Detection,
+	startTime, endTime, prevStartTime, prevEndTime time.Time,
+) (*reportStats, error) {
 	stats := &reportStats{}
 	hourly := make([]int, 24)
 	byScientific := make(map[string][]*entities.Detection)
@@ -480,7 +509,8 @@ func (s *ReportService) computeStats(ctx context.Context, dets, prevDets []*enti
 	}
 	stats.NotableSpecies = buildNotableSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, settings.AI.UTMParameters, maxNotableSpeciesRows)
 	stats.HourlyCounts = hourly
-	stats.Weather = s.fetchWeatherSummary(ctx)
+	stats.Weather, stats.DailyWeather = s.fetchWindowWeatherSummary(ctx, startTime, endTime)
+	stats.PriorWeather, _ = s.fetchWindowWeatherSummary(ctx, prevStartTime, prevEndTime)
 	stats.EBirdContextIncluded = settings.Realtime.EBird.Enabled && s.ebirdClient != nil
 
 	if stats.EBirdContextIncluded {
@@ -673,43 +703,115 @@ func applyEBirdContext(rows []speciesRow, recentMap map[string]bool) []speciesRo
 	return updated
 }
 
-func (s *ReportService) fetchWeatherSummary(ctx context.Context) weatherSummary {
+func (s *ReportService) fetchWindowWeatherSummary(ctx context.Context, startTime, endTime time.Time) (weatherSummary, []dailyWeatherRow) {
 	if s.weather == nil {
-		return weatherSummary{Available: false}
+		return weatherSummary{Available: false}, nil
 	}
 
-	date := time.Now().Format(time.DateOnly)
-	items, err := s.weather.GetHourlyWeather(ctx, date)
+	if startTime.IsZero() || endTime.IsZero() {
+		return s.fetchWeatherSummaryForDate(ctx, time.Now().Format(time.DateOnly))
+	}
+
+	loc := startTime.Location()
+	startDate := time.Date(startTime.Year(), startTime.Month(), startTime.Day(), 0, 0, 0, 0, loc)
+	endDate := time.Date(endTime.Year(), endTime.Month(), endTime.Day(), 0, 0, 0, 0, loc)
+
+	var allItems []entities.HourlyWeather
+	var dailyRows []dailyWeatherRow
+
+	for d := startDate; !d.After(endDate); d = d.AddDate(0, 0, 1) {
+		dateStr := d.Format(time.DateOnly)
+		items, err := s.weather.GetHourlyWeather(ctx, dateStr)
+		if err != nil || len(items) == 0 {
+			continue
+		}
+
+		var dayItems []entities.HourlyWeather
+		for i := range items {
+			item := &items[i]
+			if !item.Time.IsZero() {
+				itemUnix := item.Time.Unix()
+				if itemUnix >= startTime.Unix() && itemUnix <= endTime.Unix() {
+					dayItems = append(dayItems, *item)
+					allItems = append(allItems, *item)
+				}
+			} else {
+				dayItems = append(dayItems, *item)
+				allItems = append(allItems, *item)
+			}
+		}
+
+		if len(dayItems) > 0 {
+			dailyRows = append(dailyRows, computeDailyWeatherRow(dateStr, dayItems))
+		}
+	}
+
+	if len(allItems) == 0 {
+		return weatherSummary{Available: false}, nil
+	}
+
+	return computeOverallWeatherSummary(allItems), dailyRows
+}
+
+func (s *ReportService) fetchWeatherSummaryForDate(ctx context.Context, dateStr string) (weatherSummary, []dailyWeatherRow) {
+	if s.weather == nil {
+		return weatherSummary{Available: false}, nil
+	}
+	items, err := s.weather.GetHourlyWeather(ctx, dateStr)
 	if err != nil || len(items) == 0 {
-		return weatherSummary{Available: false}
+		return weatherSummary{Available: false}, nil
 	}
+	row := computeDailyWeatherRow(dateStr, items)
+	ws := computeOverallWeatherSummary(items)
+	return ws, []dailyWeatherRow{row}
+}
 
-	ws := weatherSummary{Available: true, TempMin: items[0].TempMin, TempMax: items[0].TempMax}
+func computeDailyWeatherRow(date string, items []entities.HourlyWeather) dailyWeatherRow {
+	row := dailyWeatherRow{
+		Date:    date,
+		TempMin: items[0].TempMin,
+		TempMax: items[0].TempMax,
+	}
 	var tempSum, windSum, humiditySum, pressureSum float64
-	for i, w := range items {
+	for i := range items {
+		w := &items[i]
 		tempSum += w.Temperature
 		windSum += w.WindSpeed
 		humiditySum += float64(w.Humidity)
 		pressureSum += float64(w.Pressure)
-		if i == 0 || w.TempMin < ws.TempMin {
-			ws.TempMin = w.TempMin
+		if i == 0 || w.TempMin < row.TempMin {
+			row.TempMin = w.TempMin
 		}
-		if i == 0 || w.TempMax > ws.TempMax {
-			ws.TempMax = w.TempMax
+		if i == 0 || w.TempMax > row.TempMax {
+			row.TempMax = w.TempMax
 		}
-		if w.WindGust > ws.WindMax {
-			ws.WindMax = w.WindGust
+		if w.WindGust > row.WindMax {
+			row.WindMax = w.WindGust
 		}
-		if ws.Condition == "" && w.WeatherDesc != "" {
-			ws.Condition = w.WeatherDesc
+		if row.Condition == "" && w.WeatherDesc != "" {
+			row.Condition = w.WeatherDesc
 		}
 	}
-	ws.TempAvg = tempSum / float64(len(items))
-	ws.Pressure = pressureSum / float64(len(items))
-	ws.WindAvg = windSum / float64(len(items))
-	ws.Humidity = humiditySum / float64(len(items))
+	row.TempAvg = tempSum / float64(len(items))
+	row.Pressure = pressureSum / float64(len(items))
+	row.WindAvg = windSum / float64(len(items))
+	row.Humidity = humiditySum / float64(len(items))
+	return row
+}
 
-	return ws
+func computeOverallWeatherSummary(items []entities.HourlyWeather) weatherSummary {
+	row := computeDailyWeatherRow("", items)
+	return weatherSummary{
+		Available: true,
+		TempMin:   row.TempMin,
+		TempMax:   row.TempMax,
+		TempAvg:   row.TempAvg,
+		Pressure:  row.Pressure,
+		WindAvg:   row.WindAvg,
+		WindMax:   row.WindMax,
+		Humidity:  row.Humidity,
+		Condition: row.Condition,
+	}
 }
 
 func (s *ReportService) buildFacts(stats *reportStats) map[string]any {
@@ -812,8 +914,10 @@ func (s *ReportService) buildFacts(stats *reportStats) map[string]any {
 	}
 	facts["speciesBreakdown"] = speciesList
 
+	isFahrenheit := settings.Realtime.Dashboard.TemperatureUnit == conf.TemperatureUnitFahrenheit
+
 	if stats.PriorComparison.Available {
-		facts["priorPeriodComparison"] = map[string]any{
+		priorCompMap := map[string]any{
 			"precedingWindowDays":  stats.PriorComparison.WindowDays,
 			"priorTotalDetections": stats.PriorComparison.PriorDetections,
 			"detectionDelta":       stats.PriorComparison.DetectionDelta,
@@ -825,9 +929,49 @@ func (s *ReportService) buildFacts(stats *reportStats) map[string]any {
 			"topSurges":            stats.PriorComparison.TopSurges,
 			"topDeclines":          stats.PriorComparison.TopDeclines,
 		}
+
+		if stats.Weather.Available && stats.PriorWeather.Available {
+			if isFahrenheit {
+				currTempAvg := stats.Weather.TempAvg*1.8 + 32
+				priorTempAvg := stats.PriorWeather.TempAvg*1.8 + 32
+				currWindAvg := stats.Weather.WindAvg * 2.23694
+				priorWindAvg := stats.PriorWeather.WindAvg * 2.23694
+
+				priorCompMap["weatherComparison"] = map[string]any{
+					"priorTempMinF":    fmt.Sprintf("%.1f", stats.PriorWeather.TempMin*1.8+32),
+					"priorTempMaxF":    fmt.Sprintf("%.1f", stats.PriorWeather.TempMax*1.8+32),
+					"priorTempAvgF":    fmt.Sprintf("%.1f", priorTempAvg),
+					"tempAvgDeltaF":    fmt.Sprintf("%+.1f°F", currTempAvg-priorTempAvg),
+					"priorWindAvgMph":  fmt.Sprintf("%.1f", priorWindAvg),
+					"priorWindGustMph": fmt.Sprintf("%.1f", stats.PriorWeather.WindMax*2.23694),
+					"windAvgDeltaMph":  fmt.Sprintf("%+.1f mph", currWindAvg-priorWindAvg),
+					"priorPressureHpa": fmt.Sprintf("%.1f", stats.PriorWeather.Pressure),
+					"pressureDeltaHpa": fmt.Sprintf("%+.1f hPa", stats.Weather.Pressure-stats.PriorWeather.Pressure),
+					"priorHumidityPct": fmt.Sprintf("%.1f", stats.PriorWeather.Humidity),
+					"humidityDeltaPct": fmt.Sprintf("%+.1f%%", stats.Weather.Humidity-stats.PriorWeather.Humidity),
+					"priorCondition":   orUnknown(stats.PriorWeather.Condition),
+				}
+			} else {
+				priorCompMap["weatherComparison"] = map[string]any{
+					"priorTempMinC":    fmt.Sprintf("%.1f", stats.PriorWeather.TempMin),
+					"priorTempMaxC":    fmt.Sprintf("%.1f", stats.PriorWeather.TempMax),
+					"priorTempAvgC":    fmt.Sprintf("%.1f", stats.PriorWeather.TempAvg),
+					"tempAvgDeltaC":    fmt.Sprintf("%+.1f°C", stats.Weather.TempAvg-stats.PriorWeather.TempAvg),
+					"priorWindAvgMS":   fmt.Sprintf("%.1f", stats.PriorWeather.WindAvg),
+					"priorWindGustMS":  fmt.Sprintf("%.1f", stats.PriorWeather.WindMax),
+					"windAvgDeltaMS":   fmt.Sprintf("%+.1f m/s", stats.Weather.WindAvg-stats.PriorWeather.WindAvg),
+					"priorPressureHpa": fmt.Sprintf("%.1f", stats.PriorWeather.Pressure),
+					"pressureDeltaHpa": fmt.Sprintf("%+.1f hPa", stats.Weather.Pressure-stats.PriorWeather.Pressure),
+					"priorHumidityPct": fmt.Sprintf("%.1f", stats.PriorWeather.Humidity),
+					"humidityDeltaPct": fmt.Sprintf("%+.1f%%", stats.Weather.Humidity-stats.PriorWeather.Humidity),
+					"priorCondition":   orUnknown(stats.PriorWeather.Condition),
+				}
+			}
+		}
+
+		facts["priorPeriodComparison"] = priorCompMap
 	}
 
-	isFahrenheit := settings.Realtime.Dashboard.TemperatureUnit == conf.TemperatureUnitFahrenheit
 	if stats.Weather.Available {
 		if isFahrenheit {
 			facts["weather"] = map[string]any{
@@ -856,6 +1000,38 @@ func (s *ReportService) buildFacts(stats *reportStats) map[string]any {
 			facts["temperatureUnitPreference"] = "Celsius (°C)"
 			facts["windSpeedUnitPreference"] = "meters per second (m/s)"
 		}
+
+		if len(stats.DailyWeather) > 0 {
+			dailyList := make([]map[string]any, 0, len(stats.DailyWeather))
+			for _, dw := range stats.DailyWeather {
+				if isFahrenheit {
+					dailyList = append(dailyList, map[string]any{
+						"date":           dw.Date,
+						"tempMinF":       fmt.Sprintf("%.1f", dw.TempMin*1.8+32),
+						"tempMaxF":       fmt.Sprintf("%.1f", dw.TempMax*1.8+32),
+						"tempAvgF":       fmt.Sprintf("%.1f", dw.TempAvg*1.8+32),
+						"windAvgMph":     fmt.Sprintf("%.1f", dw.WindAvg*2.23694),
+						"windGustMaxMph": fmt.Sprintf("%.1f", dw.WindMax*2.23694),
+						"pressureHpa":    fmt.Sprintf("%.1f", dw.Pressure),
+						"humidityPct":    fmt.Sprintf("%.1f", dw.Humidity),
+						"condition":      orUnknown(dw.Condition),
+					})
+				} else {
+					dailyList = append(dailyList, map[string]any{
+						"date":          dw.Date,
+						"tempMinC":      fmt.Sprintf("%.1f", dw.TempMin),
+						"tempMaxC":      fmt.Sprintf("%.1f", dw.TempMax),
+						"tempAvgC":      fmt.Sprintf("%.1f", dw.TempAvg),
+						"windAvgMS":     fmt.Sprintf("%.1f", dw.WindAvg),
+						"windGustMaxMS": fmt.Sprintf("%.1f", dw.WindMax),
+						"pressureHpa":   fmt.Sprintf("%.1f", dw.Pressure),
+						"humidityPct":   fmt.Sprintf("%.1f", dw.Humidity),
+						"condition":     orUnknown(dw.Condition),
+					})
+				}
+			}
+			facts["dailyWeather"] = dailyList
+		}
 	}
 
 	return facts
@@ -880,7 +1056,7 @@ func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStat
 	factsJSON, _ := json.MarshalIndent(facts, "", "  ")
 
 	// Safety note appended after facts — does not override output format instructions.
-	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts. The provided Facts include the species-level breakdown table (with individual counts, share percentage, and average confidence), prior-period comparison data (preceding window detections, new arrivals, departed species, and surges), 24-hour activity distribution, confidence buckets, and solar schedule."
+	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts. The provided Facts include the species-level breakdown table (with individual counts, share percentage, and average confidence), prior-period comparison data (preceding window detections, new arrivals, departed species, surges, and weather comparison deltas), multi-day daily weather history, 24-hour activity distribution, confidence buckets, and solar schedule. When prior-period comparison data is available, include a dedicated section comparing current activity and weather against the preceding baseline window."
 
 	var prompt string
 	if strings.TrimSpace(settings.AI.SystemPrompt) != "" {
@@ -995,6 +1171,89 @@ func (s *ReportService) renderDailyTotals(stats *reportStats) string {
 	}, "\n")
 }
 
+func (s *ReportService) renderPeriodComparison(stats *reportStats) string {
+	if !stats.PriorComparison.Available {
+		return ""
+	}
+
+	settings := s.settingsSnapshot()
+	isFahrenheit := settings.Realtime.Dashboard.TemperatureUnit == conf.TemperatureUnitFahrenheit
+
+	var b strings.Builder
+	fmt.Fprintf(&b, "<h2>Period Comparison (vs. Preceding %d Days)</h2>\n", stats.PriorComparison.WindowDays)
+	b.WriteString("<table><thead><tr><th>Metric</th><th>Current Period</th><th>Prior Period</th><th>Change</th></tr></thead><tbody>\n")
+
+	fmt.Fprintf(&b, "<tr><td>Total detections</td><td>%d</td><td>%d</td><td>%+d (%s)</td></tr>\n",
+		stats.TotalDetections, stats.PriorComparison.PriorDetections, stats.PriorComparison.DetectionDelta, stats.PriorComparison.DetectionChangePct)
+
+	speciesDeltaSign := fmt.Sprintf("%+d", stats.PriorComparison.SpeciesDelta)
+	fmt.Fprintf(&b, "<tr><td>Unique species</td><td>%d</td><td>%d</td><td>%s</td></tr>\n",
+		stats.UniqueSpecies, stats.PriorComparison.PriorUniqueSpecies, speciesDeltaSign)
+
+	fmt.Fprintf(&b, "<tr><td>New arrival species</td><td>%d</td><td>—</td><td>+%d new</td></tr>\n",
+		len(stats.PriorComparison.NewArrivals), len(stats.PriorComparison.NewArrivals))
+	fmt.Fprintf(&b, "<tr><td>Departed species</td><td>—</td><td>%d</td><td>-%d departed</td></tr>\n",
+		len(stats.PriorComparison.DepartedSpecies), len(stats.PriorComparison.DepartedSpecies))
+
+	if stats.Weather.Available && stats.PriorWeather.Available {
+		if isFahrenheit {
+			currAvg := stats.Weather.TempAvg*1.8 + 32
+			priorAvg := stats.PriorWeather.TempAvg*1.8 + 32
+			currMin := stats.Weather.TempMin*1.8 + 32
+			currMax := stats.Weather.TempMax*1.8 + 32
+			priorMin := stats.PriorWeather.TempMin*1.8 + 32
+			priorMax := stats.PriorWeather.TempMax*1.8 + 32
+			currWind := stats.Weather.WindAvg * 2.23694
+			priorWind := stats.PriorWeather.WindAvg * 2.23694
+
+			fmt.Fprintf(&b, "<tr><td>Average temperature</td><td>%.1f°F (%.1f–%.1f°F)</td><td>%.1f°F (%.1f–%.1f°F)</td><td>%+.1f°F</td></tr>\n",
+				currAvg, currMin, currMax, priorAvg, priorMin, priorMax, currAvg-priorAvg)
+			fmt.Fprintf(&b, "<tr><td>Average wind speed</td><td>%.1f mph</td><td>%.1f mph</td><td>%+.1f mph</td></tr>\n",
+				currWind, priorWind, currWind-priorWind)
+		} else {
+			fmt.Fprintf(&b, "<tr><td>Average temperature</td><td>%.1f°C (%.1f–%.1f°C)</td><td>%.1f°C (%.1f–%.1f°C)</td><td>%+.1f°C</td></tr>\n",
+				stats.Weather.TempAvg, stats.Weather.TempMin, stats.Weather.TempMax,
+				stats.PriorWeather.TempAvg, stats.PriorWeather.TempMin, stats.PriorWeather.TempMax,
+				stats.Weather.TempAvg-stats.PriorWeather.TempAvg)
+			fmt.Fprintf(&b, "<tr><td>Average wind speed</td><td>%.1f m/s</td><td>%.1f m/s</td><td>%+.1f m/s</td></tr>\n",
+				stats.Weather.WindAvg, stats.PriorWeather.WindAvg, stats.Weather.WindAvg-stats.PriorWeather.WindAvg)
+		}
+		fmt.Fprintf(&b, "<tr><td>Barometric pressure</td><td>%.1f hPa</td><td>%.1f hPa</td><td>%+.1f hPa</td></tr>\n",
+			stats.Weather.Pressure, stats.PriorWeather.Pressure, stats.Weather.Pressure-stats.PriorWeather.Pressure)
+		fmt.Fprintf(&b, "<tr><td>Average humidity</td><td>%.1f%%</td><td>%.1f%%</td><td>%+.1f%%</td></tr>\n",
+			stats.Weather.Humidity, stats.PriorWeather.Humidity, stats.Weather.Humidity-stats.PriorWeather.Humidity)
+	}
+	b.WriteString("</tbody></table>\n")
+
+	hasTurnover := len(stats.PriorComparison.NewArrivals) > 0 || len(stats.PriorComparison.TopSurges) > 0 ||
+		len(stats.PriorComparison.TopDeclines) > 0 || len(stats.PriorComparison.DepartedSpecies) > 0
+
+	if hasTurnover {
+		b.WriteString("\n<h3>Notable Species Shifts & Migration Movements</h3>\n")
+		b.WriteString("<table><thead><tr><th>Movement</th><th>Species</th><th>Current Count</th><th>Prior Count</th><th>Change</th></tr></thead><tbody>\n")
+
+		for _, item := range stats.PriorComparison.NewArrivals {
+			fmt.Fprintf(&b, "<tr><td><strong>New Arrival</strong></td><td>%s</td><td>%d</td><td>0</td><td>+100%% (new)</td></tr>\n",
+				esc(item.CommonName), item.CurrentCount)
+		}
+		for _, item := range stats.PriorComparison.TopSurges {
+			fmt.Fprintf(&b, "<tr><td>Surge</td><td>%s</td><td>%d</td><td>%d</td><td>%+d (%s)</td></tr>\n",
+				esc(item.CommonName), item.CurrentCount, item.PriorCount, item.Delta, item.ChangePct)
+		}
+		for _, item := range stats.PriorComparison.TopDeclines {
+			fmt.Fprintf(&b, "<tr><td>Decline</td><td>%s</td><td>%d</td><td>%d</td><td>%d (%s)</td></tr>\n",
+				esc(item.CommonName), item.CurrentCount, item.PriorCount, item.Delta, item.ChangePct)
+		}
+		for _, item := range stats.PriorComparison.DepartedSpecies {
+			fmt.Fprintf(&b, "<tr><td>Departed</td><td>%s</td><td>0</td><td>%d</td><td>-%d (absent)</td></tr>\n",
+				esc(item.CommonName), item.PriorCount, item.PriorCount)
+		}
+		b.WriteString("</tbody></table>")
+	}
+
+	return b.String()
+}
+
 func (s *ReportService) renderTopSpecies(stats *reportStats) string {
 	rows := []string{"<h2>Top Detections</h2>", `<table><thead><tr><th>Thumbnail</th><th>Common</th><th>Scientific</th><th>Detections</th><th>Avg confidence</th><th>Peak</th><th>Links</th></tr></thead><tbody>`}
 	for _, row := range stats.TopSpecies {
@@ -1037,7 +1296,7 @@ func (s *ReportService) renderWeatherSummary(stats *reportStats) string {
 		windStr = fmt.Sprintf("avg %.1f m/s / max %.1f m/s", stats.Weather.WindAvg, stats.Weather.WindMax)
 	}
 
-	return strings.Join([]string{
+	rows := []string{
 		"<h2>Weather Summary</h2>",
 		`<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>`,
 		fmt.Sprintf("<tr><td>Temperature</td><td>%s</td></tr>", tempStr),
@@ -1045,7 +1304,28 @@ func (s *ReportService) renderWeatherSummary(stats *reportStats) string {
 		fmt.Sprintf("<tr><td>Humidity</td><td>%.1f%%</td></tr>", stats.Weather.Humidity),
 		fmt.Sprintf("<tr><td>Conditions</td><td>%s</td></tr>", esc(orUnknown(stats.Weather.Condition))),
 		"</tbody></table>",
-	}, "\n")
+	}
+
+	if len(stats.DailyWeather) > 1 {
+		rows = append(rows, "\n<h3>Daily Weather History</h3>", `<table><thead><tr><th>Date</th><th>Temp Range</th><th>Avg Temp</th><th>Wind</th><th>Humidity</th><th>Conditions</th></tr></thead><tbody>`)
+		for _, dw := range stats.DailyWeather {
+			var dTempRange, dAvgTemp, dWind string
+			if isFahrenheit {
+				dTempRange = fmt.Sprintf("%.1f–%.1f°F", dw.TempMin*1.8+32, dw.TempMax*1.8+32)
+				dAvgTemp = fmt.Sprintf("%.1f°F", dw.TempAvg*1.8+32)
+				dWind = fmt.Sprintf("%.1f mph (gust %.1f)", dw.WindAvg*2.23694, dw.WindMax*2.23694)
+			} else {
+				dTempRange = fmt.Sprintf("%.1f–%.1f°C", dw.TempMin, dw.TempMax)
+				dAvgTemp = fmt.Sprintf("%.1f°C", dw.TempAvg)
+				dWind = fmt.Sprintf("%.1f m/s (gust %.1f)", dw.WindAvg, dw.WindMax)
+			}
+			rows = append(rows, fmt.Sprintf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%.1f%%</td><td>%s</td></tr>",
+				esc(dw.Date), dTempRange, dAvgTemp, dWind, dw.Humidity, esc(orUnknown(dw.Condition))))
+		}
+		rows = append(rows, "</tbody></table>")
+	}
+
+	return strings.Join(rows, "\n")
 }
 
 func (s *ReportService) renderConfidenceBreakdown(stats *reportStats) string {

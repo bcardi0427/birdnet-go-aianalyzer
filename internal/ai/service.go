@@ -30,7 +30,7 @@ import (
 const (
 	defaultCacheHours       = 4
 	defaultReportDays       = 1
-	llmRequestTimeout       = 30 * time.Second
+	llmRequestTimeout       = 120 * time.Second
 	maxTopSpeciesRows       = 12
 	maxNotableSpeciesRows   = 8
 	highConfidenceThreshold = 0.9

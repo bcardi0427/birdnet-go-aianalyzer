@@ -11,6 +11,11 @@ This changelog covers the `bcardi0427/birdnet-go-aianalyzer` fork. For inherited
 - _(ai)_ Enriched AI prompt facts with species-level breakdown table including detection counts, percentage share, average confidence, peak hours, observation timestamps, and local eBird context.
 - _(ai)_ Enriched AI prompt facts with 24-hour activity distribution, confidence score buckets, and solar event times (civil dawn, sunrise, sunset, civil dusk).
 
+### 🐛 Bug Fixes
+
+- _(ai)_ Increase AI request timeout from 30s to 120s to accommodate detailed species breakdown and full activity distribution without deadline expiry.
+- _(ai)_ Strip leading `models/` prefix from Gemini model IDs to prevent 404 / invalid model errors when invoking `GenerateContent`.
+
 ## [AI Analyzer 0.63] - 2026-06-08
 
 ### 🚀 Features

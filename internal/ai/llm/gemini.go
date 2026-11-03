@@ -30,7 +30,8 @@ func (p *geminiProvider) Generate(ctx context.Context, req GenerateRequest) (Gen
 		prompt = strings.TrimSpace(req.SystemPrompt) + "\n\n" + prompt
 	}
 
-	result, err := client.Models.GenerateContent(ctx, effectiveModel(req.Model, DefaultGeminiModel), genai.Text(prompt), nil)
+	modelName := strings.TrimPrefix(effectiveModel(req.Model, DefaultGeminiModel), "models/")
+	result, err := client.Models.GenerateContent(ctx, modelName, genai.Text(prompt), nil)
 	if err != nil {
 		return GenerateResponse{}, err
 	}
@@ -52,7 +53,7 @@ func (p *geminiProvider) ListModels(ctx context.Context) ([]Model, error) {
 	models := []Model{}
 	for {
 		for _, model := range modelPage.Items {
-			models = append(models, Model{ID: model.Name, DisplayName: model.DisplayName, Description: model.Description})
+			models = append(models, Model{ID: strings.TrimPrefix(model.Name, "models/"), DisplayName: model.DisplayName, Description: model.Description})
 		}
 
 		nextPage, err := modelPage.Next(ctx)

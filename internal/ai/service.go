@@ -22,6 +22,7 @@ import (
 	"github.com/tphakala/birdnet-go/internal/errors"
 	"github.com/tphakala/birdnet-go/internal/logger"
 	"github.com/tphakala/birdnet-go/internal/secrets"
+	"github.com/tphakala/birdnet-go/internal/suncalc"
 	xhtml "golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 )
@@ -95,7 +96,7 @@ type reportCacheFile struct {
 	AIEnabled         bool   `json:"aiEnabled"`
 	WeatherEnabled    bool   `json:"weatherEnabled"`
 	EBirdEnabled      bool   `json:"ebirdEnabled"`
-	TemperatureUnit   string `json:"temperatureUnit"`   // bust cache when user switches °C↔°F
+	TemperatureUnit   string `json:"temperatureUnit"` // bust cache when user switches °C↔°F
 	GeneratedUnixHour int64  `json:"generatedUnixHour"`
 }
 
@@ -112,11 +113,17 @@ type reportStats struct {
 	PeakHourCount        int
 	QuietHour            int
 	QuietHourCount       int
+	HourlyCounts         []int
+	AllSpecies           []speciesRow
 	TopSpecies           []speciesRow
 	NotableSpecies       []speciesRow
 	Weather              weatherSummary
 	EBirdContextIncluded bool
 	EBirdRecentBySpecies map[string]bool
+	CivilDawn            string
+	Sunrise              string
+	Sunset               string
+	CivilDusk            string
 }
 
 type speciesRow struct {
@@ -405,8 +412,17 @@ func (s *ReportService) computeStats(ctx context.Context, dets []*entities.Detec
 	}
 
 	settings := s.settingsSnapshot()
-	stats.TopSpecies = buildSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, settings.AI.UTMParameters, maxTopSpeciesRows)
+	allSpecies := buildSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, settings.AI.UTMParameters, 1000)
+	stats.AllSpecies = allSpecies
+	if len(allSpecies) > maxTopSpeciesRows {
+		stats.TopSpecies = make([]speciesRow, maxTopSpeciesRows)
+		copy(stats.TopSpecies, allSpecies[:maxTopSpeciesRows])
+	} else {
+		stats.TopSpecies = make([]speciesRow, len(allSpecies))
+		copy(stats.TopSpecies, allSpecies)
+	}
 	stats.NotableSpecies = buildNotableSpeciesRows(byScientific, settings.BirdNET.Labels, taxonomyCodeMap, settings.AI.UTMParameters, maxNotableSpeciesRows)
+	stats.HourlyCounts = hourly
 	stats.Weather = s.fetchWeatherSummary(ctx)
 	stats.EBirdContextIncluded = settings.Realtime.EBird.Enabled && s.ebirdClient != nil
 
@@ -416,6 +432,16 @@ func (s *ReportService) computeStats(ctx context.Context, dets []*entities.Detec
 			stats.EBirdRecentBySpecies = recentMap
 			stats.TopSpecies = applyEBirdContext(stats.TopSpecies, recentMap)
 			stats.NotableSpecies = applyEBirdContext(stats.NotableSpecies, recentMap)
+		}
+	}
+
+	if settings.BirdNET.Latitude != 0 || settings.BirdNET.Longitude != 0 {
+		sc := suncalc.NewSunCalc(settings.BirdNET.Latitude, settings.BirdNET.Longitude)
+		if st, err := sc.GetSunEventTimes(time.Now()); err == nil {
+			stats.CivilDawn = st.CivilDawn.Format("15:04")
+			stats.Sunrise = st.Sunrise.Format("15:04")
+			stats.Sunset = st.Sunset.Format("15:04")
+			stats.CivilDusk = st.CivilDusk.Format("15:04")
 		}
 	}
 
@@ -502,20 +528,8 @@ func (s *ReportService) fetchWeatherSummary(ctx context.Context) weatherSummary 
 	return ws
 }
 
-func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStats, apiKey string) (string, string, string, error) {
+func (s *ReportService) buildFacts(stats *reportStats) map[string]any {
 	settings := s.settingsSnapshot()
-	requestCtx, cancel := context.WithTimeout(ctx, llmRequestTimeout)
-	defer cancel()
-	providerID := effectiveProvider(settings.AI.Provider)
-	model := effectiveModel(settings.AI)
-	provider, err := llm.NewProvider(settings.AI, apiKey, s.log)
-	if err != nil {
-		return "", providerID, model, errors.Newf("failed to create AI provider %q: %w", providerID, err).
-			Component("ai").
-			Category(errors.CategoryConfiguration).
-			Build()
-	}
-
 	facts := map[string]any{
 		"totalDetections":      stats.TotalDetections,
 		"uniqueSpecies":        stats.UniqueSpecies,
@@ -528,6 +542,77 @@ func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStat
 		"weatherAvailable":     stats.Weather.Available,
 		"ebirdContextIncluded": stats.EBirdContextIncluded,
 	}
+
+	facts["confidenceBreakdown"] = map[string]int{
+		"95To100Pct": stats.Confidence95To100,
+		"90To94Pct":  stats.Confidence90To94,
+		"80To89Pct":  stats.Confidence80To89,
+		"below80Pct": stats.ConfidenceBelow80,
+	}
+
+	if len(stats.HourlyCounts) == 24 {
+		hourlyList := make([]map[string]any, 24)
+		for h := range 24 {
+			hourlyList[h] = map[string]any{
+				"hour":       hourWindow(h),
+				"detections": stats.HourlyCounts[h],
+			}
+		}
+		facts["hourlyActivity"] = hourlyList
+	}
+
+	if stats.Sunrise != "" || stats.Sunset != "" {
+		facts["solarTimes"] = map[string]string{
+			"civilDawn": stats.CivilDawn,
+			"sunrise":   stats.Sunrise,
+			"sunset":    stats.Sunset,
+			"civilDusk": stats.CivilDusk,
+		}
+	}
+
+	if settings.BirdNET.Latitude != 0 || settings.BirdNET.Longitude != 0 {
+		facts["location"] = map[string]float64{
+			"latitude":  settings.BirdNET.Latitude,
+			"longitude": settings.BirdNET.Longitude,
+		}
+	}
+
+	speciesSource := stats.AllSpecies
+	if len(speciesSource) == 0 {
+		speciesSource = stats.TopSpecies
+	}
+	limit := len(speciesSource)
+	if limit > 50 {
+		limit = 50
+	}
+	speciesList := make([]map[string]any, 0, limit)
+	for i := range limit {
+		row := speciesSource[i]
+		share := 0.0
+		if stats.TotalDetections > 0 {
+			share = float64(row.Detections) / float64(stats.TotalDetections) * 100
+		}
+		item := map[string]any{
+			"commonName":       orUnknown(row.CommonName),
+			"scientificName":   row.ScientificName,
+			"detections":       row.Detections,
+			"sharePct":         fmt.Sprintf("%.1f%%", share),
+			"avgConfidencePct": fmt.Sprintf("%.1f%%", row.AvgConfidencePct),
+			"peakHour":         hourWindow(row.PeakHour),
+		}
+		if row.FirstSeenUnix > 0 {
+			item["firstSeen"] = time.Unix(row.FirstSeenUnix, 0).Format(time.DateTime)
+		}
+		if row.LastSeenUnix > 0 {
+			item["lastSeen"] = time.Unix(row.LastSeenUnix, 0).Format(time.DateTime)
+		}
+		if stats.EBirdContextIncluded && stats.EBirdRecentBySpecies != nil {
+			item["recentInArea"] = stats.EBirdRecentBySpecies[strings.ToLower(row.ScientificName)]
+		}
+		speciesList = append(speciesList, item)
+	}
+	facts["speciesBreakdown"] = speciesList
+
 	isFahrenheit := settings.Realtime.Dashboard.TemperatureUnit == conf.TemperatureUnitFahrenheit
 	if stats.Weather.Available {
 		if isFahrenheit {
@@ -559,10 +644,29 @@ func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStat
 		}
 	}
 
+	return facts
+}
+
+func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStats, apiKey string) (narrative, providerID, model string, err error) {
+	settings := s.settingsSnapshot()
+	requestCtx, cancel := context.WithTimeout(ctx, llmRequestTimeout)
+	defer cancel()
+	providerID = effectiveProvider(settings.AI.Provider)
+	model = effectiveModel(settings.AI)
+	provider, provErr := llm.NewProvider(settings.AI, apiKey, s.log)
+	if provErr != nil {
+		return "", providerID, model, errors.Newf("failed to create AI provider %q: %w", providerID, provErr).
+			Component("ai").
+			Category(errors.CategoryConfiguration).
+			Build()
+	}
+
+	facts := s.buildFacts(stats)
+
 	factsJSON, _ := json.MarshalIndent(facts, "", "  ")
 
 	// Safety note appended after facts — does not override output format instructions.
-	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts."
+	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts. The provided Facts include the species-level breakdown table (with individual counts, share percentage, and average confidence), 24-hour activity distribution, confidence buckets, and solar schedule."
 
 	var prompt string
 	if strings.TrimSpace(settings.AI.SystemPrompt) != "" {

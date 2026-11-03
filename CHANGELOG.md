@@ -4,6 +4,13 @@ All notable AI Analyzer fork changes will be documented in this file.
 
 This changelog covers the `bcardi0427/birdnet-go-aianalyzer` fork. For inherited upstream BirdNET-Go history and credit, see the upstream [BirdNET-Go changelog](https://github.com/tphakala/birdnet-go/blob/main/CHANGELOG.md).
 
+## [AI Analyzer 0.68] - 2026-11-03
+
+### 🚀 Features
+
+- _(ai)_ Enriched AI prompt facts with species-level breakdown table including detection counts, percentage share, average confidence, peak hours, observation timestamps, and local eBird context.
+- _(ai)_ Enriched AI prompt facts with 24-hour activity distribution, confidence score buckets, and solar event times (civil dawn, sunrise, sunset, civil dusk).
+
 ## [AI Analyzer 0.63] - 2026-06-08
 
 ### 🚀 Features

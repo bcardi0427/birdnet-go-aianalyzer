@@ -551,3 +551,39 @@ func TestFetchWindowWeatherSummary(t *testing.T) {
 	assert.Equal(t, dateNov2, dailyRows[1].Date)
 	assert.InDelta(t, 16.0, dailyRows[1].TempAvg, 0.01)
 }
+
+func TestBuildPrompt_IncludesAvianComparisonInstruction(t *testing.T) {
+	settings := &conf.Settings{
+		AI: conf.AISettings{
+			SystemPrompt: "Custom prompt instructions for ornithologist.",
+		},
+	}
+	service := &ReportService{settings: settings}
+
+	statsWithPrior := &reportStats{
+		TotalDetections: 50,
+		PriorComparison: priorComparisonStats{
+			Available:  true,
+			WindowDays: 3,
+		},
+	}
+
+	promptWithPrior := service.buildPrompt(statsWithPrior)
+	assert.Contains(t, promptWithPrior, "Custom prompt instructions for ornithologist.")
+	assert.Contains(t, promptWithPrior, "MANDATORY SECTION REQUIREMENT:")
+	assert.Contains(t, promptWithPrior, "<h3>Period-over-Period Avian Comparison</h3>")
+	assert.Contains(t, promptWithPrior, "Avian Population & Species Shifts")
+	assert.Contains(t, promptWithPrior, "Species Turnover & Migration")
+	assert.Contains(t, promptWithPrior, "Habitat & Ecological Context")
+
+	statsWithoutPrior := &reportStats{
+		TotalDetections: 50,
+		PriorComparison: priorComparisonStats{
+			Available: false,
+		},
+	}
+	promptWithoutPrior := service.buildPrompt(statsWithoutPrior)
+	assert.Contains(t, promptWithoutPrior, "Custom prompt instructions for ornithologist.")
+	assert.NotContains(t, promptWithoutPrior, "MANDATORY SECTION REQUIREMENT:")
+	assert.NotContains(t, promptWithoutPrior, "<h3>Period-over-Period Avian Comparison</h3>")
+}

@@ -4,6 +4,12 @@ All notable AI Analyzer fork changes will be documented in this file.
 
 This changelog covers the `bcardi0427/birdnet-go-aianalyzer` fork. For inherited upstream BirdNET-Go history and credit, see the upstream [BirdNET-Go changelog](https://github.com/tphakala/birdnet-go/blob/main/CHANGELOG.md).
 
+## [AI Analyzer 0.73] - 2026-11-03
+
+### 🚀 Features
+
+- _(ai)_ Enforce mandatory `<h3>Period-over-Period Avian Comparison</h3>` section in AI narrative prompt, requiring the LLM to analyze volume shifts, species turnover (migrant arrivals, departed species, surges, declines), local habitat usage, and environmental correlation across report windows.
+
 ## [AI Analyzer 0.72] - 2026-11-03
 
 ### 🚀 Features

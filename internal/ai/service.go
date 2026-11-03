@@ -1037,6 +1037,36 @@ func (s *ReportService) buildFacts(stats *reportStats) map[string]any {
 	return facts
 }
 
+func (s *ReportService) buildPrompt(stats *reportStats) string {
+	settings := s.settingsSnapshot()
+	facts := s.buildFacts(stats)
+	factsJSON, _ := json.MarshalIndent(facts, "", "  ")
+
+	var comparisonInstruction string
+	if stats.PriorComparison.Available {
+		comparisonInstruction = "\n\nMANDATORY SECTION REQUIREMENT:\n" +
+			"In addition to your other sections, you MUST include a dedicated <h3>Period-over-Period Avian Comparison</h3> section in your narrative.\n" +
+			"In this section, thoroughly analyze the changes between the current window and the preceding baseline window:\n" +
+			"1. Avian Population & Species Shifts: Discuss the overall volume shift (Total Detections delta) and species richness change between the two periods.\n" +
+			"2. Species Turnover & Migration: Detail specific new arrival species (migrant arrivals), species that departed, and species with notable surges or declines.\n" +
+			"3. Habitat & Ecological Context: Analyze what these species shifts indicate about local habitat usage, seasonal foraging/breeding behaviors, and migration progression for this time period.\n" +
+			"4. Environmental Context: Note how any observed weather or temperature changes between the periods (from weatherComparison and dailyWeather) may have influenced these avian movements."
+	}
+
+	// Safety note appended after facts — does not override output format instructions.
+	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts. The provided Facts include the species-level breakdown table (with individual counts, share percentage, and average confidence), prior-period comparison data (preceding window detections, new arrivals, departed species, surges, and weather comparison deltas), multi-day daily weather history, 24-hour activity distribution, confidence buckets, and solar schedule."
+
+	if strings.TrimSpace(settings.AI.SystemPrompt) != "" {
+		return settings.AI.SystemPrompt + comparisonInstruction + "\n\n" + factsSafetyNote + "\n\nFacts:\n" + string(factsJSON)
+	}
+
+	return "You are generating narrative commentary for a BirdNET-Go daily report. " +
+		"Write a clear, detailed summary in well-structured HTML using <h3>, <p>, <ul>, <li>, and <table> tags. " +
+		"Do not include <html> or <body> tags. " +
+		comparisonInstruction + "\n\n" +
+		factsSafetyNote + "\n\nFacts:\n" + string(factsJSON)
+}
+
 func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStats, apiKey string) (narrative, providerID, model string, err error) {
 	settings := s.settingsSnapshot()
 	requestCtx, cancel := context.WithTimeout(ctx, llmRequestTimeout)
@@ -1051,25 +1081,7 @@ func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStat
 			Build()
 	}
 
-	facts := s.buildFacts(stats)
-
-	factsJSON, _ := json.MarshalIndent(facts, "", "  ")
-
-	// Safety note appended after facts — does not override output format instructions.
-	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts. The provided Facts include the species-level breakdown table (with individual counts, share percentage, and average confidence), prior-period comparison data (preceding window detections, new arrivals, departed species, surges, and weather comparison deltas), multi-day daily weather history, 24-hour activity distribution, confidence buckets, and solar schedule. When prior-period comparison data is available, include a dedicated section comparing current activity and weather against the preceding baseline window."
-
-	var prompt string
-	if strings.TrimSpace(settings.AI.SystemPrompt) != "" {
-		// User has a custom system prompt — honour it exactly. Only append the
-		// facts safety note so we never contradict the user's own formatting rules.
-		prompt = settings.AI.SystemPrompt + "\n\n" + factsSafetyNote + "\n\nFacts:\n" + string(factsJSON)
-	} else {
-		// No custom prompt configured — use a safe neutral default.
-		prompt = "You are generating narrative commentary for a BirdNET-Go daily report. " +
-			"Write a clear, detailed summary in well-structured HTML using <h3>, <p>, <ul>, <li>, and <table> tags. " +
-			"Do not include <html> or <body> tags. " +
-			factsSafetyNote + "\n\nFacts:\n" + string(factsJSON)
-	}
+	prompt := s.buildPrompt(stats)
 
 	s.log.Info("AI prompt payload",
 		logger.String("provider", providerID),

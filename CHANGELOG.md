@@ -8,6 +8,8 @@ This changelog covers the `bcardi0427/birdnet-go-aianalyzer` fork. For inherited
 
 ### 🚀 Features
 
+- _(ai)_ Added preceding-period detection comparison (`priorPeriodComparison`), querying the preceding N-day window from the local SQLite database to compute new arrivals, departed species, activity surges, and per-species detection deltas.
+- _(ai)_ Added local AI report history archiving (`data/cache/ai/history/`) with automatic retention bounding to the most recent 50 reports.
 - _(ai)_ Enriched AI prompt facts with species-level breakdown table including detection counts, percentage share, average confidence, peak hours, observation timestamps, and local eBird context.
 - _(ai)_ Enriched AI prompt facts with 24-hour activity distribution, confidence score buckets, and solar event times (civil dawn, sunrise, sunset, civil dusk).
 

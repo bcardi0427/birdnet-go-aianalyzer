@@ -124,6 +124,31 @@ type reportStats struct {
 	Sunrise              string
 	Sunset               string
 	CivilDusk            string
+	PriorComparison      priorComparisonStats
+}
+
+type speciesDelta struct {
+	CommonName     string `json:"commonName"`
+	ScientificName string `json:"scientificName"`
+	CurrentCount   int    `json:"currentCount"`
+	PriorCount     int    `json:"priorCount"`
+	Delta          int    `json:"delta"`
+	ChangePct      string `json:"changePct,omitempty"`
+}
+
+type priorComparisonStats struct {
+	Available          bool
+	WindowDays         int
+	PriorDetections    int
+	DetectionDelta     int
+	DetectionChangePct string
+	PriorUniqueSpecies int
+	SpeciesDelta       int
+	PriorCounts        map[string]int
+	NewArrivals        []speciesDelta
+	DepartedSpecies    []speciesDelta
+	TopSurges          []speciesDelta
+	TopDeclines        []speciesDelta
 }
 
 type speciesRow struct {
@@ -298,6 +323,32 @@ func (s *ReportService) saveCache(report string, generatedAt time.Time) {
 	if err := os.WriteFile(cachePath, data, 0o644); err != nil {
 		s.log.Warn("failed to write AI report cache", logger.Error(err))
 	}
+	s.saveReportHistory(data, generatedAt)
+}
+
+func (s *ReportService) saveReportHistory(data []byte, generatedAt time.Time) {
+	histDir := filepath.Join(s.cacheDir, "history")
+	if err := os.MkdirAll(histDir, 0o755); err != nil {
+		s.log.Warn("failed to create AI report history directory", logger.Error(err))
+		return
+	}
+	fileName := fmt.Sprintf("report_%s.json", generatedAt.Format("2006-01-02_15-04-05"))
+	filePath := filepath.Join(histDir, fileName)
+	if err := os.WriteFile(filePath, data, 0o644); err != nil {
+		s.log.Warn("failed to write AI report history", logger.Error(err))
+		return
+	}
+
+	entries, err := os.ReadDir(histDir)
+	if err != nil || len(entries) <= 50 {
+		return
+	}
+	sort.Slice(entries, func(i, j int) bool {
+		return entries[i].Name() < entries[j].Name()
+	})
+	for i := range len(entries) - 50 {
+		_ = os.Remove(filepath.Join(histDir, entries[i].Name()))
+	}
 }
 
 func (s *ReportService) generateReport(ctx context.Context, apiKey string) (string, time.Time, bool, error) {
@@ -319,7 +370,13 @@ func (s *ReportService) generateReport(ctx context.Context, apiKey string) (stri
 		return fmt.Sprintf("<h1>AI Analysis</h1>\n\n<p>No detections were found in the last %d day(s).</p>", effectiveReportDays(settings.AI.ReportDays)), now, true, nil
 	}
 
-	stats, err := s.computeStats(ctx, dets)
+	prevStart := now.Add(-2 * lookback).Unix()
+	prevDets, _, prevErr := s.detection.GetByDateRange(ctx, prevStart, start, 10000, 0)
+	if prevErr != nil {
+		s.log.Warn("failed to load prior-period detections for comparison", logger.Error(prevErr))
+	}
+
+	stats, err := s.computeStats(ctx, dets, prevDets)
 	if err != nil {
 		return "", time.Time{}, false, err
 	}
@@ -346,7 +403,7 @@ func (s *ReportService) generateReport(ctx context.Context, apiKey string) (stri
 	return strings.Join(sections, "\n\n"), now, shouldCache, nil
 }
 
-func (s *ReportService) computeStats(ctx context.Context, dets []*entities.Detection) (*reportStats, error) {
+func (s *ReportService) computeStats(ctx context.Context, dets, prevDets []*entities.Detection) (*reportStats, error) {
 	stats := &reportStats{}
 	hourly := make([]int, 24)
 	byScientific := make(map[string][]*entities.Detection)
@@ -445,7 +502,134 @@ func (s *ReportService) computeStats(ctx context.Context, dets []*entities.Detec
 		}
 	}
 
+	stats.PriorComparison = s.computePriorComparison(ctx, byScientific, prevDets, labelsByID, settings.BirdNET.Labels, effectiveReportDays(settings.AI.ReportDays))
+
 	return stats, nil
+}
+
+func (s *ReportService) computePriorComparison(
+	ctx context.Context,
+	currentByScientific map[string][]*entities.Detection,
+	prevDets []*entities.Detection,
+	labelsByID map[uint]string,
+	labels []string,
+	windowDays int,
+) priorComparisonStats {
+	if len(prevDets) == 0 {
+		return priorComparisonStats{
+			Available:   false,
+			WindowDays:  windowDays,
+			PriorCounts: make(map[string]int),
+		}
+	}
+
+	prevByScientific := make(map[string]int)
+	for _, d := range prevDets {
+		sci, ok := labelsByID[d.LabelID]
+		if !ok {
+			sci = fmt.Sprintf("label-%d", d.LabelID)
+			if label, err := s.labelRepo.GetByID(ctx, d.LabelID); err == nil && label != nil && strings.TrimSpace(label.ScientificName) != "" {
+				sci = label.ScientificName
+				labelsByID[d.LabelID] = sci
+			}
+		}
+		prevByScientific[sci]++
+	}
+
+	currentTotal := 0
+	for _, items := range currentByScientific {
+		currentTotal += len(items)
+	}
+	priorTotal := len(prevDets)
+	detDelta := currentTotal - priorTotal
+	detPct := "N/A"
+	if priorTotal > 0 {
+		detPct = fmt.Sprintf("%+.1f%%", float64(detDelta)/float64(priorTotal)*100)
+	}
+
+	allSciMap := make(map[string]struct{}, len(currentByScientific)+len(prevByScientific))
+	for sci := range currentByScientific {
+		allSciMap[sci] = struct{}{}
+	}
+	for sci := range prevByScientific {
+		allSciMap[sci] = struct{}{}
+	}
+
+	var newArrivals []speciesDelta
+	var departedSpecies []speciesDelta
+	var topSurges []speciesDelta
+	var topDeclines []speciesDelta
+
+	for sci := range allSciMap {
+		currentCount := len(currentByScientific[sci])
+		priorCount := prevByScientific[sci]
+		delta := currentCount - priorCount
+		commonName, _ := getSpeciesInfo(labels, sci)
+
+		sd := speciesDelta{
+			CommonName:     orUnknown(commonName),
+			ScientificName: sci,
+			CurrentCount:   currentCount,
+			PriorCount:     priorCount,
+			Delta:          delta,
+		}
+
+		switch {
+		case priorCount == 0 && currentCount > 0:
+			newArrivals = append(newArrivals, sd)
+		case priorCount > 0 && currentCount == 0:
+			departedSpecies = append(departedSpecies, sd)
+		case priorCount > 0 && currentCount > priorCount:
+			sd.ChangePct = fmt.Sprintf("+%.1f%%", float64(delta)/float64(priorCount)*100)
+			topSurges = append(topSurges, sd)
+		case currentCount > 0 && currentCount < priorCount:
+			sd.ChangePct = fmt.Sprintf("%.1f%%", float64(delta)/float64(priorCount)*100)
+			topDeclines = append(topDeclines, sd)
+		}
+	}
+
+	sort.Slice(newArrivals, func(i, j int) bool {
+		return newArrivals[i].CurrentCount > newArrivals[j].CurrentCount
+	})
+	if len(newArrivals) > 15 {
+		newArrivals = newArrivals[:15]
+	}
+
+	sort.Slice(departedSpecies, func(i, j int) bool {
+		return departedSpecies[i].PriorCount > departedSpecies[j].PriorCount
+	})
+	if len(departedSpecies) > 15 {
+		departedSpecies = departedSpecies[:15]
+	}
+
+	sort.Slice(topSurges, func(i, j int) bool {
+		return topSurges[i].Delta > topSurges[j].Delta
+	})
+	if len(topSurges) > 10 {
+		topSurges = topSurges[:10]
+	}
+
+	sort.Slice(topDeclines, func(i, j int) bool {
+		return topDeclines[i].Delta < topDeclines[j].Delta
+	})
+	if len(topDeclines) > 10 {
+		topDeclines = topDeclines[:10]
+	}
+
+	return priorComparisonStats{
+		Available:          true,
+		WindowDays:         windowDays,
+		PriorDetections:    priorTotal,
+		DetectionDelta:     detDelta,
+		DetectionChangePct: detPct,
+		PriorUniqueSpecies: len(prevByScientific),
+		SpeciesDelta:       len(currentByScientific) - len(prevByScientific),
+		PriorCounts:        prevByScientific,
+		NewArrivals:        newArrivals,
+		DepartedSpecies:    departedSpecies,
+		TopSurges:          topSurges,
+		TopDeclines:        topDeclines,
+	}
 }
 
 func (s *ReportService) fetchEBirdRecentMap(ctx context.Context) (map[string]bool, error) {
@@ -609,9 +793,39 @@ func (s *ReportService) buildFacts(stats *reportStats) map[string]any {
 		if stats.EBirdContextIncluded && stats.EBirdRecentBySpecies != nil {
 			item["recentInArea"] = stats.EBirdRecentBySpecies[strings.ToLower(row.ScientificName)]
 		}
+		if stats.PriorComparison.Available && stats.PriorComparison.PriorCounts != nil {
+			priorCount := stats.PriorComparison.PriorCounts[row.ScientificName]
+			item["priorDetections"] = priorCount
+			item["delta"] = row.Detections - priorCount
+			switch {
+			case priorCount == 0:
+				item["trend"] = "new_arrival"
+			case row.Detections > priorCount:
+				item["trend"] = "increased"
+			case row.Detections < priorCount:
+				item["trend"] = "decreased"
+			default:
+				item["trend"] = "stable"
+			}
+		}
 		speciesList = append(speciesList, item)
 	}
 	facts["speciesBreakdown"] = speciesList
+
+	if stats.PriorComparison.Available {
+		facts["priorPeriodComparison"] = map[string]any{
+			"precedingWindowDays":  stats.PriorComparison.WindowDays,
+			"priorTotalDetections": stats.PriorComparison.PriorDetections,
+			"detectionDelta":       stats.PriorComparison.DetectionDelta,
+			"detectionChangePct":   stats.PriorComparison.DetectionChangePct,
+			"priorUniqueSpecies":   stats.PriorComparison.PriorUniqueSpecies,
+			"speciesDelta":         stats.PriorComparison.SpeciesDelta,
+			"newArrivals":          stats.PriorComparison.NewArrivals,
+			"departedSpecies":      stats.PriorComparison.DepartedSpecies,
+			"topSurges":            stats.PriorComparison.TopSurges,
+			"topDeclines":          stats.PriorComparison.TopDeclines,
+		}
+	}
 
 	isFahrenheit := settings.Realtime.Dashboard.TemperatureUnit == conf.TemperatureUnitFahrenheit
 	if stats.Weather.Available {
@@ -666,7 +880,7 @@ func (s *ReportService) generateNarrative(ctx context.Context, stats *reportStat
 	factsJSON, _ := json.MarshalIndent(facts, "", "  ")
 
 	// Safety note appended after facts — does not override output format instructions.
-	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts. The provided Facts include the species-level breakdown table (with individual counts, share percentage, and average confidence), 24-hour activity distribution, confidence buckets, and solar schedule."
+	const factsSafetyNote = "Do not invent metrics; only use the provided Facts and say \"unavailable\" when data is missing. Do not include <img> tags, image URLs, or arbitrary external links. When discussing weather, temperature, or wind speed in the narrative, always format them using the user's preferred units as specified in temperatureUnitPreference and windSpeedUnitPreference in the Facts. The provided Facts include the species-level breakdown table (with individual counts, share percentage, and average confidence), prior-period comparison data (preceding window detections, new arrivals, departed species, and surges), 24-hour activity distribution, confidence buckets, and solar schedule."
 
 	var prompt string
 	if strings.TrimSpace(settings.AI.SystemPrompt) != "" {
